@@ -5,5 +5,3 @@ git checkout nombre_branch
 te cambia todos los archivos.
 Es importante que si voy a usar comandos de git, debo estar en el directorio
 adecuado.
-
-asdsad
