@@ -6,9 +6,9 @@ class TwoPanels extends Window
 {
 	private Obstacle[] obstacles;
 	private final static int panelsAmount= 2;
-	public TwoPanels(int obstaclesAmount)
+	public TwoPanels(int obstaclesAmount, Vector2D pos)
 	{
-		super(panelsAmount);
+		super(panelsAmount, pos);
 		this.obstacles= new Obstacle[obstaclesAmount];
 		
 	}
@@ -50,7 +50,7 @@ class TwoPanels extends Window
 	}
 	 public	boolean canIGenerateNicelander() 
 	 {
-		 if (this.panels[0].state == PanelState.BROKEN)
+		 if (this.panels[0].getState() == PanelState.BROKEN)
 		 {
 			 return true;
 		 }

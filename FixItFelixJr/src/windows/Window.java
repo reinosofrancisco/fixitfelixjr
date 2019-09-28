@@ -11,9 +11,22 @@ public abstract class Window
 	{
 		
 	}
-	public Window (int panelsSize)
+	Vector2D getPos() {
+		return pos;
+	}
+	void setPos(Vector2D pos) {
+		this.pos = pos;
+	}
+	Panel[] getPanels() {
+		return panels;
+	}
+	void setPanels(Panel[] panels) {
+		this.panels = panels;
+	}
+	public Window (int panelsSize, Vector2D pos)
 	{
 		panels= new Panel[panelsSize];
+		this.pos= pos;
 	}
 	public boolean isHealthy()
 	{
