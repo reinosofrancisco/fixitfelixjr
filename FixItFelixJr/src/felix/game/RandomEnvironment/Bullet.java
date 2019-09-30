@@ -1,21 +1,18 @@
 package felix.game.RandomEnvironment;
 
-import felix.game.utilities.Position;
+import felix.game.utilities.*;
 
 public abstract class Bullet {
 	
-	Position position;
+	Vector2D vector2D;
 	
-
-	public Position getPosition() {
-		return position;
+	public Vector2D getVector2D() {
+		return vector2D;
 	}
 
-	public void setPosition(Position position) {
-		Position pos = new Position();
-		this.position = pos;
-		this.position.setPosX(position.getPosX());
-		this.position.setPosY(position.getPosY());
+	public void setVector2D(Vector2D vector2D) {
+		Vector2D pos = new Vector2D(vector2D);
+		this.vector2D = pos;
 	}
 	
 }

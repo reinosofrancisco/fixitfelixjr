@@ -1,34 +1,31 @@
 package felix.game.RandomEnvironment;
 
-import felix.game.utilities.Position;
+import felix.game.utilities.*;
 
 public class Bird extends Bullet {
 	//locked to Left and Right (3 y 4)
-	Integer direction;
+	private Direction direction;
 
-	public Integer getDirection() {
+	public Direction getDirection() {
 		return direction;
 	}
 
-	public void setDirection(Integer direction) {
+	public void setDirection(Direction direction) {
 		this.direction = direction;
 	}	
 	
 	public Bird() {}
-	public Bird(Position pos) {
-		this.setPosition(pos);
+	public Bird(Vector2D pos) {
+		this.setVector2D(pos);
 		
 	}
 	
-	/**Moves the Bird one position to left / right 
-	 * (3 LEFT -- 4 RIGHT)
+	/**Moves the Bird one Vector2D to left / right 
 	 * NO VERIFICA NADA*/
-	public void move(int dir) {
+	public void move(Direction dir) {
 		this.direction = dir;
-		if (this.direction == 3)
-			this.position.setPosX(this.position.getPosY() + 1);
-		else
-			this.position.setPosX(this.position.getPosY() - 1);
+		if ((this.direction == Direction.LEFT)||(this.direction == Direction.LEFT))
+			this.vector2D.add(this.direction.getUnitVector());
 	}
 
 }

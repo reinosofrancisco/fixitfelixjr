@@ -2,34 +2,39 @@ package game.tester.randomenvironment;
 
 import felix.game.RandomEnvironment.*;
 import felix.game.leaders.RandomEnvironment;
-import felix.game.utilities.Position;
+import felix.game.utilities.*;
 
 public class MainTester {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Position pos = new Position();
-		pos.setPosX(1);
-		pos.setPosY(2);
+		
+		Vector2D pos = new Vector2D();
+		pos.setPosx(1);
+		pos.setPosy(2);
 		
 		Bullet bird = new Bird();
-		bird.setPosition(pos);
+		bird.setVector2D(pos);
 		
-		Position a = bird.getPosition();
+		Vector2D a = bird.getVector2D();
 		
-		System.out.println("Position X = " + a.getPosX());
-		System.out.println("Position Y = " + a.getPosY());
+		System.out.println("Vector2D X = " + a.getPosx());
+		System.out.println("Vector2D Y = " + a.getPosy());
 		
 		
 		RandomEnvironment leader = new RandomEnvironment();
 		
 		leader.summonBirds(pos);
 		
-		pos.setPosX(5);
+		pos.setPosx(5);
 	
 		System.out.println("Detect Collision " + leader.detectBirdCollision(pos));
 		
+		Vector2D v = new Vector2D(1,1);
+		Direction dir = Direction.DOWN;
+		v = dir.getUnitVector();
 		
+		System.out.println(v.getPosx() + v.getPosy());
 		
 
 	}

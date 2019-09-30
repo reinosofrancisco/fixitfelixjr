@@ -1,17 +1,18 @@
 package felix.game.RandomEnvironment;
 
-public class Brick extends Bullet {
-	//Locked to Down
-	private final Integer direction = 2;
+import felix.game.utilities.Direction;
 
-	public Integer getDirection() {
+public class Brick extends Bullet {
+	
+	private final Direction direction = Direction.DOWN;
+
+	public Direction getDirection() {
 		return direction;
 	}
 	
-	/**Moves the Brick down 1 position in Y.
-	 * NO VERIFICA NADA*/
+	/**Moves the Brick down 1 Vector2D in Y.	*/
 	public void move() {
-		this.position.setPosY(this.position.getPosY() - 1);
+		this.vector2D.add(Direction.DOWN.getUnitVector());
 	}
 
 	

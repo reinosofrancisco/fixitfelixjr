@@ -1,24 +1,24 @@
 package felix.game.RandomEnvironment;
 
-import felix.game.utilities.Position;
+import felix.game.utilities.Vector2D;
 
 public class Nicelander {
-	Position pos;
+	Vector2D pos;
 	int screenTime;
 	
 
 	public Nicelander() {};
 	
-	public Nicelander(Position pos, int screenTime) {
+	public Nicelander(Vector2D pos, int screenTime) {
 		super();
 		this.pos = pos;
 		this.screenTime = screenTime;
 	}
 	
-	public Position getPos() {
+	public Vector2D getPos() {
 		return pos;
 	}
-	public void setPos(Position pos) {
+	public void setPos(Vector2D pos) {
 		this.pos = pos;
 	}
 	public int getScreenTime() {
