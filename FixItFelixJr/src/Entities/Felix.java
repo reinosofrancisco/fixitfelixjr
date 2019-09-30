@@ -22,7 +22,7 @@ public class Felix {
 		 int x=this.pos.getPosx();
 		 int y=this.pos.getPosy();
 		 if(w[x][y].canIMove(d) &&
-				 w[x+d.getPosx()][y+d.getPosy()].canMoveFrom(d.product(-1))) {
+				 w[x+d.getPosx()][y+d.getPosy()].canIMove(d.product(-1))) {
 			 
 			 pos=pos.add(d);
 			 return true;
