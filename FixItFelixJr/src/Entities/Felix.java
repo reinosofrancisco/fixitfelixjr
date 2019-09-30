@@ -21,7 +21,7 @@ public class Felix {
 		 private Window w[] = Map.getWindows();
 		 int x=this.pos.getPosx();
 		 int y=this.pos.getPosy();
-		 if(w[x][y].canMoveFrom(d) &&
+		 if(w[x][y].canIMove(d) &&
 				 w[x+d.getPosx()][y+d.getPosy()].canMoveFrom(d.product(-1))) {
 			 
 			 pos=pos.add(d);
