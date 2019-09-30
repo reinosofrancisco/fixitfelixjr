@@ -1,5 +1,6 @@
 package entities;
 
+import util.Dimentions;
 import util.Direction;
 import util.Vector2D;
 
@@ -10,8 +11,9 @@ public class Ralph
 	private float velocity=1;
 	private int bricksAmount;
 	private boolean mapFinal= false;
-	private final int height=3;
-	private final int width= 5;
+	private final Dimentions height= Dimentions.HEIGHT;
+	private final Dimentions width= Dimentions.WIDTH;
+	private int widthAct= 0;
 	public Ralph(Vector2D pos, Direction dir, int bricksAmount)
 	{
 		this.pos= pos;
@@ -42,20 +44,74 @@ public class Ralph
 	public void setBricksAmount(int bricksAmount) {
 		this.bricksAmount = bricksAmount;
 	}
+	public int getWidthAct() {
+		return widthAct;
+	}
+	public void setWidthAct(int widthAct) {
+		this.widthAct = widthAct;
+	}
 	public boolean broke(Dificulty d)
 	{
 		
+	}
+	private boolean changeMapFinal()
+	{
+		if(this.widthAct == this.width.getSize())
+		{
+			this.setMapFinal(true);
+		}
+		return true;
+	}
+	private boolean changeDir() 
+	{
+		if(this.widthAct == this.width.getSize())
+		{
+			switch(this.dir)
+			{
+				case RIGHT:
+				{
+					this.setDir(Direction.LEFT);
+					this.setMapFinal(false);
+					return true;
+				}
+				case LEFT:
+				{
+					this.setDir(Direction.RIGHT);
+					this.setMapFinal(false);
+					return true;
+				}
+				default: return false;
+			}
+		}
+		return false;
 	}
 	public boolean move()
 	{
 		if(!this.mapFinal)
 		{
 			pos.setPosx(pos.add(dir.getUnitVector()).getPosx());
+			this.widthAct ++;
+			this.changeMapFinal();
+			return true;
 		}
 		else 
 		{
-			
+			this.changeDir();
+			this.move();
 		}
+		return false;
 		
+	}
+	public boolean isMapFinal() {
+		return mapFinal;
+	}
+	public void setMapFinal(boolean mapFinal) {
+		this.mapFinal = mapFinal;
+	}
+	public Dimentions getHeight() {
+		return height;
+	}
+	public Dimentions getWidth() {
+		return width;
 	}
 }
