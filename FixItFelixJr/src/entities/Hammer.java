@@ -1,4 +1,4 @@
-package Entities;
+package entities;
 
 /*
  * The idea behind having a hammer class is for it storage its cooldown
@@ -8,15 +8,18 @@ package Entities;
  */
 public class Hammer {
 
-	private int cooldown;
-	private final int cantCoolown=50;
+	private int cooldown=0;
+	private final int cooldownAmmount;
 	
+	Hammer(int cooldwAmm) {
+		cooldownAmmount=cooldwAmm;
+	}
 	
 	//retorna true si pudo arreglar y resetea el cooldown
 	//false en caso contrario
 	public boolean fix() {
 		if(canFix()) {
-			cooldown+=cantCoolown;
+			cooldown+=cooldownAmmount;
 		}
 		else {
 			return false;

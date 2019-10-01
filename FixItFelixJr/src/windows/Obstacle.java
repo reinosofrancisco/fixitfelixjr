@@ -1,20 +1,21 @@
 package windows;
 
-import util.Vector2D;
+import util.Direction;
 
-class Obstacle 
+public abstract class  Obstacle 
 {
-	protected Vector2D pos;
-	Obstacle(Vector2D pos)
+	protected Direction dir;
+	Obstacle(Direction dir)
 	{
-		this.pos= pos;
+		this.dir= dir;
 	}
-	boolean canIMove(Vector2D p)
+	public boolean canIMove(Direction d)
 	{
-		if (this.pos.compareTo(p) == 0)
+		
+		if(dir.getUnitVector() == d.getUnitVector())
 		{
 			return false;
 		}
-		return true;
+		else return true;
 	}
 }

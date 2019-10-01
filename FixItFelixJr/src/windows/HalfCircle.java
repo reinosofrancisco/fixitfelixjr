@@ -1,5 +1,6 @@
 package windows;
 
+import util.Direction;
 import util.Vector2D;
 
 class HalfCircle extends Window 
@@ -8,7 +9,7 @@ class HalfCircle extends Window
 	{
 		super(panelsAmount, pos);
 	}
-	public boolean canIMove(Vector2D p)
+	public boolean canIMove(Direction p)
 	{
 		return true;
 	}

@@ -1,5 +1,6 @@
 package windows;
 
+import util.Direction;
 import util.Vector2D;
 
 public abstract class Window 
@@ -11,16 +12,16 @@ public abstract class Window
 	{
 		
 	}
-	Vector2D getPos() {
+	public Vector2D getPos() {
 		return pos;
 	}
-	void setPos(Vector2D pos) {
+	public void setPos(Vector2D pos) {
 		this.pos = pos;
 	}
-	Panel[] getPanels() {
+	public Panel[] getPanels() {
 		return panels;
 	}
-	void setPanels(Panel[] panels) {
+	public void setPanels(Panel[] panels) {
 		this.panels = panels;
 	}
 	public Window (int panelsSize, Vector2D pos)
@@ -41,7 +42,7 @@ public abstract class Window
 		}
 		return true;
 	}
-	public abstract boolean canIMove(Vector2D p);
+	public abstract boolean canIMove(Direction p);
 	public abstract boolean canIGenerateNicelander();
 	public int repaired()
 	{

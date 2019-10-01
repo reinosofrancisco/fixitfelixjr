@@ -57,15 +57,12 @@ class Panel {
 		case (0): {
 			this.setState(PanelState.BROKEN);
 		}
-			break;
 		case (1): {
 			this.setState(PanelState.ALMOSTBROKEN);
 		}
-			break;
 		case (2): {
 			this.setState(PanelState.HEALTHY);
 		}
-			break;
 		}
 	}
 }

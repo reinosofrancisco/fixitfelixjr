@@ -1,11 +1,15 @@
 package windows;
 
-import util.Vector2D;
+
+import util.Direction;
+
 
 class Molding extends Obstacle
 {
-	Molding(Vector2D p)
+	private static Direction dir= Direction.UP;
+	Molding()
 	{
-		super(p);
+		super(dir);
 	}
+
 }
