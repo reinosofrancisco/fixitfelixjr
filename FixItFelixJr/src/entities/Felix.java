@@ -40,13 +40,13 @@ public class Felix {
 		 int nx=x+d.getUnitVector().getPosx();
 		 int ny=y+d.getUnitVector().getPosy();
 		 if(isInsideMap(nx, ny)){ //in boundries
-			 if(w[x][y].canIMove(d) &&
-					 w[nx][ny].canIMove(d)){ //windows allow movement
+//			 if(w[x][y].canIMove(d) &&
+//					 w[nx][ny].canIMove(d)){ //windows allow movement
 				 
 				 pos=pos.add(d.getUnitVector());
 				 System.out.println("[FELIX] I moved to pos " + this.pos.toString());
 				 return true;
-			 }			 
+//			 }			 
 		 }
 		  		 
 		 return false;
@@ -61,7 +61,7 @@ public class Felix {
 	 * @return
 	 */
 	private boolean isInsideMap(int nx, int ny) {
-		return nx<= Dimentions.WIDTH && ny<=Dimentions.HEIGHT && nx>0 && ny>0;
+		return nx<= Dimentions.WIDTH && ny<Dimentions.HEIGHT && nx>0 && ny>0;
 	}
 	
 	public int fix() {

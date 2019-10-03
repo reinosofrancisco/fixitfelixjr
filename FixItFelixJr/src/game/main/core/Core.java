@@ -3,6 +3,8 @@ package game.main.core;
 
 import java.util.LinkedList;
 import java.util.Random;
+import java.util.Scanner;
+
 import entities.Felix;
 import entities.Ralph;
 import game.Difficulty;
@@ -42,6 +44,10 @@ public class Core {
 		Felix felix = new Felix(initVectFelix,felixLifes,inmuneStatus,felixHammerCD);	
 		Ralph ralph = new Ralph(initVectRalph, Direction.RIGHT, initBricksAmmount);	
 		
+		Scanner sc=new Scanner(System.in);
+		
+		
+		
 		
 		boolean isBucleOn = true;
 		int bucleFinish = 0;
@@ -76,10 +82,33 @@ public class Core {
 
 			generateRandomBehaviour(ralph);
 			
+			
+								
+			char act = getAction(sc);
+			
+			
+			switch (act) {
+			case 'w':
+				felix.move(Direction.UP);
+				break;
+			case 's':
+				felix.move(Direction.DOWN);
+				break;
+			case 'a':
+				felix.move(Direction.LEFT);
+				break;
+			case 'd':
+				felix.move(Direction.RIGHT);
+				break;
+			case 'f':
+				felix.fix();
+			default:
+				break;
+			}			
+			
 			//Probando a felix
 			//felix.move(Direction.UP);
-			felix.update(re);	//Updates the hammer and the invulnerability
-			felix.updateAll(Direction.UP);
+			felix.update(re);	//Updates the hammer and the invulnerabilitys
 			
 			//felix.fix(); //cant use because i still dont have the Windows
 			
@@ -112,6 +141,20 @@ public class Core {
 	}
 
 	
+	private static char getAction(Scanner sc) {
+		System.out.println("\n HOLA! PRESIONE UNA TECLA Y APRETE ENTER"
+				+ "\n Valores posibles:"
+				+ "\n w: Mover arriba"
+				+ "\n s: Mover abajo"
+				+ "\n a: Mover izquierda"
+				+ "\n d: Mover derecha)"
+				+ "\n f: Arreglar"
+				+ "\n cualquier otra tecla: nada");
+		return sc.next().charAt(0);
+		
+	}
+
+
 	private static void generateRandomBehaviour (Ralph ralph) {
 		switch(obtenerRandom(1)) {
 			case 0: ralph.move(Direction.RIGHT); break;
