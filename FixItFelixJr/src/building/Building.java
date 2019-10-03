@@ -88,7 +88,3 @@ public class Building
 		}
 	}
 }
-enum Sections
-{
-	FIRST, SECOND, THIRD;
-}

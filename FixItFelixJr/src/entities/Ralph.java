@@ -11,9 +11,13 @@ public class Ralph
 	private float velocity=1;
 	private int bricksAmount;
 	private boolean mapFinal= false;
-	private final Dimentions height= Dimentions.HEIGHT;
-	private final Dimentions width= Dimentions.WIDTH;
+	private final int height= Dimentions.HEIGHT;
+	private final int width= Dimentions.WIDTH;
 	private int widthAct= 0;
+	
+	public Ralph() {
+	}
+	
 	public Ralph(Vector2D pos, Direction dir, int bricksAmount)
 	{
 		this.pos= pos;
@@ -50,13 +54,15 @@ public class Ralph
 	public void setWidthAct(int widthAct) {
 		this.widthAct = widthAct;
 	}
-	public boolean broke(Dificulty d)
+	public boolean breakBuilding()
 	{
+		//implementar
+		return false;
 		
 	}
 	private boolean changeMapFinal()
 	{
-		if(this.widthAct == this.width.getSize())
+		if(this.widthAct == this.width)
 		{
 			this.setMapFinal(true);
 		}
@@ -64,7 +70,7 @@ public class Ralph
 	}
 	private boolean changeDir() 
 	{
-		if(this.widthAct == this.width.getSize())
+		if(this.widthAct == this.width)
 		{
 			switch(this.dir)
 			{
@@ -72,12 +78,14 @@ public class Ralph
 				{
 					this.setDir(Direction.LEFT);
 					this.setMapFinal(false);
+					this.setWidthAct(0);
 					return true;
 				}
 				case LEFT:
 				{
 					this.setDir(Direction.RIGHT);
 					this.setMapFinal(false);
+					this.setWidthAct(0);
 					return true;
 				}
 				default: return false;
@@ -102,16 +110,39 @@ public class Ralph
 		return false;
 		
 	}
+	
+	/*public void move(Direction dir) {
+		if (!isOutOfBounds(this.pos.add(dir.getUnitVector()))) {
+			this.pos = this.pos.add(dir.getUnitVector());
+			System.out.println("[RALPH] I moved to pos " + this.pos.toString());
+		}
+	}
+	
+	private boolean isOutOfBounds(Vector2D pos) {
+		return !(((pos.getPosx()>0)&&(pos.getPosx()<Dimentions.WIDTH.getSize())
+				&&((pos.getPosy()>0)&&(pos.getPosy()<Dimentions.HEIGHT.getSize()))));
+	}
+	*/
 	public boolean isMapFinal() {
 		return mapFinal;
 	}
 	public void setMapFinal(boolean mapFinal) {
 		this.mapFinal = mapFinal;
 	}
-	public Dimentions getHeight() {
+	
+	/**Deletes an amount of bricks, and deletes them */
+	public int deleteBricks(int amount) {
+		this.bricksAmount = this.bricksAmount - amount;
+		return (amount);
+	}
+
+	public int getHeight() {
 		return height;
 	}
-	public Dimentions getWidth() {
+
+	public int getWidth() {
 		return width;
 	}
+
+
 }

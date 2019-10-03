@@ -1,20 +1,8 @@
 package util;
 
-public enum Dimentions 
+public class Dimentions 
 {
-	HEIGHT(3),
-	WIDTH(5);
-	private int size;
-	 Dimentions(int size)
-	{
-		this.size= size;
-	}
-	public int getSize() {
-		return size;
-	}
-	public void setSize(int size) 
-	{
-		this.size = size;
-	}
-	 
+	public final static int WIDTH= 3;
+	public final static int HEIGHT= 5;
+	
 }
