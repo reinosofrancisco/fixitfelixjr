@@ -1,5 +1,6 @@
 package randomenvironment;
 
+import util.Dimentions;
 import util.Vector2D;
 
 public class Nicelander {
@@ -27,6 +28,13 @@ public class Nicelander {
 	public void setScreenTime(int screenTime) {
 		this.screenTime = screenTime;
 	}
+	
+	/**Returns TRUE if Out of Bounds */
+	public boolean detectOutOfBounds() {
+		return !(((this.pos.getPosx()>0)&&(this.pos.getPosx()<Dimentions.WIDTH.getSize())
+				&&((this.pos.getPosy()>0)&&(this.pos.getPosy()<Dimentions.HEIGHT.getSize()))));
+	}
+
 	
 	
 	

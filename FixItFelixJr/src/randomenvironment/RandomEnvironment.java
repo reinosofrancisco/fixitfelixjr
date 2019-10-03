@@ -116,8 +116,22 @@ public class RandomEnvironment {
 	public void moveEntity (Bullet entity) {
 		entity.move();
 	}
+
 	
-	public void OutOfBounds(Bullet entity) {
+	public void outOfBounds() {
+		for (Nicelander nicelander : nicelanders) {
+			outOfBoundsNicelanders(nicelander);
+		}
+		for (Bird bird : birds) {
+			outOfBoundsBullets(bird);
+		}
+		outOfBoundsBullets(bricks.peekLast()); //Only the last brick can be OOB
+		
+	}
+	
+	
+	/**Verifies if Brick|Bird are OOB and calls the corresponding behaviour */
+	public void outOfBoundsBullets(Bullet entity) {
 		if (entity.detectOutOfBounds()) {
 			if (entity instanceof Bird) {
 				if(((Bird) entity).getDirection() == Direction.RIGHT) {
@@ -127,9 +141,16 @@ public class RandomEnvironment {
 				if (entity instanceof Brick) {
 					/** Since we add the bricks at first, we just
 					 * destroy the last one because if will be the
-					 * first brick to hit the OUB*/
+					 * first brick to hit the OOB*/
 					bricks.removeLast();				
-			}		
+				}		
+		}
+	}
+	
+	/**Verifies if Nicelander are OOB and calls the corresponding behaviour */
+	public void outOfBoundsNicelanders(Nicelander nicelander) {
+		if (nicelander.detectOutOfBounds()) {
+			nicelanders.removeLast();
 		}
 	}
 	
