@@ -1,26 +1,47 @@
 package game.main.core;
 
-import java.util.Random;
 
+import java.util.LinkedList;
+import java.util.Random;
 import entities.Felix;
 import entities.Ralph;
 import game.Difficulty;
-import randomenvironment.RandomEnvironment;
+import randomenvironment.*;
 import util.Dimentions;
 import util.Direction;
 import util.Vector2D;
+import windows.*;
+
 
 public class Core {
 	
+
+	
 	public static void main(String[] args) {
 		
+		/**CHEQUEANDO EL KEY LISTENER */
+		
+
+		
+		
+		
+		
+		/**CHEQUEANDO EL KEY LISTENER */
+		
+		int felixLifes = 3;
+		int felixHammerCD = 1;
+		int inmuneStatus = 1;
+		int initBricksAmmount = 5;
+		Vector2D initVectFelix = new Vector2D(2,2);
+		Vector2D initVectRalph = new Vector2D(2,5);
+		
+		/**MAP IS 3 OF ANCHO AND 5 OF ALTO AMIGO (SIN CONTAR LA POSICION 0,0)*/
+		
+		LinkedList<Window> windows = new LinkedList<>();
+		generateRandomWindows(windows);
 		RandomEnvironment re = new RandomEnvironment();
-		Felix felix = new Felix();
-		
-		Vector2D randomV = new Vector2D(3,3);
-		Ralph ralph = new Ralph(randomV, Direction.LEFT, 5);
-		
-		
+		Felix felix = new Felix(initVectFelix,felixLifes,inmuneStatus,felixHammerCD);	
+		Ralph ralph = new Ralph(initVectRalph, Direction.RIGHT, initBricksAmmount);	
 		
 		
 		boolean isBucleOn = true;
@@ -30,11 +51,45 @@ public class Core {
 			System.out.println("-");
 			System.out.println(" ");
 			 
+			/** ------------------------------------------------------- */
+			/** ------------------[ CODE ] ---------------------------- */
+			/** ------------------------------------------------------- */
+			
+			
 			re = generateRandomSpawns(Difficulty.ONE.getDifficulty(), re, ralph);
+			if (ralph.getBricksAmount() != 0) {
+				ralph.breakBuilding(); //Breaking animation
+			}
 			/**Updates the fields of RE that have booleans giving collision information */
 			re.behaviour(felix.getVector2D());
+			/**After this point, the re class will have the updated Collision booleans  */
+			
+			/**
+			deberia haber un Switch que verifique que tecla presiono el jugador.
+			Si fue la barra espaciadora llama a felix.fix(); //este metodo buscara la ventana y actualizara su estado 
+			si fue arriba, abajo, izq o derecha, llamada a 
+				felix.isColliding(re);
+				felix.updateAll(/**Direccion a moverse);
+				*/
+
+			generateRandomBehaviour(ralph);
+			
+			//Probando a felix
+			felix.updateAll(Direction.UP);	//Wont work until you implement the Window class
+			felix.isColliding(re);
+			//felix.fix(); //cant use because i still dont have the Windows
 			
 			
+			
+			
+			
+			
+			
+			
+			
+			/** ------------------------------------------------------- */
+			/** ------------------[END OF CODE ] ---------------------- */
+			/** ------------------------------------------------------- */				
 			
 			/** -------------- DELAY --------------*/
 			pause(250); //ms
@@ -52,6 +107,21 @@ public class Core {
 
 	}
 
+	
+	private static void generateRandomBehaviour (Ralph ralph) {
+		switch(obtenerRandom(1)) {
+			case 0: ralph.move(Direction.RIGHT); break;
+			case 1:	ralph.move(Direction.LEFT); break;
+			default: System.out.println("This is not supposed to happen! :( ");
+		
+		}
+		
+		
+		
+		
+	}
+	
+	
 
 	/**Spawns BIRDS|BRICKS|NICELANDERS. The probability relies on the Difficulty  */
 	private static RandomEnvironment generateRandomSpawns(Double difficulty, RandomEnvironment re, Ralph ralph) {
@@ -86,6 +156,24 @@ public class Core {
 		return(re);
 	}
 	
+	/**No implementado, genero siempre la misma ventana */
+	private static void generateRandomWindows(LinkedList<Window> ws) {
+		int i;
+		Vector2D initVect = new Vector2D(1,1);
+		for(i=0 ; i<((Dimentions.HEIGHT.getSize())*(Dimentions.WIDTH.getSize())); i++) {
+			Window w = new TwoPanels(0,initVect); //No obstaculos
+			ws.add(w);
+			if (initVect.getPosx() == 5) {
+				initVect.add(Direction.UP.getUnitVector());
+				initVect.setPosx(0);
+			}
+	
+			
+			
+		}
+		
+	}
+	
 	
 	
 	
@@ -106,5 +194,9 @@ public class Core {
 	        System.err.format("IOException: %s%n", e);
 	    }
 	}
+
+
+	/**AUTO GENERATED FOR KEYBOARD IMPUTS */
+	
 	
 }

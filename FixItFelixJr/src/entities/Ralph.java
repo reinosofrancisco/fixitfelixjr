@@ -1,6 +1,5 @@
 package entities;
 
-import game.Difficulty;
 import util.Dimentions;
 import util.Direction;
 import util.Vector2D;
@@ -55,7 +54,7 @@ public class Ralph
 	public void setWidthAct(int widthAct) {
 		this.widthAct = widthAct;
 	}
-	public boolean broke(Difficulty d)
+	public boolean breakBuilding()
 	{
 		//implementar
 		return false;
@@ -109,6 +108,19 @@ public class Ralph
 		return false;
 		
 	}
+	
+	public void move(Direction dir) {
+		if (!isOutOfBounds(this.pos.add(dir.getUnitVector()))) {
+			this.pos = this.pos.add(dir.getUnitVector());
+			System.out.println("[RALPH] I moved to pos " + this.pos.toString());
+		}
+	}
+	
+	private boolean isOutOfBounds(Vector2D pos) {
+		return !(((pos.getPosx()>0)&&(pos.getPosx()<Dimentions.WIDTH.getSize())
+				&&((pos.getPosy()>0)&&(pos.getPosy()<Dimentions.HEIGHT.getSize()))));
+	}
+	
 	public boolean isMapFinal() {
 		return mapFinal;
 	}

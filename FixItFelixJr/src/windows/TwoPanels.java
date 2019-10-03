@@ -3,7 +3,7 @@ package windows;
 import util.Direction;
 import util.Vector2D;
 
-class TwoPanels extends Window 
+public class TwoPanels extends Window 
 {
 	private Obstacle[] obstacles;
 	private final static int panelsAmount= 2;

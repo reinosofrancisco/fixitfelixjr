@@ -18,6 +18,7 @@ public class Vector2D{
 	
 //------------------------------------------//
 	
+	
 	public int getPosx() {
 		return posx;
 	}

@@ -1,22 +1,20 @@
 package game;
 
-import java.util.List;
-
-import building.Building;
-import entities.Felix;
-import entities.Ralph;
-import randomenvironment.Bird;
-import randomenvironment.Brick;
-import util.Vector2D;
-import windows.Window;
+import building.*;
+import entities.*;
+import util.*;
+import windows.*;
 
 public class Map {
 	
+	
+	@SuppressWarnings("unused")
 	private Ralph ralph;
+	@SuppressWarnings("unused")
 	private Felix felix;
+	@SuppressWarnings("unused")
 	private Building niceland;
-	private List<Brick> brick;
-	private List<Bird> bird;
+	@SuppressWarnings("unused")
 	private Difficulty currentLevel;
 	
 	
@@ -24,24 +22,6 @@ public class Map {
 		return true;
 	}
 	
-	
-	public static boolean dropCake(){
-		return false;
-		
-	}
-	public static boolean generateNicelander() {
-		return false;
-		
-	}
-	
-	public static boolean generateLadrillo() {
-		return false;
-		
-	}
-	public static boolean generatePajaro() {
-		return false;
-		
-	}
 	
 	public static Window[][] getWindows() {
 		return null;
