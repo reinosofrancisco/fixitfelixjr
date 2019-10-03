@@ -12,6 +12,7 @@ public class Felix {
 	int inmune;
 	Hammer ham;
 	
+	public Felix() {};
 	
 	public Felix(Vector2D p,int lives,int inm,int cooldw){
 		pos=p;
@@ -55,6 +56,9 @@ public class Felix {
 		//check colitions with tarta
 	}
 	
+	public Vector2D getVector2D() {
+		return (this.pos);
+	}
 	
 	
 

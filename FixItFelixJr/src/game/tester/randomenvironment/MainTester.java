@@ -27,7 +27,7 @@ public class MainTester {
 		int j;
 		for (j = 0; j<15; j++) {
 			pajarito.move();
-			leader.outOfBoundsBullets(pajarito);
+			//leader.outOfBoundsBullets(pajarito); now its private
 			System.out.println("X - " + pajarito.getVector2D().getPosx() + " | " + "Y - " + pajarito.getVector2D().getPosy());
 			
 			

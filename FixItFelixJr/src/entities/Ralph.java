@@ -15,6 +15,10 @@ public class Ralph
 	private final Dimentions height= Dimentions.HEIGHT;
 	private final Dimentions width= Dimentions.WIDTH;
 	private int widthAct= 0;
+	
+	public Ralph() {
+	}
+	
 	public Ralph(Vector2D pos, Direction dir, int bricksAmount)
 	{
 		this.pos= pos;
@@ -117,4 +121,11 @@ public class Ralph
 	public Dimentions getWidth() {
 		return width;
 	}
+	
+	/**Deletes an amount of bricks, and deletes them */
+	public int deleteBricks(int amount) {
+		this.bricksAmount = this.bricksAmount - amount;
+		return (amount);
+	}
+	
 }

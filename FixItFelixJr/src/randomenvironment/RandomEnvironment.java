@@ -15,9 +15,19 @@ public class RandomEnvironment {
 	int bricksCooldown;
 	int nicelanderCooldown; 
 	int birdsCooldown;
+	private int genericCD;
+	
+	private boolean birdCollision;
+	private boolean brickCollision;
+	private boolean CakeCollision;
 
 	
-	
+	public RandomEnvironment() {
+		this.genericCD = 20;
+		this.birdsCooldown = 20;
+		this.bricksCooldown = 20;
+		this.nicelanderCooldown = 20;
+	}
 	
 	
 	
@@ -26,17 +36,38 @@ public class RandomEnvironment {
 	//------------------------------------------//
 	//	Setters & Getters
 	//------------------------------------------//
+	
 	public int getBricksCooldown() {
 		return bricksCooldown;
 	}
-	public void setBricksCooldown(int bricksCooldown) {
+	private void setBricksCooldown(int bricksCooldown) {
 		this.bricksCooldown = bricksCooldown;
 	}
 	public int getNicelanderCooldown() {
 		return nicelanderCooldown;
 	}
-	public void setNicelanderCooldown(int nicelanderCooldown) {
+	private void setNicelanderCooldown(int nicelanderCooldown) {
 		this.nicelanderCooldown = nicelanderCooldown;
+	}
+	public int getBirdCooldown() {
+		return birdsCooldown;
+	}
+	private void setBirdsCooldown(int birdsCooldown) {
+		this.birdsCooldown = birdsCooldown;
+	}
+	
+	/**For Nicelanders, this will set the amount of loop iterations that he will be alive.
+	For Bricks, it will give a delay after spawning a certaing amount of bricks.
+	For Birds, it will give a delay after spawning a bird*/
+	
+	public boolean isBirdCollision() {
+		return birdCollision;
+	}
+	public boolean isBrickCollision() {
+		return brickCollision;
+	}
+	public boolean isCakeCollision() {
+		return CakeCollision;
 	}
 	//------------------------------------------//	
 	
@@ -54,7 +85,11 @@ public class RandomEnvironment {
 	public void summonBirds(Vector2D pos) {
 		Bird bird = new Bird();
 		bird.setVector2D(pos);
+		bird.setDirection(Direction.RIGHT);
 		birds.addFirst(bird);
+		System.out.println("Summoning Bird Pos " + pos.toString());
+		if (getBirdCooldown() == 0)
+			setBirdsCooldown(genericCD); //in seconds
 	}
 	
 	/**Summons an amount of 'Brick' to a linkedList */
@@ -63,10 +98,12 @@ public class RandomEnvironment {
 		for( i = 0; i<bricksAmount; i++) {
 			Brick brick = new Brick();
 			brick.setVector2D(pos);
-			bricks.addFirst(brick);		/**Always ADD FIRST */
-			System.out.println("Summoning the Brick number " + i);		
+			bricks.addFirst(brick);		/**Always ADD FIRST */	
 		}	
+		System.out.println("Summoning " + bricksAmount + " Bricks ");	
 		System.out.println("[Finished] Summoning Bricks on Pos " + pos.toString());
+		if (getBricksCooldown() == 0)
+			setBricksCooldown(genericCD);
 	}
 	
 	/**Summons a Nicelander to a linkedList */
@@ -76,10 +113,12 @@ public class RandomEnvironment {
 		nicelanders.addFirst(nicelander);
 		outOfBoundsNicelanders(nicelander);
 		System.out.println("Summoning Nicelander Pos " + pos.toString());
+		if (getNicelanderCooldown() == 0)
+			setNicelanderCooldown(genericCD);
 	}
 	
 	/**If Nicelander is Out of time, it gets deleted */
-	public void outOfTimeNicelander(Nicelander entity) {
+	private void outOfTimeNicelander(Nicelander entity) {
 		if ((entity.getScreenTime()==0)&&(entity.getCakeTime()==0))
 			nicelanders.remove(entity);
 	}
@@ -96,12 +135,12 @@ public class RandomEnvironment {
 	//------------------------------------------//
 	
 	/** returns TRUE if Brick|Bird is colliding with the given Vector2D*/
-	public boolean isCollidingBullet(Bullet entity, Vector2D pos) {
+	private boolean isCollidingBullet(Bullet entity, Vector2D pos) {
 		return (entity.vector2D.equals(pos));
 	}
 	
 	/**If Nicelander Screentime is cero, returns true.*/
-	public boolean isCollidingCake(Nicelander entity, Vector2D pos) {
+	private boolean isCollidingCake(Nicelander entity, Vector2D pos) {
 		if (entity.getScreenTime()==0) {
 			return (entity.pos.equals(pos));
 		} else return false;
@@ -120,13 +159,17 @@ public class RandomEnvironment {
 	
 
 	/**Moves the Brick|Bird on the current Direction */
-	public void moveEntity (Bullet entity) {
+	private void moveEntity (Bullet entity) {
 		entity.move();
+		if (entity instanceof Bird)
+			System.out.println("[BIRD] After moving i am in position  "  + entity.getVector2D().toString());
+		if (entity instanceof Brick)
+			System.out.println("[BRICK] After moving i am in position  "  + entity.getVector2D().toString());
 	}
 
 	
 	/**Verifies if Brick|Bird is OOB and calls the corresponding behaviour */
-	public void outOfBoundsBullets(Bullet entity) {
+	private void outOfBoundsBullets(Bullet entity, LinkedList<Bullet> obsToRemove) {
 		if (entity.detectOutOfBounds()) {
 			if (entity instanceof Bird) {
 				if(((Bird) entity).getDirection() == Direction.RIGHT) {
@@ -137,13 +180,13 @@ public class RandomEnvironment {
 					/** Since we add the bricks at first, we just
 					 * destroy the last one because if will be the
 					 * first brick to hit the OOB*/
-					bricks.removeLast();				
+					obsToRemove.addFirst(entity);				
 				}		
 		}
 	}
 	
 	/**Verifies if Nicelander is OOB and calls the corresponding behaviour */
-	public void outOfBoundsNicelanders(Nicelander nicelander) {
+	private void outOfBoundsNicelanders(Nicelander nicelander) {
 		if (nicelander.detectOutOfBounds()) {
 			nicelanders.removeLast();
 			/** Since we add the nicelanders at first, we just
@@ -163,49 +206,80 @@ public class RandomEnvironment {
 	
 	
 	
+	
+	
 	//------------------------------------------//
 	//	Pseudo-Big Loop
 	//------------------------------------------//
+	public void timerBehaviour() {
+		if (this.birdsCooldown == 0)
+			this.birdsCooldown = genericCD;
+		if (this.bricksCooldown == 0)
+			this.bricksCooldown = genericCD;
+		if (this.nicelanderCooldown == 0)
+			this.nicelanderCooldown = genericCD;	
+		this.birdsCooldown--;
+		System.out.println("Bird CD " + this.birdsCooldown);
+		this.bricksCooldown--;
+		this.nicelanderCooldown--;
+	}
+	public boolean outOftime() {
+		return ((this.birdsCooldown == 0)&&(this.bricksCooldown == 0)&&(this.nicelanderCooldown == 0));
+	}
+
 	
-	/**Needs Felix Vector2D. Its not really a loop, it just checks everything.*/
-	public void pseudoBigLoop(Vector2D felixVector) {
+	/**Needs Felix Vector2D.
+	 * Moves the BIRDS|BRICKS|NICELANDERS one unity.
+	 * Detects OutOfBounds.
+	 * Detects collision updating the Booleans.
+	 * */
+	public void behaviour(Vector2D felixVector) {
 		
-		/** Birds Behaviour */
+		timerBehaviour();
+		
+		/** Birds Behaviour */	
+		LinkedList<Bullet> deleteBullets = new LinkedList<>();
+		this.birdCollision=false;
 		for (Bird bird : birds) {
 			moveEntity(bird);
-			outOfBoundsBullets(bird);
+			outOfBoundsBullets(bird,deleteBullets);
 			if (isCollidingBullet(bird, felixVector)) {
-				birds.remove(bird);
+				deleteBullets.addFirst(bird);
+				this.birdCollision=true;
 			};
 		}
 				
-		/**Bricks Behaviour */
-		outOfBoundsBullets(bricks.peekLast()); //Only the last brick can be OOB
+		/**Bricks Behaviour */		
+		/**CAN I DELETE OBJECTS WHILE I AM IN THE FOR-EACH? nope.*/		
+		
+		this.brickCollision = false;
 		for (Brick brick : bricks) {
 			moveEntity(brick);
+			outOfBoundsBullets(brick, deleteBullets);
 			if(isCollidingBullet(brick, felixVector)) {
-				bricks.remove(brick);
+				deleteBullets.addFirst(brick);
+				this.brickCollision = true;
 			};
 		}	
+		bricks.removeAll(deleteBullets);
+		
+		
 		
 		/**Nicelanders Behaviour */
+		LinkedList<Nicelander> deleteNicelander = new LinkedList<>();
+		this.CakeCollision = false;
 		for (Nicelander nicelander : nicelanders) {
 			outOfBoundsNicelanders(nicelander);
 			outOfTimeNicelander(nicelander);
 			if (isCollidingCake(nicelander, felixVector)) {
-				nicelanders.remove(nicelander);
+				deleteNicelander.addFirst(nicelander);
+				this.CakeCollision = true;
 			};
+		nicelanders.removeAll(deleteNicelander);
 		}
 		
-		/** Muevo cada entidad en su direccion actual.
-		 * Si me voy del mapa, llamo al comportamiento adecuado.
-		 * Si choco a Felix, me borro del mapa.
-		 * Si me quedo sin tiempo, me borro del mapa. 
-		 *//////////////////////////////////////*
-		 /**Estaria bueno que esto devuelva 3 valores.
-		 * Si choque con un pajaro,
-		 * si choque con un ladrillo
-		 * y si choque con una torta*/
+
+
 		
 		
 	}

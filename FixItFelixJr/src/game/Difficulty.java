@@ -11,6 +11,7 @@ public enum Difficulty {
 	EIGHT(Math.pow(1.1,8.0)),
 	NINE(Math.pow(1.1,9.0)),
 	TEN(Math.pow(1.1,10.0));
+	
 	double multiplier;
 	Difficulty(double f) {
 		multiplier=f;
