@@ -2,6 +2,7 @@ package entities;
 
 import game.Map;
 import randomenvironment.RandomEnvironment;
+import util.Dimentions;
 import util.Direction;
 import util.Vector2D;
 import windows.Window;
@@ -31,20 +32,37 @@ public class Felix {
 		return lives;
 	}
 	//mueve el personaje si puede moverse
+	//mueve el personaje si puede moverse
 	public boolean move(Direction d) {
 		 Window[][] w = Map.getWindows();
 		 int x=this.pos.getPosx();
-		 int y=this.pos.getPosy();
-		 if(w[x][y].canIMove(d) &&
-				 w[x+d.getUnitVector().getPosx()][y+d.getUnitVector().getPosy()].canIMove(d)) {
-			 
-			 pos=pos.add(d.getUnitVector());
-			 System.out.println("[FELIX] I moved to pos " + this.pos.toString());
-			 return true;
+		 int y=this.pos.getPosy(); 
+		 int nx=x+d.getUnitVector().getPosx();
+		 int ny=y+d.getUnitVector().getPosy();
+		 if(isInsideMap(nx, ny)){ //in boundries
+			 if(w[x][y].canIMove(d) &&
+					 w[nx][ny].canIMove(d)){ //windows allow movement
+				 
+				 pos=pos.add(d.getUnitVector());
+				 System.out.println("[FELIX] I moved to pos " + this.pos.toString());
+				 return true;
+			 }			 
 		 }
+		  		 
 		 return false;
 		 
+		 
+		 
 		 }
+
+	/**
+	 * @param nx
+	 * @param ny
+	 * @return
+	 */
+	private boolean isInsideMap(int nx, int ny) {
+		return nx<= Dimentions.WIDTH && ny<=Dimentions.HEIGHT && nx>0 && ny>0;
+	}
 	
 	public int fix() {
 		Window w = Map.getWindow(pos);	
