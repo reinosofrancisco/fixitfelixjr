@@ -18,8 +18,8 @@ public abstract class Bullet {
 	
 	/**Returns TRUE if Out of Bounds */
 	public boolean detectOutOfBounds() {
-		return !(((this.vector2D.getPosx()>0)&&(this.vector2D.getPosx()<Dimentions.WIDTH.getSize())
-				&&((this.vector2D.getPosy()>0)&&(this.vector2D.getPosy()<Dimentions.HEIGHT.getSize()))));
+		return !(((this.vector2D.getPosx()>0)&&(this.vector2D.getPosx()<Dimentions.WIDTH)
+				&&((this.vector2D.getPosy()>0)&&(this.vector2D.getPosy()<Dimentions.HEIGHT))));
 	}
 	
 	public void move() {}

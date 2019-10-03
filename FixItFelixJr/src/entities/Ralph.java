@@ -11,8 +11,8 @@ public class Ralph
 	private float velocity=1;
 	private int bricksAmount;
 	private boolean mapFinal= false;
-	private final Dimentions height= Dimentions.HEIGHT;
-	private final Dimentions width= Dimentions.WIDTH;
+	private final int height= Dimentions.HEIGHT;
+	private final int width= Dimentions.WIDTH;
 	private int widthAct= 0;
 	
 	public Ralph() {
@@ -62,7 +62,7 @@ public class Ralph
 	}
 	private boolean changeMapFinal()
 	{
-		if(this.widthAct == this.width.getSize())
+		if(this.widthAct == this.width)
 		{
 			this.setMapFinal(true);
 		}
@@ -70,7 +70,7 @@ public class Ralph
 	}
 	private boolean changeDir() 
 	{
-		if(this.widthAct == this.width.getSize())
+		if(this.widthAct == this.width)
 		{
 			switch(this.dir)
 			{
@@ -117,8 +117,8 @@ public class Ralph
 	}
 	
 	private boolean isOutOfBounds(Vector2D pos) {
-		return !(((pos.getPosx()>0)&&(pos.getPosx()<Dimentions.WIDTH.getSize())
-				&&((pos.getPosy()>0)&&(pos.getPosy()<Dimentions.HEIGHT.getSize()))));
+		return !(((pos.getPosx()>0)&&(pos.getPosx()<Dimentions.WIDTH)
+				&&((pos.getPosy()>0)&&(pos.getPosy()<Dimentions.HEIGHT))));
 	}
 	
 	public boolean isMapFinal() {
@@ -127,11 +127,11 @@ public class Ralph
 	public void setMapFinal(boolean mapFinal) {
 		this.mapFinal = mapFinal;
 	}
-	public Dimentions getHeight() {
-		return height;
+	public int getHeight() {
+		return this.height;
 	}
-	public Dimentions getWidth() {
-		return width;
+	public int getWidth() {
+		return this.width;
 	}
 	
 	/**Deletes an amount of bricks, and deletes them */

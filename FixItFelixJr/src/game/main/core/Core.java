@@ -21,7 +21,6 @@ public class Core {
 		
 		/**CHEQUEANDO EL KEY LISTENER */
 		
-
 		
 		
 		
@@ -70,13 +69,18 @@ public class Core {
 			si fue arriba, abajo, izq o derecha, llamada a 
 				felix.isColliding(re);
 				felix.updateAll(/**Direccion a moverse);
+				felix.update();
+				felix.
+				
 				*/
 
 			generateRandomBehaviour(ralph);
 			
 			//Probando a felix
-			felix.updateAll(Direction.UP);	//Wont work until you implement the Window class
-			felix.isColliding(re);
+			//felix.move(Direction.UP);
+			felix.update(re);	//Updates the hammer and the invulnerability
+			felix.updateAll(Direction.UP);
+			
 			//felix.fix(); //cant use because i still dont have the Windows
 			
 			
@@ -129,7 +133,7 @@ public class Core {
 		 * por la clase Difficulty */
 		
 		/**El vector vRand tiene una posicion DENTRO del mapa */
-		Vector2D vRand = new Vector2D((obtenerRandom(Dimentions.WIDTH.getSize())), (obtenerRandom(Dimentions.HEIGHT.getSize())));
+		Vector2D vRand = new Vector2D((obtenerRandom(Dimentions.WIDTH)), (obtenerRandom(Dimentions.HEIGHT)));
 
 		switch(obtenerRandom(2)) {
 			/** BIRDS */
@@ -160,7 +164,7 @@ public class Core {
 	private static void generateRandomWindows(LinkedList<Window> ws) {
 		int i;
 		Vector2D initVect = new Vector2D(1,1);
-		for(i=0 ; i<((Dimentions.HEIGHT.getSize())*(Dimentions.WIDTH.getSize())); i++) {
+		for(i=0 ; i<((Dimentions.HEIGHT)*(Dimentions.WIDTH)); i++) {
 			Window w = new TwoPanels(0,initVect); //No obstaculos
 			ws.add(w);
 			if (initVect.getPosx() == 5) {

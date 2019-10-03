@@ -4,7 +4,6 @@ import game.Map;
 import randomenvironment.RandomEnvironment;
 import util.Direction;
 import util.Vector2D;
-import windows.TwoPanels;
 import windows.Window;
 
 public class Felix {
@@ -56,9 +55,12 @@ public class Felix {
 		else return 0;
 	}
 	
-	public void update() {
-		inmune--;
+	public void update(RandomEnvironment re) {
+		if(inmune>0) {
+			inmune--;
+		}
 		ham.update();
+		isColliding(re);
 		//check colitions with tarta
 	}
 	
@@ -70,9 +72,10 @@ public class Felix {
 	
 	public void testingMove(Direction dir) {
 		this.pos = this.pos.add(dir.getUnitVector());
+		System.out.println("Soy felipe y me estoy moviendo" + this.pos.toString());
 	}
 	
-	public void isColliding(RandomEnvironment re) {
+	private void isColliding(RandomEnvironment re) {
 		if (re.isBirdCollision()) {
 			this.lives--;
 		}
