@@ -18,6 +18,11 @@ public class RandomEnvironment {
 
 	
 	
+	
+	
+	
+	
+	
 	//------------------------------------------//
 	//	Setters & Getters
 	//------------------------------------------//
@@ -39,6 +44,8 @@ public class RandomEnvironment {
 	
 	
 	
+	
+	
 	//------------------------------------------//
 	//	Summoning
 	//------------------------------------------//
@@ -47,8 +54,9 @@ public class RandomEnvironment {
 	public void summonBirds(Vector2D pos) {
 		Bird bird = new Bird();
 		bird.setVector2D(pos);
-		birds.add(bird);
+		birds.addFirst(bird);
 	}
+	
 	/**Summons an amount of 'Brick' to a linkedList */
 	public void summonBricks(Vector2D pos, int bricksAmount) {
 		int i;
@@ -60,13 +68,24 @@ public class RandomEnvironment {
 		}	
 		System.out.println("[Finished] Summoning Bricks on Pos " + pos.toString());
 	}
+	
 	/**Summons a Nicelander to a linkedList */
 	public void summonNicelander(Vector2D pos) {
 		Nicelander nicelander = new Nicelander();
 		nicelander.setPos(pos);
-		nicelanders.add(nicelander);
+		nicelanders.addFirst(nicelander);
+		outOfBoundsNicelanders(nicelander);
 		System.out.println("Summoning Nicelander Pos " + pos.toString());
 	}
+	
+	/**If Nicelander is Out of time, it gets deleted */
+	public void outOfTimeNicelander(Nicelander entity) {
+		if ((entity.getScreenTime()==0)&&(entity.getCakeTime()==0))
+			nicelanders.remove(entity);
+	}
+	
+	
+	
 	
 	
 	
@@ -76,35 +95,23 @@ public class RandomEnvironment {
 	//	Collision
 	//------------------------------------------//
 	
-	/**returns TRUE if the bird is colliding with the given Vector2D */
-	public boolean detectBirdCollision(Vector2D pos) {		
-		/**For each... recorre toda la lista, remplazando el objeto actual en la variable declarada */
-		for (Bird b : birds) {
-			if (pos.equals(b.getVector2D()))
-				return true;
-		}
-		return false;
+	/** returns TRUE if Brick|Bird is colliding with the given Vector2D*/
+	public boolean isCollidingBullet(Bullet entity, Vector2D pos) {
+		return (entity.vector2D.equals(pos));
 	}
 	
-	/**returns TRUE if the brick is colliding with the given Vector2D */
-	public boolean detectBrickCollision(Vector2D pos) {	
-		for (Brick b : bricks) {
-			if (pos.equals(b.getVector2D()))
-				return true;
-		}
-		return false;
+	/**If Nicelander Screentime is cero, returns true.*/
+	public boolean isCollidingCake(Nicelander entity, Vector2D pos) {
+		if (entity.getScreenTime()==0) {
+			return (entity.pos.equals(pos));
+		} else return false;
 	}
 	
-	/**
-	public boolean detectCollision(Bullet entity) {
-		if (entity instanceof Bird) {
-			return (detectBirdCollision(entity.getVector2D()));
-		}
-		if (entity instanceof Brick) {
-			return(detectBrickCollision(entity.getVector2D()));
-		}
-		return (false); //Just in case
-	}*/
+	
+	
+	
+	
+	
 	
 	
 	//------------------------------------------//
@@ -118,19 +125,7 @@ public class RandomEnvironment {
 	}
 
 	
-	public void outOfBounds() {
-		for (Nicelander nicelander : nicelanders) {
-			outOfBoundsNicelanders(nicelander);
-		}
-		for (Bird bird : birds) {
-			outOfBoundsBullets(bird);
-		}
-		outOfBoundsBullets(bricks.peekLast()); //Only the last brick can be OOB
-		
-	}
-	
-	
-	/**Verifies if Brick|Bird are OOB and calls the corresponding behaviour */
+	/**Verifies if Brick|Bird is OOB and calls the corresponding behaviour */
 	public void outOfBoundsBullets(Bullet entity) {
 		if (entity.detectOutOfBounds()) {
 			if (entity instanceof Bird) {
@@ -147,10 +142,13 @@ public class RandomEnvironment {
 		}
 	}
 	
-	/**Verifies if Nicelander are OOB and calls the corresponding behaviour */
+	/**Verifies if Nicelander is OOB and calls the corresponding behaviour */
 	public void outOfBoundsNicelanders(Nicelander nicelander) {
 		if (nicelander.detectOutOfBounds()) {
 			nicelanders.removeLast();
+			/** Since we add the nicelanders at first, we just
+			 * destroy the last one because if will be the
+			 * first nicelander to hit the OOB*/
 		}
 	}
 	
@@ -158,6 +156,43 @@ public class RandomEnvironment {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	//------------------------------------------//
+	//	Pseudo-Big Loop
+	//------------------------------------------//
+	
+	/**Needs Felix Vector2D */
+	public void pseudoBigLoop(Vector2D felixVector) {
+		
+		/** Birds Behaviour */
+		for (Bird bird : birds) {
+			moveEntity(bird);
+			outOfBoundsBullets(bird);
+			isCollidingBullet(bird, felixVector);
+		}
+				
+		/**Bricks Behaviour */
+		outOfBoundsBullets(bricks.peekLast()); //Only the last brick can be OOB
+		for (Brick brick : bricks) {
+			moveEntity(brick);
+			isCollidingBullet(brick, felixVector);
+		}	
+		
+		/**Nicelanders Behaviour */
+		for (Nicelander nicelander : nicelanders) {
+			outOfBoundsNicelanders(nicelander);
+			outOfTimeNicelander(nicelander);
+			isCollidingCake(nicelander, felixVector);
+		}
+		
+		
+	}
 	
 	
 	
