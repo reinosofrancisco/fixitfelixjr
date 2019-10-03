@@ -1,7 +1,8 @@
 package randomenvironment;
 
 import java.util.LinkedList;
-import randomenvironment.*;
+
+import util.Direction;
 import util.Vector2D;
 
 public class RandomEnvironment {
@@ -54,7 +55,7 @@ public class RandomEnvironment {
 		for( i = 0; i<bricksAmount; i++) {
 			Brick brick = new Brick();
 			brick.setVector2D(pos);
-			bricks.add(brick);
+			bricks.addFirst(brick);		/**Always ADD FIRST */
 			System.out.println("Summoning the Brick number " + i);		
 		}	
 		System.out.println("[Finished] Summoning Bricks on Pos " + pos.toString());
@@ -75,7 +76,7 @@ public class RandomEnvironment {
 	//	Collision
 	//------------------------------------------//
 	
-	/**returns true if the bird is colliding with the given Vector2D */
+	/**returns TRUE if the bird is colliding with the given Vector2D */
 	public boolean detectBirdCollision(Vector2D pos) {		
 		/**For each... recorre toda la lista, remplazando el objeto actual en la variable declarada */
 		for (Bird b : birds) {
@@ -85,7 +86,7 @@ public class RandomEnvironment {
 		return false;
 	}
 	
-	/**returns true if the brick is colliding with the given Vector2D */
+	/**returns TRUE if the brick is colliding with the given Vector2D */
 	public boolean detectBrickCollision(Vector2D pos) {	
 		for (Brick b : bricks) {
 			if (pos.equals(b.getVector2D()))
@@ -94,7 +95,43 @@ public class RandomEnvironment {
 		return false;
 	}
 	
+	/**
+	public boolean detectCollision(Bullet entity) {
+		if (entity instanceof Bird) {
+			return (detectBirdCollision(entity.getVector2D()));
+		}
+		if (entity instanceof Brick) {
+			return(detectBrickCollision(entity.getVector2D()));
+		}
+		return (false); //Just in case
+	}*/
 	
+	
+	//------------------------------------------//
+	//	Movement
+	//------------------------------------------//
+	
+
+	/**Moves the Brick|Bird on the current Direction */
+	public void moveEntity (Bullet entity) {
+		entity.move();
+	}
+	
+	public void OutOfBounds(Bullet entity) {
+		if (entity.detectOutOfBounds()) {
+			if (entity instanceof Bird) {
+				if(((Bird) entity).getDirection() == Direction.RIGHT) {
+					((Bird) entity).setDirection(Direction.LEFT);
+				}else ((Bird) entity).setDirection(Direction.RIGHT);
+			} else
+				if (entity instanceof Brick) {
+					/** Since we add the bricks at first, we just
+					 * destroy the last one because if will be the
+					 * first brick to hit the OUB*/
+					bricks.removeLast();				
+			}		
+		}
+	}
 	
 	
 	

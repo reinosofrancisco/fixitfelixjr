@@ -16,9 +16,10 @@ public class Bird extends Bullet {
 	}	
 	
 	public Bird() {}
+	
 	public Bird(Vector2D pos) {
 		this.setVector2D(pos);
-		
+		this.direction = Direction.RIGHT;		
 	}
 	
 	/**Moves the Bird one Vector2D to left / right 
@@ -27,6 +28,13 @@ public class Bird extends Bullet {
 		this.direction = dir;
 		if ((this.direction == Direction.LEFT)||(this.direction == Direction.LEFT))
 			this.vector2D.add(this.direction.getUnitVector());
+	}
+	
+	/**Moves the Bird on the current Direction */
+	public void move() {
+		this.direction.getUnitVector();
+		this.vector2D = this.vector2D.add(this.direction.getUnitVector());
+		//this.vector2D = this.vector2D.add(this.vector2D); La suma de vectores SI funciona
 	}
 
 }

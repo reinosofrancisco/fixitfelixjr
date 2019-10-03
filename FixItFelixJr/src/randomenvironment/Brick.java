@@ -14,7 +14,6 @@ public class Brick extends Bullet {
 	public void move() {
 		this.vector2D.add(Direction.DOWN.getUnitVector());
 	}
-
 	
 	
 	

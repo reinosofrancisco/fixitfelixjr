@@ -13,28 +13,37 @@ public class MainTester {
 		pos.setPosx(1);
 		pos.setPosy(2);
 		
-		Bullet bird = new Bird();
-		bird.setVector2D(pos);
-		
-		Vector2D a = bird.getVector2D();
-		
-		System.out.println("Vector2D X = " + a.getPosx());
-		System.out.println("Vector2D Y = " + a.getPosy());
-		
-		
-		RandomEnvironment leader = new RandomEnvironment();
-		
+		RandomEnvironment leader = new RandomEnvironment();	
 		leader.summonBirds(pos);
 		
-		pos.setPosx(5);
-	
-		System.out.println("Detect Collision " + leader.detectBirdCollision(pos));
+		Bird pajarito = new Bird(pos);
+		pajarito.setDirection(Direction.RIGHT);
 		
-		Vector2D v = new Vector2D(1,1);
-		Direction dir = Direction.DOWN;
-		v = dir.getUnitVector();
+		System.out.println("D Pos X " + Direction.RIGHT.getUnitVector().getPosx() );
+		System.out.println("D Pos Y " + Direction.RIGHT.getUnitVector().getPosy() );
 		
-		System.out.println(v.getPosx() + v.getPosy());
+		System.out.println("Dir Pos X UV " + pajarito.getDirection().getUnitVector().getPosx());
+		
+		int j;
+		for (j = 0; j<15; j++) {
+			pajarito.move();
+			leader.OutOfBounds(pajarito);
+			System.out.println("X - " + pajarito.getVector2D().getPosx() + " | " + "Y - " + pajarito.getVector2D().getPosy());
+			
+			
+		}
+		
+		
+		
+		
+		
+		
+		/**********************/
+		
+		
+		
+		
+		
 		
 
 	}
