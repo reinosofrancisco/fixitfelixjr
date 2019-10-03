@@ -167,29 +167,45 @@ public class RandomEnvironment {
 	//	Pseudo-Big Loop
 	//------------------------------------------//
 	
-	/**Needs Felix Vector2D */
+	/**Needs Felix Vector2D. Its not really a loop, it just checks everything.*/
 	public void pseudoBigLoop(Vector2D felixVector) {
 		
 		/** Birds Behaviour */
 		for (Bird bird : birds) {
 			moveEntity(bird);
 			outOfBoundsBullets(bird);
-			isCollidingBullet(bird, felixVector);
+			if (isCollidingBullet(bird, felixVector)) {
+				birds.remove(bird);
+			};
 		}
 				
 		/**Bricks Behaviour */
 		outOfBoundsBullets(bricks.peekLast()); //Only the last brick can be OOB
 		for (Brick brick : bricks) {
 			moveEntity(brick);
-			isCollidingBullet(brick, felixVector);
+			if(isCollidingBullet(brick, felixVector)) {
+				bricks.remove(brick);
+			};
 		}	
 		
 		/**Nicelanders Behaviour */
 		for (Nicelander nicelander : nicelanders) {
 			outOfBoundsNicelanders(nicelander);
 			outOfTimeNicelander(nicelander);
-			isCollidingCake(nicelander, felixVector);
+			if (isCollidingCake(nicelander, felixVector)) {
+				nicelanders.remove(nicelander);
+			};
 		}
+		
+		/** Muevo cada entidad en su direccion actual.
+		 * Si me voy del mapa, llamo al comportamiento adecuado.
+		 * Si choco a Felix, me borro del mapa.
+		 * Si me quedo sin tiempo, me borro del mapa. 
+		 *//////////////////////////////////////*
+		 /**Estaria bueno que esto devuelva 3 valores.
+		 * Si choque con un pajaro,
+		 * si choque con un ladrillo
+		 * y si choque con una torta*/
 		
 		
 	}
