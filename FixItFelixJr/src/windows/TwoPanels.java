@@ -1,8 +1,9 @@
 package windows;
 
-import felix.game.utilities.Vector2D;
+import util.Direction;
+import util.Vector2D;
 
-class TwoPanels extends Window 
+public class TwoPanels extends Window 
 {
 	private Obstacle[] obstacles;
 	private final static int panelsAmount= 2;
@@ -12,7 +13,7 @@ class TwoPanels extends Window
 		this.obstacles= new Obstacle[obstaclesAmount];
 		
 	}
-	public boolean canIMove(Vector2D p)
+	public boolean canIMove(Direction d)
 	{
 		if ( this.obstacles.length == 0)
 		{
@@ -24,13 +25,13 @@ class TwoPanels extends Window
 			{
 				case(1): 
 					{
-						return obstacles[0].canIMove(p);
+						return obstacles[0].canIMove(d);
 					}
 				case(2):
 				{
 					boolean one, two; // Save the answer of the obstacles if i can move
-					one= obstacles[0].canIMove(p);
-					two= obstacles[1].canIMove(p);
+					one= obstacles[0].canIMove(d);
+					two= obstacles[1].canIMove(d);
 					if(one == two)
 					{
 						return one;

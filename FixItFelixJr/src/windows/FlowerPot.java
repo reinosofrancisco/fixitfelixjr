@@ -1,11 +1,12 @@
 package windows;
 
-import felix.game.utilities.Vector2D;
+import util.Direction;
 
 class FlowerPot extends Obstacle 
 {
-	FlowerPot(Vector2D p)
+	private static Direction dir= Direction.DOWN;
+	FlowerPot()
 	{
-		super(p);
+		super(dir);
 	}
 }

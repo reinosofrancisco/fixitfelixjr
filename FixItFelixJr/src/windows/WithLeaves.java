@@ -1,11 +1,20 @@
 package windows;
 
-import felix.game.utilities.Vector2D;
+import util.Direction;
 
-class WthLeaves extends Window 
+class WithLeaves extends Window 
 {
 	private boolean isClosed;
 	private ObsWindowLeaves state;
+	WithLeaves()
+	{
+		
+	}
+	WithLeaves(boolean isClosed, ObsWindowLeaves state)
+	{
+		this.isClosed= isClosed;
+		this.state= state;
+	}
 
 	 boolean isClosed() {
 		return isClosed;
@@ -22,7 +31,7 @@ class WthLeaves extends Window
 	 void setObsIzq_Der(ObsWindowLeaves state) {
 		this.state = state;
 	}
-	 public boolean canIMove(Vector2D p)
+	 public boolean canIMove(Direction p)
 	 {
 		 if(this.isClosed)
 		 {
@@ -30,11 +39,11 @@ class WthLeaves extends Window
 		 }
 		 else
 		 {
-			 Vector2D der= new Vector2D(1,0);
-			 Vector2D izq= new Vector2D(-1,0);
+			Direction der= Direction.RIGHT;
+			Direction izq= Direction.LEFT;
 			 if(this.state == ObsWindowLeaves.RIGHT)
 			 {
-				 if(der.compareTo(p) == 0)
+				 if(der.getUnitVector() == p.getUnitVector())
 				 {
 					 return false;
 				 }
@@ -44,7 +53,7 @@ class WthLeaves extends Window
 			 {
 				 if(this.state == ObsWindowLeaves.LEFT)
 				 {
-					 if(izq.compareTo(p) == 0)
+					 if(izq.getUnitVector()== p.getUnitVector())
 					 {
 						 return false;
 					 }
