@@ -1,5 +1,7 @@
 package randomenvironment;
 
+import java.util.LinkedList;
+
 import util.Direction;
 import util.Vector2D;
 
@@ -35,6 +37,16 @@ public class Bird extends Bullet {
 		this.direction.getUnitVector();
 		this.vector2D = this.vector2D.add(this.direction.getUnitVector());
 		//this.vector2D = this.vector2D.add(this.vector2D); La suma de vectores SI funciona
+	}
+	
+	/**If OOB, i flip  */
+	public void behaviourOOB(LinkedList<Bullet> deleteBullets) {
+		if (this.detectOutOfBounds()) {
+			if (this.direction == Direction.RIGHT) {
+				this.direction = Direction.LEFT;
+			}else this.direction = Direction.RIGHT;
+		}
+		
 	}
 
 }

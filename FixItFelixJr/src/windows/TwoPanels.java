@@ -3,16 +3,16 @@ package windows;
 import util.Direction;
 import util.Vector2D;
 
-public class TwoPanels extends Window 
+class TwoPanels extends Window 
 {
 	private Obstacle[] obstacles;
 	private final static int panelsAmount= 2;
-	public TwoPanels(int obstaclesAmount, Vector2D pos)
+	public TwoPanels(Vector2D pos)
 	{
 		super(panelsAmount, pos);
-		this.obstacles= new Obstacle[obstaclesAmount];
-		
+		this.generateObstacles();
 	}
+	
 	public boolean canIMove(Direction d)
 	{
 		if ( this.obstacles.length == 0)
@@ -56,6 +56,47 @@ public class TwoPanels extends Window
 			 return true;
 		 }
 		 else return false;
+	 }
+	 private void generateObstacles()
+	 {
+		 int obs= (int) (Math.random()*2);
+			switch(obs)
+			{
+				case(0):
+				{
+					this.obstacles= null;
+				}
+				case(1):
+				{
+					int ot= (int) (Math.random()*2);
+					switch(ot)
+					{
+						case(0):
+						{
+							Obstacle[] o= new Obstacle[1];
+							Obstacle m= new Molding();
+							o[0]= m;
+							this.obstacles= o;
+						}
+						case(1):
+						{
+							Obstacle[] o= new Obstacle[1];
+							Obstacle fl= new FlowerPot();
+							o[0]= fl;
+							this.obstacles= o;
+						}
+					}
+				}
+				case(2):
+				{
+					Obstacle[] o= new Obstacle[2];
+					Obstacle m= new Molding();
+					o[0]= m;
+					Obstacle fl= new FlowerPot();
+					o[1]= fl;
+					this.obstacles= o;
+				}
+			}
 	 }
 	
 }

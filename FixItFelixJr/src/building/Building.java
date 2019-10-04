@@ -5,13 +5,14 @@ package building;
 import util.Direction;
 import util.Vector2D;
 import windows.Window;
+import windows.WindowsGenerator;
 
 public class Building 
 {
 	private Window[][] windows;
-	private static Building instance= new Building();
-	private Sections section;
+	private Sections section=Sections.FIRST;
 	//private LinkedList<NiceLanders> niceladers;
+//	private static Building instance= new Building();
 	public Window[][] getWindows() {
 		return windows;
 	}
@@ -31,16 +32,17 @@ public class Building
 		this.niceladers = niceladers;
 	}
 	*/
-	private Building() 
+	public Building()
 	{
 		this.windows= new Window[5][3];
 		this.section= Sections.FIRST;
+		this.windows=WindowsGenerator.generateWindows(this);;
 	}
-	public static Building getInstance()
-	{
-		return instance;
-				
-	}
+//	public static Building getInstance()
+//	{
+//		return instance;
+//				
+//	}
 	public boolean canIMove(Vector2D posAct, Direction posWanted)
 	{
 		int i=0, j=0, f=0,c=0;
@@ -87,8 +89,4 @@ public class Building
 			default: return false;
 		}
 	}
-}
-enum Sections
-{
-	FIRST, SECOND, THIRD;
 }

@@ -33,20 +33,19 @@ public class Felix {
 	}
 	//mueve el personaje si puede moverse
 	//mueve el personaje si puede moverse
-	public boolean move(Direction d) {
-		 Window[][] w = Map.getWindows();
+	public boolean move(Direction d,Window[][] w) {
 		 int x=this.pos.getPosx();
 		 int y=this.pos.getPosy(); 
 		 int nx=x+d.getUnitVector().getPosx();
 		 int ny=y+d.getUnitVector().getPosy();
 		 if(isInsideMap(nx, ny)){ //in boundries
-//			 if(w[x][y].canIMove(d) &&
-//					 w[nx][ny].canIMove(d)){ //windows allow movement
+			 if(w[y-1][x-1].canIMove(d) &&
+					 w[ny-1][nx-1].canIMove(d)){ //windows allow movement
 				 
 				 pos=pos.add(d.getUnitVector());
 				 System.out.println("[FELIX] I moved to pos " + this.pos.toString());
 				 return true;
-//			 }			 
+			 }			 
 		 }
 		  		 
 		 return false;

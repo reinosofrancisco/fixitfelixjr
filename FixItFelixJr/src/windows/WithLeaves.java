@@ -1,21 +1,18 @@
 package windows;
 
 import util.Direction;
+import util.Vector2D;
 
 class WithLeaves extends Window 
 {
 	private boolean isClosed;
 	private ObsWindowLeaves state;
-	WithLeaves()
+	WithLeaves(Vector2D pos)
 	{
-		
+		super(0,pos);
+		this.generateObstacles();
 	}
-	WithLeaves(boolean isClosed, ObsWindowLeaves state)
-	{
-		this.isClosed= isClosed;
-		this.state= state;
-	}
-
+	
 	 boolean isClosed() {
 		return isClosed;
 	}
@@ -68,9 +65,41 @@ class WithLeaves extends Window
 	 {
 		 return false;
 	 }
-	
+	 private void generateObstacles()
+	 {
+			int isClose= (int) Math.random();
+			switch(isClose)
+			{
+				case(0):
+				{
+					this.isClosed= true;
+				}
+				case(1):
+				{
+					int rol= (int) (Math.random()*2);
+					switch(rol)
+					{
+						case(0):
+						{
+							this.state= ObsWindowLeaves.RIGHT;
+							this.isClosed= false;
+						}
+						case(1):
+						{
+							this.state= ObsWindowLeaves.LEFT;
+							this.isClosed= false;
+						}
+						case(2):
+						{
+							this.state= ObsWindowLeaves.NONE;
+							this.isClosed= false;
+						}
+					}
+				}
+			}
+	 }
 }
 enum ObsWindowLeaves
 {
-	RIGHT,LEFT;
+	RIGHT,LEFT, NONE;
 }

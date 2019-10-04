@@ -1,5 +1,7 @@
 package randomenvironment;
 
+import java.util.LinkedList;
+
 import util.Dimentions;
 import util.Vector2D;
 
@@ -21,6 +23,8 @@ public abstract class Bullet {
 		return !(((this.vector2D.getPosx()>0)&&(this.vector2D.getPosx()<Dimentions.WIDTH)
 				&&((this.vector2D.getPosy()>0)&&(this.vector2D.getPosy()<Dimentions.HEIGHT))));
 	}
+	
+	public abstract void behaviourOOB(LinkedList<Bullet> deleteBullets);
 	
 	public void move() {}
 	

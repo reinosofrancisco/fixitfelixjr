@@ -1,10 +1,9 @@
 package game.main.core;
 
-
-import java.util.LinkedList;
 import java.util.Random;
 import java.util.Scanner;
 
+import building.Building;
 import entities.Felix;
 import entities.Ralph;
 import game.Difficulty;
@@ -12,7 +11,6 @@ import randomenvironment.*;
 import util.Dimentions;
 import util.Direction;
 import util.Vector2D;
-import windows.*;
 
 
 public class Core {
@@ -29,6 +27,8 @@ public class Core {
 		
 		/**CHEQUEANDO EL KEY LISTENER */
 		
+		Building niceland=new Building();
+		
 		int felixLifes = 3;
 		int felixHammerCD = 1;
 		int inmuneStatus = 1;
@@ -37,9 +37,6 @@ public class Core {
 		Vector2D initVectRalph = new Vector2D(2,5);
 		
 		/**MAP IS 3 OF ANCHO AND 5 OF ALTO AMIGO (SIN CONTAR LA POSICION 0,0)*/
-		
-		LinkedList<Window> windows = new LinkedList<>();
-		generateRandomWindows(windows);
 		RandomEnvironment re = new RandomEnvironment();
 		Felix felix = new Felix(initVectFelix,felixLifes,inmuneStatus,felixHammerCD);	
 		Ralph ralph = new Ralph(initVectRalph, Direction.RIGHT, initBricksAmmount);	
@@ -89,16 +86,16 @@ public class Core {
 			
 			switch (act) {
 			case 'w':
-				felix.move(Direction.UP);
+				felix.move(Direction.UP,niceland.getWindows());
 				break;
 			case 's':
-				felix.move(Direction.DOWN);
+				felix.move(Direction.DOWN,niceland.getWindows());
 				break;
 			case 'a':
-				felix.move(Direction.LEFT);
+				felix.move(Direction.LEFT,niceland.getWindows());
 				break;
 			case 'd':
-				felix.move(Direction.RIGHT);
+				felix.move(Direction.RIGHT,niceland.getWindows());
 				break;
 			case 'f':
 				felix.fix();
@@ -203,23 +200,6 @@ public class Core {
 		return(re);
 	}
 	
-	/**No implementado, genero siempre la misma ventana */
-	private static void generateRandomWindows(LinkedList<Window> ws) {
-		int i;
-		Vector2D initVect = new Vector2D(1,1);
-		for(i=0 ; i<((Dimentions.HEIGHT)*(Dimentions.WIDTH)); i++) {
-			Window w = new TwoPanels(0,initVect); //No obstaculos
-			ws.add(w);
-			if (initVect.getPosx() == 5) {
-				initVect.add(Direction.UP.getUnitVector());
-				initVect.setPosx(0);
-			}
-	
-			
-			
-		}
-		
-	}
 	
 	
 	
