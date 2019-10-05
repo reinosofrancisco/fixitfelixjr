@@ -61,7 +61,7 @@ public class Felix {
 	 * @return
 	 */
 	private boolean isInsideMap(int nx, int ny) {
-		return (nx<= Dimentions.RIGHT_LIMITS && ny<=Dimentions.UP_LIMITS && nx>=(Dimentions.LEFT_LIMITS ) && ny>=Dimentions.DOWN_LIMITS);
+		return nx<= Dimentions.WIDTH && ny<=Dimentions.HEIGHT && nx>0 && ny>0;
 	}
 	
 	public int fix() {

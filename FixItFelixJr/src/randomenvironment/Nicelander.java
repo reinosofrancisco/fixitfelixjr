@@ -40,11 +40,12 @@ public class Nicelander {
 
 	/**Returns TRUE if Out of Bounds */
 	public boolean detectOutOfBounds() {
-		return !(((this.pos.getPosx()>=Dimentions.LEFT_LIMITS)&&(this.pos.getPosx()<=Dimentions.RIGHT_LIMITS)
-				&&((this.pos.getPosy()>=Dimentions.DOWN_LIMITS)&&(this.pos.getPosy()<=Dimentions.UP_LIMITS))));
+		return !(((this.pos.getPosx()>0)&&(this.pos.getPosx()<Dimentions.WIDTH)
+				&&((this.pos.getPosy()>0)&&(this.pos.getPosy()<Dimentions.HEIGHT))));
 	}
 	
 	
+
 	
 	
 	

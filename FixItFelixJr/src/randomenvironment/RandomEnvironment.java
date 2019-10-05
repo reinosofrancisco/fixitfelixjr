@@ -161,8 +161,6 @@ public class RandomEnvironment {
 	/**Moves the Brick|Bird on the current Direction */
 	private void moveEntity (Bullet entity) {
 		entity.move();
-		
-		/**Only for Testing */
 		if (entity instanceof Bird)
 			System.out.println("[BIRD] After moving i am in position  "  + entity.getVector2D().toString());
 		if (entity instanceof Brick)
@@ -170,20 +168,49 @@ public class RandomEnvironment {
 	}
 
 	
+	/**Verifies if Brick|Bird is OOB and calls the corresponding behaviour */
+	private void outOfBoundsBullets(Bullet entity, LinkedList<Bullet> obsToRemove) {
+		if (entity.detectOutOfBounds()) {
+			if (entity instanceof Bird) {
+				if(((Bird) entity).getDirection() == Direction.RIGHT) {
+					((Bird) entity).setDirection(Direction.LEFT);
+				}else ((Bird) entity).setDirection(Direction.RIGHT);
+			} else
+				if (entity instanceof Brick) {
+					/** Since we add the bricks at first, we just
+					 * destroy the last one because if will be the
+					 * first brick to hit the OOB*/
+					obsToRemove.addFirst(entity);				
+				}		
+		}
+	}
 	
 	/**Verifies if Nicelander is OOB and calls the corresponding behaviour */
 	private void outOfBoundsNicelanders(Nicelander nicelander) {
 		if (nicelander.detectOutOfBounds()) {
-			nicelanders.remove(nicelander);
+			nicelanders.removeLast();
+			/** Since we add the nicelanders at first, we just
+			 * destroy the last one because if will be the
+			 * first nicelander to hit the OOB*/
 		}
 	}
 	
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	//------------------------------------------//
-	//	ONE - LAP OF THE LOOP
+	//	Pseudo-Big Loop
 	//------------------------------------------//
-	
 	public void timerBehaviour() {
 		if (this.birdsCooldown == 0)
 			this.birdsCooldown = genericCD;
@@ -196,7 +223,6 @@ public class RandomEnvironment {
 		this.bricksCooldown--;
 		this.nicelanderCooldown--;
 	}
-	
 	public boolean outOftime() {
 		return ((this.birdsCooldown == 0)&&(this.bricksCooldown == 0)&&(this.nicelanderCooldown == 0));
 	}
@@ -216,28 +242,26 @@ public class RandomEnvironment {
 		this.birdCollision=false;
 		for (Bird bird : birds) {
 			moveEntity(bird);
-			bird.behaviourOOB(deleteBullets);
+			outOfBoundsBullets(bird,deleteBullets);
 			if (isCollidingBullet(bird, felixVector)) {
 				deleteBullets.addFirst(bird);
 				this.birdCollision=true;
 			};
 		}
-		birds.removeAll(deleteBullets);
-		deleteBullets.clear();
 				
 		/**Bricks Behaviour */		
+		/**CAN I DELETE OBJECTS WHILE I AM IN THE FOR-EACH? nope.*/		
 		
 		this.brickCollision = false;
 		for (Brick brick : bricks) {
 			moveEntity(brick);
-			brick.behaviourOOB(deleteBullets);
+			outOfBoundsBullets(brick, deleteBullets);
 			if(isCollidingBullet(brick, felixVector)) {
 				deleteBullets.addFirst(brick);
 				this.brickCollision = true;
 			};
 		}	
 		bricks.removeAll(deleteBullets);
-		deleteBullets.clear();
 		
 		
 		
@@ -251,9 +275,8 @@ public class RandomEnvironment {
 				deleteNicelander.addFirst(nicelander);
 				this.CakeCollision = true;
 			};
-		}
 		nicelanders.removeAll(deleteNicelander);
-		deleteNicelander.clear();
+		}
 		
 
 
