@@ -1,5 +1,7 @@
 package randomenvironment;
 
+import java.util.LinkedList;
+
 import util.Direction;
 
 public class Brick extends Bullet {
@@ -15,6 +17,11 @@ public class Brick extends Bullet {
 		this.vector2D = this.vector2D.add(Direction.DOWN.getUnitVector());
 	}
 	
+	public void behaviourOOB(LinkedList<Bullet> deleteBullets){
+		if (this.detectOutOfBounds())
+			deleteBullets.addFirst(this);
+		
+	}
 	
 	
 }

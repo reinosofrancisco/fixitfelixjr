@@ -11,6 +11,7 @@ import util.Dimentions;
 import util.Direction;
 import util.Vector2D;
 import windows.*;
+import java.util.ArrayList;
 
 
 public class Core {
@@ -101,9 +102,10 @@ public class Core {
 			
 
 			bucleFinish++;
-			if (bucleFinish == 30) {
+			if (bucleFinish == 1) {
 				isBucleOn = false;
 			}
+
 			
 			System.out.println("\n \n \n");
 		}
@@ -113,7 +115,7 @@ public class Core {
 
 	
 	private static void generateRandomBehaviour (Ralph ralph) {
-		switch(obtenerRandom(1)) {
+		switch(getRandomNumber(1)) {
 			case 0: ralph.move(Direction.RIGHT); break;
 			case 1:	ralph.move(Direction.LEFT); break;
 			default: System.out.println("This is not supposed to happen! :( ");
@@ -133,9 +135,9 @@ public class Core {
 		 * por la clase Difficulty */
 		
 		/**El vector vRand tiene una posicion DENTRO del mapa */
-		Vector2D vRand = new Vector2D((obtenerRandom(Dimentions.WIDTH)), (obtenerRandom(Dimentions.HEIGHT)));
+		Vector2D vRand = new Vector2D((getRandomNumber(Dimentions.RIGHT_LIMITS)), (getRandomNumber(Dimentions.UP_LIMITS)));
 
-		switch(obtenerRandom(2)) {
+		switch(getRandomNumber(2)) {
 			/** BIRDS */
 			case 0: 
 				if (re.getBirdCooldown()>10)
@@ -145,7 +147,7 @@ public class Core {
 			/** BRICKS */
 			case 1:
 				if(re.getBricksCooldown() > 10)
-					re.summonBricks(ralph.getPos(), ralph.deleteBricks(obtenerRandom(ralph.getBricksAmount())));
+					re.summonBricks(ralph.getPos(), ralph.deleteBricks(getRandomNumber(ralph.getBricksAmount())));
 				/**Genera un random con la cant de ladrillos de ralph. Luego elimina esa cantidad
 				 * de ladrillos y los retorna como int para summonearlos */
 				break;
@@ -164,7 +166,7 @@ public class Core {
 	private static void generateRandomWindows(LinkedList<Window> ws) {
 		int i;
 		Vector2D initVect = new Vector2D(1,1);
-		for(i=0 ; i<((Dimentions.HEIGHT)*(Dimentions.WIDTH)); i++) {
+		for(i=0 ; i<((Dimentions.UP_LIMITS)*(Dimentions.RIGHT_LIMITS)); i++) {
 			Window w = new TwoPanels(0,initVect); //No obstaculos
 			ws.add(w);
 			if (initVect.getPosx() == 5) {
@@ -184,7 +186,7 @@ public class Core {
 	
 	/**Usefull Code*/
 	
-	private static int obtenerRandom (Integer maxValue) {
+	private static int getRandomNumber (Integer maxValue) {
 		if (maxValue > 0) {
 			return (new Random().nextInt(maxValue));
 			}else return (0);
