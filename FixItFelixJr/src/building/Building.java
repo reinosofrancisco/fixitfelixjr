@@ -1,12 +1,12 @@
 package building;
 
 
-
+//4564
 import util.Direction;
 import util.Vector2D;
 import windows.Window;
 
-public class Building 
+public class Building
 {
 	private Window[][] windows;
 	private static Building instance= new Building();
@@ -31,7 +31,7 @@ public class Building
 		this.niceladers = niceladers;
 	}
 	*/
-	private Building() 
+	private Building()
 	{
 		this.windows= new Window[5][3];
 		this.section= Sections.FIRST;
@@ -39,7 +39,7 @@ public class Building
 	public static Building getInstance()
 	{
 		return instance;
-				
+
 	}
 	public boolean canIMove(Vector2D posAct, Direction posWanted)
 	{
