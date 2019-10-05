@@ -11,9 +11,9 @@ public class Ralph
 	private float velocity=1;
 	private int bricksAmount;
 	private boolean mapFinal= false;
-	private final int height= Dimentions.HEIGHT;
-	private final int width= Dimentions.WIDTH;
-	private int widthAct= 0;
+	private final int UP_LIMITS= Dimentions.UP_LIMITS;
+	private final int RIGHT_LIMITS= Dimentions.RIGHT_LIMITS;
+	private int RIGHT_LIMITSAct= 0;
 	
 	public Ralph() {
 	}
@@ -48,11 +48,11 @@ public class Ralph
 	public void setBricksAmount(int bricksAmount) {
 		this.bricksAmount = bricksAmount;
 	}
-	public int getWidthAct() {
-		return widthAct;
+	public int getRIGHT_LIMITSAct() {
+		return RIGHT_LIMITSAct;
 	}
-	public void setWidthAct(int widthAct) {
-		this.widthAct = widthAct;
+	public void setRIGHT_LIMITSAct(int RIGHT_LIMITSAct) {
+		this.RIGHT_LIMITSAct = RIGHT_LIMITSAct;
 	}
 	public boolean breakBuilding()
 	{
@@ -62,7 +62,7 @@ public class Ralph
 	}
 	private boolean changeMapFinal()
 	{
-		if(this.widthAct == this.width)
+		if(this.RIGHT_LIMITSAct == this.RIGHT_LIMITS)
 		{
 			this.setMapFinal(true);
 		}
@@ -70,7 +70,7 @@ public class Ralph
 	}
 	private boolean changeDir() 
 	{
-		if(this.widthAct == this.width)
+		if(this.RIGHT_LIMITSAct == this.RIGHT_LIMITS)
 		{
 			switch(this.dir)
 			{
@@ -96,7 +96,7 @@ public class Ralph
 		if(!this.mapFinal)
 		{
 			pos.setPosx(pos.add(dir.getUnitVector()).getPosx());
-			this.widthAct ++;
+			this.RIGHT_LIMITSAct ++;
 			this.changeMapFinal();
 			return true;
 		}
@@ -117,8 +117,8 @@ public class Ralph
 	}
 	
 	private boolean isOutOfBounds(Vector2D pos) {
-		return !(((pos.getPosx()>0)&&(pos.getPosx()<Dimentions.WIDTH)
-				&&((pos.getPosy()>0)&&(pos.getPosy()<Dimentions.HEIGHT))));
+		return !(((pos.getPosx()>0)&&(pos.getPosx()<Dimentions.RIGHT_LIMITS)
+				&&((pos.getPosy()>0)&&(pos.getPosy()<Dimentions.UP_LIMITS))));
 	}
 	
 	public boolean isMapFinal() {
@@ -127,11 +127,11 @@ public class Ralph
 	public void setMapFinal(boolean mapFinal) {
 		this.mapFinal = mapFinal;
 	}
-	public int getHeight() {
-		return this.height;
+	public int getUP_LIMITS() {
+		return this.UP_LIMITS;
 	}
-	public int getWidth() {
-		return this.width;
+	public int getRIGHT_LIMITS() {
+		return this.RIGHT_LIMITS;
 	}
 	
 	/**Deletes an amount of bricks, and deletes them */
