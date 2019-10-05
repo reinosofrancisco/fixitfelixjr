@@ -1,0 +1,39 @@
+Primero que nada, agregué un par de metodos
+
+En clase Vector2D compareAllComponents(v2) se fija si this>=v2
+
+En clase Dimentions isInsideMap(pos) devuelve true si pos está dentro de los limites
+
+En clase Felix: para moverse, pregunta si Dimentions.isInsideMap(newPos) y si la ventana permite que me mueva
+
+Building no es mas singleton: daba errores
+
+Modificado windowsGenerator, el metodo generateWindows recibe seccion, no edificio.
+
+Modificado constructor de Window para que instancie los paneles (solo instanciaba el arreglo)
+
+Sobreescrito repaired() en WithLeaves para que devuelva siempre 0
+
+Agregado beenFixed como atributo en cada ventana. Comienza por ser false para que el jugador no arregle infinitamente
+la misma ventana y haga granja de puntos
+
+
+
+Cambiado generador de ventanas, ahora los paneles empiezan con vida aleatoria
+
+Arreglado todos los generadores con problemas a la hora de generar un random.
+
+
+cambiado generateObstacles en TwoPannels.java
+
+
+Arreglado todos los problemas de los generadores a la hora de usar switch y olvidarse del break;
+
+
+Difficulty ahora es una clase, no un enumerador
+variables: nivel (0-9) y mult(1.1^nivel)
+metodos: getters y setters (devuelve nivel+1)
+constructor: si no recibe parametros setea nivel a 0
+si recibe un nivel "lvl" setea nivel a lvl-1
+
+

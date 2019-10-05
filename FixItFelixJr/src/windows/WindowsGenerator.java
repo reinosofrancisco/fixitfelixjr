@@ -1,7 +1,10 @@
 package windows;
 
-import building.Building;
+import java.util.Random;
+
 import building.Sections;
+import game.Difficulty;
+import util.Dimentions;
 import util.Vector2D;
 
 public class WindowsGenerator 
@@ -10,32 +13,35 @@ public class WindowsGenerator
 	{
 		
 	}
-	public static Window[][] generateWindows(Building niceland)
+	public static Window[][] generateWindows(Sections sec,Difficulty d)
 	{
-			int rand=0;
-			Window[][] wind= new Window[3][5];
+			Random rand=new Random();
+			Window[][] wind= new Window[Dimentions.RIGHT_LIMITS][Dimentions.UP_LIMITS];
 			int f,c;
+			double dif=d.getDifficulty();
 			for(f=0;f<wind.length;f++)
 			{
 				for(c=0;c<wind[0].length; c++)
 				{
 					Vector2D pos= new Vector2D(f,c);
-					rand= (int) Math.random();
-					switch(rand)
+					switch(rand.nextInt(2))
 					{
 						case(0): // generate Two Panels windows
 						{
-							wind[f][c]= new TwoPanels(pos);
+							wind[f][c]= new TwoPanels(pos,dif);
+							break;
 						}
 						case(1): //generete WithLeaves windows
 						{
-							wind[f][c]= new WithLeaves(pos);
+							wind[f][c]= new WithLeaves(pos,dif);
+							break;
 						}
+						default: throw new Error("WINDOW RANDOM GENERATOR BROKEN"); //Shouldn't get here
 					}
 					pos.setPosx(pos.getPosx() +1);
 				}
 			}
-			if(niceland.getSection() == Sections.FIRST)
+			if(sec == Sections.FIRST)
 			{
 				Vector2D pos= new Vector2D(1,4);
 				wind[1][4]= new HalfCircle(4, pos);

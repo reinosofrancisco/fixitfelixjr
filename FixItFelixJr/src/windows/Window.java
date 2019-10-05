@@ -1,5 +1,7 @@
 package windows;
 
+import java.util.Random;
+
 import util.Direction;
 import util.Vector2D;
 
@@ -8,9 +10,23 @@ public abstract class Window
 	private final int points= 500;
 	protected Vector2D pos;
 	protected Panel[] panels; // the first panel is the one on the left bottom
+	private boolean beenFixed=false;
+	
+	
+	
+	protected static final double baseProb= 0.3;
+	
 	public Window ()
 	{
 		
+	}
+	public Window (int panelsSize, Vector2D pos)
+	{
+		panels= new Panel[panelsSize];
+		for (int i = 0; i < panels.length; i++) {
+			panels[i]=new Panel(new Random().nextInt(3));
+		}
+		this.pos= pos;
 	}
 	public Vector2D getPos() {
 		return pos;
@@ -23,11 +39,6 @@ public abstract class Window
 	}
 	public void setPanels(Panel[] panels) {
 		this.panels = panels;
-	}
-	public Window (int panelsSize, Vector2D pos)
-	{
-		panels= new Panel[panelsSize];
-		this.pos= pos;
 	}
 	public boolean isHealthy()
 	{
@@ -57,8 +68,9 @@ public abstract class Window
 			}
 			i++;
 		}
-		if(this.isHealthy())
+		if(this.isHealthy() && !beenFixed)
 		{
+			beenFixed=true;
 			return this.points;
 		}
 		else
@@ -81,6 +93,10 @@ public abstract class Window
 			}
 			return yet;
 	}
+	
+	
+	
+	
 	
 }
 	

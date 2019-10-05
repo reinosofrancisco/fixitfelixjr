@@ -27,12 +27,18 @@ public class Core {
 		/**CHEQUEANDO EL KEY LISTENER */
 		Scanner sc=new Scanner(System.in);
 		
-		Building niceland=Building.getInstance();
+		//instancia de edificio y nivel actual
+		Difficulty difficulty=new Difficulty();
+		Building niceland=new Building(difficulty);
+		
+		
+		
+		//----
 		int felixLifes = 3;
 		int felixHammerCD = 1;
 		int inmuneStatus = 1;
 		int initBricksAmmount = 5;
-		Vector2D initVectFelix = new Vector2D(2,2);
+		Vector2D initVectFelix = new Vector2D(1,1);
 		Vector2D initVectRalph = new Vector2D(2,5);
 		
 		/**MAP IS 3 OF ANCHO AND 5 OF ALTO AMIGO (SIN CONTAR LA POSICION 0,0)*/
@@ -53,7 +59,7 @@ public class Core {
 			/** ------------------------------------------------------- */
 			
 			
-			re = generateRandomSpawns(Difficulty.ONE.getDifficulty(), re, ralph);
+			re = generateRandomSpawns(difficulty.getDifficulty(), re, ralph);
 			if (ralph.getBricksAmount() != 0) {
 				ralph.breakBuilding(); //Breaking animation
 			}
@@ -92,7 +98,7 @@ public class Core {
 				felix.move(Direction.RIGHT, niceland.getWindows());
 				break;
 			case 'f':
-				felix.fix();
+				felix.fix(niceland.getWindows());
 			default:
 				break;
 			}

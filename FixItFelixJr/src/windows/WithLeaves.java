@@ -1,5 +1,7 @@
 package windows;
 
+import java.util.Random;
+
 import util.Direction;
 import util.Vector2D;
 
@@ -7,10 +9,12 @@ class WithLeaves extends Window
 {
 	private boolean isClosed;
 	private ObsWindowLeaves state;
-	WithLeaves(Vector2D pos)
+	
+	
+	WithLeaves(Vector2D pos,double dif)
 	{
 		super(0,pos);
-		this.generateObstacles();
+		this.generateObstacles(dif);
 	}
 	
 	 boolean isClosed() {
@@ -32,7 +36,7 @@ class WithLeaves extends Window
 	 {
 		 if(this.isClosed)
 		 {
-			 return false;
+			 return true;
 		 }
 		 else
 		 {
@@ -65,40 +69,84 @@ class WithLeaves extends Window
 	 {
 		 return false;
 	 }
-	 private void generateObstacles()
+	 private void generateObstacles(double dif)
 	 {
-			int isClose= (int) Math.random();
-			switch(isClose)
+		 
+		 double num= new Random().nextDouble();
+		 
+		 if(num<= baseProb*dif) {
+			 num=new Random().nextInt(3);
+			 switch ((int)num) {
+			case 0:
 			{
-				case(0):
-				{
-					this.isClosed= true;
-				}
-				case(1):
-				{
-					int rol= (int) (Math.random()*2);
-					switch(rol)
-					{
-						case(0):
-						{
-							this.state= ObsWindowLeaves.RIGHT;
-							this.isClosed= false;
-						}
-						case(1):
-						{
-							this.state= ObsWindowLeaves.LEFT;
-							this.isClosed= false;
-						}
-						case(2):
-						{
-							this.state= ObsWindowLeaves.NONE;
-							this.isClosed= false;
-						}
-					}
-				}
+				this.state= ObsWindowLeaves.RIGHT;
+				this.isClosed= false;
+				break;
 			}
+			case 1:
+			{
+				this.state= ObsWindowLeaves.LEFT;
+				this.isClosed= false;
+				break;
+			}
+			case 2:
+			{
+				this.state= ObsWindowLeaves.NONE;
+				this.isClosed= false;
+				break;
+			}
+			default:
+				break;
+			}
+		 }
+		 else {
+			 this.isClosed=true;
+		 }
+		 
+		 
+		 
+		 
+		 
+//		 //TODO USE DIF
+//			switch(isClose)
+//			{
+//				case(0):
+//				{
+//					this.isClosed= true;
+//				}
+//				case(1):
+//				{
+//					int rol= (int) (Math.random()*2);
+//					switch(rol)
+//					{
+//						case(0):
+//						{
+//							this.state= ObsWindowLeaves.RIGHT;
+//							this.isClosed= false;
+//						}
+//						case(1):
+//						{
+//							this.state= ObsWindowLeaves.LEFT;
+//							this.isClosed= false;
+//						}
+//						case(2):
+//						{
+//							this.state= ObsWindowLeaves.NONE;
+//							this.isClosed= false;
+//						}
+//					}
+//				}
+//			}
+	 }
+	 @Override
+	 public int repaired() {
+		 return 0;
 	 }
 }
+
+
+//idea para mejorar la comparacion: que el obsWindowLeaves sea una direccion y directamente comparas direcciones
+//o sea, que esta clase en lugar de un obstaculo tiene una direccion.
 enum ObsWindowLeaves
 {
 	RIGHT,LEFT, NONE;

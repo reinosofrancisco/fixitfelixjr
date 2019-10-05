@@ -1,6 +1,5 @@
 package entities;
 
-import game.Map;
 import randomenvironment.RandomEnvironment;
 import util.Dimentions;
 import util.Direction;
@@ -9,10 +8,12 @@ import windows.Window;
 
 public class Felix {
 	
+	
 	Vector2D pos;
 	int lives;
 	int inmune;
 	Hammer ham;
+	
 	
 	public Felix() {};
 	
@@ -31,44 +32,35 @@ public class Felix {
 	public int getLives() {
 		return lives;
 	}
+	
+	
 	//mueve el personaje si puede moverse
-	//mueve el personaje si puede moverse
-	public boolean move(Direction d) {
-		 Window[][] w = Map.getWindows();
-		 int x=this.pos.getPosx();
-		 int y=this.pos.getPosy(); 
-		 int nx=x+d.getUnitVector().getPosx();
-		 int ny=y+d.getUnitVector().getPosy();
-		 if(isInsideMap(nx, ny)){ //in boundries
-			 if(w[x][y].canIMove(d) &&
-					 w[nx][ny].canIMove(d)){ //windows allow movement
-				 
-				 pos=pos.add(d.getUnitVector());
-				 System.out.println("[FELIX] I moved to pos " + this.pos.toString());
-				 return true;
-			 }			 
-		 }
-		  		 
-		 return false;
+	public boolean move(Direction d,Window[][] w) {		 
+		 Vector2D newPos= this.pos.add(d.getUnitVector());
 		 
+		 if(Dimentions.isInsideMap(newPos)) {
+			 if(w[pos.getPosx()-1][pos.getPosy()-1].canIMove(d) && w[newPos.getPosx()-1][newPos.getPosy()-1].canIMove((d.getUnitVector().product(-1)).getDirection())) {
+				 pos=newPos;
+				 
+				 System.out.println("\n Felix se mueve a: \t" + pos.toString()+ "\n");
+				 
+				 return true;
+			 }
+		 }
+		 return false;
 		 
 		 
 		 }
 
-	/**
-	 * @param nx
-	 * @param ny
-	 * @return
-	 */
-	private boolean isInsideMap(int nx, int ny) {
-		return (nx<= Dimentions.RIGHT_LIMITS && ny<=Dimentions.UP_LIMITS && nx>=(Dimentions.LEFT_LIMITS ) && ny>=Dimentions.DOWN_LIMITS);
-	}
 	
-	public int fix() {
-		Window w = Map.getWindow(pos);	
+	/**
+	 * @param w the array of windows
+	 * @return number of points after trying to fix window
+	 */
+	public int fix(Window[][] w) {
 		if(ham.fix()) {
 			System.out.println("The Window is being Repaired!");
-			return w.repaired();
+			return w[pos.getPosx()-1][pos.getPosy()-1].repaired();
 		}
 		else return 0;
 	}

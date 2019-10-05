@@ -27,7 +27,8 @@ class Panel {
 	private final int points = 100;
 	protected PanelState state;
 
-	Panel() {
+	Panel(int n) {
+		actualLife=n;
 
 	}
 
