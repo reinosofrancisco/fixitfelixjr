@@ -21,19 +21,24 @@ public class Dimentions{
 	static final public int DOWN_LIMITS = 1;
 	static final public int LEFT_LIMITS = 1;
 	
-	private static Vector2D getDownLeftCorner() {
-		return new Vector2D(LEFT_LIMITS,DOWN_LIMITS);
-	}
-	private static Vector2D getUpperRightCorner() {
-		return new Vector2D(RIGHT_LIMITS,UP_LIMITS);
-	}
+//	private static Vector2D getDownLeftCorner() {
+//		return new Vector2D(LEFT_LIMITS,DOWN_LIMITS);
+//	}
+//	private static Vector2D getUpperRightCorner() {
+//		return new Vector2D(RIGHT_LIMITS,UP_LIMITS);
+//	}
 	
 	public static boolean isInsideMap(Vector2D pos) {
-		if(pos.compareAllComponents(getDownLeftCorner()) &&
-		getUpperRightCorner().compareAllComponents(pos)) {
+		if(pos.getPosx()>=LEFT_LIMITS && pos.getPosx()<=RIGHT_LIMITS && pos.getPosy()>=DOWN_LIMITS && pos.getPosy()<=UP_LIMITS) {
 			return true;
 		}
 		return false;		
+		
+//		
+//		if(pos.compareAllComponents(getDownLeftCorner())!=-1 &&
+//		getUpperRightCorner().compareAllComponents(pos)!=1) {
+//			return true;
+//		}
 		
 	}
 	

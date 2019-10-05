@@ -106,21 +106,25 @@ public class Vector2D{
 	
 	
 	
-	/**
-	 * 
-	 * @param v2
-	 * @return returns true if instance is bigger or equals to v2
-	 */
-	public boolean compareAllComponents(Vector2D v2) {
-		int x= v2.posx;
-		int y= v2.posy;
-		
-		if(posx>=x && posy>=y) {
-			return true;
-		}
-		return false;
-		
-	}
+//	/**
+//	 * 
+//	 * @param v2
+//	 * @return returns true if instance is bigger or equals to v2
+//	 */
+//	public int compareAllComponents(Vector2D v2) {
+//		int x= v2.posx;
+//		int y= v2.posy;
+//		if(this.isEquals(v2)) {
+//			return 0;
+//		}
+//		else {
+//			if(posx>=x && posy>=y) {
+//				return 1;
+//			}
+//			return -1;
+//		}
+//		
+//	}
 	
 	
 	

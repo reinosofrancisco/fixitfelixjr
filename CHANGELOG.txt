@@ -37,3 +37,5 @@ constructor: si no recibe parametros setea nivel a 0
 si recibe un nivel "lvl" setea nivel a lvl-1
 
 
+
+
