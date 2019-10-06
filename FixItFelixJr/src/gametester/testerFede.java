@@ -1,6 +1,7 @@
 package gametester;
 
 import java.util.Random;
+import java.util.Scanner;
 
 import building.Building;
 import building.Sections;
@@ -25,17 +26,55 @@ public class testerFede {
 		for (int i = 0; i < 100; i++) {
 			
 			Window[][] w=WindowsGenerator.generateWindows(Sections.FIRST,new Difficulty(0));
-			System.out.println(" \n" + f.move(Direction.RIGHT, w));
-			System.out.println(" \n" + f.move(Direction.RIGHT, w));
-			System.out.println(" \n" + f.move(Direction.RIGHT, w));
-			System.out.println(" \n" + f.move(Direction.RIGHT, w));
-			System.out.println(" \n" + f.move(Direction.RIGHT, w));
-			System.out.println(" \n" + f.move(Direction.RIGHT, w));
-			System.out.println(" \n" + f.move(Direction.RIGHT, w));
-			System.out.println(" \n" + f.move(Direction.RIGHT, w));
+			
+			moverFelix(f,w);
+			moverFelix(f,w);
+			moverFelix(f,w);
+			moverFelix(f,w);
+			moverFelix(f,w);
+			moverFelix(f,w);
+			moverFelix(f,w);
+			moverFelix(f,w);
+			moverFelix(f,w);
+			moverFelix(f,w);
+			moverFelix(f,w);
+			moverFelix(f,w);
+			moverFelix(f,w);
+			moverFelix(f,w);
+			moverFelix(f,w);
+			moverFelix(f,w);
+			moverFelix(f,w);
+			moverFelix(f,w);
+			moverFelix(f,w);
+			moverFelix(f,w);
+				
+			
 			
 		}
-		
 	}
 
+	private static void moverFelix(Felix f, Window[][] w) {
+		Scanner sc=new Scanner(System.in);
+		char act=sc.next().charAt(0);
+		switch (act) {
+		case 'w':
+			System.out.println(f.move(Direction.UP, w));
+			break;
+		case 's':
+			System.out.println(f.move(Direction.DOWN, w));
+			break;
+		case 'a':
+			System.out.println(f.move(Direction.LEFT,w));
+			break;
+		case 'd':
+			System.out.println(f.move(Direction.RIGHT,w));
+			break;
+		case 'f':
+			System.out.println(f.fix(w));
+		default:
+			break;
+		}
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -21,7 +21,7 @@ public class WindowsGenerator
 			double dif=d.getDifficulty();
 			for(f=0;f<wind.length;f++)
 			{
-				for(c=0;c<wind[0].length; c++)
+				for(c=0;c<wind[0].length-1; c++)
 				{
 					Vector2D pos= new Vector2D(f,c);
 					switch(rand.nextInt(2))
@@ -40,13 +40,14 @@ public class WindowsGenerator
 					}
 					pos.setPosx(pos.getPosx() +1);
 				}
+				wind[f][wind[f].length-1]=new RalphWindow();
 			}
 			if(sec == Sections.FIRST)
 			{
-				Vector2D pos= new Vector2D(1,4);
-				wind[1][4]= new HalfCircle(4, pos);
-				Vector2D p= new Vector2D(2,4);
-				wind[2][4]= new HalfCircle(8, p);
+				Vector2D pos= new Vector2D(Dimentions.RIGHT_LIMITS/2,1);
+				wind[pos.getPosx()][pos.getPosy()]= new HalfCircle(4, pos,d.getDifficulty());
+				Vector2D p= new Vector2D(Dimentions.RIGHT_LIMITS/2,2);
+				wind[p.getPosx()][p.getPosy()]= new HalfCircle(8, p,d.getDifficulty());
 			}
 			
 			return wind;

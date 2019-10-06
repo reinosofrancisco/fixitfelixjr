@@ -1,5 +1,6 @@
 package entities;
 
+import game.FelixState;
 import randomenvironment.RandomEnvironment;
 import util.Dimentions;
 import util.Direction;
@@ -8,7 +9,7 @@ import windows.Window;
 
 public class Felix {
 	
-	
+	Vector2D initial;
 	Vector2D pos;
 	int lives;
 	int inmune;
@@ -19,6 +20,7 @@ public class Felix {
 	
 	/**Felix initial Vector, lives amount, inmunity status & Hammer hitting Cooldown */
 	public Felix(Vector2D p,int lives,int inm,int cooldw){
+		this.initial=p;
 		this.pos=p;
 		this.lives=lives;
 		this.inmune=30;
@@ -42,7 +44,7 @@ public class Felix {
 			 if(w[pos.getPosx()-1][pos.getPosy()-1].canIMove(d) && w[newPos.getPosx()-1][newPos.getPosy()-1].canIMove((d.getUnitVector().product(-1)).getDirection())) {
 				 pos=newPos;
 				 
-				 System.out.println("\n Felix se mueve a: \t" + pos.toString()+ "\n");
+				 System.out.println("\n Felix se mueve a: \t" + pos.toString());
 				 
 				 return true;
 			 }
@@ -59,19 +61,21 @@ public class Felix {
 	 */
 	public int fix(Window[][] w) {
 		if(ham.fix()) {
-			System.out.println("The Window is being Repaired!");
-			return w[pos.getPosx()-1][pos.getPosy()-1].repaired();
+			int fedeborralodespues=w[pos.getPosx()-1][pos.getPosy()-1].repaired();
+			System.out.println("The Window is being Repaired! + " + fedeborralodespues + "points. IsWindowHealthy-->" + w[pos.getPosx()-1][pos.getPosy()-1].isHealthy());
+			//return w[pos.getPosx()-1][pos.getPosy()-1].repaired();
+			return fedeborralodespues;
 		}
 		else return 0;
 	}
 	
-	public void update(RandomEnvironment re) {
+	public FelixState update(RandomEnvironment re) {
 		if(inmune>0) {
 			inmune--;
 		}
 		ham.update();
-		isColliding(re);
-		//check colitions with tarta
+		
+		return isColliding(re);		
 	}
 	
 	public void updateAll(Direction dir) {
@@ -85,21 +89,29 @@ public class Felix {
 		System.out.println("Soy felipe y me estoy moviendo" + this.pos.toString());
 	}
 	
-	private void isColliding(RandomEnvironment re) {
-		if (re.isBirdCollision()) {
-			this.lives--;
-		}
-		if (re.isBrickCollision()) {
-			this.lives--;
-		}
+	private FelixState isColliding(RandomEnvironment re) {
 		if (re.isCakeCollision()) {
 			this.inmune = 30; //default invulnerability time
+			return FelixState.INMUNITY;
 		}	
+		if (re.isBrickCollision()) {
+			this.lives--;
+			return FelixState.KILLEDBYBRICK;
+		}
+		if (re.isBirdCollision()) {
+			return FelixState.KILLEDBYBIRD;
+		}
+		return FelixState.DEFAULT;
 		
 	}
 	
 	public Vector2D getVector2D() {
 		return (this.pos);
+	}
+
+	public void restartPosition() {
+		pos=new Vector2D(initial);
+		
 	}
 	
 	

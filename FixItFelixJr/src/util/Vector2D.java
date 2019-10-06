@@ -2,8 +2,8 @@ package util;
 
 
 public class Vector2D{
-	int posx;
-	int posy;
+	double posx;
+	double posy;
 	
 	public Vector2D() {};
 	
@@ -12,6 +12,10 @@ public class Vector2D{
 		posy=y;
 	}
 
+	public Vector2D(double x, double y) {
+		posx=x;
+		posy=y;
+	}
 	public Vector2D(Vector2D v2) {
 		this(v2.getPosx(),v2.getPosy());
 	}
@@ -19,8 +23,9 @@ public class Vector2D{
 //------------------------------------------//
 	
 	
+
 	public int getPosx() {
-		return posx;
+		return (int) posx;
 	}
 	
 	public void setPosx(int posx) {
@@ -28,7 +33,7 @@ public class Vector2D{
 	}
 	
 	public int getPosy() {
-		return posy;
+		return (int) posy;
 	}
 	
 	public void setPosy(int posy) {
@@ -40,12 +45,12 @@ public class Vector2D{
 
 	/** VectorA + VectorB 		*/
 	public Vector2D add(Vector2D v1) {
-		return (new Vector2D(posx + v1.getPosx(), posy + v1.getPosy()));
+		return (new Vector2D(posx + v1.posx, posy + v1.posy));
 		
 	}
 	/** VectorA * a 			*/
-	public Vector2D product(int n) {		
-		return new Vector2D(posx*n, posy*n);	
+	public Vector2D product(double mult) {		
+		return new Vector2D(posx*mult, posy*mult);	
 	}
 	
 	/**Multiplica de manera matematicamente ilegal <(X.a) , (Y.b) > */
@@ -126,7 +131,13 @@ public class Vector2D{
 //		
 //	}
 	
-	
-	
+	/**
+	 * 
+	 * @return true if the integers of both vectors are the same
+	 * this is done by casting each component to integer
+	 */
+	public boolean isColiding(Vector2D v) {
+		return (((int)posx==(int)v.posx) && ((int)posy==(int)v.posy));
+	}
 
 }

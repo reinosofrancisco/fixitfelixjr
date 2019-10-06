@@ -24,6 +24,7 @@ public class Building
 	}
 	
 	
+	
 	public Window[][] getWindows() {
 		return windows;
 	}
@@ -65,6 +66,20 @@ public class Building
 		}
 		return false;
 	}
+	
+	public Vector2D findCakeWindow() {
+		int i=0,j=0;
+		boolean stop=false;
+		while(i!=windows.length && !stop) {
+			while(j!=windows[i].length && !stop) {
+				stop=windows[i][j].canIGenerateNicelander();
+				j++;
+			}
+			i++;
+			}
+		return stop ? new Vector2D(i,j):null;
+		}
+	
 	public boolean sectionUp()
 	{
 		switch(this.section)
@@ -86,6 +101,23 @@ public class Building
 			}
 			default: return false;
 		}
+	}
+	public void restartSection(Difficulty d) {
+		windows=WindowsGenerator.generateWindows(this.section, d);
+	}
+	public void restartLevel(Difficulty d) {
+		this.section=Sections.FIRST;
+		windows=WindowsGenerator.generateWindows(this.section, d);		
+	}
+	public boolean isFixed() {
+		for (int i = 0; i < windows.length; i++) {
+			for (int j = 0; j < windows[i].length; j++) {
+				if(!windows[i][j].isHealthy()) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 	
 	

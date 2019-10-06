@@ -32,7 +32,9 @@ public class Hammer {
 	}
 	//updatea el cooldown
 	public void update() {
-		cooldown--;
+		if(cooldown>0) {
+			cooldown--;			
+		}
 	}
 	
 }

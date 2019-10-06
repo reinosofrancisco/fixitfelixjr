@@ -11,7 +11,7 @@ class TwoPanels extends Window
 	private final static int panelsAmount= 2;
 	public TwoPanels(Vector2D pos,double mult)
 	{
-		super(panelsAmount, pos);
+		super(panelsAmount, pos,mult);
 		this.generateObstacles(mult);
 	}
 	

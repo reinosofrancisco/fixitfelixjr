@@ -1,13 +1,15 @@
 package game;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
 import building.Building;
+import building.Sections;
 import entities.Felix;
 import entities.Ralph;
 import randomenvironment.*;
-import util.Dimentions;
 import util.Direction;
 import util.Vector2D;
 
@@ -18,32 +20,28 @@ public class Core {
 	
 	public static void main(String[] args) {
 		
-		/**CHEQUEANDO EL KEY LISTENER */
-		
-		
-		
-		
-		
-		/**CHEQUEANDO EL KEY LISTENER */
 		Scanner sc=new Scanner(System.in);
 		
 		//instancia de edificio y nivel actual
 		Difficulty difficulty=new Difficulty();
 		Building niceland=new Building(difficulty);
-		
+		Scores[] highScores=new Scores[6];
+		testerScores(highScores);
 		
 		
 		//----
 		int felixLifes = 3;
 		int felixHammerCD = 1;
 		int inmuneStatus = 1;
-		int initBricksAmmount = 5;
+		int initBricksAmmount = 10;
 		Vector2D initVectFelix = new Vector2D(1,1);
-		Vector2D initVectRalph = new Vector2D(2,5);
+		Vector2D initVectRalph = new Vector2D(2,4);
+		int points=0;
 		
-		/**MAP IS 3 OF ANCHO AND 5 OF ALTO AMIGO (SIN CONTAR LA POSICION 0,0)*/
+		/**MAP IS 5 OF ANCHO AND 3 OF ALTO AMIGO (SIN CONTAR LA POSICION 0,0 O LA FILA DE ARRIBA DE TODO)*/
 		RandomEnvironment re = new RandomEnvironment();
-		Felix felix = new Felix(initVectFelix,felixLifes,inmuneStatus,felixHammerCD);	
+		Felix felix = new Felix(initVectFelix,felixLifes,inmuneStatus,felixHammerCD);
+		FelixState felixState=FelixState.DEFAULT;
 		Ralph ralph = new Ralph(initVectRalph, Direction.RIGHT, initBricksAmmount);	
 		
 		
@@ -52,14 +50,14 @@ public class Core {
 		while (isBucleOn) {
 			System.out.println("Lap number= " + (bucleFinish+1));
 			System.out.println("-");
-			System.out.println(" ");
+//			System.out.println(" ");
 			 
 			/** ------------------------------------------------------- */
 			/** ------------------[ CODE ] ---------------------------- */
 			/** ------------------------------------------------------- */
 			
-			
-			re = generateRandomSpawns(difficulty.getDifficulty(), re, ralph);
+			generateTorta(niceland, re);
+			generateBircks(difficulty.getDifficulty(), re, ralph);
 			if (ralph.getBricksAmount() != 0) {
 				ralph.breakBuilding(); //Breaking animation
 			}
@@ -67,18 +65,43 @@ public class Core {
 			re.behaviour(felix.getVector2D());
 			/**After this point, the re class will have the updated Collision booleans  */
 			
-			/**
-			deberia haber un Switch que verifique que tecla presiono el jugador.
-			Si fue la barra espaciadora llama a felix.fix(); //este metodo buscara la ventana y actualizara su estado 
-			si fue arriba, abajo, izq o derecha, llamada a 
-				felix.isColliding(re);
-				felix.updateAll(/**Direccion a moverse);
-				felix.update();
-				felix.
-				
-				*/
+			ralph.move();
+			
+			
+			
+			
+			
+			
+//			generateRandomBehaviour(ralph);
+			
+			
 
-			generateRandomBehaviour(ralph);
+			
+			felixState=felix.update(re); // Updates the hammer and the invunerabilities
+			
+			switch (felixState) {
+			case KILLEDBYBIRD:
+			{
+				restartSection(felix,niceland, difficulty, re);
+				System.out.println("Felix perdio progreso de seccion chocando con un pajaro, repite la seccion: "+ niceland.getSection());
+				break;
+			}
+			case KILLEDBYBRICK:
+			{
+				if(felix.getLives()!=0) {
+					restartLevel(felix,niceland, difficulty,re);
+				}
+				else {
+					isBucleOn=false;
+				}
+				System.out.println("Felix perdio una vida chocando con un ladrillo, ahora tiene solo: "+ felix.getLives());
+				break;
+			}
+			default:
+				break;
+			}
+			
+			
 			
 			
 			
@@ -98,104 +121,112 @@ public class Core {
 				felix.move(Direction.RIGHT, niceland.getWindows());
 				break;
 			case 'f':
-				felix.fix(niceland.getWindows());
+				points+=felix.fix(niceland.getWindows());
+				if(niceland.isFixed()) {
+					if(niceland.getSection()==Sections.THIRD) {
+						levelUp(felix,niceland,re,difficulty);				
+					}
+					else {
+						niceland.sectionUp();
+					}
+				}
 			default:
 				break;
 			}
-
-			// Probando a felix
-			// felix.move(Direction.UP);
-			felix.update(re); // Updates the hammer and the invulnerabilitys
-
-			// felix.fix(); //cant use because i still dont have the Windows
-
+			
+			
 			/** ------------------------------------------------------- */
 			/** ------------------[END OF CODE ] ---------------------- */
 			/** ------------------------------------------------------- */
 
 			/** -------------- DELAY -------------- */
-			pause(250); // ms
+//			pause(250); // ms
 			/** -------------- DELAY -------------- */
 
-			bucleFinish++;
-			if (bucleFinish == 30) {
-				isBucleOn = false;
-			}
+//			bucleFinish++;
+//			if (bucleFinish == 30) {
+//				isBucleOn = false;
+//			}
 
-			System.out.println("\n \n \n");
+			System.out.println("--\n");
 		}
+		System.out.println("Has perdido. Ingrese nombre: ");
+		highScores[5]=new Scores(sc.next(),points);
+		
+		Arrays.sort(highScores,Collections.reverseOrder());
+		
+		System.out.println("\n \n \n \n  \t  GAME OVER!" + " \nHigscores: ");
+		for (int i = 0; i < highScores.length-1; i++) {
+			System.out.println("\n" + highScores[i]);
+		}
+		
+		
 
 	}
 
+
+	private static void levelUp(Felix felix, Building niceland, RandomEnvironment re, Difficulty difficulty) {
+		System.out.println("\n\n\nHas completado el nivel!!\n\n\n");
+		pause(1000);
+		felix.restartPosition();
+		difficulty.setLvl(difficulty.getLvl()+1);
+		niceland=new Building(difficulty);
+	}
+
+
+	private static void testerScores(Scores[] highScores) {
+		for (int i = 0; i < highScores.length; i++) {
+			highScores[i]= (new Scores("Fede("+i+")", i*100));
+		}
+		
+	}
+
+
+	private static void restartLevel(Felix felix, Building niceland,Difficulty d, RandomEnvironment re) {
+		felix.restartPosition();
+		felix.setCantVidas(felix.getLives()-1);
+		re.restartEntities();
+		niceland.restartLevel(d);
+		
+	}
+
+
+	private static void restartSection(Felix felix, Building niceland,Difficulty d,RandomEnvironment re) {
+		felix.restartPosition();
+		niceland.restartSection(d);
+		re.restartEntities();
+		
+	}
+
+
 	private static char getAction(Scanner sc) {
-		System.out.println("\n HOLA! PRESIONE UNA TECLA Y APRETE ENTER" + "\n Valores posibles:" + "\n w: Mover arriba"
-				+ "\n s: Mover abajo" + "\n a: Mover izquierda" + "\n d: Mover derecha)" + "\n f: Arreglar"
-				+ "\n cualquier otra tecla: nada");
+//		System.out.println("\n HOLA! PRESIONE UNA TECLA Y APRETE ENTER" + "\n Valores posibles:" + "\n w: Mover arriba"
+//				+ "\n s: Mover abajo" + "\n a: Mover izquierda" + "\n d: Mover derecha)" + "\n f: Arreglar"
+//				+ "\n cualquier otra tecla: nada");
 		return sc.next().charAt(0);
 
 	}
+
 	
-	private static void generateRandomBehaviour (Ralph ralph) {
-		switch(getRandomNumber(1)) {
-			case 0: ralph.move(Direction.RIGHT); break;
-			case 1:	ralph.move(Direction.LEFT); break;
-			default: System.out.println("This is not supposed to happen! :( ");
-		
+	
+
+	/**Spawns BRICKS. The probability relies on the Difficulty  */
+	private static void generateBircks(Double difficulty, RandomEnvironment re, Ralph ralph) {
+		double num = new Random().nextDouble();
+		if(num<=difficulty*.2) {
+			ralph.summonBricks(difficulty,re);
 		}
-		
-		
-		
-		
 	}
-	
-	
-
-	/**Spawns BIRDS|BRICKS|NICELANDERS. The probability relies on the Difficulty  */
-	private static RandomEnvironment generateRandomSpawns(Double difficulty, RandomEnvironment re, Ralph ralph) {
-		/**Falta implementar que la probabilidad de spawneo sea dada
-		 * por la clase Difficulty */
-		
-		/**El vector vRand tiene una posicion DENTRO del mapa */
-		Vector2D vRand = new Vector2D((getRandomNumber(Dimentions.RIGHT_LIMITS)), (getRandomNumber(Dimentions.UP_LIMITS)));
-
-		switch(getRandomNumber(2)) {
-			/** BIRDS */
-			case 0: 
-				if (re.getBirdCooldown()>10)
-					re.summonBirds(vRand);
-				break;
-				
-			/** BRICKS */
-			case 1:
-				if(re.getBricksCooldown() > 10)
-					re.summonBricks(ralph.getPos(), ralph.deleteBricks(getRandomNumber(ralph.getBricksAmount())));
-				/**Genera un random con la cant de ladrillos de ralph. Luego elimina esa cantidad
-				 * de ladrillos y los retorna como int para summonearlos */
-				break;
-			
-			/** NICELANDERS */	
-			case 2:
-				if(re.getNicelanderCooldown() > 10)
-					re.summonNicelander(vRand);	
-				break;
+	private static void generateTorta(Building niceland, RandomEnvironment re) {
+		Vector2D posTorta=niceland.findCakeWindow();
+		if(posTorta!=null) {
+			if(new Random().nextDouble()<.8 && re.getNicelanderCooldown()==0) {
+				re.summonNicelander(posTorta);
+			}
 		}
-	
-		return(re);
 	}
-	
 
-	
-	
-	
-	
-	
 	/**Usefull Code*/
-	
-	private static int getRandomNumber (Integer maxValue) {
-		if (maxValue > 0) {
-			return (new Random().nextInt(maxValue));
-			}else return (0);
-	}
 	
 	/**Pauses the program for x [ms] */
 	public static void pause(int ms) {

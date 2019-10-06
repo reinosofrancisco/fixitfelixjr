@@ -11,10 +11,11 @@ public class Nicelander {
 
 	public Nicelander() {};
 	
-	public Nicelander(Vector2D pos, int screenTime) {
+	public Nicelander(Vector2D pos, int screenTime,int cakeTime) {
 		super();
 		this.pos = pos;
 		this.screenTime = screenTime;
+		this.cakeTime=cakeTime;
 	}
 	
 	public Vector2D getPos() {
@@ -42,6 +43,13 @@ public class Nicelander {
 	public boolean detectOutOfBounds() {
 		return !(((this.pos.getPosx()>=Dimentions.LEFT_LIMITS)&&(this.pos.getPosx()<=Dimentions.RIGHT_LIMITS)
 				&&((this.pos.getPosy()>=Dimentions.DOWN_LIMITS)&&(this.pos.getPosy()<=Dimentions.UP_LIMITS))));
+	}
+
+	public boolean isColliding(Vector2D felixVector) {
+		if(screenTime<cakeTime) {
+			return pos.isColiding(felixVector);
+		}
+		return false;
 	}
 	
 	

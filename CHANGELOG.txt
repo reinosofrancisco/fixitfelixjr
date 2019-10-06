@@ -36,6 +36,25 @@ metodos: getters y setters (devuelve nivel+1)
 constructor: si no recibe parametros setea nivel a 0
 si recibe un nivel "lvl" setea nivel a lvl-1
 
+Constructores de ventana ahora reciben multiplicador de dificultad para generar obstaculos o paneles rotos
+
+ralph se mueve izq o der
+
+
+Cambié cosas en el generateRandomEnviroment. la borre.
+1) los pajaros ya aparecen en el juego desde el minuto 1
+2) el nicelander se genera SOLO si hay una ventana libre (no preguntabas nunca eso)
+3) los ladrillos se generan de a 1
+
+
+Cambie el vectorD2. ahora soporta decimales.
+
+
+
+Cambié la forma en la que se generan ladrillos: ralph.summonBricks(donde)
+
+
+Las  subclases de bullet saben si se fueron del mapa o si chocaron con felix
 
 
 

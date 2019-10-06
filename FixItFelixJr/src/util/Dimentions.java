@@ -4,18 +4,18 @@ package util;
 public class Dimentions{
 	
 	
-	/**		1 2 3
-	 * 	5	O O O
-	 * 	4	O O O
-	 * 	3	O O O
+	/**		1 2 3				1  2  3  4  5
+	 * 	5	O O O			 1  0  0  0  0  0
+	 * 	4	O O O			 2  0  0  0  0  0
+	 * 	3	O O O			 3  0  0  0  0  0
 	 * 	2	O O O
 	 * 	1	O O O
 	 * 	y/x	1 2 3
 	 */
 	
 	
-	static final public int UP_LIMITS = 5;		/**Height of the Building */
-	static final public int RIGHT_LIMITS = 3;	/**Width of the Building*/
+	static final public int UP_LIMITS = 4;		/**Height of the Building */
+	static final public int RIGHT_LIMITS = 5;	/**Width of the Building*/
 	
 	/**Should be left in 1 for maintaining the coherence */
 	static final public int DOWN_LIMITS = 1;

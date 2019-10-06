@@ -13,7 +13,7 @@ class WithLeaves extends Window
 	
 	WithLeaves(Vector2D pos,double dif)
 	{
-		super(0,pos);
+		super(0,pos,dif);
 		this.generateObstacles(dif);
 	}
 	
@@ -75,7 +75,7 @@ class WithLeaves extends Window
 		 double num= new Random().nextDouble();
 		 
 		 if(num<= baseProb*dif) {
-			 num=new Random().nextInt(3);
+			 num=new Random().nextInt(2);
 			 switch ((int)num) {
 			case 0:
 			{
@@ -91,8 +91,7 @@ class WithLeaves extends Window
 			}
 			case 2:
 			{
-				this.state= ObsWindowLeaves.NONE;
-				this.isClosed= false;
+				System.out.println("oh no exeption");
 				break;
 			}
 			default:
@@ -149,5 +148,5 @@ class WithLeaves extends Window
 //o sea, que esta clase en lugar de un obstaculo tiene una direccion.
 enum ObsWindowLeaves
 {
-	RIGHT,LEFT, NONE;
+	RIGHT,LEFT;
 }

@@ -14,17 +14,26 @@ public abstract class Window
 	
 	
 	
-	protected static final double baseProb= 0.3;
+	protected static final double baseProb= 0.2;
 	
 	public Window ()
 	{
 		
 	}
-	public Window (int panelsSize, Vector2D pos)
+	public Window (int panelsSize, Vector2D pos, double dif)
 	{
 		panels= new Panel[panelsSize];
+		Random r=new Random();
 		for (int i = 0; i < panels.length; i++) {
-			panels[i]=new Panel(new Random().nextInt(3));
+			double num=r.nextDouble();
+			if(num<baseProb*dif) {
+				panels[i]=new Panel(r.nextInt(2));
+			}
+			else {
+				panels[i]=new Panel(r.nextInt(2)+1);
+			}
+						
+			
 		}
 		this.pos= pos;
 	}
@@ -43,13 +52,15 @@ public abstract class Window
 	public boolean isHealthy()
 	{
 		int i;
-		for (i=0; i< panels.length; i++)
-		{
+		if(panels!=null) {
+			for (i=0; i< panels.length; i++)
+			{
 				if(panels[i].getState() != PanelState.HEALTHY)
 				{
 					return false;
 				}
 				
+			}
 		}
 		return true;
 	}
@@ -93,6 +104,9 @@ public abstract class Window
 			}
 			return yet;
 	}
+		
+	
+	
 	
 	
 	
