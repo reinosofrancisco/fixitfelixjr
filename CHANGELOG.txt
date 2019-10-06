@@ -58,3 +58,58 @@ Las  subclases de bullet saben si se fueron del mapa o si chocaron con felix
 
 
 
+
+
+
+
+
+
+
+
+Taxativamente:
+
+Added findCakeWindow y restartSection a Building
+Added enum felixstate to determinate what to do when hit by enemy
+Modified isColliding so it can use enum felixstate
+Added restartPosition method to felix
+Fixed hammer bug
+Ralph now calculates it's new direction with random easier
+Ralph now can summon bricks in random ennvironment with a difficulty
+Scores are shown with name and points on screen
+Added winning, losing logic to core
+Separated generator random so it can use difficulty
+Now generateBricks relies on difficulty while generateTorta doesn't
+There will always be two birds
+Bird KNOWS how to move and where
+
+Every computing about if some entity is inside the map now is done by a method
+in Dimensions
+
+Brick moves acording to difficulty
+Added method to bullet "isColliding"
+Added method to nicelander "isColliding"
+
+Random environment only keeps the instances of entities with their cooldown
+and is in charge of their colitions and OOB
+
+RI now delegates more work.
+
+new method in RI "restart entities" deletes all entities
+
+Dimentions expanded to 4-5
+
+Vector is now double (no compatibility problems)
+Added ralph window type for all the 4th row. Felix cant move there
+
+WindowGenerator now actually works and also, is affected by difficulty
+
+
+
+
+
+
+
+
+
+
+
