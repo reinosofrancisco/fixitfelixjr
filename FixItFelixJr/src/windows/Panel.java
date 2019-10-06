@@ -3,7 +3,16 @@ package windows;
 class Panel {
 	private final int life = 2;
 	private int actualLife; // if actualLife =2, the panel are completely repeared
+	private final int points = 100;
+	protected PanelState state;
 
+	Panel(int n) {
+		actualLife=n;
+		changeState();
+		
+	}
+	
+	
 	public int getActualLife() {
 		return actualLife;
 	}
@@ -24,12 +33,7 @@ class Panel {
 		return points;
 	}
 
-	private final int points = 100;
-	protected PanelState state;
 
-	Panel() {
-
-	}
 
 	int repear() {
 		PanelState aux = PanelState.HEALTHY;
@@ -56,13 +60,17 @@ class Panel {
 		switch (this.actualLife) {
 		case (0): {
 			this.setState(PanelState.BROKEN);
+			break;
 		}
 		case (1): {
 			this.setState(PanelState.ALMOSTBROKEN);
+			break;
 		}
 		case (2): {
 			this.setState(PanelState.HEALTHY);
+			break;
 		}
+		default: System.out.println("WHOPS"); break;
 		}
 	}
 }

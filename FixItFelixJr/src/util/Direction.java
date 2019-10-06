@@ -7,7 +7,9 @@ public enum Direction
 	LEFT(new Vector2D (-1,0)),
 	RIGHT(new Vector2D(1,0)),
 	UNDIFINED(new Vector2D(0,0));
+	
 	private Vector2D unitVector;
+	
 	Direction(Vector2D unitVector)
 	{
 		this.unitVector= unitVector;

@@ -1,5 +1,6 @@
 package randomenvironment;
 
+
 import util.Dimentions;
 import util.Vector2D;
 
@@ -18,10 +19,16 @@ public abstract class Bullet {
 	
 	/**Returns TRUE if Out of Bounds */
 	public boolean detectOutOfBounds() {
-		return !(((this.vector2D.getPosx()>0)&&(this.vector2D.getPosx()<Dimentions.WIDTH.getSize())
-				&&((this.vector2D.getPosy()>0)&&(this.vector2D.getPosy()<Dimentions.HEIGHT.getSize()))));
+		return !Dimentions.isInsideMap(vector2D);
 	}
 	
-	public void move() {}
+	public abstract boolean move(); //returns true if moved out of map
+		
+	public boolean isColliding(Vector2D v) {
+		return vector2D.isColiding(v);
+	}
 	
+	
+	
+//	public abstract void behaviourOOB(LinkedList<Bullet> deleteBullets);
 }

@@ -5,9 +5,9 @@ import util.Vector2D;
 
 class HalfCircle extends Window 
 {
-	HalfCircle(int panelsAmount, Vector2D pos)
+	HalfCircle(int panelsAmount, Vector2D pos,double dif)
 	{
-		super(panelsAmount, pos);
+		super(panelsAmount, pos,dif);
 	}
 	public boolean canIMove(Direction p)
 	{
