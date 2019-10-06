@@ -1,0 +1,2 @@
+clase Scores le faltaba el tipo al comparable, no era necesario en el metodo compareTo recibir un object.
+Felix se mueve solo, no con la entrada de teclado
