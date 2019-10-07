@@ -13,9 +13,10 @@ public class Building
 	private Sections section;
 	private Window[][] windows;
 	
-	
+	/**
+	 * Por defecto se inicializa edificion con dificultad 1
+	 */
 	public Building() {
-		//por defecto armo edificio lvl 1
 		this(new Difficulty());
 	}
 	public Building(Difficulty d) {
@@ -41,7 +42,12 @@ public class Building
 		this.section = section;
 	}
 	
-	
+	/**
+	 * Se pregunta si estando en la posicion actual me puedo mover a la posicion que quiero
+	 * @param posAct representa la posicion actual
+	 * @param posWanted representa la posicion a la que quiero ir
+	 * @return retorna true si me puedo mover en la direccion que quiero
+	 */
 	public boolean canIMove(Vector2D posAct, Direction posWanted)
 	{
 		int i=0, j=0, f=0,c=0;
@@ -66,7 +72,10 @@ public class Building
 		}
 		return false;
 	}
-	
+	/**
+	 * Busca una ventana donde se puede dejar una torta
+	 * @return devuelve la posicion de la ventana donde se puede generar la torta
+	 */
 	public Vector2D findCakeWindow() {
 		int i=0,j=0;
 		boolean stop=false;
@@ -79,7 +88,10 @@ public class Building
 			}
 		return stop ? new Vector2D(i,j):null;
 		}
-	
+	/**
+	 * Cambia la seccion actual por la siguiente
+	 * @return retorna true si pudo cambiarla
+	 */
 	public boolean sectionUp()
 	{
 		switch(this.section)
@@ -102,13 +114,25 @@ public class Building
 			default: return false;
 		}
 	}
+	/**
+	 * Vuelve a comenzar la seccion actual
+	 * @param d Representa la dificultad actual, a mas dificultad mas ventanas rotas
+	 */
 	public void restartSection(Difficulty d) {
 		windows=WindowsGenerator.generateWindows(this.section, d);
 	}
+	/**
+	 * Vuelve a comenzar el nivel actual
+	 * @param d Representa la dificultad actual, a mas dificultad mas ventanas rotas
+	 */
 	public void restartLevel(Difficulty d) {
 		this.section=Sections.FIRST;
 		windows=WindowsGenerator.generateWindows(this.section, d);		
 	}
+	/**
+	 * Chequea si todas las ventanas de la seccion actual estan sanas
+	 * @return retorna true si todas las ventanas estan sanas
+	 */
 	public boolean isFixed() {
 		for (int i = 0; i < windows.length; i++) {
 			for (int j = 0; j < windows[i].length; j++) {

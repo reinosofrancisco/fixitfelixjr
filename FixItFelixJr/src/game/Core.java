@@ -14,7 +14,10 @@ import util.Vector2D;
 
 public class Core {
 	
-
+	/**
+	 * El core basicamente es el juego en si, hace el loop principal(anda hasta el game over),
+	 * se encarga de mandar mensajes a todos los objetos de que hay hacer, a su vez maneja el nivel y la dificultad actual, Por ende, tiene instancias de todas las clases que necesita el juego para funcionar, junto con informacion para instanciarlas, En cada vuelta del loop, actualiza las posiciones de los objetos instanciados, se fija si se pueden generar tortas y/o ladrillos, chequea las colisiones entre objetos, y si las hay actua en consecuiencia, Toda la logica que se encarga de arreglar ventanas, subir de seccion/ nivel, y sumar puntos esta implementada, dado que en el recorrido preestablecido nunca se repara fue borrada.
+	 */
 	
 	public static void main(String[] args) {
 		
@@ -34,7 +37,7 @@ public class Core {
 		Vector2D initVectRalph = new Vector2D(2,4);
 		int points=0;
 		
-		/**MAP IS 5 OF ANCHO AND 3 OF ALTO AMIGO (SIN CONTAR LA POSICION 0,0 O LA FILA DE ARRIBA DE TODO)*/
+		/**MAP IS 5 OF ANCHO AND 3 OF ALTO AMIGO (SIN CONTAR LA POSICION 0,0 O LA FILA DE ARRIBA DE TO DO)*/
 		RandomEnvironment re = new RandomEnvironment();
 		Felix felix = new Felix(initVectFelix,felixLifes,inmuneStatus,felixHammerCD);
 		FelixState felixState=FelixState.DEFAULT;
@@ -53,10 +56,8 @@ public class Core {
 			/** ------------------------------------------------------- */
 			
 			generateTorta(niceland, re);
-			generateBircks(difficulty.getDifficulty(), re, ralph);
-			if (ralph.getBricksAmount() != 0) {
-				ralph.breakBuilding(difficulty, niceland.getWindows()); //Breaking animation
-			}
+			generateBircks(difficulty.getDifficulty(), re, ralph, niceland);
+			
 			/**Updates the fields of RE that have booleans giving collision information */
 			re.behaviour(felix.getVector2D());
 			/**After this point, the re class will have the updated Collision booleans  */
@@ -90,7 +91,7 @@ public class Core {
 				else {
 					isBucleOn=false;
 				}
-				System.out.println("Felix perdio una vida chocando con un ladrillo, ahora tiene solo: "+ felix.getLives());
+				System.out.println("Felix perdio una vida chocando con un ladrillo, ahora tiene: "+ felix.getLives());
 				break;
 			}
 			default:
@@ -135,7 +136,7 @@ public class Core {
 		for (int i = 0; i < highScores.length-1; i++) {
 			System.out.println("\n" + highScores[i]);
 		}
-		
+		sc.close();
 		
 
 	}
@@ -223,10 +224,11 @@ public class Core {
 	
 
 	/**Spawns BRICKS. The probability relies on the Difficulty  */
-	private static void generateBircks(Double difficulty, RandomEnvironment re, Ralph ralph) {
+	private static void generateBircks(Double difficulty, RandomEnvironment re, Ralph ralph, Building niceland) {
 		double num = new Random().nextDouble();
 		if(num<=difficulty*.2) {
 			ralph.summonBricks(difficulty,re);
+			ralph.breakBuilding(difficulty, niceland.getWindows());
 		}
 	}
 	private static void generateTorta(Building niceland, RandomEnvironment re) {
@@ -249,6 +251,8 @@ public class Core {
 	    }
 	}
 
+
+	/**AUTO GENERATED FOR KEYBOARD IMPUTS */
 	
 	
 }
