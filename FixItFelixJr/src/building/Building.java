@@ -1,6 +1,6 @@
 package building;
 
-
+/**Alguna pelotudes. */
 
 import game.Difficulty;
 import util.Direction;
