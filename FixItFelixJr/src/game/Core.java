@@ -249,8 +249,6 @@ public class Core {
 	    }
 	}
 
-
-	/**AUTO GENERATED FOR KEYBOARD IMPUTS */
 	
 	
 }
