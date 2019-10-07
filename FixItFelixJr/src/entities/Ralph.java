@@ -2,10 +2,11 @@ package entities;
 
 import java.util.Random;
 
+import game.Difficulty;
 import randomenvironment.RandomEnvironment;
-import util.Dimentions;
 import util.Direction;
 import util.Vector2D;
+import windows.Window;
 
 public class Ralph 
 {
@@ -51,7 +52,7 @@ public class Ralph
 		this.bricksAmount = bricksAmount;
 	}
 	
-	public void move(Direction dir) {
+	/*public void move(Direction dir) {
 		Vector2D newPos = this.pos.add(dir.getUnitVector());
 		if(Dimentions.isInsideMap(newPos)) {
 			this.pos = newPos;
@@ -59,17 +60,19 @@ public class Ralph
 			
 		}
 	}
-	
+	*/
 	
 	//moves a random direction LEFT OR RIGHT
 	public void move() {
 		switch (new Random().nextInt(1)) {
 		case 0: {
 			this.pos.add(Direction.RIGHT.getUnitVector());
+			System.out.println("[RALPH] I moved to pos " + this.pos.toString());
 			break;
 		}
 		case 1:{
 			this.pos.add(Direction.LEFT.getUnitVector());
+			System.out.println("[RALPH] I moved to pos " + this.pos.toString());
 			break;
 		}
 		default:
@@ -79,12 +82,49 @@ public class Ralph
 	}
 	
 	
-	
-	public boolean breakBuilding()
+	/**
+	 *  Rompe una cantidad de ventanas al azar
+	 * @param d representa la dificultad depende de este rompe mas o menos ventanas
+	 * @param w son las ventanas del edificio
+	 * @return retorna si pudo romper ventanas
+	 */
+	public boolean breakBuilding(Difficulty d, Window[][] w )
 	{
-		//implementar
+		double numOfWindB= 1;
+		numOfWindB= (numOfWindB * d.getDifficulty()) +1;
+		if(numOfWindB < 2.5)
+		{
+			int i;
+			for(i=0;i<2;i++)
+			{
+				int f= new Random().nextInt(3);
+				int c= new Random().nextInt(4);
+				if(!w[f][c].isHealthy())
+				{
+					w[f][c].breakWindow();
+					System.out.println("[RALPH] rompio la ventana, en la fila "+ (f) +" y en la columna "+ (c));
+				}
+				else System.out.println("[RALPH] No pudo romper la ventana, en la fila "+ (f) +" y en la columna "+ (c)+" ya que estaba rota");
+				
+			}
+			return true;
+		}
+		else 
+		{
+			if(numOfWindB > 2.5)
+			{
+				int i;
+				for(i=0;i<3;i++)
+				{	
+					int f= new Random().nextInt(2);
+					int c= new Random().nextInt(4);
+					w[f][c].breakWindow();
+					System.out.println("[RALPH] rompio la ventana, en la fila "+(f)+" y en la columna "+(c));
+				}
+				return true;
+			}		
+		}
 		return false;
-		
 	}
 	
 	/**

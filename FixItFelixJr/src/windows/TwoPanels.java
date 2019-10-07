@@ -59,6 +59,10 @@ class TwoPanels extends Window
 		 }
 		 else return false;
 	 }
+	 /**
+	  * Genera los obstaculos que va a tener cada ventana de este tipo
+	  * @param mult representa la dificultad a mayor dificultad mas obstaculos
+	  */
 	 private void generateObstacles(double mult)
 	 {
 		 double obs= new Random().nextDouble();

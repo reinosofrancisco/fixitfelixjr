@@ -48,6 +48,7 @@ public class RandomEnvironment {
 	public int getNicelanderCooldown() {
 		return nicelanderCooldown;
 	}	
+	
 	/**For Nicelanders, this will set the amount of loop iterations that he will be alive.
 	For Bricks, it will give a delay after spawning a certaing amount of bricks.
 	For Birds, it will give a delay after spawning a bird*/

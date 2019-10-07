@@ -13,6 +13,12 @@ public class WindowsGenerator
 	{
 		
 	}
+	/**
+	 *  Se encarga de generar todas las ventanas de una seccion 
+	 * @param sec Identifica a que seccion van a pertenecer esas ventanas
+	 * @param d Segun la dificultad mas ventanas aparecen rotas
+	 * @return retorna la matriz de ventanas ya creada
+	 */
 	public static Window[][] generateWindows(Sections sec,Difficulty d)
 	{
 			Random rand=new Random();

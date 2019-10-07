@@ -17,12 +17,16 @@ public abstract class Bullet {
 		this.vector2D = pos;
 	}
 	
-	/**Returns TRUE if Out of Bounds */
+	/**
+	 * Returns TRUE if Out of Bounds 
+	 */
 	public boolean detectOutOfBounds() {
 		return !Dimentions.isInsideMap(vector2D);
 	}
-	
-	public abstract boolean move(); //returns true if moved out of map
+	/**
+	 * @return retorna true, si me movi afuera del mapa
+	 */
+	public abstract boolean move(); 
 		
 	public boolean isColliding(Vector2D v) {
 		return vector2D.isColiding(v);

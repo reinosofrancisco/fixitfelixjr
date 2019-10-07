@@ -22,7 +22,10 @@ public class Bird extends Bullet {
 		this.direction = Direction.RIGHT;		
 	}
 	
-	/**Moves the Bird on the current Direction */
+	/**
+	 * Moves the Bird on the current Direction
+	 * @return retorna true si se puedo mover 
+	 */
 	public boolean move() {
 		this.vector2D = this.vector2D.add(this.direction.getUnitVector());
 		changeDirection();

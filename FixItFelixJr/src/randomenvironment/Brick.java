@@ -22,8 +22,11 @@ public class Brick extends Bullet {
 	public void setMult(double m) {
 		mult=m;
 	}
-	
-	/**Moves the Brick down 1 Vector2D in Y.	*/
+
+	/**
+	 * Mueve al ladrilo (Solo un Y, para abajo)
+	 * @return retorna true, si se pudo mover
+	 */
 	public boolean move() {
 		this.vector2D = this.vector2D.add(Direction.DOWN.getUnitVector().product(mult*.2));
 		return detectOutOfBounds();

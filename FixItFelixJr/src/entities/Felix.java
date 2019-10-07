@@ -48,10 +48,10 @@ public class Felix {
 				 
 				 return true;
 			 }
+			
 		 }
-		 return false;
-		 
-		 
+		 else System.out.println("Felix no se puede mover");
+		  return false;
 		 }
 
 	

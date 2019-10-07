@@ -69,6 +69,10 @@ class WithLeaves extends Window
 	 {
 		 return false;
 	 }
+	 /**
+	  * Genera los obstaculos que va a tener cada ventana de este tipo
+	  * @param dif representa la dificultad a mayor dificultad mas obstaculos
+	  */
 	 private void generateObstacles(double dif)
 	 {
 		 

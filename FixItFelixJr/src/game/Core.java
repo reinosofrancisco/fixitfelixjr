@@ -4,9 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
-
 import building.Building;
-import building.Sections;
 import entities.Felix;
 import entities.Ralph;
 import randomenvironment.*;
@@ -20,14 +18,12 @@ public class Core {
 	
 	public static void main(String[] args) {
 		
-		Scanner sc=new Scanner(System.in);
-		
 		//instancia de edificio y nivel actual
 		Difficulty difficulty=new Difficulty();
 		Building niceland=new Building(difficulty);
 		Scores[] highScores=new Scores[6];
 		testerScores(highScores);
-		
+		Scanner sc= new Scanner(System.in);
 		
 		//----
 		int felixLifes = 3;
@@ -59,7 +55,7 @@ public class Core {
 			generateTorta(niceland, re);
 			generateBircks(difficulty.getDifficulty(), re, ralph);
 			if (ralph.getBricksAmount() != 0) {
-				ralph.breakBuilding(); //Breaking animation
+				ralph.breakBuilding(difficulty, niceland.getWindows()); //Breaking animation
 			}
 			/**Updates the fields of RE that have booleans giving collision information */
 			re.behaviour(felix.getVector2D());
@@ -100,12 +96,51 @@ public class Core {
 			default:
 				break;
 			}
+			if(bucleFinish < 4)
+			{
+				Direction d=  Direction.RIGHT;
+				felix.move(d, niceland.getWindows());
+			}
+			else
+			{
+				if(bucleFinish < 7)
+				{
+					Direction d= Direction.UP;
+					felix.move(d, niceland.getWindows());
+				}
+				else
+				{
+					if( bucleFinish < 10 )
+					{
+						Direction d= Direction.LEFT;
+						felix.move(d, niceland.getWindows());
+					}
+				}
+			}
 			
+			bucleFinish++;
+			if (bucleFinish == 10) 
+			{				
+				isBucleOn = false;
+			}
+
+			System.out.println("--\n");
+		}
+		System.out.println("Has perdido. Ingrese nombre: ");
+		highScores[5]=new Scores(sc.next(),points);
+		
+		Arrays.sort(highScores,Collections.reverseOrder());
+		
+		System.out.println("\n \n \n \n  \t  GAME OVER!" + " \nHigscores: ");
+		for (int i = 0; i < highScores.length-1; i++) {
+			System.out.println("\n" + highScores[i]);
+		}
+		
+		
+
+	}
 			
-			
-			
-			
-			char act = getAction(sc);
+			/*char act = getAction(sc);
 
 			switch (act) {
 			case 'w':
@@ -133,6 +168,7 @@ public class Core {
 			default:
 				break;
 			}
+			*/
 			
 			
 			/** ------------------------------------------------------- */
@@ -143,26 +179,8 @@ public class Core {
 //			pause(250); // ms
 			/** -------------- DELAY -------------- */
 
-//			bucleFinish++;
-//			if (bucleFinish == 30) {
-//				isBucleOn = false;
-//			}
+//			
 
-			System.out.println("--\n");
-		}
-		System.out.println("Has perdido. Ingrese nombre: ");
-		highScores[5]=new Scores(sc.next(),points);
-		
-		Arrays.sort(highScores,Collections.reverseOrder());
-		
-		System.out.println("\n \n \n \n  \t  GAME OVER!" + " \nHigscores: ");
-		for (int i = 0; i < highScores.length-1; i++) {
-			System.out.println("\n" + highScores[i]);
-		}
-		
-		
-
-	}
 
 
 	private static void levelUp(Felix felix, Building niceland, RandomEnvironment re, Difficulty difficulty) {
@@ -199,13 +217,7 @@ public class Core {
 	}
 
 
-	private static char getAction(Scanner sc) {
-//		System.out.println("\n HOLA! PRESIONE UNA TECLA Y APRETE ENTER" + "\n Valores posibles:" + "\n w: Mover arriba"
-//				+ "\n s: Mover abajo" + "\n a: Mover izquierda" + "\n d: Mover derecha)" + "\n f: Arreglar"
-//				+ "\n cualquier otra tecla: nada");
-		return sc.next().charAt(0);
 
-	}
 
 	
 	

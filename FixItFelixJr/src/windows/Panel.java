@@ -46,7 +46,10 @@ class Panel {
 		}
 		return 0;
 	}
-
+ /**
+  * Rompe un panel 
+  * @return retorna true si puedo romper
+  */
 	boolean breakPanel() {
 		if (this.state != PanelState.BROKEN) {
 			this.setActualLife(this.getActualLife() - 1);
@@ -55,6 +58,9 @@ class Panel {
 		}
 		return false;
 	}
+	/**
+	 * cambia el estado del panel
+	 */
 
 	private void changeState() {
 		switch (this.actualLife) {
