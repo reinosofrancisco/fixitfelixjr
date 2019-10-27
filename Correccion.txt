@@ -1,0 +1,71 @@
+Chicos, buen día. Disculpen la demora, revisando las notes, vi que el trabajo no habia sido asignado. La corrección principal es separar un poco más responsabilidades (y delegación). Paso el detalle...
+
+-----------------------------------------------------------------
+
+UML: 
+
+-La Clase Core no conoce a ninguna clase (lo indico por el comentario que dejaron en el diagrama). Algo similar pasa con el otro comentario
+
+- Notación OK
+
+POO: 
+
+-Felix, Building y cualquier clase de la que sólo puede existir una instancia, debería estar modelado como Singleton. Además, de esta forma, ya no sería necesario enviar este segundo argumento:
+
+	felix.move(d, niceland.getWindows());
+
+
+
+...y le daría más independencia a los distintos actores para consultar la información que necesitan para saber como actuar.
+
+
+
+-Delegación. Me parece que el RE tiene demasiadas responsabilidades, debería delegar responsabilidades:
+
++ejecuta ronda de juego (mueve felix y el resto)
+
++analiza colisiones
+
++administra estado secciones
+
++administra puntajes - highscore
+
++habla con el edificio para informar al nicelander... ¿es necesario? ..el nicelander está en el edificio..!
+
+
+
+Respecto de este punto, fijense que cada uno de los participantes tenga responsabilidades especificas
+
+
+
+- el felixState debería ser propio de Felix (encapsulado) y no externo.
+
+
+
+
+
+Documentacion: Bien, las clases (encabezados) también pueden comentarse con javadoc 
+
+
+
+Sintaxis Java: 
+
+Cualquier valor que represente algo en particular, como:
+
+this.inmune = 30; //default invulnerability time
+
+
+
+debería estar indicado como constante, no deberían aparecer valores numéricos sueltos. Esto además ayuda a la legibilidad del código.
+
+
+
+Tené en cuenta que este tipo de comparaciones chequea que ambas instancias estén alojadas en la misma dirección de memoria.
+
+dir.getUnitVector() == d.getUnitVector()
+
+
+
+
+
+Funcionamiento: OK
