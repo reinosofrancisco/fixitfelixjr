@@ -2,27 +2,49 @@ package entities;
 
 import java.util.Random;
 
+import building.Building;
+import game.Difficulty;
+import randomenvironment.Brick;
 import randomenvironment.RandomEnvironment;
-import util.Dimentions;
 import util.Direction;
+import util.GameConstants;
 import util.Vector2D;
+import windows.Window;
 
 public class Ralph 
 {
-	private Vector2D pos;
+	private Vector2D pos=new Vector2D(2,4);
 	private Direction dir= Direction.RIGHT;
 	private float velocity=1;
-	private int bricksAmount;
+	private int bricksAmount=GameConstants.BRICK_AMMOUNT;
 	
-	public Ralph() {
+	private static Ralph INSTANCE;
+	
+	
+	
+	
+	private Ralph() {
 	}
 	
-	public Ralph(Vector2D pos, Direction dir, int bricksAmount)
-	{
-		this.pos= pos;
-		this.dir= dir;
-		this.bricksAmount= bricksAmount;
+//	private Ralph(Vector2D pos, Direction dir, int bricksAmount)
+//	{
+//		this.pos= pos;
+//		this.dir= dir;
+//		this.bricksAmount= bricksAmount;
+//	}
+	
+	
+	
+	public static Ralph getInstance() {
+		if (INSTANCE==null) {
+			INSTANCE=new Ralph();
+		}
+		return INSTANCE;
+		
 	}
+	
+	
+	
 	
 	
 	//This getter&setters should be private
@@ -51,7 +73,7 @@ public class Ralph
 		this.bricksAmount = bricksAmount;
 	}
 	
-	public void move(Direction dir) {
+	/*public void move(Direction dir) {
 		Vector2D newPos = this.pos.add(dir.getUnitVector());
 		if(Dimentions.isInsideMap(newPos)) {
 			this.pos = newPos;
@@ -59,17 +81,19 @@ public class Ralph
 			
 		}
 	}
-	
+	*/
 	
 	//moves a random direction LEFT OR RIGHT
 	public void move() {
 		switch (new Random().nextInt(1)) {
 		case 0: {
 			this.pos.add(Direction.RIGHT.getUnitVector());
+			System.out.println("[RALPH] I moved to pos " + this.pos.toString());
 			break;
 		}
 		case 1:{
 			this.pos.add(Direction.LEFT.getUnitVector());
+			System.out.println("[RALPH] I moved to pos " + this.pos.toString());
 			break;
 		}
 		default:
@@ -79,12 +103,54 @@ public class Ralph
 	}
 	
 	
-	
+	/**
+	 *  Rompe una cantidad de ventanas al azar
+	 * @param d representa la dificultad depende de este rompe mas o menos ventanas
+	 * @param w son las ventanas del edificio
+	 * @return retorna si pudo romper ventanas
+	 */
 	public boolean breakBuilding()
 	{
-		//implementar
+		Window[][] w = Building.getInstance().getWindows();
+		double d = Difficulty.getInstance().getDifficulty();
+		double numOfWindB= 1;
+		numOfWindB= (numOfWindB * d) +1;
+		if(numOfWindB < 2.5)
+		{
+			int i;
+			for(i=0;i<2;i++)
+			{
+				int f= new Random().nextInt(3);
+				int c= new Random().nextInt(4);
+				if(!w[f][c].isHealthy())
+				{
+					w[f][c].breakWindow();
+					System.out.println("[RALPH] rompio la ventana, en la fila "+ (f) +" y en la columna "+ (c));
+				}
+				else System.out.println("[RALPH] No pudo romper la ventana, en la fila "+ (f) +" y en la columna "+ (c)+" ya que estaba rota");
+				
+			}
+			return true;
+		}
+		else 
+		{
+			if(numOfWindB > 2.5)
+			{
+				int i;
+				for(i=0;i<3;i++)
+				{	
+					int f= new Random().nextInt(2);
+					int c= new Random().nextInt(4);
+					if(!w[f][c].isHealthy())
+					{
+						w[f][c].breakWindow();
+						System.out.println("[RALPH] rompio la ventana, en la fila "+(f)+" y en la columna "+(c));
+					}
+				}
+				return true;
+			}		
+		}
 		return false;
-		
 	}
 	
 	/**
@@ -92,11 +158,21 @@ public class Ralph
 	 * @param difficulty 
 	 * @param re randomEnvironment to put the brick
 	 */
-	public void summonBricks(Double difficulty, RandomEnvironment re) {
-		if(re.getBricksCooldown()!=0) {
-			re.summonBricks(this.pos,1,difficulty);
+	public void summonBricks() {
+		if((bricksAmount !=0) && (Brick.getCooldown()==0)) {
+			RandomEnvironment.getInstance().summonBricks();
 			this.bricksAmount--;
 		}
+	}
+
+	public void update() {
+		move();
+		double num = new Random().nextDouble();
+		if(num<=Difficulty.getInstance().getDifficulty()*.2) {
+			summonBricks();
+			breakBuilding();
+		}
+		
 	}
 	
 }

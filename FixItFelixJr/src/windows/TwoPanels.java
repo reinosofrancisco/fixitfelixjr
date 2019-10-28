@@ -3,15 +3,16 @@ package windows;
 import java.util.Random;
 
 import util.Direction;
+import util.GameConstants;
 import util.Vector2D;
 
 class TwoPanels extends Window 
 {
 	private Obstacle[] obstacles;
-	private final static int panelsAmount= 2;
+	//private int panelsAmount= 2;
 	public TwoPanels(Vector2D pos,double mult)
 	{
-		super(panelsAmount, pos,mult);
+		super(GameConstants.PANEL_TWO_AMMOUNT, pos,mult);
 		this.generateObstacles(mult);
 	}
 	
@@ -59,6 +60,10 @@ class TwoPanels extends Window
 		 }
 		 else return false;
 	 }
+	 /**
+	  * Genera los obstaculos que va a tener cada ventana de este tipo
+	  * @param mult representa la dificultad a mayor dificultad mas obstaculos
+	  */
 	 private void generateObstacles(double mult)
 	 {
 		 double obs= new Random().nextDouble();

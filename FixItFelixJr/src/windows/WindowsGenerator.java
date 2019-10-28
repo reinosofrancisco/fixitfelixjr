@@ -2,7 +2,7 @@ package windows;
 
 import java.util.Random;
 
-import building.Sections;
+import building.Building;
 import game.Difficulty;
 import util.Dimentions;
 import util.Vector2D;
@@ -13,8 +13,17 @@ public class WindowsGenerator
 	{
 		
 	}
-	public static Window[][] generateWindows(Sections sec,Difficulty d)
+	/**
+	 *  Se encarga de generar todas las ventanas de una seccion 
+	 * @param sec Identifica a que seccion van a pertenecer esas ventanas
+	 * @param d Segun la dificultad mas ventanas aparecen rotas
+	 * @return retorna la matriz de ventanas ya creada
+	 */
+	public static Window[][] generateWindows()
 	{
+			Difficulty d=Difficulty.getInstance();
+			
+			
 			Random rand=new Random();
 			Window[][] wind= new Window[Dimentions.RIGHT_LIMITS][Dimentions.UP_LIMITS];
 			int f,c;
@@ -42,14 +51,13 @@ public class WindowsGenerator
 				}
 				wind[f][wind[f].length-1]=new RalphWindow();
 			}
-			if(sec == Sections.FIRST)
+			if(Building.getInstance().isFirstSection())
 			{
 				Vector2D pos= new Vector2D(Dimentions.RIGHT_LIMITS/2,1);
 				wind[pos.getPosx()][pos.getPosy()]= new HalfCircle(4, pos,d.getDifficulty());
 				Vector2D p= new Vector2D(Dimentions.RIGHT_LIMITS/2,2);
 				wind[p.getPosx()][p.getPosy()]= new HalfCircle(8, p,d.getDifficulty());
 			}
-			
 			return wind;
 	}
 }

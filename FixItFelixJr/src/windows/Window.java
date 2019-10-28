@@ -3,6 +3,7 @@ package windows;
 import java.util.Random;
 
 import util.Direction;
+import util.GameConstants;
 import util.Vector2D;
 
 public abstract class Window 
@@ -14,7 +15,7 @@ public abstract class Window
 	
 	
 	
-	protected static final double baseProb= 0.2;
+	protected static final double baseProb= GameConstants.PANEL_BASEPROB;
 	
 	public Window ()
 	{
@@ -49,6 +50,10 @@ public abstract class Window
 	public void setPanels(Panel[] panels) {
 		this.panels = panels;
 	}
+	/**
+	 * Chequea si la ventana se encuentra sana o no.
+	 * @return retorna true si la ventana esta completamente sana, es decir los paneles estan todos sanos.
+	 */
 	public boolean isHealthy()
 	{
 		int i;
@@ -64,8 +69,21 @@ public abstract class Window
 		}
 		return true;
 	}
+	/**
+	 * Chequea si me puedo mover
+	 * @param p indica en la direccion en la que me quiero mover
+	 * @return retorna true si efectivamente me puedo mover
+	 */
 	public abstract boolean canIMove(Direction p);
+	/**
+	 * chequea si en la ventana actual puede aparecer un nicelander
+	 * @return retorna true si puede aparecer uno
+	 */
 	public abstract boolean canIGenerateNicelander();
+	/**
+	 *  repara un panel de la ventana en cuestion, comienza por el de mas abajo(la pos 0 del arreglo) y va "subiendo"
+	 * @return returna la cantidad de puntos de arreglar una ventana si fue totalmente arreglada
+	 */
 	public int repaired()
 	{
 		int dev=0, i=0;
@@ -89,6 +107,10 @@ public abstract class Window
 				return dev;
 			}
 	}
+	/**
+	 * rompe un panel que no este totalmente roto
+	 * @return retorna verdadero si pudo romper un panel
+	 */
 	public boolean breakWindow()
 	{
 			boolean yet= false; // this boolean says if i broken a panel previously
