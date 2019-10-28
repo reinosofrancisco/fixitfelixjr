@@ -4,7 +4,7 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 public class HighScores {
-	private SortedSet<Scores> s = new TreeSet<Scores>();
+private SortedSet<Scores> s = new TreeSet<Scores>();
 	
 	private static HighScores INSTANCE;
 	
@@ -25,6 +25,4 @@ public class HighScores {
 			s.remove(s.first());
 		}
 	}
-	
-
 }
