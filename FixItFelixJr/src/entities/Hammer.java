@@ -28,9 +28,11 @@ public class Hammer {
 		
 	}
 	
+	/**
+	 * 
+	 * @return retorna true si pudo arreglar y resetea el cooldown, false en caso contrario
+	 */
 	
-	//retorna true si pudo arreglar y resetea el cooldown
-	//false en caso contrario
 	public boolean fix() {
 		if(canFix()) {
 			cooldown+=cooldownAmmount;

@@ -1,4 +1,4 @@
-Chicos, buen día. Disculpen la demora, revisando las notes, vi que el trabajo no habia sido asignado. La corrección principal es separar un poco más responsabilidades (y delegación). Paso el detalle...
+﻿Chicos, buen día. Disculpen la demora, revisando las notes, vi que el trabajo no habia sido asignado. La corrección principal es separar un poco más responsabilidades (y delegación). Paso el detalle...
 
 
 UML: 
@@ -35,6 +35,7 @@ Funcionamiento: OK
 *Felix es ahora un singleton
 *Felix tiene sus variables de instancia inicializadas y no las recibe como parametro¨
 *Arregla3 lo de felixState
+*En el fix de feli faltaba preguntar si la ventana no estaba sana antes de arreglar, podrias traer problemas en las ventanas que no se pueden arreglar
 *Hammer es un singleton
 *Hammer tiene en su clase su tiempo de cooldown inicial
 *Ralph ahora es un singleton

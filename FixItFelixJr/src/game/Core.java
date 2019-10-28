@@ -131,6 +131,10 @@ public class Core {
 				{
 					Direction d= Direction.UP;
 					game.felix.move(d);
+					points+=game.felix.fix();
+					points+=game.felix.fix();
+					points+=game.felix.fix();
+					points+=game.felix.fix();
 				}
 				else
 				{
@@ -138,6 +142,10 @@ public class Core {
 					{
 						Direction d= Direction.UP;
 						game.felix.move(d);
+						points+=game.felix.fix();
+						points+=game.felix.fix();
+						points+=game.felix.fix();
+						points+=game.felix.fix();
 					}
 				}
 			}

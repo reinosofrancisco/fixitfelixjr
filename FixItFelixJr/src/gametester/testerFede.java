@@ -68,7 +68,7 @@ public class testerFede {
 			System.out.println(f.move(Direction.RIGHT));
 			break;
 		case 'f':
-			System.out.println(f.fix(w));
+			System.out.println(f.fix());
 		default:
 			break;
 		}
