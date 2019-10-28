@@ -8,6 +8,8 @@ public abstract class Bullet {
 	
 	Vector2D vector2D;
 	
+	
+	
 	public Vector2D getVector2D() {
 		return vector2D;
 	}

@@ -9,6 +9,7 @@ import entities.Felix;
 import entities.Ralph;
 import randomenvironment.*;
 import util.Direction;
+import util.GameConstants;
 import util.Vector2D;
 
 
@@ -19,34 +20,55 @@ public class Core {
 	 * se encarga de mandar mensajes a todos los objetos de que hay hacer, a su vez maneja el nivel y la dificultad actual, Por ende, tiene instancias de todas las clases que necesita el juego para funcionar, junto con informacion para instanciarlas, En cada vuelta del loop, actualiza las posiciones de los objetos instanciados, se fija si se pueden generar tortas y/o ladrillos, chequea las colisiones entre objetos, y si las hay actua en consecuiencia, Toda la logica que se encarga de arreglar ventanas, subir de seccion/ nivel, y sumar puntos esta implementada, dado que en el recorrido preestablecido nunca se repara fue borrada.
 	 */
 	
+	
+	private static Core game;
+	private Difficulty difficulty = Difficulty.getInstance();
+	private Building niceland = Building.getInstance();
+	private Scores[] highScores = new Scores[6];
+	private Felix felix = Felix.getInstnance();
+	private Ralph ralph = Ralph.getInstance();
+	private RandomEnvironment re = RandomEnvironment.getInstance();
+	private boolean isBucleOn = true;
+	
+	private Core() {
+		
+	}
+	public static Core getInstance() {
+		if (game==null) {
+			game=new Core();
+		}
+		return game;
+	}
+	
+	
+	
+	
 	public static void main(String[] args) {
 		
-		//instancia de edificio y nivel actual
-		Difficulty difficulty=new Difficulty();
-		Building niceland=new Building(difficulty);
-		Scores[] highScores=new Scores[6];
-		testerScores(highScores);
-		Scanner sc= new Scanner(System.in);
 		
-		//----
-		int felixLifes = 3;
-		int felixHammerCD = 1;
-		int inmuneStatus = 1;
-		int initBricksAmmount = 10;
-		Vector2D initVectFelix = new Vector2D(1,1);
-		Vector2D initVectRalph = new Vector2D(2,4);
+		Scanner sc= new Scanner(System.in);
+		int bucleFinish = 0;
+		Core game = getInstance();
+		
+		
+		
 		int points=0;
 		
+		//instancia de edificio y nivel actual
+//		Difficulty difficulty=Difficulty.getInstance();
+//		Building niceland=Building.getInstance();
+//		Scores[] highScores=new Scores[6];
+//		Felix felix = Felix.getInstnance();
+//		Ralph ralph = Ralph.getInstance();	
+//		RandomEnvironment re = RandomEnvironment.getInstance();
+		
+		testerScores(game.highScores);
+		
+		
 		/**MAP IS 5 OF ANCHO AND 3 OF ALTO AMIGO (SIN CONTAR LA POSICION 0,0 O LA FILA DE ARRIBA DE TO DO)*/
-		RandomEnvironment re = new RandomEnvironment();
-		Felix felix = new Felix(initVectFelix,felixLifes,inmuneStatus,felixHammerCD);
-		FelixState felixState=FelixState.DEFAULT;
-		Ralph ralph = new Ralph(initVectRalph, Direction.RIGHT, initBricksAmmount);	
 		
 		
-		boolean isBucleOn = true;
-		int bucleFinish = 0;
-		while (isBucleOn) {
+		while (game.isBucleOn) {
 			System.out.println("Lap number= " + (bucleFinish+1));
 			System.out.println("-");
 //			System.out.println(" ");
@@ -55,90 +77,91 @@ public class Core {
 			/** ------------------[ CODE ] ---------------------------- */
 			/** ------------------------------------------------------- */
 			
-			generateTorta(niceland, re);
-			generateBircks(difficulty.getDifficulty(), re, ralph, niceland);
 			
+			game.niceland.update();
+			game.ralph.update();
+			game.felix.update();//TODO
+			game.re.update();
+			
+			
+			//-----------------------------
+//			generateTorta(niceland, re);
+//			generateBircks(difficulty.getDifficulty(), re, ralph, niceland);			
 			/**Updates the fields of RE that have booleans giving collision information */
-			re.behaviour(felix.getVector2D());
-			/**After this point, the re class will have the updated Collision booleans  */
-			
-			ralph.move();
-			
-			
-			
-			
-			
-			
+//			re.behaviour(felix.getVector2D());
+			/**After this point, the re class will have the updated Collision booleans  */			
+//			ralph.move();			
 //			generateRandomBehaviour(ralph);
-			
-			
-
-			
-			felixState=felix.update(re); // Updates the hammer and the invunerabilities
-			
-			switch (felixState) {
-			case KILLEDBYBIRD:
-			{
-				restartSection(felix,niceland, difficulty, re);
-				System.out.println("Felix perdio progreso de seccion chocando con un pajaro, repite la seccion: "+ niceland.getSection());
-				break;
-			}
-			case KILLEDBYBRICK:
-			{
-				if(felix.getLives()!=0) {
-					restartLevel(felix,niceland, difficulty,re);
-				}
-				else {
-					isBucleOn=false;
-				}
-				System.out.println("Felix perdio una vida chocando con un ladrillo, ahora tiene: "+ felix.getLives());
-				break;
-			}
-			default:
-				break;
-			}
+//			//TODO arrreglar felix state
+//			felixState=felix.update(re); // Updates the hammer and the invunerabilities//			
+//			switch (felixState) {
+//			case KILLEDBYBIRD:
+//			{
+//				restartSection(felix,niceland, difficulty, re);
+//				System.out.println("Felix perdio progreso de seccion chocando con un pajaro, repite la seccion: "+ niceland.getSection());
+//				break;
+//			}
+//			case KILLEDBYBRICK:
+//			{
+//				if(felix.getLives()!=0) {
+//					restartLevel(felix,niceland, difficulty,re);
+//				}
+//				else {
+//					isBucleOn=false;
+//				}
+//				System.out.println("Felix perdio una vida chocando con un ladrillo, ahora tiene: "+ felix.getLives());
+//				break;
+//			}
+//			default:
+//				break;
+//			}	
+			//--------------------------------
 			if(bucleFinish < 4)
 			{
-				Direction d=  Direction.RIGHT;
-				felix.move(d, niceland.getWindows());
+				Direction d=  Direction.UP;
+				game.felix.move(d);
+				points+=game.felix.fix();
+				points+=game.felix.fix();
+				points+=game.felix.fix();
+				points+=game.felix.fix();
 			}
 			else
 			{
 				if(bucleFinish < 7)
 				{
 					Direction d= Direction.UP;
-					felix.move(d, niceland.getWindows());
+					game.felix.move(d);
 				}
 				else
 				{
 					if( bucleFinish < 10 )
 					{
-						Direction d= Direction.LEFT;
-						felix.move(d, niceland.getWindows());
+						Direction d= Direction.UP;
+						game.felix.move(d);
 					}
 				}
 			}
+						
+			//---------------
 			
 			bucleFinish++;
 			if (bucleFinish == 10) 
 			{				
-				isBucleOn = false;
+				game.isBucleOn = false;
 			}
 
 			System.out.println("--\n");
 		}
 		System.out.println("Has perdido. Ingrese nombre: ");
-		highScores[5]=new Scores(sc.next(),points);
+		game.highScores[5]=new Scores(sc.next(),points);
 		
-		Arrays.sort(highScores,Collections.reverseOrder());
+		Arrays.sort(game.highScores,Collections.reverseOrder());
 		
 		System.out.println("\n \n \n \n  \t  GAME OVER!" + " \nHigscores: ");
-		for (int i = 0; i < highScores.length-1; i++) {
-			System.out.println("\n" + highScores[i]);
+		for (int i = 0; i < game.highScores.length-1; i++) {
+			System.out.println("\n" + game.highScores[i]);
 		}
 		sc.close();
-		
-
 	}
 			
 			/*char act = getAction(sc);
@@ -180,16 +203,33 @@ public class Core {
 //			pause(250); // ms
 			/** -------------- DELAY -------------- */
 
-//			
+//
 
 
+	public void birdHit() {
+		restartSection(); //TODO
+		System.out.println("Felix perdio progreso de seccion chocando con un pajaro, repite la seccion: "+ niceland.getSection());		
+	}
 
-	private static void levelUp(Felix felix, Building niceland, RandomEnvironment re, Difficulty difficulty) {
+	public void brickHit() {
+		restartLevel(); //TODO
+		System.out.println("Felix perdio una vida chocando con un ladrillo, ahora tiene: "+ felix.getLives());		
+	}
+	
+	public void gameOver() {
+		this.isBucleOn=false;
+	}
+	
+	private static void levelUp() {
+		game.difficulty.lvlUp();
 		System.out.println("\n\n\nHas completado el nivel!!\n\n\n");
 		pause(1000);
-		felix.restartPosition();
-		difficulty.setLvl(difficulty.getLvl()+1);
-		niceland=new Building(difficulty);
+		if(game.difficulty.getLvl()==GameConstants.LEVEL_AMMOUNT) {
+			//GANASTEEEE
+		}		
+		game.felix.restartPosition();
+		game.niceland.levelUp();
+		//niceland=new Building(difficulty);
 	}
 
 
@@ -197,24 +237,21 @@ public class Core {
 		for (int i = 0; i < highScores.length; i++) {
 			highScores[i]= (new Scores("Fede("+i+")", i*100));
 		}
+	}
+
+
+	private static void restartLevel() {
+		game.felix.restartPosition();
+		game.re.restartEntities();
+		game.niceland.restartLevel();
 		
 	}
 
 
-	private static void restartLevel(Felix felix, Building niceland,Difficulty d, RandomEnvironment re) {
-		felix.restartPosition();
-		felix.setCantVidas(felix.getLives()-1);
-		re.restartEntities();
-		niceland.restartLevel(d);
-		
-	}
-
-
-	private static void restartSection(Felix felix, Building niceland,Difficulty d,RandomEnvironment re) {
-		felix.restartPosition();
-		niceland.restartSection(d);
-		re.restartEntities();
-		
+	private static void restartSection() {
+		game.felix.restartPosition();
+		game.niceland.restartSection();
+		game.re.restartEntities();
 	}
 
 
@@ -224,21 +261,21 @@ public class Core {
 	
 
 	/**Spawns BRICKS. The probability relies on the Difficulty  */
-	private static void generateBircks(Double difficulty, RandomEnvironment re, Ralph ralph, Building niceland) {
-		double num = new Random().nextDouble();
-		if(num<=difficulty*.2) {
-			ralph.summonBricks(difficulty,re);
-			ralph.breakBuilding(difficulty, niceland.getWindows());
-		}
-	}
-	private static void generateTorta(Building niceland, RandomEnvironment re) {
-		Vector2D posTorta=niceland.findCakeWindow();
-		if(posTorta!=null) {
-			if(new Random().nextDouble()<.8 && re.getNicelanderCooldown()==0) {
-				re.summonNicelander(posTorta);
-			}
-		}
-	}
+//	private static void generateBircks(Double difficulty, RandomEnvironment re, Ralph ralph, Building niceland) {
+//		double num = new Random().nextDouble();
+//		if(num<=difficulty*.2) {
+//			ralph.summonBricks(difficulty,re);
+//			ralph.breakBuilding(difficulty, niceland.getWindows());
+//		}
+//	}
+//	private static void generateTorta(Building niceland, RandomEnvironment re) {
+//		Vector2D posTorta=niceland.findCakeWindow();
+//		if(posTorta!=null) {
+//			if(new Random().nextDouble()<.8 && re.getNicelanderCooldown()==0) {
+//				re.summonNicelander(posTorta);
+//			}
+//		}
+//	}
 
 	/**Usefull Code*/
 	

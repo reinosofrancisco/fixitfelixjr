@@ -2,27 +2,49 @@ package entities;
 
 import java.util.Random;
 
+import building.Building;
+import game.Difficulty;
+import randomenvironment.Brick;
 import randomenvironment.RandomEnvironment;
 import util.Direction;
+import util.GameConstants;
 import util.Vector2D;
 import windows.Window;
 
 public class Ralph 
 {
-	private Vector2D pos;
+	private Vector2D pos=new Vector2D(2,4);
 	private Direction dir= Direction.RIGHT;
 	private float velocity=1;
-	private int bricksAmount;
+	private int bricksAmount=GameConstants.BRICK_AMMOUNT;
 	
-	public Ralph() {
+	private static Ralph INSTANCE;
+	
+	
+	
+	
+	private Ralph() {
 	}
 	
-	public Ralph(Vector2D pos, Direction dir, int bricksAmount)
-	{
-		this.pos= pos;
-		this.dir= dir;
-		this.bricksAmount= bricksAmount;
+//	private Ralph(Vector2D pos, Direction dir, int bricksAmount)
+//	{
+//		this.pos= pos;
+//		this.dir= dir;
+//		this.bricksAmount= bricksAmount;
+//	}
+	
+	
+	
+	public static Ralph getInstance() {
+		if (INSTANCE==null) {
+			INSTANCE=new Ralph();
+		}
+		return INSTANCE;
+		
 	}
+	
+	
+	
 	
 	
 	//This getter&setters should be private
@@ -87,8 +109,10 @@ public class Ralph
 	 * @param w son las ventanas del edificio
 	 * @return retorna si pudo romper ventanas
 	 */
-	public boolean breakBuilding(double d, Window[][] w )
+	public boolean breakBuilding()
 	{
+		Window[][] w = Building.getInstance().getWindows();
+		double d = Difficulty.getInstance().getDifficulty();
 		double numOfWindB= 1;
 		numOfWindB= (numOfWindB * d) +1;
 		if(numOfWindB < 2.5)
@@ -134,11 +158,21 @@ public class Ralph
 	 * @param difficulty 
 	 * @param re randomEnvironment to put the brick
 	 */
-	public void summonBricks(Double difficulty, RandomEnvironment re) {
-		if((this.bricksAmount !=0) && (re.getBricksCooldown()!=0)) {
-			re.summonBricks(this.pos,1,difficulty);
+	public void summonBricks() {
+		if((bricksAmount !=0) && (Brick.getCooldown()==0)) {
+			RandomEnvironment.getInstance().summonBricks();
 			this.bricksAmount--;
 		}
+	}
+
+	public void update() {
+		move();
+		double num = new Random().nextDouble();
+		if(num<=Difficulty.getInstance().getDifficulty()*.2) {
+			summonBricks();
+			breakBuilding();
+		}
+		
 	}
 	
 }

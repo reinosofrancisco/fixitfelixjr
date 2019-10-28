@@ -6,17 +6,30 @@ public class Difficulty {
 	//de aca pa adentro, la dificultad va de 0 a n
 	//de aca pa afuera de 1 a 10
 	
-	int lvl;
-
-	double mult=1.1;
+	private int lvl;
+	private double mult=1.1;
+	private static Difficulty INSTANCE;
 	
-	public Difficulty() {
-		setDifficulty(0);
+	
+	
+	
+	private Difficulty() {
+		setDifficulty(5);
 	}
 	
-	public Difficulty(int l) {
+	
+	private Difficulty(int l) {
 		setDifficulty(l-1);
 	}
+	
+	
+	public static Difficulty getInstance() {
+		if (INSTANCE== null) {
+			INSTANCE=new Difficulty();
+		}
+		return INSTANCE;
+	}
+	
 	public void setDifficulty(int l) {
 		lvl=l;
 		mult=Math.pow(mult,lvl);
@@ -33,6 +46,11 @@ public class Difficulty {
 	
 	public void setLvl(int lvl) {
 		this.lvl = lvl-1;
+	}
+	
+	public void lvlUp() {
+		lvl++;
+		mult*=1.1;
 	}
 	
 	//yeah this used to be an enumerator

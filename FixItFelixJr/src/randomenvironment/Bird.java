@@ -1,5 +1,7 @@
 package randomenvironment;
 
+import entities.Felix;
+import game.Core;
 import util.Direction;
 import util.Vector2D;
 
@@ -37,6 +39,18 @@ public class Bird extends Bullet {
 		if(this.detectOutOfBounds()) {
 			this.direction= this.direction==Direction.RIGHT ? Direction.LEFT:Direction.RIGHT;
 		}
+	}
+
+	public void update() {
+		move();
+		Felix f= Felix.getInstnance();
+		System.out.println("[BIRD] After moving i am in position  " + getVector2D().toString());
+		if (isColliding(f.getVector2D())) {
+			f.collidedBird();
+			Core.getInstance().birdHit();
+			//RandomEnvironment.getInstance().deleteBird(this);
+		}
+		
 	}
 
 //	/**If OOB, i flip direction  */

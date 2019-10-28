@@ -2,7 +2,10 @@ package building;
 
 
 
-import game.Difficulty;
+import java.util.LinkedList;
+import java.util.Random;
+
+import randomenvironment.Nicelander;
 import util.Direction;
 import util.Vector2D;
 import windows.Window;
@@ -10,19 +13,36 @@ import windows.WindowsGenerator;
 
 public class Building 
 {
-	private Sections section;
-	private Window[][] windows;
 	
-	/**
-	 * Por defecto se inicializa edificion con dificultad 1
-	 */
-	public Building() {
-		this(new Difficulty());
+	private Sections section = Sections.FIRST;
+	private Window[][] windows;
+	private LinkedList<Nicelander> nicelanders = new LinkedList<>();
+	
+	
+	
+	private static Building INSTANCE;
+	
+
+	public static Building getInstance() {
+		if(INSTANCE==null) {
+			INSTANCE=new Building();
+			INSTANCE.windows = WindowsGenerator.generateWindows();
+		}
+		return INSTANCE;
 	}
-	public Building(Difficulty d) {
-		this.section=Sections.FIRST;
-		windows=WindowsGenerator.generateWindows(section,d);
-	}
+	
+	
+	
+//	/**
+//	 * Por defecto se inicializa edificion con dificultad 1
+//	 */
+//	private Building() {
+//		this(new Difficulty());
+//	}
+//	private Building(Difficulty d) {
+//		this.section=Sections.FIRST;
+//		windows=WindowsGenerator.generateWindows(section,d);
+//	}
 	
 	
 	
@@ -118,16 +138,16 @@ public class Building
 	 * Vuelve a comenzar la seccion actual
 	 * @param d Representa la dificultad actual, a mas dificultad mas ventanas rotas
 	 */
-	public void restartSection(Difficulty d) {
-		windows=WindowsGenerator.generateWindows(this.section, d);
+	public void restartSection() {
+		windows=WindowsGenerator.generateWindows();
 	}
 	/**
 	 * Vuelve a comenzar el nivel actual
 	 * @param d Representa la dificultad actual, a mas dificultad mas ventanas rotas
 	 */
-	public void restartLevel(Difficulty d) {
+	public void restartLevel() {
 		this.section=Sections.FIRST;
-		windows=WindowsGenerator.generateWindows(this.section, d);		
+		windows=WindowsGenerator.generateWindows();		
 	}
 	/**
 	 * Chequea si todas las ventanas de la seccion actual estan sanas
@@ -143,9 +163,48 @@ public class Building
 		}
 		return true;
 	}
+
+
+	public void levelUp() {
+		
+		windows= WindowsGenerator.generateWindows();
+		section=Sections.FIRST;
+		
+	}
+
+
+
+	public boolean isFirstSection() {
+		return section==Sections.FIRST;
+	}
 	
+	
+	
+	public void update() {
+		Nicelander.update();
+		if (Nicelander.getCooldown() == 0 && new Random().nextDouble() < .8) {
+			Vector2D v = findCakeWindow();
+			if (v != null) {
+				nicelanders.add(new Nicelander(v));
+			}
+		}
+		for (Nicelander nicelander : nicelanders) {
+			nicelander.updateInstance();
+		}
+	}
+
+
+
+	public void removeNicelander(Nicelander nicelander) {
+		nicelanders.remove(nicelander);
+	}
 	
 	
 	
 	
 }
+enum Sections
+{
+	FIRST, SECOND, THIRD;
+}
+

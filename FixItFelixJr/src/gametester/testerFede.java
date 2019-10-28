@@ -4,9 +4,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 import building.Building;
-import building.Sections;
 import entities.Felix;
-import game.Difficulty;
 import util.Dimentions;
 import util.Direction;
 import util.Vector2D;
@@ -20,12 +18,12 @@ public class testerFede {
 		
 		Building b=new Building();
 		Vector2D v=new Vector2D(3,6);
-		Felix f=new Felix(new Vector2D(1,1),3,0,1);
+		Felix f= Felix.getInstnance();
 		
 		System.out.println(Dimentions.isInsideMap(v)+ " " + (new Random()).nextInt());
 		for (int i = 0; i < 100; i++) {
 			
-			Window[][] w=WindowsGenerator.generateWindows(Sections.FIRST,new Difficulty(0));
+			Window[][] w=WindowsGenerator.generateWindows();
 			
 			moverFelix(f,w);
 			moverFelix(f,w);
@@ -58,16 +56,16 @@ public class testerFede {
 		char act=sc.next().charAt(0);
 		switch (act) {
 		case 'w':
-			System.out.println(f.move(Direction.UP, w));
+			System.out.println(f.move(Direction.UP));
 			break;
 		case 's':
-			System.out.println(f.move(Direction.DOWN, w));
+			System.out.println(f.move(Direction.DOWN));
 			break;
 		case 'a':
-			System.out.println(f.move(Direction.LEFT,w));
+			System.out.println(f.move(Direction.LEFT));
 			break;
 		case 'd':
-			System.out.println(f.move(Direction.RIGHT,w));
+			System.out.println(f.move(Direction.RIGHT));
 			break;
 		case 'f':
 			System.out.println(f.fix(w));

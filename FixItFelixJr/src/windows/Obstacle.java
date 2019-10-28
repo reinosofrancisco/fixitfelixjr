@@ -17,7 +17,7 @@ public abstract class  Obstacle
 	public boolean canIMove(Direction d)
 	{
 		
-		if(dir.getUnitVector() == d.getUnitVector())
+		if(dir.getUnitVector().equals(d.getUnitVector()))
 		{
 			return false;
 		}

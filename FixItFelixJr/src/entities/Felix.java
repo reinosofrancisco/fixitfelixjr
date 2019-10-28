@@ -1,30 +1,53 @@
 package entities;
 
-import game.FelixState;
+import building.Building;
+import game.Core;
 import randomenvironment.RandomEnvironment;
 import util.Dimentions;
 import util.Direction;
+import util.GameConstants;
 import util.Vector2D;
 import windows.Window;
 
 public class Felix {
 	
-	Vector2D initial;
-	Vector2D pos;
-	int lives;
-	int inmune;
-	Hammer ham;
+	/*
+	 * private final int LIVES=3
+	 * private final int INMUNE = 1
+	 * private final int 
+	 */
 	
 	
-	public Felix() {};
 	
-	/**Felix initial Vector, lives amount, inmunity status & Hammer hitting Cooldown */
-	public Felix(Vector2D p,int lives,int inm,int cooldw){
-		this.initial=p;
-		this.pos=p;
-		this.lives=lives;
-		this.inmune=30;
-		this.ham=new Hammer(cooldw);
+	
+	
+	private final Vector2D initial= new Vector2D(1,1);
+	private Vector2D pos=new Vector2D(initial);
+	private int lives = GameConstants.FELIX_LIVES;
+	private int inmune = GameConstants.FELIX_INMUNE;
+	private Hammer ham = Hammer.getInstance();
+	
+	
+	
+	private static Felix INSTANCE;
+	
+	
+	
+	private Felix() {
+		
+	}
+	
+//	/**Felix initial Vector, lives amount, inmunity status & Hammer hitting Cooldown */
+//	private Felix(Vector2D p,int lives,int inm,int cooldw){
+//		
+//	}
+	
+	public static Felix getInstnance() {
+		if (INSTANCE==null) {
+			INSTANCE=new Felix();
+		}
+		return INSTANCE;
+		
 	}
 	
 	//vidas getters && setters
@@ -37,7 +60,8 @@ public class Felix {
 	
 	
 	//mueve el personaje si puede moverse
-	public boolean move(Direction d,Window[][] w) {		 
+	public boolean move(Direction d) {
+		Window[][] w = Building.getInstance().getWindows();
 		 Vector2D newPos= this.pos.add(d.getUnitVector());
 		 
 		 if(Dimentions.isInsideMap(newPos)) {
@@ -59,7 +83,8 @@ public class Felix {
 	 * @param w the array of windows
 	 * @return number of points after trying to fix window
 	 */
-	public int fix(Window[][] w) {
+	public int fix() {
+		Window[][] w = Building.getInstance().getWindows();
 		if(ham.fix()) {
 			int fedeborralodespues=w[pos.getPosx()-1][pos.getPosy()-1].repaired();
 			System.out.println("The Window is being Repaired! + " + fedeborralodespues + "points. IsWindowHealthy-->" + w[pos.getPosx()-1][pos.getPosy()-1].isHealthy());
@@ -69,41 +94,22 @@ public class Felix {
 		else return 0;
 	}
 	
-	public FelixState update(RandomEnvironment re) {
+	public void update() {
 		if(inmune>0) {
 			inmune--;
 		}
 		ham.update();
-		
-		return isColliding(re);		
 	}
-	
-	public void updateAll(Direction dir) {
-		//move(dir);
-		testingMove(dir);
-		
-	}
-	
-	public void testingMove(Direction dir) {
-		this.pos = this.pos.add(dir.getUnitVector());
-		System.out.println("Soy felipe y me estoy moviendo" + this.pos.toString());
-	}
-	
-	private FelixState isColliding(RandomEnvironment re) {
-		if (re.isCakeCollision()) {
-			this.inmune = 30; //default invulnerability time
-			return FelixState.INMUNITY;
-		}	
-		if (re.isBrickCollision()) {
-			this.lives--;
-			return FelixState.KILLEDBYBRICK;
-		}
-		if (re.isBirdCollision()) {
-			return FelixState.KILLEDBYBIRD;
-		}
-		return FelixState.DEFAULT;
-		
-	}
+//	public void updateAll(Direction dir) {
+//		//move(dir);
+//		testingMove(dir);
+//		
+//	}
+//	
+//	public void testingMove(Direction dir) {
+//		this.pos = this.pos.add(dir.getUnitVector());
+//		System.out.println("Soy felipe y me estoy moviendo" + this.pos.toString());
+//	}
 	
 	public Vector2D getVector2D() {
 		return (this.pos);
@@ -113,7 +119,34 @@ public class Felix {
 		pos=new Vector2D(initial);
 		
 	}
+
+	public void giveInmunity(int felixInmune) {
+		inmune=felixInmune;
+	}
+
+	public void collidedBird() {
+		lives--;
+		if(!isAlive()) {
+			Core.getInstance().gameOver();
+		}
+	}
+
+	public void collidedBrick() {
+		lives--;
+		if(!isAlive()) {
+			Core.getInstance().gameOver();
+		}
+	}
 	
+	public boolean isAlive() {
+		return lives>0;
+	}
 	
 
+}
+enum FelixState {
+	KILLEDBYBIRD,
+	KILLEDBYBRICK,
+	INMUNITY,
+	DEFAULT;
 }

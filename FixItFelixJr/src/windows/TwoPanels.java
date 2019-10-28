@@ -3,15 +3,16 @@ package windows;
 import java.util.Random;
 
 import util.Direction;
+import util.GameConstants;
 import util.Vector2D;
 
 class TwoPanels extends Window 
 {
 	private Obstacle[] obstacles;
-	private final static int panelsAmount= 2;
+	//private int panelsAmount= 2;
 	public TwoPanels(Vector2D pos,double mult)
 	{
-		super(panelsAmount, pos,mult);
+		super(GameConstants.PANEL_TWO_AMMOUNT, pos,mult);
 		this.generateObstacles(mult);
 	}
 	

@@ -13,7 +13,7 @@ public class MainTester {
 		pos.setPosx(1);
 		pos.setPosy(2);
 		
-		RandomEnvironment leader = new RandomEnvironment();	
+//		RandomEnvironment leader = new RandomEnvironment();	
 		//leader.summonBirds(pos);
 		
 		Bird pajarito = new Bird(pos);

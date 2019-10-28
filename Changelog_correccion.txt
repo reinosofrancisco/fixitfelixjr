@@ -1,0 +1,115 @@
+Chicos, buen día. Disculpen la demora, revisando las notes, vi que el trabajo no habia sido asignado. La corrección principal es separar un poco más responsabilidades (y delegación). Paso el detalle...
+
+
+UML: 
+
+-La Clase Core no conoce a ninguna clase (lo indico por el comentario que dejaron en el diagrama). Algo similar pasa con el otro comentario
+
+- Notación OK
+
+POO: 
+
+
+
+-Delegación. Me parece que el RE tiene demasiadas responsabilidades, debería delegar responsabilidades:
+
++ejecuta ronda de juego (mueve felix y el resto)
+
++analiza colisiones
+
++administra estado secciones
+
++administra puntajes - highscore
+
++habla con el edificio para informar al nicelander... ¿es necesario? ..el nicelander está en el edificio..!
+
+Sintaxis Java:
+
+Funcionamiento: OK
+
+
+
+
+-----------------------------------------------------
+
+*Felix es ahora un singleton
+*Felix tiene sus variables de instancia inicializadas y no las recibe como parametro¨
+*Arregla3 lo de felixState
+*Hammer es un singleton
+*Hammer tiene en su clase su tiempo de cooldown inicial
+*Ralph ahora es un singleton
+*Ralph ahora tiene sus variables de instancia inicializadas y no las recibe como parametro
+*El enumerador con estados de Felix es parte de Felix
+
+*Building es un singleton
+*Building tiene metodo levelUp que actualiza sus variables de instancia (genera nuevas ventanas y se posiciona en la primer seccion)
+
+
+*Difficulty es un singleton :D
+
+*Section vuelve a ser enumerador que conoce Building y una variable de instancia de building
+*GenerateWindows no tiene que recibir ningun parametro ya que los solicita con getInstance (antes recibia seccion y dificultad. Ahora pregunta a Building si estamos en la primera seccion y llama a Difficulty.getInstance() )
+
+
+*Con lo aprendido sobre interfaces gráficas, me dí cuenta que lo mejor es pasar algunas variables locales al main como variables de instancia de la clase Core y, en el main, crear una instancia de Core (que DEBERÍA SER SINGLETON)
+
+
+*Todas los valores de constantes están en una clase
+
+*Building controla los Nicelanders ahora tanto su generacion como su actualizacion
+
+*Nicelanders al actualizarse se fijan si Felix está con ellos. De ser así le dan inmunidad y desaparecen diciendole a building que los elimine
+
+
+------
+
+*Clase con constantes
+*Felix singleton con VI privadas y usando ctes
+Metodos mover, arreglar y update modificados: mover y fix no reciben parametros. Update solo se encarga de actualizar inmunidad y martillo
+Metodos agregados en Felix: giveInmunity, collidedBird, collidedBrick, isAlive que son usados por las entidades.
+Enumerador con felixState (ELIMINAR ESO)
+
+*Martillo singleton con constantes donde debían estar
+
+*Ralph singleton con constantes donde deberían estar
+metodos breakBuilding, summonBricks no reciben parametros
+metodo update llama a breakbuilding y summonbricks de darse la prob. Además mueve a ralph
+
+*Core es un singleton. Tiene variables de instancia con los personajes
+Core llama a metodo update de cada una de sus VI y al metodo move de felix
+Core tiene nuevos metodos: birdHit y brickHit para cuando pajaro o ladrillo colisione con felix
+DUDA: realmente, podrían ser los pajaros y ladrillos quienes reseteen el juego. Pero hago que el game.core mande esos mensajes ya que tiene mas "sentido"
+Core tiene metodo gameOver que desactiva bucle
+Modifiqué metodo levelUp (falta comportamiento para cuando ganas)
+
+*Difficulty es un singleton
+Difficulty tiene metodo lvlUp
+
+*Eliminado felix.state
+*Eliminado map
+
+*Pajaro tiene metodo update que recupera instancia de felix y se fija si está colisionando. Mandando respectivos mensajes. Además se mueve
+*Ladrillo tiene metodo update que recupera instancia de felix y se fija si está colisionando. Mandando respectivos mensajes. Además se mueve
+Ladrillo tiene cooldown general para todas sus instancias
+*Nicelander tiene constantes
+Nicelander tiene cooldown general para todas sus instancias
+
+*RE solo tiene lista de ladrillos y pajaros. En su metodo update llama al update de c/ elem de su lista
+RE tiene metodo deleteBird y deleteBrick ((Eliminar luego ya que no sirven de nada))
+
+*Dimentions está definido por gameconstants
+
+*LevelsDifficulty ripeó
+
+
+* Clase obstacle no hace más dir.getUnitVector() == d.getUnitVector()
+
+* Two pannels usa constantes
+* Windows usa constantes
+
+*metodo generateWindow no recibe más dificultad o seccion. Ya que estos son singleton o parte de un singleton respectivamente.
+
+
+
+
+

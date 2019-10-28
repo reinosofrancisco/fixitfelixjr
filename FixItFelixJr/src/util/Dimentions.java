@@ -15,12 +15,12 @@ public class Dimentions{
 	 */
 	
 	
-	static final public int UP_LIMITS = 4;		/**Height of the Building */
-	static final public int RIGHT_LIMITS = 5;	/**Width of the Building*/
+	static final public int UP_LIMITS = GameConstants.MAP_UP_LIMITS;		/**Height of the Building */
+	static final public int RIGHT_LIMITS = GameConstants.MAP_RIGHT_LIMITS;	/**Width of the Building*/
 	
 	/**Should be left in 1 for maintaining the coherence */
-	static final public int DOWN_LIMITS = 1;
-	static final public int LEFT_LIMITS = 1;
+	static final public int DOWN_LIMITS = GameConstants.MAP_DOWN_LIMITS;
+	static final public int LEFT_LIMITS = GameConstants.MAP_LEFT_LIMITS;
 	
 //	private static Vector2D getDownLeftCorner() {
 //		return new Vector2D(LEFT_LIMITS,DOWN_LIMITS);

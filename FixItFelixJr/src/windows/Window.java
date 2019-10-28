@@ -3,6 +3,7 @@ package windows;
 import java.util.Random;
 
 import util.Direction;
+import util.GameConstants;
 import util.Vector2D;
 
 public abstract class Window 
@@ -14,7 +15,7 @@ public abstract class Window
 	
 	
 	
-	protected static final double baseProb= 0.2;
+	protected static final double baseProb= GameConstants.PANEL_BASEPROB;
 	
 	public Window ()
 	{
