@@ -59,11 +59,7 @@ public class Felix {
 	}
 	
 	
-	/**
-	 * Mueve a felix si se puede mover
-	 * @param d define la direcccion en la que se quiere mover feliz
-	 * @return retorna true si felix se puede mover en la direccion d, false si no puede
-	 */
+	//mueve el personaje si puede moverse
 	public boolean move(Direction d) {
 		Window[][] w = Building.getInstance().getWindows();
 		 Vector2D newPos= this.pos.add(d.getUnitVector());
@@ -90,14 +86,10 @@ public class Felix {
 	public int fix() {
 		Window[][] w = Building.getInstance().getWindows();
 		if(ham.fix()) {
-			if(!w[pos.getPosx()-1][pos.getPosy()-1].isHealthy())
-			{
-				int fedeborralodespues=w[pos.getPosx()-1][pos.getPosy()-1].repaired();
-				System.out.println("The Window in X["+ (pos.getPosx()-1)+"]"+"| Y["+(pos.getPosy()-1)+ "] is being Repaired! + " + fedeborralodespues + " points. IsWindowHealthy--> " + w[pos.getPosx()-1][pos.getPosy()-1].isHealthy());
-				//return w[pos.getPosx()-1][pos.getPosy()-1].repaired();
-				return fedeborralodespues;
-			}
-			else return 0;
+			int fedeborralodespues=w[pos.getPosx()-1][pos.getPosy()-1].repaired();
+			System.out.println("The Window is being Repaired! + " + fedeborralodespues + "points. IsWindowHealthy-->" + w[pos.getPosx()-1][pos.getPosy()-1].isHealthy());
+			//return w[pos.getPosx()-1][pos.getPosy()-1].repaired();
+			return fedeborralodespues;
 		}
 		else return 0;
 	}
