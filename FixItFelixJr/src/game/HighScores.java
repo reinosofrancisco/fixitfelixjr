@@ -10,11 +10,11 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 public class HighScores {
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	private SortedSet<Scores> lovelyScores = new TreeSet<Scores>();
-=======
+//=======
 private SortedSet<Scores> s = new TreeSet<Scores>();
->>>>>>> c6a401f0bb8f0a08d3740cd3939686258fdb8294
+//>>>>>>> c6a401f0bb8f0a08d3740cd3939686258fdb8294
 	
 	private static HighScores INSTANCE;
 	

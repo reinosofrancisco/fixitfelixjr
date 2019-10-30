@@ -1,6 +1,9 @@
-/windows/
+/building/
 /entities/
 /game/
+/gametester/
+/graphicInterface/
+/guiControllers/
 /randomenvironment/
 /util/
-/gametester/
+/windows/
