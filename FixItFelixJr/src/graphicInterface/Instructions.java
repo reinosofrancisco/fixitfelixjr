@@ -11,6 +11,8 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import util.GameConstants;
+
 
 public class Instructions extends JPanel{
 
@@ -39,7 +41,11 @@ public class Instructions extends JPanel{
 					e.getStackTrace();
 				}
 			}
-			this.setSize(1000,1000);
+<<<<<<< HEAD
+			this.setSize(1800,1000);
+=======
+			this.setSize(GameConstants.WINDOW_WIDTH,GameConstants.WINDOW_HEIGHT);
+>>>>>>> 6942d728dc9d2da5c4e7a7a91e7d0cfa30e348a6
 		}
 
 		public Image getImg() {
@@ -55,14 +61,22 @@ public class Instructions extends JPanel{
 			// TODO Auto-generated method stub
 			super.paintComponent(g);
 			g.setFont(new Font(Font.DIALOG, Font.BOLD, 30));
-			g.drawImage(img, 0, 0, 1000, 1000, null);
+<<<<<<< HEAD
+			g.drawImage(img, 0, 0, 1800, 1000, null);
+=======
+			g.drawImage(img, 0, 0, GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT, null);
+>>>>>>> 6942d728dc9d2da5c4e7a7a91e7d0cfa30e348a6
 		}
 
 		public static void main(String args[])
 		{
 			Instructions i= new Instructions();
 			JFrame j= new JFrame();
-			j.setSize(1000, 1000);
+<<<<<<< HEAD
+			j.setSize(1800, 1000);
+=======
+			j.setSize(GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT);
+>>>>>>> 6942d728dc9d2da5c4e7a7a91e7d0cfa30e348a6
 			j.getContentPane().add(i);
 			j.setVisible(true);
 		}

@@ -1,5 +1,6 @@
 package gametester;
 
+/**
 import java.util.Random;
 import java.util.Scanner;
 
@@ -10,13 +11,14 @@ import util.Direction;
 import util.Vector2D;
 import windows.Window;
 import windows.WindowsGenerator;
+*/ 
 
 public class testerFede {
 	
 	
 	public static void main(String[] args) {
 		
-		Building b=new Building();
+		/** Building b=new Building();
 		Vector2D v=new Vector2D(3,6);
 		Felix f= Felix.getInstnance();
 		
@@ -68,11 +70,12 @@ public class testerFede {
 			System.out.println(f.move(Direction.RIGHT));
 			break;
 		case 'f':
-			System.out.println(f.fix(w));
+		//	System.out.println(f.fix(null));
 		default:
 			break;
 		}
 		// TODO Auto-generated method stub
-		
+		*/
 	}
+	
 }
