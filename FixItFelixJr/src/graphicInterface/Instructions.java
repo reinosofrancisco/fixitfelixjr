@@ -62,7 +62,7 @@ public class Instructions extends JPanel{
 		{
 			Instructions i= new Instructions();
 			JFrame j= new JFrame();
-			j.setSize(500, 500);
+			j.setSize(1000, 1000);
 			j.getContentPane().add(i);
 			j.setVisible(true);
 		}

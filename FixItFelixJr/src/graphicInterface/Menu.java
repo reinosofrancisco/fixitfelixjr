@@ -3,9 +3,9 @@ package graphicInterface;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-public class Menu  extends JFrame{
+public class Menu  extends JPanel{
 	
 	/**
 	 * 
@@ -20,7 +20,6 @@ public class Menu  extends JFrame{
 	 */
 	public Menu()
 	{
-		super("Fix It Felix");
 		this.setLayout(new GridLayout(1, 3));
 		this.add(play);
 		this.add(instruccions);
@@ -31,8 +30,4 @@ public class Menu  extends JFrame{
 	
 	
 	
-	public static void main (String[] args)
-	{
-		Menu m= new Menu();
-	}
 }
