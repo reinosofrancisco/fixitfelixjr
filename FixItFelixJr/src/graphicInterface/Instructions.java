@@ -20,7 +20,7 @@ public class Instructions extends JPanel{
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;
-		private String imageUrl= "graphicInterface/Image/siberian-huskies-900.jpg";
+		private String imageUrl= "graphicInterface/Image/fixItFelix.jpg";
 		private Image img;
 		
 		public Instructions()
