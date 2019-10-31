@@ -11,6 +11,8 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import util.GameConstants;
+
 
 public class Instructions extends JPanel{
 
@@ -18,7 +20,7 @@ public class Instructions extends JPanel{
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;
-		private String imageUrl= "graphicInterface/Image/fixItFelix.jpg";
+		private String imageUrl= "graphicInterface/Image/siberian-huskies-900.jpg";
 		private Image img;
 		
 		public Instructions()
@@ -39,7 +41,7 @@ public class Instructions extends JPanel{
 					e.getStackTrace();
 				}
 			}
-			this.setSize(1000,1000);
+			this.setSize(GameConstants.WINDOW_WIDTH,GameConstants.WINDOW_HEIGHT);
 		}
 
 		public Image getImg() {
@@ -55,14 +57,14 @@ public class Instructions extends JPanel{
 			// TODO Auto-generated method stub
 			super.paintComponent(g);
 			g.setFont(new Font(Font.DIALOG, Font.BOLD, 30));
-			g.drawImage(img, 0, 0, 1000, 1000, null);
+			g.drawImage(img, 0, 0, GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT, null);
 		}
 
 		public static void main(String args[])
 		{
 			Instructions i= new Instructions();
 			JFrame j= new JFrame();
-			j.setSize(1000, 1000);
+			j.setSize(GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT);
 			j.getContentPane().add(i);
 			j.setVisible(true);
 		}
