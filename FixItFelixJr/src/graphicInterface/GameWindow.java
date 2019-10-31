@@ -1,10 +1,11 @@
 package graphicInterface;
 
-import javax.swing.JFrame;
+
+import javax.swing.JPanel;
 
 import guiControllers.KeyL;
 
-public class GameWindow extends JFrame {
+public class GameWindow extends JPanel {
 
 	/**
 	 * 
@@ -14,11 +15,9 @@ public class GameWindow extends JFrame {
 	
 	public GameWindow()
 	{
-		super("Fix It Felix");
+		
 		this.addKeyListener(new KeyL());
 		this.setSize(200, 200);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setVisible(true);
 	}
 	
 

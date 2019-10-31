@@ -28,4 +28,11 @@ public class Menu  extends JFrame{
 		this.setSize(1000, 1000);
 		this.setVisible(true);
 	}
+	
+	
+	
+	public static void main (String[] args)
+	{
+		Menu m= new Menu();
+	}
 }
