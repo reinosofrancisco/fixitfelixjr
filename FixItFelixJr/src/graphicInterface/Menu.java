@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 
 import guiControllers.MouseContGameWin;
 import guiControllers.MouseContInstr;
+import guiControllers.MouseContRank;
+import util.GameConstants;
 
 public class Menu  extends JPanel{
 	
@@ -28,9 +30,9 @@ public class Menu  extends JPanel{
 		this.add(play);
 		this.instructions.addMouseListener(new MouseContInstr());
 		this.add(instructions);
+		this.ranking.addMouseListener(new MouseContRank());
 		this.add(ranking);
-		this.setSize(1000, 1000);
-		this.setVisible(true);
+		this.setSize(GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT);
 	}
 	
 	

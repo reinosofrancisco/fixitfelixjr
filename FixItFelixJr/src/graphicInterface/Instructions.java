@@ -1,6 +1,5 @@
 package graphicInterface;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -8,9 +7,10 @@ import java.io.IOException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import guiControllers.MouseContrMenu;
 import util.GameConstants;
 
 
@@ -22,9 +22,13 @@ public class Instructions extends JPanel{
 		private static final long serialVersionUID = 1L;
 		private String imageUrl= "graphicInterface/Image/fixItFelix.jpg";
 		private Image img;
+		private JButton back= new JButton("<<");
 		
 		public Instructions()
 		{
+			back.setBounds(0, 0, 100, 100);
+			back.addMouseListener(new MouseContrMenu());
+			this.add(back, 0, 0);
 			URL urlImg= getClass().getClassLoader().getResource(imageUrl);
 			if(urlImg == null)
 			{
@@ -41,11 +45,8 @@ public class Instructions extends JPanel{
 					e.getStackTrace();
 				}
 			}
-<<<<<<< HEAD
-			this.setSize(1800,1000);
-=======
 			this.setSize(GameConstants.WINDOW_WIDTH,GameConstants.WINDOW_HEIGHT);
->>>>>>> 6942d728dc9d2da5c4e7a7a91e7d0cfa30e348a6
+
 		}
 
 		public Image getImg() {
@@ -61,23 +62,7 @@ public class Instructions extends JPanel{
 			// TODO Auto-generated method stub
 			super.paintComponent(g);
 			g.setFont(new Font(Font.DIALOG, Font.BOLD, 30));
-<<<<<<< HEAD
-			g.drawImage(img, 0, 0, 1800, 1000, null);
-=======
 			g.drawImage(img, 0, 0, GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT, null);
->>>>>>> 6942d728dc9d2da5c4e7a7a91e7d0cfa30e348a6
-		}
 
-		public static void main(String args[])
-		{
-			Instructions i= new Instructions();
-			JFrame j= new JFrame();
-<<<<<<< HEAD
-			j.setSize(1800, 1000);
-=======
-			j.setSize(GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT);
->>>>>>> 6942d728dc9d2da5c4e7a7a91e7d0cfa30e348a6
-			j.getContentPane().add(i);
-			j.setVisible(true);
 		}
 	}

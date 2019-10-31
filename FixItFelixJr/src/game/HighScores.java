@@ -16,6 +16,22 @@ public class HighScores {
 private SortedSet<Scores> s = new TreeSet<Scores>();
 //>>>>>>> c6a401f0bb8f0a08d3740cd3939686258fdb8294
 	
+	public SortedSet<Scores> getLovelyScores() {
+	return lovelyScores;
+}
+
+public void setLovelyScores(SortedSet<Scores> lovelyScores) {
+	this.lovelyScores = lovelyScores;
+}
+
+public SortedSet<Scores> getS() {
+	return s;
+}
+
+public void setS(SortedSet<Scores> s) {
+	this.s = s;
+}
+
 	private static HighScores INSTANCE;
 	
 	@SuppressWarnings("unchecked")
@@ -24,7 +40,7 @@ private SortedSet<Scores> s = new TreeSet<Scores>();
 		
 		try {	
 			//Asigno la Entrada, de donde voy a sacar los datos
-			 imput = new ObjectInputStream(new FileInputStream("C:\\DownloadJr\\test.dat"));	
+			 imput = new ObjectInputStream(new FileInputStream("C:\\Users\\jeron\\Documents\\GitHub\\fixitfelixjr\\FixItFelixJr\\src\\game\\Archivos\\HighScore.dat"));	
 			 //Saco el objeto que guarde anteriormente
 			 this.lovelyScores = (SortedSet<Scores>) imput.readObject();			
 		} 
@@ -65,7 +81,7 @@ private SortedSet<Scores> s = new TreeSet<Scores>();
 		ObjectOutputStream output = null;	
 		try {	
 			//Asigno a salida donde voy a guardar los datos
-			output = new ObjectOutputStream(new FileOutputStream("C:\\DownloadJr\\test.dat"));
+			output = new ObjectOutputStream(new FileOutputStream("C:\\Users\\jeron\\Documents\\GitHub\\fixitfelixjr\\FixItFelixJr\\src\\game\\Archivos\\HighScore.dat"));
 			//Guardo los hightscores en el archivo (SortedSet implements Serializable)
 			output.writeObject(lovelyScores);
 		} 
