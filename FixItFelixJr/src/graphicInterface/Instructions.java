@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 
 import guiControllers.MouseContrMenu;
 import util.GameConstants;
+import util.ResourcePathConstants;
 
 
 public class Instructions extends JPanel{
@@ -20,7 +21,7 @@ public class Instructions extends JPanel{
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;
-		private String imageUrl= "graphicInterface/Image/fixItFelix.jpg";
+		private String imageUrl= ResourcePathConstants.INSTRUCTIONS;
 		private Image img;
 		private JButton back= new JButton("<<");
 		
