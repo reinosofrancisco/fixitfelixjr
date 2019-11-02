@@ -1,0 +1,3 @@
+Ahora la carpeta que contenia la imagen de las instrucciones se llama menu imagenes y contiene tambien las tuercas de configuracion
+Cambie el layout de menu a gridBagLayOut, pero no me deja editarlo bien
+Puse en WindowController un JOptionPane, para que cuando aprentes salir te diga que no se van a guardar los progresos, no en encontre como hacerlo para que aparecezca cuando tocas la cruz de salir

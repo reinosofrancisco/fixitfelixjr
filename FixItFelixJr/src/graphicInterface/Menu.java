@@ -1,9 +1,9 @@
 package graphicInterface;
 
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -12,7 +12,7 @@ import guiControllers.MouseContGameWin;
 import guiControllers.MouseContInstr;
 import guiControllers.MouseContRank;
 import util.GameConstants;
-import util.ResourcePathConstants;
+
 
 public class Menu  extends JPanel{
 	
@@ -23,7 +23,9 @@ public class Menu  extends JPanel{
 	private JButton play= new JButton("¡A JUGAR!");
 	private JButton instructions= new JButton("¿COMO JUGAR?");
 	private JButton ranking= new JButton("TOP 5");
-	private JButton config= new JButton(new ImageIcon(ResourcePathConstants.CONFIG));
+	private JButton config= new JButton("Config");
+	private JButton stats= new JButton("Estadisticas");
+	private GridBagConstraints cont= new GridBagConstraints();
 	
 	/**
 	 * El constructor instancia todas las cosas necesarias del Frame
@@ -31,26 +33,24 @@ public class Menu  extends JPanel{
 	public Menu()
 	{
 		this.setLayout(new GridBagLayout());
-		this.play.addMouseListener(new MouseContGameWin());
-		GridBagConstraints c1= new GridBagConstraints();
-		c1.gridx= 1;
-		c1.gridy= 1;
-		this.add(play, c1);
+		//this.stats.addMouseListener(new MouseContGameWin());
+		cont.gridx=0;
+		cont.gridy=0;
+		this.add(stats, cont);
+		cont.gridx=2;
+		this.add(config, cont);
 		this.instructions.addMouseListener(new MouseContInstr());
-		GridBagConstraints c2= new GridBagConstraints();
-		c2.gridx=0;
-		c1.gridy=1;
-		this.add(instructions,c2);
+		cont.gridx=0;
+		cont.gridy=8;
+		this.add(instructions, cont);
+		this.play.addMouseListener(new MouseContGameWin());
+		cont.gridx=1;
+		cont.gridy=8;
+		this.add(play,cont);
 		this.ranking.addMouseListener(new MouseContRank());
-		GridBagConstraints c3= new GridBagConstraints();
-		c3.gridx=2;
-		c3.gridy=1;
-		this.add(ranking,c3);
-	    //this.config.addMouseListener();
-		GridBagConstraints c4= new GridBagConstraints();
-		c4.gridx=2;
-		c4.gridy=0;
-		this.add(config, c4);
+		cont.gridx=2;
+		cont.gridy=8;
+		this.add(ranking,cont);
 		this.setSize(GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT);
 	}
 	

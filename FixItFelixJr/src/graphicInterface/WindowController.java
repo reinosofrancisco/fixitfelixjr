@@ -1,6 +1,8 @@
 package graphicInterface;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import util.GameConstants;
 
@@ -19,6 +21,7 @@ public class WindowController extends JFrame {
 	private WindowController()
 	{
 		super("Fix It FelixJr");
+		JOptionPane.showConfirmDialog(new JButton(), "Si sale se perderan sus datos, desea salir??", "Salva", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 		this.setSize(GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT);
 		this.add(menu);
 		this.add(instr);
