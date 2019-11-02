@@ -12,8 +12,7 @@ import javax.swing.JPanel;
 
 import guiControllers.MouseContrMenu;
 import util.GameConstants;
-import util.ResourcePathConstants;
-
+import util.ResourcePathConstants; 
 
 public class Instructions extends JPanel{
 

@@ -7,5 +7,6 @@ public class ResourcePathConstants {
 	public static final String WINDOW_TWOPANNELS = "data/instructions/fixItFelix.jpg";
 	public static final String WINDOW_WITHLEAVES = "data/instructions/fixItFelix.jpg";
 	public static final String WINDOW_RALPH = "data/instructions/fixItFelix.jpg";
+	public static final String CONFIG= "data/MenuImages/config.jpg";
 
 }
