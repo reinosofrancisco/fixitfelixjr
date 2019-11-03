@@ -30,8 +30,9 @@ public class Menu  extends JPanel{
 	/**
 	 * El constructor instancia todas las cosas necesarias del Frame
 	 */
-	public Menu()
+	Menu()
 	{
+		super();
 		this.setLayout(new GridBagLayout());
 		//this.stats.addMouseListener(new MouseContGameWin());
 		cont.gridx=0;
