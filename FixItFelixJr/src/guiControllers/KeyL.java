@@ -16,6 +16,7 @@ public class KeyL extends KeyAdapter{
 		{
 			case(KeyEvent.VK_SPACE):
 			{
+				GraphicFelix.getInstance().changeImgFix();
 				Core.getInstance().fix();
 			}
 			break;

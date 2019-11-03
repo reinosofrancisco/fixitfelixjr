@@ -7,6 +7,7 @@ import building.Building;
 import entities.Felix;
 import entities.Ralph;
 import graphicInterface.GameWindow;
+import graphicInterface.GraphicFelix;
 import randomenvironment.*;
 import util.Direction;
 import util.GameConstants;
@@ -70,11 +71,23 @@ public class Core {
 		}
 	}
 	public void birdHit() {
+		GraphicFelix.getInstance().changeImgColition();
+		Direction d= Direction.DOWN;
+		while(felix.move(d))
+		{
+			d=Direction.DOWN;
+		}
 		restartSection(); //TODO
 		System.out.println("Felix perdio progreso de seccion chocando con un pajaro, repite la seccion: "+ niceland.getSection());		
 	}
 
 	public void brickHit() {
+		GraphicFelix.getInstance().changeImgColition();
+		Direction d= Direction.DOWN;
+		while(felix.move(d))
+		{
+			d=Direction.DOWN;
+		}
 		restartLevel(); //TODO
 		System.out.println("Felix perdio una vida chocando con un ladrillo, ahora tiene: "+ felix.getLives());		
 	}

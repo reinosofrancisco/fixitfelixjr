@@ -50,6 +50,7 @@ public class GraphicFelix {
 	private Image Falling;
 	private static GraphicFelix instance;
 	private Image actual;
+	private Direction dirAct;
 	
 	private GraphicFelix()
 	{
@@ -73,6 +74,7 @@ public class GraphicFelix {
 		loadImage(uEatingCakeRight, EatingCakeRight);
 		loadImage(uFalling, Falling);
 		setActual(Start);
+		setDirAct(Direction.UNDIFINED);
 		
 	}
 	
@@ -84,6 +86,13 @@ public class GraphicFelix {
 		}
 		return instance;
 	}
+	
+	/**
+	 *  Carga una imagen
+	 * @param url representa el path de la imagen
+	 * @param i representa el objeto imagen
+	 * 	Si la imagen no se encuentra muestra un aviso en pantalla
+	 */
 	
 	private void loadImage(String url, Image i)
 	{
@@ -125,12 +134,14 @@ public class GraphicFelix {
 		if(d == Direction.LEFT)
 		{
 			setActual(MovingLeft);
+			setDirAct(Direction.LEFT);
 		}
 		else
 		{
 			if(d== Direction.RIGHT)
 			{
 				setActual(MovingRigth);	
+				setDirAct(Direction.RIGHT);
 			}
 			else setActual(Quiet);
 			
@@ -142,7 +153,78 @@ public class GraphicFelix {
 	 */
 	public void changeImgFix()
 	{
+		if(dirAct == Direction.RIGHT)
+		{
+			setActual(Fixing1Right);
+			try {
+				Thread.sleep(20); //Es el tiempo que pasa entre la primera imagen de arrelgar y la segunda
+			}
+			catch(InterruptedException e){
+				
+				e.printStackTrace();
+				
+			}
+			setActual(Fixing2Right);
+		}
+		else
+		{
+			if(dirAct == Direction.LEFT)
+			{
+				setActual(Fixing1Left);
+				try {
+					Thread.sleep(20); //Es el tiempo que pasa entre la primera imagen de arrelgar y la segunda
+				}
+				catch(InterruptedException e){
+					
+					e.printStackTrace();
+					
+				}
+				setActual(Fixing2Left);
+			}
+		}
+	}
+	
+	public void changeImgColition()
+	{
+		if(dirAct == Direction.LEFT)
+		{
+			setActual(ColitionLeft);
+			try {
+				Thread.sleep(20); //Es el tiempo que pasa entre la primera imagen de arrelgar y la segunda
+			}
+			catch(InterruptedException e){
+				
+				e.printStackTrace();
+				
+			}
+			setActual(Falling);
+			
+		}
+		else
+		{
+			if(dirAct == Direction.RIGHT)
+			{
+				setActual(ColitionRight);
+				try {
+					Thread.sleep(20); //Es el tiempo que pasa entre la primera imagen de arrelgar y la segunda
+				}
+				catch(InterruptedException e){
+					
+					e.printStackTrace();
+					
+				}
+				setActual(Falling);
+			}
+		}
 		
+	}
+
+	public Direction getDirAct() {
+		return dirAct;
+	}
+
+	public void setDirAct(Direction dirAct) {
+		this.dirAct = dirAct;
 	}
 
 }
