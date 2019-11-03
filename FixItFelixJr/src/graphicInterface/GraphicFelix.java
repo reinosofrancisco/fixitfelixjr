@@ -6,6 +6,7 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
+import game.Core;
 import util.Direction;
 
 public class GraphicFelix {
@@ -186,25 +187,11 @@ public class GraphicFelix {
 	
 	public void changeImgColition()
 	{
-		if(dirAct == Direction.LEFT)
+		if(Core.getInstance().isColliding())
 		{
-			setActual(ColitionLeft);
-			try {
-				Thread.sleep(20); //Es el tiempo que pasa entre la primera imagen de arrelgar y la segunda
-			}
-			catch(InterruptedException e){
-				
-				e.printStackTrace();
-				
-			}
-			setActual(Falling);
-			
-		}
-		else
-		{
-			if(dirAct == Direction.RIGHT)
+			if(dirAct == Direction.LEFT)
 			{
-				setActual(ColitionRight);
+				setActual(ColitionLeft);
 				try {
 					Thread.sleep(20); //Es el tiempo que pasa entre la primera imagen de arrelgar y la segunda
 				}
@@ -214,9 +201,32 @@ public class GraphicFelix {
 					
 				}
 				setActual(Falling);
+				
+			}
+			else
+			{
+				if(dirAct == Direction.RIGHT)
+				{
+					setActual(ColitionRight);
+					try {
+						Thread.sleep(20); //Es el tiempo que pasa entre la primera imagen de arrelgar y la segunda
+					}
+					catch(InterruptedException e){
+						
+						e.printStackTrace();
+						
+					}
+					setActual(Falling);
+				}
 			}
 		}
 		
+		
+	}
+	
+	public void update()
+	{
+		changeImgColition();
 	}
 
 	public Direction getDirAct() {

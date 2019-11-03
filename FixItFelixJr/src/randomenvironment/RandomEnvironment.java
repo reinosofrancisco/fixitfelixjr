@@ -2,6 +2,7 @@ package randomenvironment;
 
 import java.util.LinkedList;
 
+import entities.Felix;
 import game.Difficulty;
 import util.Dimentions;
 import util.Vector2D;
@@ -21,6 +22,7 @@ public class RandomEnvironment {
 //	private boolean brickCollision;
 //	private boolean CakeCollision;
 	
+
 	private static RandomEnvironment INSTANCE;
 
 	
@@ -254,5 +256,23 @@ public class RandomEnvironment {
 //		return ((this.birdsCooldown == 0)&&(this.bricksCooldown == 0)&&(this.nicelanderCooldown == 0));
 //	}
 	
+	public boolean isColliding()
+	{
+		for(Brick i :bricks)
+		{
+			if(i.isColliding(Felix.getInstnance().getVector2D()))
+			{
+				return true;
+			}
+		}
+		for(Bird i: birds)
+		{
+			if(i.isColliding(Felix.getInstnance().getVector2D()))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 	
 }
