@@ -3,3 +3,4 @@ Cambie el layout de menu a gridBagLayOut, pero no me deja editarlo bien
 Puse en WindowController un JOptionPane, para que cuando aprentes salir te diga que no se van a guardar los progresos, no en encontre como hacerlo para que aparecezca cuando tocas la cruz de salir
 La clase Building tiene un nuevo metodo que dice si felix esta parado en una ventana con una torta
 La grafica de Felix esta toda implentada(NO LA PROBE)
+Hay un metodo en random enviroment que te dice si felix choco con un pajaro o un ladrillo
