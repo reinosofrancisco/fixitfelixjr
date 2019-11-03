@@ -5,6 +5,7 @@ package building;
 import java.util.LinkedList;
 import java.util.Random;
 
+import entities.Felix;
 import randomenvironment.Nicelander;
 import util.Direction;
 import util.Vector2D;
@@ -198,8 +199,21 @@ public class Building
 	public void removeNicelander(Nicelander nicelander) {
 		nicelanders.remove(nicelander);
 	}
-	
-	
+	/**
+	 * Se fija si Felix esta en una ventana con torta
+	 * @return retorna true si esta efectivamente en una ventana con torta, false en caso contrario
+	 */
+	public boolean isFelixWitCake()
+	{
+		for(Nicelander i: nicelanders)
+		{
+			if(i.getPos().equals(Felix.getInstnance().getVector2D()))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	
 }

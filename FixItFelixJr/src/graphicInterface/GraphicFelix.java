@@ -6,6 +6,7 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
+import building.Building;
 import game.Core;
 import util.Direction;
 
@@ -28,6 +29,7 @@ public class GraphicFelix {
 	private String uFixing1Right="data.game.felix/fixing1Right";
 	private String uFixing2Right="data.game.felix/fixing2Right";
 	private String uColitionRight="data.game.felix/colitionRight";
+	private String uWithCakeRight= "data.game.felix/withCakeRight.png";
 	private String uEatingCakeRight="data.game.felix/eatingCakeRight.png";
 	private String uFalling="data.game.felix/faling.png";
 	private Image Quiet;
@@ -47,6 +49,7 @@ public class GraphicFelix {
 	private Image Fixing1Right;
 	private Image Fixing2Right;
 	private Image ColitionRight;
+	private Image WithCakeRight;
 	private Image EatingCakeRight;
 	private Image Falling;
 	private static GraphicFelix instance;
@@ -72,6 +75,7 @@ public class GraphicFelix {
 		loadImage(uFixing1Right, Fixing1Right);
 		loadImage(uFixing2Right, Fixing2Right);
 		loadImage(uColitionRight, ColitionRight);
+		loadImage(uWithCakeRight, WithCakeRight);
 		loadImage(uEatingCakeRight, EatingCakeRight);
 		loadImage(uFalling, Falling);
 		setActual(Start);
@@ -185,6 +189,10 @@ public class GraphicFelix {
 		}
 	}
 	
+	/**
+	 * Cambia la imagen de Felix cuando choca con un pajaro o ladrillo
+	 */
+	
 	public void changeImgColition()
 	{
 		if(Core.getInstance().isColliding())
@@ -224,6 +232,45 @@ public class GraphicFelix {
 		
 	}
 	
+	/**
+	 * Cambia la imagen de Felix caundo como una torta
+	 */
+	public void changeImgCake()
+	{
+		if(Building.getInstance().isFelixWitCake())
+		{
+			if(dirAct == Direction.RIGHT)
+			{
+				setActual(WithCakeRight);
+				try {
+					Thread.sleep(20); //Es el tiempo que pasa entre la primera imagen de comer la torta y la segunda
+				}
+				catch(InterruptedException e){
+					
+					e.printStackTrace();
+					
+				}
+				setActual(EatingCakeRight);
+			}
+			else
+			{
+				if(dirAct == Direction.LEFT)
+				{
+					setActual(WithCakeLeft);
+					try {
+						Thread.sleep(20); //Es el tiempo que pasa entre la primera imagen de comer la torta y la segunda
+					}
+					catch(InterruptedException e){
+						
+						e.printStackTrace();
+						
+					}
+					setActual(EatingCakeLeft);
+				}
+			}
+			
+		}
+	}
 	public void update()
 	{
 		changeImgColition();
