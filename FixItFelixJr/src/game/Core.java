@@ -128,9 +128,9 @@ public class Core {
 
 	
 	// Para Comunicarse con los listeners, el key listener llama a estos metodos para indicar que hacer
-	public void move(Direction d)
+	public boolean move(Direction d)
 	{
-		felix.move(d);
+		return felix.move(d);
 	}
 	public void fix()
 	{
