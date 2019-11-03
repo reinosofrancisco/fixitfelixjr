@@ -12,26 +12,26 @@ import util.Direction;
 
 public class GraphicFelix {
 	
-	private String uQuiet= "data.game.felix/quiet.png";
-	private String uMovingLeft="data.game.felix/movingLeft.png";
-	private String uCantMoveLeft= "data.game.felix/cantMoveLeft.png";
-	private String uFixing1Left= "data.game.felix/fixing1Left.png";
-	private String uFixing2Left= "data.game.felix/fixing2Left.png";
-	private String uWithCakeLeft= "data.game.felix/withCakeLeft.png";
-	private String uEatingCakeLeft="data.game.felix/eatingCakeLeft.png";
-	private String uWining1= "data.game.felix/wining1.png";
-	private String uWining2= "data.game.felix/wining2.png";
-	private String uWining3= "data.game.felix/wining3.png";
-	private String uColitionLeft="data.game.felix/colitionLeft.png";
-	private String uStart= "data.game.felix/start.png";
-	private String uMovingRigth="data.game.felix/movingRight.png";
-	private String uCantMoveRight= "data.game.felix/cantMoveRight.png";
-	private String uFixing1Right="data.game.felix/fixing1Right";
-	private String uFixing2Right="data.game.felix/fixing2Right";
-	private String uColitionRight="data.game.felix/colitionRight";
-	private String uWithCakeRight= "data.game.felix/withCakeRight.png";
-	private String uEatingCakeRight="data.game.felix/eatingCakeRight.png";
-	private String uFalling="data.game.felix/faling.png";
+	private String uQuiet= "data/game/felix/quiet.png";
+	private String uMovingLeft="data/game/felix/movingLeft.png";
+	private String uCantMoveLeft= "data/game/felix/cantMoveLeft.png";
+	private String uFixing1Left= "data/game/felix/fixing1Left.png";
+	private String uFixing2Left= "data/game/felix/fixing2Left.png";
+	private String uWithCakeLeft= "data/game/felix/withCakeLeft.png";
+	private String uEatingCakeLeft="data/game/felix/eatingCakeLeft.png";
+	private String uWining1= "data/game/felix/wining1.png";
+	private String uWining2= "data/game/felix/wining2.png";
+	private String uWining3= "data/game/felix/wining3.png";
+	private String uColitionLeft="data/game/felix/colitionLeft.png";
+	private String uStart= "data/game/felix/start.png";
+	private String uMovingRigth="data/game/felix/movingRight.png";
+	private String uCantMoveRight= "data/game/felix/cantMoveRight.png";
+	private String uFixing1Right="data/game/felix/fixing1Right";
+	private String uFixing2Right="data/game/felix/fixing2Right";
+	private String uColitionRight="data/game/felix/colitionRight";
+	private String uWithCakeRight= "data/game/felix/withCakeRight.png";
+	private String uEatingCakeRight="data/game/felix/eatingCakeRight.png";
+	private String uFalling="data/game/felix/faling.png";
 	private Image Quiet;
 	private Image MovingLeft;
 	private Image CantMoveLeft;
@@ -53,7 +53,7 @@ public class GraphicFelix {
 	private Image EatingCakeRight;
 	private Image Falling;
 	private static GraphicFelix instance;
-	private Image actual;
+	private Image imgAct;
 	private Direction dirAct;
 	
 	private GraphicFelix()
@@ -78,7 +78,7 @@ public class GraphicFelix {
 		loadImage(uWithCakeRight, WithCakeRight);
 		loadImage(uEatingCakeRight, EatingCakeRight);
 		loadImage(uFalling, Falling);
-		setActual(Start);
+		setImgActual(Start);
 		setDirAct(Direction.UNDIFINED);
 		
 	}
@@ -122,12 +122,12 @@ public class GraphicFelix {
 		
 	}
 
-	public Image getActual() {
-		return actual;
+	public Image getImgActual() {
+		return imgAct;
 	}
 
-	public void setActual(Image actual) {
-		this.actual = actual;
+	public void setImgActual(Image actual) {
+		this.imgAct = actual;
 	}
 	
 	/**
@@ -138,18 +138,16 @@ public class GraphicFelix {
 	{
 		if(d == Direction.LEFT)
 		{
-			setActual(MovingLeft);
+			setImgActual(MovingLeft);
 			setDirAct(Direction.LEFT);
 		}
 		else
 		{
 			if(d== Direction.RIGHT)
 			{
-				setActual(MovingRigth);	
+				setImgActual(MovingRigth);	
 				setDirAct(Direction.RIGHT);
-			}
-			else setActual(Quiet);
-			
+			}	
 		}
 	}
 	/**
@@ -160,31 +158,17 @@ public class GraphicFelix {
 	{
 		if(dirAct == Direction.RIGHT)
 		{
-			setActual(Fixing1Right);
-			try {
-				Thread.sleep(20); //Es el tiempo que pasa entre la primera imagen de arrelgar y la segunda
-			}
-			catch(InterruptedException e){
-				
-				e.printStackTrace();
-				
-			}
-			setActual(Fixing2Right);
+			setImgActual(Fixing1Right);
+			pause();
+			setImgActual(Fixing2Right);
 		}
 		else
 		{
 			if(dirAct == Direction.LEFT)
 			{
-				setActual(Fixing1Left);
-				try {
-					Thread.sleep(20); //Es el tiempo que pasa entre la primera imagen de arrelgar y la segunda
-				}
-				catch(InterruptedException e){
-					
-					e.printStackTrace();
-					
-				}
-				setActual(Fixing2Left);
+				setImgActual(Fixing1Left);
+				pause();
+				setImgActual(Fixing2Left);
 			}
 		}
 	}
@@ -199,32 +183,18 @@ public class GraphicFelix {
 		{
 			if(dirAct == Direction.LEFT)
 			{
-				setActual(ColitionLeft);
-				try {
-					Thread.sleep(20); //Es el tiempo que pasa entre la primera imagen de arrelgar y la segunda
-				}
-				catch(InterruptedException e){
-					
-					e.printStackTrace();
-					
-				}
-				setActual(Falling);
+				setImgActual(ColitionLeft);
+				pause();
+				setImgActual(Falling);
 				
 			}
 			else
 			{
 				if(dirAct == Direction.RIGHT)
 				{
-					setActual(ColitionRight);
-					try {
-						Thread.sleep(20); //Es el tiempo que pasa entre la primera imagen de arrelgar y la segunda
-					}
-					catch(InterruptedException e){
-						
-						e.printStackTrace();
-						
-					}
-					setActual(Falling);
+					setImgActual(ColitionRight);
+					pause();
+					setImgActual(Falling);
 				}
 			}
 		}
@@ -241,33 +211,34 @@ public class GraphicFelix {
 		{
 			if(dirAct == Direction.RIGHT)
 			{
-				setActual(WithCakeRight);
-				try {
-					Thread.sleep(20); //Es el tiempo que pasa entre la primera imagen de comer la torta y la segunda
-				}
-				catch(InterruptedException e){
-					
-					e.printStackTrace();
-					
-				}
-				setActual(EatingCakeRight);
+				setImgActual(WithCakeRight);
+				pause();
+				setImgActual(EatingCakeRight);
 			}
 			else
 			{
 				if(dirAct == Direction.LEFT)
 				{
-					setActual(WithCakeLeft);
-					try {
-						Thread.sleep(20); //Es el tiempo que pasa entre la primera imagen de comer la torta y la segunda
-					}
-					catch(InterruptedException e){
-						
-						e.printStackTrace();
-						
-					}
-					setActual(EatingCakeLeft);
+					setImgActual(WithCakeLeft);
+					pause();
+					setImgActual(EatingCakeLeft);
 				}
 			}
+			
+		}
+	}
+	
+	/**
+	 * Es el tiempo de espera entre una imagen y otra
+	 */
+	public void pause()
+	{
+		try {
+			Thread.sleep(20);
+		}
+		catch(InterruptedException e){
+			
+			e.printStackTrace();
 			
 		}
 	}

@@ -153,6 +153,7 @@ public class Ralph
 		return false;
 	}
 	
+	
 	/**
 	 * Generates 1 brick
 	 * @param difficulty 

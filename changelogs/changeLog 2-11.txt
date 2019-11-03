@@ -4,3 +4,4 @@ Puse en WindowController un JOptionPane, para que cuando aprentes salir te diga 
 La clase Building tiene un nuevo metodo que dice si felix esta parado en una ventana con una torta
 La grafica de Felix esta toda implentada(NO LA PROBE)
 Hay un metodo en random enviroment que te dice si felix choco con un pajaro o un ladrillo
+La clase GrapichRalph esta casi toda implementada, pero falta definir de donde se van a llamar esos metodos
