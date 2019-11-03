@@ -22,6 +22,7 @@ public class GameWindow extends JPanel {
 		this.add(back, 0, 0);
 		this.addKeyListener(new KeyL());
 		this.setSize(200, 200);
+		setVisible(false);
 	}
 	
 

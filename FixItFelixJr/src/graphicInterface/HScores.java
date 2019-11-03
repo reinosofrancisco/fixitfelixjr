@@ -36,6 +36,7 @@ public class HScores  extends JPanel{
 		*/
 		area1.setEditable(false);
 		this.add(area1);
+		setVisible(false);
 	}
 
 }

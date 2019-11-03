@@ -8,6 +8,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import javax.swing.JRadioButton;
 
+import util.GameConstants;
 import util.ResourcePathConstants;
 
 import java.awt.GridBagConstraints;
@@ -19,6 +20,7 @@ import javax.swing.JPanel;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Color;
 
 public class DELETEL8ter {
 	
@@ -63,38 +65,29 @@ public class DELETEL8ter {
 			}
 		});
 		frmFixItFelix.setTitle("Fix it felix");
-		frmFixItFelix.setBounds(100, 100, 700, 400);
+		frmFixItFelix.setBounds(100, 100, GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT);
 		frmFixItFelix.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] {150, 293, 150};
-		gridBagLayout.rowHeights = new int[]{333, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0};
+		gridBagLayout.columnWidths = new int[]{GameConstants.WINDOW_WIDTH/3, GameConstants.WINDOW_WIDTH/3, GameConstants.WINDOW_WIDTH/3, 0};
+		gridBagLayout.rowHeights = new int[] {GameConstants.WINDOW_HEIGHT, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		frmFixItFelix.getContentPane().setLayout(gridBagLayout);
 		
-		JPanel panel_10 = new JPanel();
-		GridBagConstraints gbc_panel_10 = new GridBagConstraints();
-		gbc_panel_10.insets = new Insets(0, 0, 0, 5);
-		gbc_panel_10.fill = GridBagConstraints.HORIZONTAL;
-		gbc_panel_10.gridx = 0;
-		gbc_panel_10.gridy = 0;
-		frmFixItFelix.getContentPane().add(panel_10, gbc_panel_10);
-		
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
 		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.weightx = 1.0;
-		gbc_panel.weighty = 100.0;
+		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.insets = new Insets(0, 0, 0, 5);
-		gbc_panel.fill = GridBagConstraints.HORIZONTAL;
 		gbc_panel.gridx = 1;
 		gbc_panel.gridy = 0;
 		frmFixItFelix.getContentPane().add(panel, gbc_panel);
 		panel.setLayout(new GridLayout(0, 5, 0, 0));
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setForeground(Color.GREEN);
+		panel_2.setBackground(Color.RED);
 		FlowLayout flowLayout = (FlowLayout) panel_2.getLayout();
-		flowLayout.setVgap(100);
-		flowLayout.setHgap(1);
 		panel.add(panel_2);
 		
 		JPanel panel_1 = new JPanel();
@@ -153,13 +146,6 @@ public class DELETEL8ter {
 		
 		JPanel panel_22 = new JPanel();
 		panel.add(panel_22);
-		
-		JPanel panel_11 = new JPanel();
-		GridBagConstraints gbc_panel_11 = new GridBagConstraints();
-		gbc_panel_11.fill = GridBagConstraints.BOTH;
-		gbc_panel_11.gridx = 2;
-		gbc_panel_11.gridy = 0;
-		frmFixItFelix.getContentPane().add(panel_11, gbc_panel_11);
 	}
 
 }

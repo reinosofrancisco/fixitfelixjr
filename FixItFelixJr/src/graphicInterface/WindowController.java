@@ -12,9 +12,9 @@ public class WindowController extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private  Menu menu= new Menu();
-	private  Instructions instr= new Instructions();
-	private  GameWindow gameW= new GameWindow();
+	private Menu menu= new Menu();
+	private Instructions instr= new Instructions();
+	private GameWindow gameW= new GameWindow();
 	private HScores hScores= new HScores();
 	private static WindowController instance;
 	
