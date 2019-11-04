@@ -1,18 +1,27 @@
 package graphicInterface;
 
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import building.Building;
+import entities.Felix;
 import game.Core;
 import util.Direction;
+import util.GameConstants;
 
 public class GraphicFelix extends JPanel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String uQuiet= "data/game/felix/quiet.png";
 	private String uMovingLeft="data/game/felix/movingLeft.png";
 	private String uCantMoveLeft= "data/game/felix/cantMoveLeft.png";
@@ -59,26 +68,26 @@ public class GraphicFelix extends JPanel{
 	
 	private GraphicFelix()
 	{
-		loadImage(uQuiet, Quiet);
-		loadImage(uMovingLeft, MovingLeft);
-		loadImage(uCantMoveLeft, CantMoveLeft);
-		loadImage(uFixing1Left, Fixing1Left);
-		loadImage(uFixing2Left, Fixing2Left);
-		loadImage(uWithCakeLeft, WithCakeLeft);
-		loadImage(uEatingCakeLeft, EatingCakeLeft);
-		loadImage(uWining1, Wining1);
-		loadImage(uWining2, Wining2);
-		loadImage(uWining3, Wining3);
-		loadImage(uColitionLeft, ColitionLeft);
-		loadImage(uStart, Start);
-		loadImage(uMovingRigth, MovingRigth);
-		loadImage(uCantMoveRight, CantMoveRight);
-		loadImage(uFixing1Right, Fixing1Right);
-		loadImage(uFixing2Right, Fixing2Right);
-		loadImage(uColitionRight, ColitionRight);
-		loadImage(uWithCakeRight, WithCakeRight);
-		loadImage(uEatingCakeRight, EatingCakeRight);
-		loadImage(uFalling, Falling);
+		Quiet=loadImage(uQuiet);
+		MovingLeft=loadImage(uMovingLeft);
+		CantMoveLeft=loadImage(uCantMoveLeft);
+		Fixing1Left=loadImage(uFixing1Left );
+		Fixing2Left=loadImage(uFixing2Left );
+		WithCakeLeft=loadImage(uWithCakeLeft );
+		EatingCakeLeft=loadImage(uEatingCakeLeft );
+		Wining1=loadImage(uWining1 );
+		Wining2=loadImage(uWining2);
+		Wining3=loadImage(uWining3 );
+		ColitionLeft=loadImage(uColitionLeft );
+		Start=loadImage(uStart );
+		MovingRigth=loadImage(uMovingRigth );
+		CantMoveRight=loadImage(uCantMoveRight );
+		Fixing1Right=loadImage(uFixing1Right );
+		Fixing2Right=loadImage(uFixing2Right );
+		ColitionRight=loadImage(uColitionRight );
+		WithCakeRight=loadImage(uWithCakeRight );
+		EatingCakeRight=loadImage(uEatingCakeRight );
+		Falling=loadImage(uFalling );
 		setImgActual(Start);
 		setDirAct(Direction.UNDIFINED);
 		
@@ -100,7 +109,7 @@ public class GraphicFelix extends JPanel{
 	 * 	Si la imagen no se encuentra muestra un aviso en pantalla
 	 */
 	
-	private void loadImage(String url, Image i)
+	private Image loadImage(String url)
 	{
 		URL urlImg= getClass().getClassLoader().getResource(url);
 		if(urlImg== null)
@@ -112,7 +121,7 @@ public class GraphicFelix extends JPanel{
 			try 
 			{
 				
-				i=(ImageIO.read(urlImg));
+				 return (ImageIO.read(urlImg));
 				
 			}
 			catch(IOException e)
@@ -120,6 +129,7 @@ public class GraphicFelix extends JPanel{
 				e.printStackTrace();
 			}
 		}
+		return null;
 		
 	}
 
@@ -256,4 +266,28 @@ public class GraphicFelix extends JPanel{
 		this.dirAct = dirAct;
 	}
 
+	@Override
+	protected void paintComponent(Graphics g) {
+		// TODO Auto-generated method stub
+		super.paintComponent(g);
+		draw(g);
+		
+	}
+	
+	public void draw(Graphics g)
+	{
+		g.setFont(new Font(Font.DIALOG, Font.BOLD, 30));
+		g.drawImage(imgAct, Felix.getInstnance().getVector2D().getPosx(), Felix.getInstnance().getVector2D().getPosy(), 29, 52, null);
+	}
+	
+	public static void main(String args[])
+	{
+		Felix f= Felix.getInstnance();
+		GraphicFelix fe= GraphicFelix.getInstance();
+		JFrame j= new JFrame();
+		j.getContentPane().add(fe);
+		f.move(Direction.UP);
+		j.setSize(500, 500);
+		j.setVisible(true);
+	}
 }

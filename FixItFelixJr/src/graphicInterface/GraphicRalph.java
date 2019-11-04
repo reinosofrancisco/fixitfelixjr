@@ -1,5 +1,7 @@
 package graphicInterface;
 
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
@@ -7,11 +9,16 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import entities.Felix;
 import entities.Ralph;
 import util.Direction;
 
 public class GraphicRalph extends JPanel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String uBreaking1="data/game/ralph/breaking1.png";
 	private String uBreaking2="data/game/ralph/breaking2.png";
 	private String uBreaking3="data/game/ralph/breaking3.png";
@@ -44,19 +51,19 @@ public class GraphicRalph extends JPanel{
 	
 	private GraphicRalph()
 	{
-		loadImage(uBreaking1, Breaking1);
-		loadImage(uBreaking2, Breaking2);
-		loadImage(uBreaking3, Breaking3);
-		loadImage(uBreaking4, Breaking4);
-		loadImage(uBreaking5, Breaking5);
-		loadImage(uBreaking6, Breaking6);
-		loadImage(uBreaking7, Breaking7);
-		loadImage(uBreaking8, Breaking8);
-		loadImage(uMovingRight1, MovingRight1);
-		loadImage(uMovingRight2, MovingRight2);
-		loadImage(uMovingLeft1, MovingLeft1);
-		loadImage(uQuiet, Quiet);
-		loadImage(uWining, Wining);
+		Breaking1=loadImage(uBreaking1 );
+		Breaking2=loadImage(uBreaking2 );
+		Breaking3=loadImage(uBreaking3 );
+		Breaking4=loadImage(uBreaking4 );
+		Breaking5=loadImage(uBreaking5 );
+		Breaking6=loadImage(uBreaking6 );
+		Breaking7=loadImage(uBreaking7 );
+		Breaking8=loadImage(uBreaking8 );
+		MovingRight1=loadImage(uMovingRight1 );
+		MovingRight2=loadImage(uMovingRight2 );
+		MovingLeft1=loadImage(uMovingLeft1 );
+		Quiet=loadImage(uQuiet );
+		Wining=loadImage(uWining );
 		setImgAct(Quiet);
 		setDirAct(Direction.UNDIFINED);
 	}
@@ -76,7 +83,7 @@ public class GraphicRalph extends JPanel{
 	 * @param i representa el objeto imagen en si
 	 * si no puede leer la imagen imprime por pantalla
 	 */
-	private void loadImage(String url, Image i)
+	private Image loadImage(String url)
 	{
 		URL urlImg= getClass().getClassLoader().getResource(url);
 		if(urlImg== null)
@@ -88,7 +95,7 @@ public class GraphicRalph extends JPanel{
 			try 
 			{
 				
-				i=(ImageIO.read(urlImg));
+				return (ImageIO.read(urlImg));
 				
 			}
 			catch(IOException e)
@@ -96,6 +103,7 @@ public class GraphicRalph extends JPanel{
 				e.printStackTrace();
 			}
 		}
+		return null;
 		
 	}
 
@@ -171,6 +179,20 @@ public class GraphicRalph extends JPanel{
 		{
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		// TODO Auto-generated method stub
+		super.paintComponent(g);
+		draw(g);
+		
+	}
+	
+	public void draw(Graphics g)
+	{
+		g.setFont(new Font(Font.DIALOG, Font.BOLD, 30));
+		g.drawImage(imgAct, Ralph.getInstance().getPos().getPosx(), Ralph.getInstance().getPos().getPosy(), 29, 52, null);
 	}
 
 }

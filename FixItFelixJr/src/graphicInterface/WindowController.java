@@ -98,14 +98,9 @@ public class WindowController extends JFrame {
 		hScores.setVisible(true);
 	}
 	
-	private void windowClosing(java.awt.event.WindowEvent e)
-	{
-		salir();
-	}
-	
 	private void salir()
 	{
-		int opt= JOptionPane.showConfirmDialog(new JButton(), "Si sale se perderan sus datos, desea salir??", "Salva", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+		int opt= JOptionPane.showConfirmDialog(new JButton(), "Si sale se perderan sus datos, desea salir??", "Salva", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 		if(opt == JOptionPane.YES_OPTION)
 		{
 			System.exit(0);
