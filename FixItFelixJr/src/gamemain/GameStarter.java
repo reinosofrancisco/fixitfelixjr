@@ -5,16 +5,8 @@ import graphicInterface.GameWindow;
 import graphicInterface.WindowController;
 
 public class GameStarter implements Runnable {
-
-	public static void startGame() {
-		
-		
-		
-		
-		
-		
-	}
-
+	
+	
 	@Override
 	public void run() {
 		Core c = Core.getInstance();
