@@ -77,7 +77,7 @@ public class MenuWindow extends GenericWindowPanel {
 				e.getStackTrace();
 			}
 		}
-		config.setPreferredSize(new Dimension(150,50));
+		config.setPreferredSize(new Dimension(200,50));
 		
 		
 		//-SETUP PLAY-/

@@ -30,6 +30,7 @@ public class GameWindow extends GenericWindowPanel {
 		back.addMouseListener(new MouseContrMenu());
 		this.add(back, 0, 0);
 		this.addKeyListener(new KeyL());
+		setVisible(false);
 		this.setSize(GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT);
 	}
 	

@@ -2,8 +2,8 @@
 <classpath>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry excluding="taller2/|taller2/modelo/" kind="src" path="src"/>
-	<classpathentry exported="true" kind="lib" path="jgoodies-common-1.8.0-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="jgoodies-forms-1.8.0-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/jeron/Documents/GitHub/fixitfelixjr/FixItFelixJr/jgoodies-common-1.8.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/jeron/Documents/GitHub/fixitfelixjr/FixItFelixJr/jgoodies-forms-1.8.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="jgoodies-common-1.8.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="jgoodies-forms-1.8.0.jar"/>
 	<classpathentry kind="output" path="src"/>

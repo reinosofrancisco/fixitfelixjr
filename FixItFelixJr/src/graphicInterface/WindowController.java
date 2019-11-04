@@ -1,8 +1,14 @@
 package graphicInterface;
 
-import javax.swing.JFrame;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
-import gamemain.GameStarter;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+//import gamemain.GameStarter;
 import util.GameConstants;
 
 public class WindowController extends JFrame {
@@ -20,15 +26,25 @@ public class WindowController extends JFrame {
 	private WindowController()
 	{
 		super("Fix It FelixJr");
-		//JOptionPane.showConfirmDialog(new JButton(), "Si sale se perderan sus datos, desea salir??", "Salva", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+		//
 		this.setSize(GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT);
 		this.add(menu);
 		this.add(instr);
 		this.add(gameW);
 		this.add(hScores);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		this.setResizable(false);
 		this.menu.setVisible(true);
+		this.addWindowListener(new WindowAdapter() {
+			
+			
+			@Override
+			public void windowClosing(WindowEvent e) {
+				// TODO Auto-generated method stub
+				salir();
+			}
+			
+		});
 	}
 	
 	public static WindowController getInstance()
@@ -82,6 +98,19 @@ public class WindowController extends JFrame {
 		hScores.setVisible(true);
 	}
 	
+	private void windowClosing(java.awt.event.WindowEvent e)
+	{
+		salir();
+	}
+	
+	private void salir()
+	{
+		int opt= JOptionPane.showConfirmDialog(new JButton(), "Si sale se perderan sus datos, desea salir??", "Salva", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+		if(opt == JOptionPane.YES_OPTION)
+		{
+			System.exit(0);
+		}
+	}
 	public static void main(String[] args)
 	{
 		WindowController.getInstance().setVisible(true);
