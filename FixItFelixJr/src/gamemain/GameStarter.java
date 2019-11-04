@@ -4,16 +4,20 @@ import game.Core;
 import graphicInterface.GameWindow;
 import graphicInterface.WindowController;
 
-public class GameStarter {
+public class GameStarter implements Runnable {
 
 	public static void startGame() {
 		
-		/**
-		 * 
-		 */
-//		WindowController.getInstance().changeInstr();
+		
+		
+		
+		
+		
+	}
+
+	@Override
+	public void run() {
 		Core c = Core.getInstance();
-		int i=0;
 		while(c.isPlaying()) {
 			c.update();
 			
@@ -36,10 +40,6 @@ public class GameStarter {
 			//me voy al menu
 //			WindowController.getInstance().changeMenu();
 		}
-		
-		
-		
-		
 		
 	}
 
