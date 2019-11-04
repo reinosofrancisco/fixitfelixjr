@@ -9,5 +9,6 @@ public class ResourcePathConstants {
 	public static final String WINDOW_RALPH = "data/MenuImages/fixItFelix.jpg";
 	public static final String CONFIG= "data/MenuImages/config.jpg";
 	public static final String MENU_BACKGROUND = "data/MenuImages/background.jpg";
+	public static final String MENU_ICONFIG = "data/MenuImages/config.jpg";
 
 }

@@ -1,27 +1,29 @@
 package graphicInterface;
 
-import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
-import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import game.HighScores;
-import game.Scores;
 import guiControllers.MouseContrMenu;
-import util.GameConstants;
 
-public class HScores  extends JPanel{
+public class HighScoresWindow  extends GenericWindowPanel{
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static HighScoresWindow instance;
+	
+	
 	private JButton back= new JButton("<<");
-	private String s= "ACA IRIAN LOS HIGH SCORES GIL";
+	private String s= "ACA IRIAN LOS HIGH SCORES G.I.L. (Genie Idole Leal)";
 	private JTextArea area1= new JTextArea(s);
 	
-	public HScores()
+	
+	
+	
+	private HighScoresWindow()
 	{
 		this.setLayout(new GridLayout(2,1));
 		back.setBounds(0, 0, 100, 100);
@@ -38,5 +40,24 @@ public class HScores  extends JPanel{
 		this.add(area1);
 		setVisible(false);
 	}
+	
+	public static HighScoresWindow getInstance() {
+		if (instance==null) {
+			instance=new HighScoresWindow();
+		}
+		return instance;
+	}
+
+	@Override
+	public void draw(Graphics g) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paintComponents(g);
+		
+	}
+	
 
 }

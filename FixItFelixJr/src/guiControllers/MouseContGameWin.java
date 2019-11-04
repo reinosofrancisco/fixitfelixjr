@@ -3,6 +3,7 @@ package guiControllers;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import gamemain.GameStarter;
 import graphicInterface.WindowController;
 
 public class MouseContGameWin extends MouseAdapter
@@ -13,6 +14,8 @@ public class MouseContGameWin extends MouseAdapter
 		// TODO Auto-generated method stub
 		super.mouseClicked(e);
 		WindowController.getInstance().changeGameWin();
+		//TODO THREAD CORE START (GAMESTARTER) (use Core.restart() )
+		
 	}
 	
 }

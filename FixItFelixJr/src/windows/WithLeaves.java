@@ -142,7 +142,7 @@ class WithLeaves extends Window
 //			}
 	 }
 	 @Override
-	 public int repaired() {
+	 public int repair() {
 		 return 0;
 	 }
 }

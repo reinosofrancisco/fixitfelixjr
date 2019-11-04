@@ -86,10 +86,9 @@ public class Felix {
 	public int fix() {
 		Window[][] w = Building.getInstance().getWindows();
 		if(ham.fix()) {
-			int fedeborralodespues=w[pos.getPosx()-1][pos.getPosy()-1].repaired();
-			System.out.println("The Window is being Repaired! + " + fedeborralodespues + "points. IsWindowHealthy-->" + w[pos.getPosx()-1][pos.getPosy()-1].isHealthy());
-			//return w[pos.getPosx()-1][pos.getPosy()-1].repaired();
-			return fedeborralodespues;
+			int points=w[pos.getPosx()-1][pos.getPosy()-1].repair();
+			System.out.println("The Window is being Repaired! + " + points + "points. IsWindowHealthy-->" + w[pos.getPosx()-1][pos.getPosy()-1].isHealthy());
+			return points;
 		}
 		else return 0;
 	}
@@ -127,14 +126,14 @@ public class Felix {
 	public void collidedBird() {
 		lives--;
 		if(!isAlive()) {
-			Core.getInstance().gameOver();
+			Core.getInstance().gameOver(false);
 		}
 	}
 
 	public void collidedBrick() {
 		lives--;
 		if(!isAlive()) {
-			Core.getInstance().gameOver();
+			Core.getInstance().gameOver(false);
 		}
 	}
 	

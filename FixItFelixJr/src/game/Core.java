@@ -6,8 +6,6 @@ package game;
 import building.Building;
 import entities.Felix;
 import entities.Ralph;
-import graphicInterface.GameWindow;
-import graphicInterface.GraphicFelix;
 import randomenvironment.*;
 import util.Direction;
 import util.GameConstants;
@@ -24,15 +22,13 @@ public class Core {
 	private static Core game;
 	private Difficulty difficulty = Difficulty.getInstance();
 	private Building niceland = Building.getInstance();
-	private Scores[] highScores = new Scores[6];
 	private Felix felix = Felix.getInstnance();
 	private Ralph ralph = Ralph.getInstance();
 	private RandomEnvironment re = RandomEnvironment.getInstance();
-	private boolean isBucleOn = true;
-	// La variable afuera para que sea reconocible por los metodos
+	private HighScores highscores = HighScores.getInstance();
+	private boolean playing = true;
 	private int points=0;
-	private GameWindow gameWin= new GameWindow();
-	
+	private boolean newHighscore=false;
 	private Core() {
 		
 	}
@@ -43,34 +39,21 @@ public class Core {
 		return game;
 	}
 	
-	public static void main(String[] args) {
+	public void update() {
+		System.out.println("-");
 		
-		
-		int bucleFinish = 0;
-		Core game = getInstance();
-		while (game.isBucleOn) {
-			System.out.println("Lap number= " + (bucleFinish+1));
-			System.out.println("-");
-			
-			/** ------------------------------------------------------- */
-			/** ------------------[ CODE ] ---------------------------- */
-			/** ------------------------------------------------------- */
-			
-			game.niceland.update();
-			game.ralph.update();
-			game.felix.update();//TODO
-			game.re.update();	
-			GraphicFelix.getInstance().update();
-			//---------------
-			
-			bucleFinish++;
-			
+		game.niceland.update();
+		game.ralph.update();
+		game.felix.update();//TODO
+		game.re.update();	
+//		GraphicFelix.getInstance().update();
+		//---------------		
 
-			System.out.println("--\n");
-			pause(1000);
-			
-		}
+		System.out.println("--\n");
+		
+		
 	}
+	
 	public void birdHit() {
 		restartSection(); //TODO
 		System.out.println("Felix perdio progreso de seccion chocando con un pajaro, repite la seccion: "+ niceland.getSection());		
@@ -81,27 +64,23 @@ public class Core {
 		System.out.println("Felix perdio una vida chocando con un ladrillo, ahora tiene: "+ felix.getLives());		
 	}
 	
-	public void gameOver() {
-		this.isBucleOn=false;
+	public void gameOver(boolean b) {
+		this.playing=false;
+		if(b && highscores.isHighscore(points)) {
+			newHighscore=true;
+		}
 	}
 	
-	private static void levelUp() {
+	private void levelUp() {
 		game.difficulty.lvlUp();
 		System.out.println("\n\n\nHas completado el nivel!!\n\n\n");
 		pause(1000);
 		if(game.difficulty.getLvl()==GameConstants.LEVEL_AMMOUNT) {
-			//GANASTEEEE
+			gameOver(true);
 		}		
 		game.felix.restartPosition();
 		game.niceland.levelUp();
 		//niceland=new Building(difficulty);
-	}
-
-
-	private static void testerScores(Scores[] highScores) {
-		for (int i = 0; i < highScores.length; i++) {
-			highScores[i]= (new Scores("Fede("+i+")", i*100));
-		}
 	}
 
 
@@ -119,15 +98,18 @@ public class Core {
 		game.re.restartEntities();
 	}
 
-
-	public static void pause(int ms) {
-	    try {
-	        Thread.sleep(ms);
-	    } catch (InterruptedException e) {
-	        System.err.format("IOException: %s%n", e);
-	    }
+	public void restartGame() {
+		game = new Core();
 	}
+	
 
+
+	public boolean isNewHighscore() {
+		//TODO
+		//se comunica con highscores para saber si hubo un nuevo highscore
+		return newHighscore;
+		
+	}
 	
 	// Para Comunicarse con los listeners, el key listener llama a estos metodos para indicar que hacer
 	public boolean move(Direction d)
@@ -137,12 +119,61 @@ public class Core {
 	public void fix()
 	{
 		points+=felix.fix();
+		if(niceland.isFixed()) {
+			levelUp();
+		}
 	}
-	/**AUTO GENERATED FOR KEYBOARD IMPUTS */
+	/**AUTO GENERATED FOR KEYBOARD INPUTS */
 	
 	public boolean isColliding()
 	{
 		return re.isColliding();
 	}
+	public boolean isPlaying() {
+		return playing;
+	}
 	
+
+
+
+
+public static void pause(int ms) {
+	try {
+		Thread.sleep(ms);
+	} catch (InterruptedException e) {
+		System.err.format("IOException: %s%n", e);
+	}
 }
+
+
+}
+
+
+//	public static void main(String[] args) {
+//		
+//		
+//		int bucleFinish = 0;
+//		Core game = getInstance();
+//		while (game.isBucleOn) {
+//			System.out.println("Lap number= " + (bucleFinish+1));
+//			System.out.println("-");
+//			
+//			/** ------------------------------------------------------- */
+//			/** ------------------[ CODE ] ---------------------------- */
+//			/** ------------------------------------------------------- */
+//			
+//			game.niceland.update();
+//			game.ralph.update();
+//			game.felix.update();//TODO
+//			game.re.update();	
+//			GraphicFelix.getInstance().update();
+//			//---------------
+//			
+//			bucleFinish++;
+//			
+//
+//			System.out.println("--\n");
+//			pause(1000);
+//			
+//		}
+//	}

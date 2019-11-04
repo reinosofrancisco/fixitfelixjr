@@ -1,9 +1,8 @@
 package graphicInterface;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
+import gamemain.GameStarter;
 import util.GameConstants;
 
 public class WindowController extends JFrame {
@@ -12,16 +11,16 @@ public class WindowController extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Menu menu= new Menu();
-	private Instructions instr= new Instructions();
-	private GameWindow gameW= new GameWindow();
-	private HScores hScores= new HScores();
+	private GenericWindowPanel menu= MenuWindow.getInstance();
+	private GenericWindowPanel instr= InstructionsWindow.getInstance();
+	private GenericWindowPanel gameW= GameWindow.getInstance();
+	private GenericWindowPanel hScores= HighScoresWindow.getInstance();
 	private static WindowController instance;
 	
 	private WindowController()
 	{
 		super("Fix It FelixJr");
-		JOptionPane.showConfirmDialog(new JButton(), "Si sale se perderan sus datos, desea salir??", "Salva", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+		//JOptionPane.showConfirmDialog(new JButton(), "Si sale se perderan sus datos, desea salir??", "Salva", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 		this.setSize(GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT);
 		this.add(menu);
 		this.add(instr);
@@ -49,6 +48,7 @@ public class WindowController extends JFrame {
 		menu.setVisible(false);
 		hScores.setVisible(false);
 		gameW.setVisible(true);
+		
 	}
 	
 	/**

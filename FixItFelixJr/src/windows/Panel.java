@@ -35,7 +35,7 @@ class Panel {
 
 
 
-	int repear() {
+	int repair() {
 		PanelState aux = PanelState.HEALTHY;
 		if (this.state != aux) {
 			this.setActualLife(this.getActualLife() + 1);

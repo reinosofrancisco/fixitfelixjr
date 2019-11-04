@@ -21,6 +21,8 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Color;
+import javax.swing.ImageIcon;
+import javax.swing.UIManager;
 
 public class DELETEL8ter {
 	
@@ -68,8 +70,8 @@ public class DELETEL8ter {
 		frmFixItFelix.setBounds(100, 100, GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT);
 		frmFixItFelix.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{GameConstants.WINDOW_WIDTH/3, GameConstants.WINDOW_WIDTH/3, GameConstants.WINDOW_WIDTH/3, 0};
-		gridBagLayout.rowHeights = new int[] {GameConstants.WINDOW_HEIGHT, 0};
+		gridBagLayout.columnWidths = new int[]{GameConstants.WINDOW_WIDTH/4, GameConstants.WINDOW_WIDTH/2, GameConstants.WINDOW_WIDTH/4, 0};
+		gridBagLayout.rowHeights = new int[] {GameConstants.WINDOW_HEIGHT-50, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		frmFixItFelix.getContentPane().setLayout(gridBagLayout);
@@ -84,14 +86,11 @@ public class DELETEL8ter {
 		frmFixItFelix.getContentPane().add(panel, gbc_panel);
 		panel.setLayout(new GridLayout(0, 5, 0, 0));
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setForeground(Color.GREEN);
-		panel_2.setBackground(Color.RED);
-		FlowLayout flowLayout = (FlowLayout) panel_2.getLayout();
-		panel.add(panel_2);
-		
-		JPanel panel_1 = new JPanel();
+		JPanel panel_1 = new GraphicWindow((panel.getComponentCount())%5,panel.getComponentCount()/5);
 		panel.add(panel_1);
+		
+		JPanel panel_2 = new JPanel();
+		panel.add(panel_2);
 		
 		JPanel panel_3 = new JPanel();
 		panel.add(panel_3);
@@ -113,6 +112,12 @@ public class DELETEL8ter {
 		
 		JPanel panel_9 = new JPanel();
 		panel.add(panel_9);
+		
+		JPanel panel_10 = new JPanel();
+		panel.add(panel_10);
+		
+		JPanel panel_11 = new JPanel();
+		panel.add(panel_11);
 		
 		JPanel panel_12 = new JPanel();
 		panel.add(panel_12);
@@ -140,12 +145,6 @@ public class DELETEL8ter {
 		
 		JPanel panel_20 = new JPanel();
 		panel.add(panel_20);
-		
-		JPanel panel_21 = new JPanel();
-		panel.add(panel_21);
-		
-		JPanel panel_22 = new JPanel();
-		panel.add(panel_22);
 	}
 
 }

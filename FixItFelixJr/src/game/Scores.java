@@ -4,6 +4,14 @@ public class Scores implements Comparable<Scores>{
 	private String name;
 	private int points;
 	
+	public String getName() {
+		return name;
+	}
+
+	public int getPoints() {
+		return points;
+	}
+
 	public Scores(String n, int p) {
 		name=n;
 		points=p;
@@ -28,5 +36,5 @@ public class Scores implements Comparable<Scores>{
 					return -1;
 				}
 			}
-		}	
+		}
 	}

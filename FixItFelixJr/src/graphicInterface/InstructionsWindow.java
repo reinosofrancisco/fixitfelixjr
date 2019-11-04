@@ -14,18 +14,20 @@ import guiControllers.MouseContrMenu;
 import util.GameConstants;
 import util.ResourcePathConstants;
 
-public class Instructions extends JPanel {
+public class InstructionsWindow extends GenericWindowPanel {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static InstructionsWindow instance;
+	
 	private String imageUrl = ResourcePathConstants.INSTRUCTIONS;
 	// ResourcePathConstants.INSTRUCTIONS;
 	private Image img;
 	private JButton back = new JButton("<<");
 
-	public Instructions() {
+	private InstructionsWindow() {
 		back.setBounds(0, 0, 50, 50);
 		back.addMouseListener(new MouseContrMenu());
 		this.add(back, 0, 0);
@@ -43,6 +45,15 @@ public class Instructions extends JPanel {
 		this.setSize(GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT);
 		setVisible(false);
 	}
+	
+	public static InstructionsWindow getInstance() {
+		if (instance==null) {
+			instance=new InstructionsWindow();
+		}
+		return instance;
+	}
+	
+	
 
 	public Image getImg() {
 		return img;
@@ -53,14 +64,14 @@ public class Instructions extends JPanel {
 	}
 
 	@Override
-	protected void paintComponent(Graphics g) {
+	public void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
-		super.paintComponent(g);
+		super.paintComponents(g);
 		draw(g);
 
 	}
 
-	private void draw(Graphics g) {
+	public void draw(Graphics g) {
 		g.setFont(new Font(Font.DIALOG, Font.BOLD, 30));
 		g.drawImage(img, 0, 0, GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT, null);
 	}

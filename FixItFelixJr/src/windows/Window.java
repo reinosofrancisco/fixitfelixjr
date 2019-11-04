@@ -84,7 +84,7 @@ public abstract class Window
 	 *  repara un panel de la ventana en cuestion, comienza por el de mas abajo(la pos 0 del arreglo) y va "subiendo"
 	 * @return returna la cantidad de puntos de arreglar una ventana si fue totalmente arreglada
 	 */
-	public int repaired()
+	public int repair()
 	{
 		int dev=0, i=0;
 		boolean yet= false; // this boolean says if i repaired a panel previously
@@ -92,7 +92,7 @@ public abstract class Window
 		{
 			if(panels[i].getState() != PanelState.HEALTHY)
 			{
-				dev= panels[i].repear();
+				dev= panels[i].repair();
 				yet= true;
 			}
 			i++;

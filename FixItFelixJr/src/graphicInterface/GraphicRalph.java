@@ -5,11 +5,12 @@ import java.io.IOException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
+import javax.swing.JPanel;
 
 import entities.Ralph;
 import util.Direction;
 
-public class GraphicRalph {
+public class GraphicRalph extends JPanel{
 	
 	private String uBreaking1="data/game/ralph/breaking1.png";
 	private String uBreaking2="data/game/ralph/breaking2.png";

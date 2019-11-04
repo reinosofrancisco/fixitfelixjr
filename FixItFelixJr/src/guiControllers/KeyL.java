@@ -52,7 +52,7 @@ public class KeyL extends KeyAdapter{
 			break;
 			case(KeyEvent.VK_ESCAPE):
 			{
-				Core.getInstance().gameOver();
+				Core.getInstance().gameOver(false);
 			}
 			break;
 			default: GraphicFelix.getInstance().changeImgMove(Direction.UNDIFINED);

@@ -5,12 +5,13 @@ import java.io.IOException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
+import javax.swing.JPanel;
 
 import building.Building;
 import game.Core;
 import util.Direction;
 
-public class GraphicFelix {
+public class GraphicFelix extends JPanel{
 	
 	private String uQuiet= "data/game/felix/quiet.png";
 	private String uMovingLeft="data/game/felix/movingLeft.png";
