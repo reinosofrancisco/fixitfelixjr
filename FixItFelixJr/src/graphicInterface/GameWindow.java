@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
+import javax.swing.JPanel;
 
 import guiControllers.KeyL;
 import guiControllers.MouseContrMenu;
@@ -15,9 +16,16 @@ public class GameWindow extends GenericWindowPanel {
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = 1L;
 	private static GameWindow instance;
 	private JButton back= new JButton("<<");
+	private GraphicFelix gFelix;
+	private GraphicRalph gRalph;
+	private GraphicBuilding gBuilding;
+	
+	
+	
 	
 	
 	private GameWindow()
@@ -49,12 +57,38 @@ public class GameWindow extends GenericWindowPanel {
 
 	@Override
 	public void paintComponent(Graphics g) {
-		//super.paintComponents(g);
+		super.paintComponents(g);
+		draw();
+		
+	}
+
+	private void draw() {
+		// TODO Auto-generated method stub
+		//DIBUJO CADA VARIABLE DE INSTANCIA EN EL PANEL
 		
 	}
 
 	public void update() {
-		//aki viene lo shido
+		//Actualizo imagenes de todos mis paneles y componentes
+//		gBuilding.update();
+//		gFelix.update();
+//		gRalph.update();
+		
+		//POR AHORA IMAGENES ESTATICAS
+		//VARIABLES DE INSTANCIA TIENEN IMAGENES Y POSICION
+		//PARA CADA VARIABLE DE INSTANCIA PINTO LA IMAGEN DE DICHA VARIABLE EN LA POSICION
+		//INDICADA POR LA MISMA
+		
+		repaint();
+		
+		
+		
+		
+		//llamo a repaint de todas mis cosas
+		repaint();		
+		
+		
+		
 		
 	}
 	
