@@ -84,7 +84,7 @@ public class GraphicFelix extends JPanel{
 		CantMoveRight=loadImage(uCantMoveRight );
 		Fixing1Right=loadImage(uFixing1Right );
 		Fixing2Right=loadImage(uFixing2Right );
-		ColitionRight=loadImage(uColitionRight );
+		//ColitionRight=loadImage(uColitionRight );
 		WithCakeRight=loadImage(uWithCakeRight );
 		EatingCakeRight=loadImage(uEatingCakeRight );
 		Falling=loadImage(uFalling );

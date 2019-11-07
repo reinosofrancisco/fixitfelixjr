@@ -97,11 +97,7 @@ public class WindowController extends JFrame {
 		menu.setVisible(false);
 		hScores.setVisible(true);
 	}
-	
-	private void windowClosing(java.awt.event.WindowEvent e)
-	{
-		salir();
-	}
+
 	
 	private void salir()
 	{
