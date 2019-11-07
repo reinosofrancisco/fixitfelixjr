@@ -6,14 +6,14 @@ import java.util.LinkedList;
 
 import com.sun.org.apache.regexp.internal.RE;
 
+import entities.Felix;
 import util.ResourcePathConstants;
 import util.Vector2D;
 
 public class GraphicsGame {
 	/**
-	 * aca irian guardadas todas las imagenes
+	 *  La letra delante de cada imagen representa a que Objeto pertenece( por ej F se refiere a Felix), la S al final significa que es el String que contiene el path de la imagen
 	 */
-	
 	private String F_Quiet_S= ResourcePathConstants.F_QUIET;
 	private String F_MovingLeft_S= ResourcePathConstants.F_MOVING_L;
 	private String F_CantMoveLeft_S= ResourcePathConstants.F_CANT_MOVE_L;
@@ -120,5 +120,9 @@ public class GraphicsGame {
 		}
 	}
 	
+	public void update()
+	{
+		
+	}
 	
 }

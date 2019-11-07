@@ -134,8 +134,14 @@ public class Core {
 	}
 	
 
+	/**
+	 * Devuelve la informacion del estado de Felix
+	 */
 
-
+	public void FelixActualState()
+	{
+		
+	}
 
 public static void pause(int ms) {
 	try {
