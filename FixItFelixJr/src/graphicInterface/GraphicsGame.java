@@ -2,13 +2,10 @@ package graphicInterface;
 
 import java.awt.Image;
 import java.util.Hashtable;
-import java.util.LinkedList;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
-import com.sun.org.apache.regexp.internal.RE;
-
-import entities.Felix;
 import util.ResourcePathConstants;
-import util.Vector2D;
 
 public class GraphicsGame {
 	/**
@@ -54,12 +51,17 @@ public class GraphicsGame {
 	private Image F_WithCakeRight;
 	private Image F_EatingCakeRight;
 	private Image F_Falling;
-	private Hashtable<String, Image> images= new Hashtable<String, Image>();
-	private LinkedList<ExtImage> imgAct= new LinkedList<ExtImage>(); 	
+	private Hashtable<String, ExtImage> images;
+	private SortedSet<ExtImage> imgAct;
 	private static GraphicsGame instance;
 	
 	private GraphicsGame()
 	{
+		imgAct= new TreeSet<ExtImage>();
+		images= ImageHashLoader.getImages();
+		
+		
+		
 		
 	}
 	public static GraphicsGame getInstance()
@@ -75,11 +77,11 @@ public class GraphicsGame {
 	 * @param i representa la Imagen
 	 * @param key representa la key de la imagen dentro de Hash Table
 	 */
-	private void addElement(Image i, String key)
+	private void addElement(ExtImage i, String key)
 	{
 		images.put(key, i);
 	}
-	public Image getImage(String key)
+	public ExtImage getImage(String key)
 	{
 		if(images.containsKey(key))
 		{
@@ -91,7 +93,7 @@ public class GraphicsGame {
 	 * Devuelve en un arreglo todas las imagenes que estan en la lista de Imagenes Actuales
 	 * @return retorna el arreglo
 	 */
-	public LinkedList<ExtImage> getImagesAct()
+	public SortedSet<ExtImage> getImagesAct()
 	{
 		return imgAct;
 	}
@@ -110,18 +112,80 @@ public class GraphicsGame {
 	 */
 	public void delateImgOfAct(ExtImage f)
 	{
-		for(ExtImage i: imgAct)
-		{
-			if(i == f)
-			{
-				imgAct.remove(f);
-				return;
-			}
-		}
+		imgAct.remove(f);
+//		for (ExtImage i : imgAct) {
+//			if (i == f) {
+//				imgAct.remove(f);
+//				return;
+//			}
+//		}
 	}
+	
+	
+	/**
+	 * Que imagenes podrían llegar a cambiar en el update?
+	 * 
+	 * -Felix
+	 * -Alguna ventana
+	 * -Nicelander y tortas
+	 * -Pajaros (cammbio de direccion)
+	 * -Ralph (cambio de direccion)
+	 * -Nuevos ladrillos
+	 *  
+	 */
 	
 	public void update()
 	{
+		
+		//actualizo felix si hizo algo el jugador o si recibio un golpe o si agarro torta--->posicion e imagen
+		
+		//actualizo a ralph si se movió-->posicion e imagen
+		
+		//actualizo a ventana (y panel) si se rompió o arregló-->imagen
+		
+		//actualizo a pajaros si cambiaron de direccion--->posicion e imagen
+		
+		//actualizo a ladrillos si ya no existen--->posicion e imagen
+		
+		//actualizo a nicelander si dejo torta, desaparecio o hay que matarlo--->imagen
+		
+		//actualizo a building (con ventanas) si cambie de seccion o me mori--->imagen
+		
+		//actualizo a ...
+		
+		//
+		
+		
+		
+		
+		
+		
+		
+		//COMO SÉ QUE COSAS ACTUALIZAR Y QUE NO? VUELVO A LEER TOOODO Y REAGREGAR O...
+		//CORE MANEJA QUE COSAS CAMBIARON EN FUNCION DEL ANTERIOR TURNO Y DE ESA LISTA DE COSAS
+		//QUE CAMBIARON ACTUALIZO LO QUE SI CAMBIO
+		
+		//PSEUDOCODIGO?
+//		if c.felix.repaired {
+//			int n= c.getbuilding.getwindows[c.felix.x-1,f.felix.y-1].getlive
+//			if n>2 blablabla
+//		}
+		
+	//opcion 2
+//		
+//		Core c=Core.getInstance();
+//		for(GameEvent g : c.getEvents()) {
+//			switch g
+//			case WINDOW_REPAIRED
+//				int n= c.getbuilding.getwindows[c.felix.x-1,f.felix.y-1].getlive
+//				//			if n>2 blablabla
+//			
+//			
+//		}
+		
+		
+		
+		
 		
 	}
 	

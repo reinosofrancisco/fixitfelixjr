@@ -3,6 +3,9 @@ package game;
 
 
 
+import java.util.LinkedList;
+import java.util.List;
+
 import building.Building;
 import entities.Felix;
 import entities.Ralph;
@@ -29,6 +32,12 @@ public class Core {
 	private boolean playing = true;
 	private int points=0;
 	private boolean newHighscore=false;
+	private PlayerAction nextAction=PlayerAction.NONE;
+	private List<GameEvent> events;
+	
+	
+	
+	
 	private Core() {
 		
 	}
@@ -42,10 +51,18 @@ public class Core {
 	public void update() {
 		System.out.println("-");
 		
+		events=new LinkedList<GameEvent>(); //restart the events list
+		
+		playerAction();
 		game.niceland.update();
 		game.ralph.update();
 		game.felix.update();//TODO
-		game.re.update();	
+		game.re.update();
+		
+		nextAction=PlayerAction.NONE;
+		
+		
+		
 //		GraphicFelix.getInstance().update();
 		//---------------		
 
@@ -112,16 +129,50 @@ public class Core {
 	}
 	
 	// Para Comunicarse con los listeners, el key listener llama a estos metodos para indicar que hacer
-	public boolean move(Direction d)
-	{
-		return felix.move(d);
+	
+	
+	public void moveUp() {
+		// TODO Auto-generated method stub
+		nextAction=PlayerAction.MOVE_UP;
+		
 	}
+	public void moveDown() {
+		// TODO Auto-generated method stub
+		nextAction=PlayerAction.MOVE_DOWN;
+		
+	}
+	public void moveRight() {
+		// TODO Auto-generated method stub
+		nextAction=PlayerAction.MOVE_RIGHT;
+	}
+	public void moveLeft() {
+		// TODO Auto-generated method stub
+		nextAction=PlayerAction.MOVE_LEFT;
+	}
+	
+	
+	/* DESUSO
+	public void move(Direction d)
+	{
+		switch (d) {
+		case DOWN:
+			break;
+		case UP:
+			break;
+		case LEFT:
+			break;
+		case RIGHT:
+			break;
+		default:
+			break;
+		}
+		
+	}*/
+	
+	
 	public void fix()
 	{
-		points+=felix.fix();
-		if(niceland.isFixed()) {
-			levelUp();
-		}
+		nextAction=PlayerAction.FIX;
 	}
 	/**AUTO GENERATED FOR KEYBOARD INPUTS */
 	
@@ -131,6 +182,34 @@ public class Core {
 	}
 	public boolean isPlaying() {
 		return playing;
+	}
+	
+	
+	/** FOR CALLING THE METHODS ACCORDING TO nextAction **/
+	private void playerAction() {
+		switch (nextAction) {
+		case FIX:
+			points+=felix.fix();
+			if(niceland.isFixed()) {
+				levelUp();
+			}
+			break;
+		case MOVE_DOWN:
+			felix.move(Direction.DOWN);
+			break;
+		case MOVE_UP:
+			felix.move(Direction.UP);
+			break;
+		case MOVE_LEFT:
+			felix.move(Direction.LEFT);
+			break;
+		case MOVE_RIGHT:
+			felix.move(Direction.RIGHT);
+			break;
+		default:
+			break;
+		}
+		
 	}
 	
 
@@ -150,6 +229,17 @@ public static void pause(int ms) {
 		System.err.format("IOException: %s%n", e);
 	}
 }
+
+
+enum PlayerAction{
+	NONE,
+	MOVE_LEFT,
+	MOVE_UP,
+	MOVE_RIGHT,
+	MOVE_DOWN,
+	FIX;	
+}
+
 
 
 }
