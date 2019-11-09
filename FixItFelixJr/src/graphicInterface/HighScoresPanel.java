@@ -4,7 +4,12 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.table.DefaultTableModel;
+
+import game.HighScores;
+import game.Scores;
 import guiControllers.MouseContrMenu;
 
 public class HighScoresPanel  extends GenericWindowPanel{
@@ -17,9 +22,9 @@ public class HighScoresPanel  extends GenericWindowPanel{
 	
 	
 	private JButton back= new JButton("<<");
-	private String s= "ACA IRIAN LOS HIGH SCORES G.I.L. (Genie Idole Leal)";
-	private JTextArea area1= new JTextArea(s);
-	
+	private JTable table= new JTable();
+	private Object [] headers= {"Posicion","Nombre", "Puntos"};
+	private DefaultTableModel model;
 	
 	
 	
@@ -29,6 +34,9 @@ public class HighScoresPanel  extends GenericWindowPanel{
 		back.setBounds(0, 0, 100, 100);
 		back.addMouseListener(new MouseContrMenu());
 		this.add(back, 0, 0);
+		model = new DefaultTableModel(completeTable(), headers);
+		this.table.setModel(model);
+		
 		/*
 		for(Scores scores: HighScores.getInstance().getLovelyScores())
 		{
@@ -36,11 +44,28 @@ public class HighScoresPanel  extends GenericWindowPanel{
 			area1.setText("Score--> "+ scores);
 		}
 		*/
-		area1.setEditable(false);
-		this.add(area1);
+		this.add(table);
 		setVisible(false);
 	}
 	
+	private Object[][] completeTable() {
+		if( HighScores.getInstance().getScoreList() != null)
+		{
+			int f=0, c=0, p=1;
+			Object[][] datos= new Object[5][3];
+			for(Scores i: HighScores.getInstance().getScoreList())
+			{
+				datos[f][c]= p;
+				datos[f][c+1]= i.getName();
+				datos[f][c+2]= i.getPoints();
+				f++;
+				p++;
+			}
+			return datos;
+		}
+		return null;
+	}
+
 	public static HighScoresPanel getInstance() {
 		if (instance==null) {
 			instance=new HighScoresPanel();

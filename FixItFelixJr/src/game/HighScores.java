@@ -89,6 +89,11 @@ public class HighScores {
 		}
 		return false;
 	}
+
+	public SortedSet<Scores> getScoreList() {
+		return scoreList;
+	}
+
 	
 	
 }

@@ -1,29 +1,62 @@
 package graphicInterface;
 
+import java.awt.Choice;
 import java.awt.Graphics;
 
-public class ConfigurePanel extends GenericWindowPanel {
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import guiControllers.MouseContS;
+import guiControllers.MouseContrMenu;
+
+public class ConfigurePanel extends JPanel {
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//TODO singletone
+	private JLabel selection= new JLabel("Selecccione la dificultad");
+	private Choice dificulty= new Choice();
+	private JButton selected= new JButton("Seleccionar");
+	private JButton back= new JButton("<<");
+	private static ConfigurePanel instance;
+	private ConfigurePanel()
+	{
+		this.add(selection);
+		completChoice();
+		this.add(dificulty);
+		back.addMouseListener(new MouseContrMenu());
+		this.add(back);
+		this.selected.addMouseListener(new MouseContS());
+		this.add(selected);
+	}
 	
-
-	@Override
-	public void paintComponent(Graphics g) {
-		// TODO Auto-generated method stub
-		
+	public static ConfigurePanel getInstance()
+	{
+		if(instance== null)
+		{
+			instance= new ConfigurePanel();
+		}
+		return instance;
 	}
-
-	@Override
-	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
-		
+	
+	
+	private void completChoice()
+	{
+		int i;
+		for(i=0;i<10;i++)
+		{
+			dificulty.add( ""+(i+1));
+			
+		}
 	}
-
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-		
+	
+	public Choice getDificulty()
+	{
+		return this.dificulty;
 	}
-
 }
+
