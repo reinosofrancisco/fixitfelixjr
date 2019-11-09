@@ -1,6 +1,10 @@
-package graphicInterface;
+package graphicInterface.utils;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+
+import javax.imageio.ImageIO;
 
 import util.Vector2D;
 
@@ -45,11 +49,12 @@ public  class ExtImage implements Comparable<ExtImage>
 		
 	}
 	public Image getImg() {
-		return img;
+		return img.getScaledInstance(this.width, -1, Image.SCALE_DEFAULT);
 	}
 
 	public void setImg(Image img) {
-		this.img = img;
+		this.img = img ;
+		
 	}
 
 	public Vector2D getPos() {

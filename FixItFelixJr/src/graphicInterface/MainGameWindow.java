@@ -1,29 +1,32 @@
 package graphicInterface;
 
+import java.awt.Component;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.Timer;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import graphicInterface.utils.GraphicsGame;
 //import gamemain.GameStarter;
 import util.GameConstants;
 
-public class WindowController extends JFrame {
+public class MainGameWindow extends JFrame {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private GenericWindowPanel menu= MenuWindow.getInstance();
-	private GenericWindowPanel instr= InstructionsWindow.getInstance();
-	private GenericWindowPanel gameW= GameWindow.getInstance();
-	private GenericWindowPanel hScores= HighScoresWindow.getInstance();
-	private static WindowController instance;
+	private GenericWindowPanel menu= MenuPanel.getInstance();
+	private GenericWindowPanel instr= InstructionsPanel.getInstance();
+	private GenericWindowPanel gameW= GamePanel.getInstance();
+	private GenericWindowPanel hScores= HighScoresPanel.getInstance();
+	private static MainGameWindow instance;
 	
-	private WindowController()
+	private MainGameWindow()
 	{
 		super("Fix It FelixJr");
 		//
@@ -47,11 +50,11 @@ public class WindowController extends JFrame {
 		});
 	}
 	
-	public static WindowController getInstance()
+	public static MainGameWindow getInstance()
 	{
 		if(instance == null)
 		{
-			instance=new WindowController();
+			instance=new MainGameWindow();
 		}
 		return instance;
 	}
@@ -97,6 +100,8 @@ public class WindowController extends JFrame {
 		menu.setVisible(false);
 		hScores.setVisible(true);
 	}
+	
+	
 
 	
 	private void salir()
@@ -109,6 +114,21 @@ public class WindowController extends JFrame {
 	}
 	public static void main(String[] args)
 	{
-		WindowController.getInstance().setVisible(true);
+		MainGameWindow.getInstance().setVisible(true);
+		
+	}
+
+	public void update() {
+		if (gameW.isEnabled()) {
+			GraphicsGame.getInstance().update();
+			repaint();			
+		}
+		
+		
+		//TODO
+		
+		
+		
+		
 	}
 }

@@ -14,20 +14,20 @@ import guiControllers.MouseContrMenu;
 import util.GameConstants;
 import util.ResourcePathConstants;
 
-public class InstructionsWindow extends GenericWindowPanel {
+public class InstructionsPanel extends GenericWindowPanel {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static InstructionsWindow instance;
+	private static InstructionsPanel instance;
 	
 	private String imageUrl = ResourcePathConstants.INSTRUCTIONS;
 	// ResourcePathConstants.INSTRUCTIONS;
 	private Image img;
 	private JButton back = new JButton("<<");
 
-	private InstructionsWindow() {
+	private InstructionsPanel() {
 		back.setBounds(0, 0, 50, 50);
 		back.addMouseListener(new MouseContrMenu());
 		this.add(back, 0, 0);
@@ -46,9 +46,9 @@ public class InstructionsWindow extends GenericWindowPanel {
 		setVisible(false);
 	}
 	
-	public static InstructionsWindow getInstance() {
+	public static InstructionsPanel getInstance() {
 		if (instance==null) {
-			instance=new InstructionsWindow();
+			instance=new InstructionsPanel();
 		}
 		return instance;
 	}
@@ -65,7 +65,6 @@ public class InstructionsWindow extends GenericWindowPanel {
 
 	@Override
 	public void paintComponent(Graphics g) {
-		// TODO Auto-generated method stub
 		super.paintComponents(g);
 		draw(g);
 
@@ -74,5 +73,11 @@ public class InstructionsWindow extends GenericWindowPanel {
 	public void draw(Graphics g) {
 		g.setFont(new Font(Font.DIALOG, Font.BOLD, 30));
 		g.drawImage(img, 0, 0, GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT, null);
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
 	}
 }

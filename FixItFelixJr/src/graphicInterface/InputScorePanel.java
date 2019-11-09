@@ -2,10 +2,10 @@ package graphicInterface;
 
 import java.awt.Graphics;
 
-public class GraphicBuilding extends GenericWindowPanel{
+public class InputScorePanel extends GenericWindowPanel{
 	
 	
-	
+	//TODO singletone
 
 	@Override
 	public void paintComponent(Graphics g) {
@@ -18,8 +18,12 @@ public class GraphicBuilding extends GenericWindowPanel{
 		// TODO Auto-generated method stub
 		
 	}
-	
-	
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 

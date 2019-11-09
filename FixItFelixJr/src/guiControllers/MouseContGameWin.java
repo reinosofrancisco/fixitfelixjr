@@ -7,8 +7,8 @@ import java.util.TimerTask;
 
 import game.Core;
 import gamemain.GameStarter;
-import graphicInterface.GameWindow;
-import graphicInterface.WindowController;
+import graphicInterface.GamePanel;
+import graphicInterface.MainGameWindow;
 
 public class MouseContGameWin extends MouseAdapter
 {
@@ -17,7 +17,7 @@ public class MouseContGameWin extends MouseAdapter
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		super.mouseClicked(e);
-		WindowController.getInstance().changeGameWin(); //cambio a la GameWindow
+		MainGameWindow.getInstance().changeGameWin(); //cambio a la GameWindow
 		Core.getInstance().restartGame(); //reinicio juego
 		Timer t = new Timer();
 		TimerTask tt=new TimerTask() {
@@ -25,9 +25,9 @@ public class MouseContGameWin extends MouseAdapter
 			public void run() {
 				// TODO Auto-generated method stub
 				Core c= Core.getInstance();
-				GameWindow graphics = GameWindow.getInstance();
-				c.update();
-				graphics.update();			
+				MainGameWindow graphics = MainGameWindow.getInstance();
+//				c.update();
+				graphics.update();
 				if(!c.isPlaying()){
 					if(c.isNewHighscore()) {
 						//WindowController.getInstance().changeInputHighscore()	
@@ -37,10 +37,9 @@ public class MouseContGameWin extends MouseAdapter
 						//me voy al menu
 //						WindowController.getInstance().changeMenu();
 					}
-					t.cancel();
 				}
 			}
 		};
-		t.schedule(tt, 1000);
-	}	
+		t.schedule(tt, 0,300);
+	}
 }

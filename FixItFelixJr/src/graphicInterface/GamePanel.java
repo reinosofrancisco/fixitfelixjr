@@ -7,33 +7,35 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import graphicInterface.utils.ExtImage;
+import graphicInterface.utils.GraphicsGame;
 import guiControllers.KeyL;
 import guiControllers.MouseContrMenu;
 import util.GameConstants;
 
-public class GameWindow extends GenericWindowPanel {
+public class GamePanel extends GenericWindowPanel {
 
 	/**
 	 * 
 	 */
 	
 	private static final long serialVersionUID = 1L;
-	private static GameWindow instance;
+	private static GamePanel instance;
 	private JButton back= new JButton("<<");
 	private GraphicsGame graphicsController;
 	
 	
 	
 	
-	private GameWindow()
+	private GamePanel()
 	{
 		super();
-		setFocusable(true);
-		requestFocus();
-		this.setLayout(new GridLayout(2,1));
-		back.setBounds(0, 0, 100, 100);
-		back.addMouseListener(new MouseContrMenu());
-		this.add(back, 0, 0);
+//		setFocusable(true);
+//		requestFocus();
+//		this.setLayout(new GridLayout(2,1));
+//		back.setBounds(0, 0, 100, 100);
+//		back.addMouseListener(new MouseContrMenu());
+//		this.add(back, 0, 0);
 		this.addKeyListener(new KeyL());
 		setVisible(false);
 		this.setSize(GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT);
@@ -42,9 +44,9 @@ public class GameWindow extends GenericWindowPanel {
 		graphicsController=GraphicsGame.getInstance();
 	}
 	
-	public static GameWindow getInstance() {
+	public static GamePanel getInstance() {
 		if(instance== null) {
-			instance=new GameWindow();
+			instance=new GamePanel();
 		}
 		return instance;
 	}
@@ -54,7 +56,6 @@ public class GameWindow extends GenericWindowPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponents(g);
 		draw(g);
-		
 	}
 	@Override
 	public void draw(Graphics g) {
@@ -63,6 +64,7 @@ public class GameWindow extends GenericWindowPanel {
 		//DIBUJO CADA VARIABLE DE INSTANCIA EN EL PANEL
 		for (ExtImage i : graphicsController.getImagesAct()) {
 			g.drawImage(i.getImg(), i.getPos().getPosx(), i.getPos().getPosy(), i.getWidth(), i.getHeight(), null);
+			System.out.println("pintando una imagen" + i.getImg());
 		}
 		
 	}
@@ -70,7 +72,7 @@ public class GameWindow extends GenericWindowPanel {
 	public void update() {
 		//Actualizo imagenes de todos mis paneles y componentes
 		
-		graphicsController.update();
+//		graphicsController.update();
 		
 		//POR AHORA IMAGENES ESTATICAS
 		//VARIABLES DE INSTANCIA TIENEN IMAGENES Y POSICION
@@ -82,7 +84,8 @@ public class GameWindow extends GenericWindowPanel {
 		
 		
 		//llamo a repaint de todas mis cosas
-		repaint();		
+//		MainGameWindow.getInstance().repaint();
+		
 		
 		
 		

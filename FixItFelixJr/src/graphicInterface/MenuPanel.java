@@ -1,11 +1,9 @@
 package graphicInterface;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -18,23 +16,19 @@ import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 import guiControllers.MouseContGameWin;
 import guiControllers.MouseContInstr;
 import guiControllers.MouseContRank;
 import util.GameConstants;
 import util.ResourcePathConstants;
 
-public class MenuWindow extends GenericWindowPanel {
+public class MenuPanel extends GenericWindowPanel {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static MenuWindow instance;
+	private static MenuPanel instance;
 	
 	private JButton play = new JButton("¡A JUGAR!");
 	private JButton instructions = new JButton("¿COMO JUGAR?");
@@ -57,7 +51,7 @@ public class MenuWindow extends GenericWindowPanel {
 	 * quede todo mas bonito
 	 * 
 	 */
-	private MenuWindow() {
+	private MenuPanel() {
 		super();
 		this.setLayout(new GridBagLayout());
 		
@@ -143,9 +137,9 @@ public class MenuWindow extends GenericWindowPanel {
 	}
 	
 	
-	public static MenuWindow getInstance() {
+	public static MenuPanel getInstance() {
 		if (instance==null) {
-			instance=new MenuWindow();
+			instance=new MenuPanel();
 		}
 		return instance;
 	}
@@ -171,22 +165,19 @@ public class MenuWindow extends GenericWindowPanel {
 
 	@Override
 	public void paintComponent(Graphics g) {
-		// TODO Auto-generated method stub
 		super.paintComponents(g);
 		draw(g);
-
 	}
 
 	public void draw(Graphics g) {
 		g.drawImage(img, 0, 0, GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT, null);
 	}
 
-}
 
-class transparentPanel extends JPanel {
-	public transparentPanel() {
-		super();
-		super.setOpaque(false);
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

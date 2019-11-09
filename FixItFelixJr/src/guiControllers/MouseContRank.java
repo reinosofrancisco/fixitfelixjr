@@ -3,7 +3,7 @@ package guiControllers;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import graphicInterface.WindowController;
+import graphicInterface.MainGameWindow;
 
 public class MouseContRank extends MouseAdapter{
 
@@ -11,7 +11,7 @@ public class MouseContRank extends MouseAdapter{
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		super.mouseClicked(e);
-		WindowController.getInstance().changeRank();
+		MainGameWindow.getInstance().changeRank();
 	}
 
 	

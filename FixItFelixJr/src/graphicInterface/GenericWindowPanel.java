@@ -21,5 +21,7 @@ public abstract class GenericWindowPanel extends JPanel{
 	public abstract void paintComponent(Graphics g);
 	
 	public abstract void draw(Graphics g);
+	
+	public abstract void update();
 
 }

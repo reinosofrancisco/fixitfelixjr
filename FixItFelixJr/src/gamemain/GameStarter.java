@@ -1,8 +1,8 @@
 package gamemain;
 
 import game.Core;
-import graphicInterface.GameWindow;
-import graphicInterface.WindowController;
+import graphicInterface.GamePanel;
+import graphicInterface.MainGameWindow;
 
 public class GameStarter implements Runnable {
 	

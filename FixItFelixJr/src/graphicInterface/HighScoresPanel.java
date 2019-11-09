@@ -7,13 +7,13 @@ import javax.swing.JButton;
 import javax.swing.JTextArea;
 import guiControllers.MouseContrMenu;
 
-public class HighScoresWindow  extends GenericWindowPanel{
+public class HighScoresPanel  extends GenericWindowPanel{
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static HighScoresWindow instance;
+	private static HighScoresPanel instance;
 	
 	
 	private JButton back= new JButton("<<");
@@ -23,7 +23,7 @@ public class HighScoresWindow  extends GenericWindowPanel{
 	
 	
 	
-	private HighScoresWindow()
+	private HighScoresPanel()
 	{
 		this.setLayout(new GridLayout(2,1));
 		back.setBounds(0, 0, 100, 100);
@@ -41,9 +41,9 @@ public class HighScoresWindow  extends GenericWindowPanel{
 		setVisible(false);
 	}
 	
-	public static HighScoresWindow getInstance() {
+	public static HighScoresPanel getInstance() {
 		if (instance==null) {
-			instance=new HighScoresWindow();
+			instance=new HighScoresPanel();
 		}
 		return instance;
 	}
@@ -56,6 +56,12 @@ public class HighScoresWindow  extends GenericWindowPanel{
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponents(g);
+		draw(g);
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
 		
 	}
 	

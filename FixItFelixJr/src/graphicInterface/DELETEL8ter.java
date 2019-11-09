@@ -86,65 +86,6 @@ public class DELETEL8ter {
 		frmFixItFelix.getContentPane().add(panel, gbc_panel);
 		panel.setLayout(new GridLayout(0, 5, 0, 0));
 		
-		JPanel panel_1 = new GraphicWindow((panel.getComponentCount())%5,panel.getComponentCount()/5);
-		panel.add(panel_1);
-		
-		JPanel panel_2 = new JPanel();
-		panel.add(panel_2);
-		
-		JPanel panel_3 = new JPanel();
-		panel.add(panel_3);
-		
-		JPanel panel_4 = new JPanel();
-		panel.add(panel_4);
-		
-		JPanel panel_5 = new JPanel();
-		panel.add(panel_5);
-		
-		JPanel panel_6 = new JPanel();
-		panel.add(panel_6);
-		
-		JPanel panel_7 = new JPanel();
-		panel.add(panel_7);
-		
-		JPanel panel_8 = new JPanel();
-		panel.add(panel_8);
-		
-		JPanel panel_9 = new JPanel();
-		panel.add(panel_9);
-		
-		JPanel panel_10 = new JPanel();
-		panel.add(panel_10);
-		
-		JPanel panel_11 = new JPanel();
-		panel.add(panel_11);
-		
-		JPanel panel_12 = new JPanel();
-		panel.add(panel_12);
-		
-		JPanel panel_13 = new JPanel();
-		panel.add(panel_13);
-		
-		JPanel panel_14 = new JPanel();
-		panel.add(panel_14);
-		
-		JPanel panel_15 = new JPanel();
-		panel.add(panel_15);
-		
-		JPanel panel_16 = new JPanel();
-		panel.add(panel_16);
-		
-		JPanel panel_17 = new JPanel();
-		panel.add(panel_17);
-		
-		JPanel panel_18 = new JPanel();
-		panel.add(panel_18);
-		
-		JPanel panel_19 = new JPanel();
-		panel.add(panel_19);
-		
-		JPanel panel_20 = new JPanel();
-		panel.add(panel_20);
 	}
 
 }
