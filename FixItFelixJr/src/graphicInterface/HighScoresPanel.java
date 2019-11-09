@@ -1,18 +1,17 @@
 package graphicInterface;
 
-import java.awt.Graphics;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
 import game.HighScores;
 import game.Scores;
 import guiControllers.MouseContrMenu;
 
-public class HighScoresPanel  extends GenericWindowPanel{
+public class HighScoresPanel  extends JPanel{
 	
 	/**
 	 * 
@@ -44,8 +43,8 @@ public class HighScoresPanel  extends GenericWindowPanel{
 			area1.setText("Score--> "+ scores);
 		}
 		*/
-		this.add(table);
-		setVisible(false);
+		this.add(table,1,1);
+		this.setVisible(true);
 	}
 	
 	private Object[][] completeTable() {
@@ -71,23 +70,6 @@ public class HighScoresPanel  extends GenericWindowPanel{
 			instance=new HighScoresPanel();
 		}
 		return instance;
-	}
-
-	@Override
-	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void paintComponent(Graphics g) {
-		super.paintComponents(g);
-		draw(g);
-	}
-
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-		
 	}
 	
 
