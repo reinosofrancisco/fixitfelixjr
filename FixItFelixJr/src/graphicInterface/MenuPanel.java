@@ -21,6 +21,7 @@ import guiControllers.MouseContConfig;
 import guiControllers.MouseContGameWin;
 import guiControllers.MouseContInstr;
 import guiControllers.MouseContRank;
+import guiControllers.MouseContStats;
 import util.GameConstants;
 import util.ResourcePathConstants;
 
@@ -113,6 +114,7 @@ public class MenuPanel extends GenericWindowPanel {
 		this.play.addMouseListener(new MouseContGameWin());
 		this.ranking.addMouseListener(new MouseContRank());
 		this.config.addMouseListener(new MouseContConfig());
+		this.stats.addMouseListener(new MouseContStats());
 		//TODO
 		//this.config.addMouseListener(new MouseContConfig);
 		
