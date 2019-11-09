@@ -231,6 +231,10 @@ public static void pause(int ms) {
 }
 
 
+public int getPoints() {
+	return points;
+}
+
 enum PlayerAction{
 	NONE,
 	MOVE_LEFT,
