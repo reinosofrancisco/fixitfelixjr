@@ -24,6 +24,7 @@ public class MainGameWindow extends JFrame {
 	private GenericWindowPanel instr= InstructionsPanel.getInstance();
 	private GenericWindowPanel gameW= GamePanel.getInstance();
 	private GenericWindowPanel hScores= HighScoresPanel.getInstance();
+	private ConfigurePanel config= ConfigurePanel.getInstance();
 	private static MainGameWindow instance;
 	
 	private MainGameWindow()
@@ -35,6 +36,7 @@ public class MainGameWindow extends JFrame {
 		this.add(instr);
 		this.add(gameW);
 		this.add(hScores);
+		this.add(config);
 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		this.setResizable(false);
 		this.menu.setVisible(true);
@@ -78,6 +80,7 @@ public class MainGameWindow extends JFrame {
 		menu.setVisible(false);
 		hScores.setVisible(false);
 		gameW.setVisible(false);
+		config.setVisible(false);
 		instr.setVisible(true);
 	}
 	
@@ -90,6 +93,7 @@ public class MainGameWindow extends JFrame {
 		gameW.setVisible(false);
 		instr.setVisible(false);
 		hScores.setVisible(false);
+		config.setVisible(false);
 		menu.setVisible(true);
 	}
 	
@@ -98,10 +102,18 @@ public class MainGameWindow extends JFrame {
 		gameW.setVisible(false);
 		instr.setVisible(false);
 		menu.setVisible(false);
+		config.setVisible(false);
 		hScores.setVisible(true);
 	}
 	
-	
+	public void changeConfig()
+	{
+		gameW.setVisible(false);
+		instr.setVisible(false);
+		menu.setVisible(false);
+		hScores.setVisible(false);
+		config.setVisible(true);
+	}
 
 	
 	private void salir()

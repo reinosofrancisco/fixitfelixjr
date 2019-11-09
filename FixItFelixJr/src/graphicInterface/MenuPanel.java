@@ -16,6 +16,8 @@ import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+
+import guiControllers.MouseContConfig;
 import guiControllers.MouseContGameWin;
 import guiControllers.MouseContInstr;
 import guiControllers.MouseContRank;
@@ -110,6 +112,7 @@ public class MenuPanel extends GenericWindowPanel {
 		this.instructions.addMouseListener(new MouseContInstr());
 		this.play.addMouseListener(new MouseContGameWin());
 		this.ranking.addMouseListener(new MouseContRank());
+		this.config.addMouseListener(new MouseContConfig());
 		//TODO
 		//this.config.addMouseListener(new MouseContConfig);
 		
