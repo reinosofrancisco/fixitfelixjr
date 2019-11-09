@@ -3,8 +3,11 @@ package graphicInterface;
 import java.awt.Choice;
 import java.awt.Graphics;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import guiControllers.MouseContS;
 
 public class ConfigurePanel extends JPanel {
 	
@@ -16,6 +19,7 @@ public class ConfigurePanel extends JPanel {
 	//TODO singletone
 	private JLabel selection= new JLabel("Selecccione la dificultad");
 	private Choice dificulty= new Choice();
+	private JButton selected= new JButton("Seleccionar");
 	private static ConfigurePanel instance;
 	
 	private ConfigurePanel()
@@ -23,6 +27,8 @@ public class ConfigurePanel extends JPanel {
 		this.add(selection);
 		completChoice();
 		this.add(dificulty);
+		this.selected.addMouseListener(new MouseContS());
+		this.add(selected);
 	}
 	
 	public static ConfigurePanel getInstance()
@@ -44,5 +50,10 @@ public class ConfigurePanel extends JPanel {
 			
 		}
 	}
-
+	
+	public Choice getDificulty()
+	{
+		return this.dificulty;
+	}
 }
+
