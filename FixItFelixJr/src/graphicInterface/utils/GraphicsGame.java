@@ -5,6 +5,8 @@ import java.util.Hashtable;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import util.GameConstants;
+import util.ResourcePathConstants;
 import util.Vector2D;
 
 public class GraphicsGame {
@@ -22,7 +24,17 @@ public class GraphicsGame {
 	{
 		imgAct= new TreeSet<ExtImage>();
 		images= (new ImageHashLoader()).getImages(); //instancio porque es mas facil cargar imagenes desde instancia
-		imgAct.add(new ExtImage(images.get("BG_"), new Vector2D(200,200), 100, 100, 1));
+		imgAct.add(new ExtImage(images.get(ResourcePathConstants.BG_FIRST_S),new Vector2D(0,0), GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT, 0));
+		imgAct.add(new ExtImage(images.get(ResourcePathConstants.F_QUIET_S),new Vector2D(200,200),100 , 100, 1));
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -36,29 +48,13 @@ public class GraphicsGame {
 		return instance;
 	}
 	/**
-	 * Agrega elementos a la hashTable de Imagenes
-	 * @param i representa la Imagen
-	 * @param key representa la key de la imagen dentro de Hash Table
-	 */
-	private void addElement(Image i, String key)
-	{
-		images.put(key, i);
-	}
-	public Image geaImage(String key)
-	{
-		if(images.containsKey(key))
-		{
-			return images.get(key);
-		}
-		return null;
-	}
-	/**
 	 * Devuelve en un arreglo todas las imagenes que estan en la lista de Imagenes Actuales
 	 * @return retorna el arreglo
 	 */
 	public SortedSet<ExtImage> getImagesAct()
 	{
-		return imgAct;
+		//retorno COPIA de imagenes
+		return new TreeSet<ExtImage>(imgAct);
 	}
 	
 	/**
