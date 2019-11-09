@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import guiControllers.MouseContS;
+import guiControllers.MouseContrMenu;
 
 public class ConfigurePanel extends JPanel {
 	
@@ -20,13 +21,15 @@ public class ConfigurePanel extends JPanel {
 	private JLabel selection= new JLabel("Selecccione la dificultad");
 	private Choice dificulty= new Choice();
 	private JButton selected= new JButton("Seleccionar");
+	private JButton back= new JButton("<<");
 	private static ConfigurePanel instance;
-	
 	private ConfigurePanel()
 	{
 		this.add(selection);
 		completChoice();
 		this.add(dificulty);
+		back.addMouseListener(new MouseContrMenu());
+		this.add(back);
 		this.selected.addMouseListener(new MouseContS());
 		this.add(selected);
 	}
