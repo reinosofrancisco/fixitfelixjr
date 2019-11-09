@@ -27,6 +27,16 @@ public  class ExtImage implements Comparable<ExtImage>
 		layer=l;
 	}
 	
+	public ExtImage(ExtImage e) {
+		this.height=e.height;
+		this.layer=e.layer;
+		this.width=e.width;
+		this.img=e.img;
+		this.pos=new Vector2D(e.pos);
+		
+		
+	}
+
 	public static ExtImage changeImgToExt(Image i, Vector2D pos)
 	{
 		return new ExtImage(i, pos,10,10,0);

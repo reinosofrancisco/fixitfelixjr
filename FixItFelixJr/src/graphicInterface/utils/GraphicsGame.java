@@ -1,12 +1,15 @@
 package graphicInterface.utils;
 
+import java.awt.Image;
 import java.util.Hashtable;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import util.Vector2D;
+
 public class GraphicsGame {
 
-	private Hashtable<String, ExtImage> images;
+	private Hashtable<String, Image> images;
 	private SortedSet<ExtImage> imgAct;
 	private static GraphicsGame instance;
 	
@@ -19,7 +22,7 @@ public class GraphicsGame {
 	{
 		imgAct= new TreeSet<ExtImage>();
 		images= (new ImageHashLoader()).getImages(); //instancio porque es mas facil cargar imagenes desde instancia
-		imgAct.add(images.get(new String("Felix")));
+		imgAct.add(new ExtImage(images.get("F_QUIET"), new Vector2D(200,200), 100, 100, 1));
 		
 		
 		
@@ -37,11 +40,11 @@ public class GraphicsGame {
 	 * @param i representa la Imagen
 	 * @param key representa la key de la imagen dentro de Hash Table
 	 */
-	private void addElement(ExtImage i, String key)
+	private void addElement(Image i, String key)
 	{
 		images.put(key, i);
 	}
-	public ExtImage getImage(String key)
+	public Image geaImage(String key)
 	{
 		if(images.containsKey(key))
 		{
@@ -96,18 +99,18 @@ public class GraphicsGame {
 	
 	public void update()
 	{
-		i++;
-		if ((i%2)==0) {
-			imgAct.remove(imgAct.first());
-			imgAct.add(images.get("Felix_2"));
-			System.out.println("Quieto");
-			
-		}
-		else {
-			imgAct.remove(imgAct.first());
-			imgAct.add(images.get("Felix"));
-			System.out.println("Camina");
-		}
+//		i++;
+//		ExtImage e;
+//		if ((i%2)==0) {
+//			imgAct.first().setImg(images.get("F_QUIET"));
+//			System.out.println("Quieto");
+//			
+//		}
+//		else {
+//			
+//			imgAct.first().setImg(images.get("F_MOVING_L"));
+//			System.out.println("Camina");
+//		}
 		
 		//actualizo felix si hizo algo el jugador o si recibio un golpe o si agarro torta--->posicion e imagen
 		
