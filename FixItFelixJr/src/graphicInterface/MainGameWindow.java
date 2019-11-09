@@ -51,6 +51,10 @@ public class MainGameWindow extends JFrame {
 			}
 			
 		});
+		
+		
+		
+		
 	}
 	
 	public static MainGameWindow getInstance()

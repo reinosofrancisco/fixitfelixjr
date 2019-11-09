@@ -1,9 +1,13 @@
 package graphicInterface.utils;
 
 import java.awt.Image;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -36,54 +40,66 @@ public class ImageHashLoader {
 	private String F_WithCakeRight_S= ResourcePathConstants.F_WITHCAKE_R;
 	private String F_EatingCakeRight_S=ResourcePathConstants.F_EATINGCAKE_R;
 	private String F_Falling_S= ResourcePathConstants.F_FALLING;
-	private Image F_Quiet;
-	private Image F_MovingLeft;
-	private Image F_CantMoveLeft;
-	private Image F_Fixing1Left;
-	private Image F_Fixing2Left;
-	private Image F_WithCakeLeft;
-	private Image F_EatingCakeLeft;
-	private Image F_Wining1;
-	private Image F_Wining2;
-	private Image F_Wining3;
-	private Image F_ColitionLeft;
-	private Image F_Start;
-	private Image F_MovingRigth;
-	private Image F_CantMoveRight;
-	private Image F_Fixing1Right;
-	private Image F_Fixing2Right;
-	private Image F_ColitionRight;
-	private Image F_WithCakeRight;
-	private Image F_EatingCakeRight;
-	private Image F_Falling;
 	
 	
 	
 
-	public Hashtable<String, ExtImage> getImages() {
-		Hashtable<String, ExtImage> ret=new Hashtable<String, ExtImage>();
+	public Hashtable<String, Image> getImages() {
+		Hashtable<String, Image> ret=new Hashtable<String, Image>();
+		Hashtable<String, URL> aux=new Hashtable<String, URL>();
+		ClassLoader c = getClass().getClassLoader();
 		
 		
 		
-		URL u = getClass().getClassLoader().getResource(F_Quiet_S);
-		URL u2 = getClass().getClassLoader().getResource(F_MovingLeft_S);
-		if(u!=null) {
-			try {
-				Image i= ImageIO.read(u);
-				ret.put("Felix", new ExtImage(i, new Vector2D(200,200), 100, 100, 0));
-				i=ImageIO.read(u2);
-				ret.put("Felix_2", new ExtImage(i, new Vector2D(200,200),100, 100, 0));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				System.out.println("Error:");
-				e.printStackTrace();
+		
+		
+		//aux.put("", c.getResource(ResourcePathConstants.));
+		aux.put("BG_FIRST",c.getResource(ResourcePathConstants.BG_FIRST));
+		aux.put("BG_THEN",c.getResource(ResourcePathConstants.BG_THEN));
+		aux.put("BD_ALL",c.getResource(ResourcePathConstants.BD_ALL));
+		aux.put("BD_SECTION1",c.getResource(ResourcePathConstants.BD_SECTION1));
+		aux.put("BD_SECTION2",c.getResource(ResourcePathConstants.BD_SECTION2));
+		aux.put("BD_SECTION3",c.getResource(ResourcePathConstants.BD_SECTION3));
+//		aux.put("",c.getResource(ResourcePathConstants.));
+//		aux.put("",c.getResource(ResourcePathConstants.));
+//		aux.put("",c.getResource(ResourcePathConstants.));
+//		aux.put("",c.getResource(ResourcePathConstants.));
+//		aux.put("",c.getResource(ResourcePathConstants.));
+//		aux.put("",c.getResource(ResourcePathConstants.));
+//		aux.put("",c.getResource(ResourcePathConstants.S));
+//		aux.put("",c.getResource(ResourcePathConstants.));
+//		aux.put("",c.getResource(ResourcePathConstants.));
+//		aux.put("",c.getResource(ResourcePathConstants.));
+//		aux.put("",c.getResource(ResourcePathConstants.));
+//		aux.put("",c.getResource(ResourcePathConstants.));
+//		aux.put("",c.getResource(ResourcePathConstants.S));
+//		aux.put("",c.getResource(ResourcePathConstants.));
+//		aux.put("",c.getResource(ResourcePathConstants.));
+//		aux.put("",c.getResource(ResourcePathConstants.));
+//		aux.put("",c.getResource(ResourcePathConstants.));
+//		aux.put("",c.getResource(ResourcePathConstants.));
+//		aux.put("",c.getResource(ResourcePathConstants.S));
+		
+		
+		
+		
+		aux.put("F_QUIET",c.getResource(ResourcePathConstants.F_QUIET));
+		aux.put("F_MOVING_L",c.getResource(ResourcePathConstants.F_MOVING_L));
+
+		for (String s : aux.keySet()) {
+			if(aux.get(s)!=null) {
+				try {
+					ret.put(s, ImageIO.read(aux.get(s)));
+				} catch (Exception e) {
+					System.out.println("Error:");
+					e.printStackTrace();
+				}
+			}
+			else {
+				System.out.println("Error: url: "+ s + " --> " + aux.get(s) );
 			}
 			
 		}
-		else {
-			System.out.println("No se encontró la imagen");
-		}
-		
 		
 		
 		
