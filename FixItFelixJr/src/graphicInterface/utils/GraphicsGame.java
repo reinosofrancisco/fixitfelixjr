@@ -22,7 +22,7 @@ public class GraphicsGame {
 	{
 		imgAct= new TreeSet<ExtImage>();
 		images= (new ImageHashLoader()).getImages(); //instancio porque es mas facil cargar imagenes desde instancia
-		imgAct.add(new ExtImage(images.get("F_QUIET"), new Vector2D(200,200), 100, 100, 1));
+		imgAct.add(new ExtImage(images.get("BG_"), new Vector2D(200,200), 100, 100, 1));
 		
 		
 		
