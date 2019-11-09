@@ -9,6 +9,7 @@ import java.util.Timer;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import graphicInterface.utils.GraphicsGame;
 //import gamemain.GameStarter;
@@ -23,7 +24,7 @@ public class MainGameWindow extends JFrame {
 	private GenericWindowPanel menu= MenuPanel.getInstance();
 	private GenericWindowPanel instr= InstructionsPanel.getInstance();
 	private GenericWindowPanel gameW= GamePanel.getInstance();
-	private GenericWindowPanel hScores= HighScoresPanel.getInstance();
+	private HighScoresPanel hScores= HighScoresPanel.getInstance();
 	private ConfigurePanel config= ConfigurePanel.getInstance();
 	private static MainGameWindow instance;
 	
@@ -122,7 +123,7 @@ public class MainGameWindow extends JFrame {
 	
 	private void salir()
 	{
-		int opt= JOptionPane.showConfirmDialog(new JButton(), "Si sale se perderan sus datos, desea salir??", "Salva", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+		int opt= JOptionPane.showConfirmDialog(new JButton(), "Si sale se perderan sus datos, desea salir??", "Salva", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 		if(opt == JOptionPane.YES_OPTION)
 		{
 			System.exit(0);

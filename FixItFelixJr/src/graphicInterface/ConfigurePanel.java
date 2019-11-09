@@ -1,7 +1,6 @@
 package graphicInterface;
 
 import java.awt.Choice;
-import java.awt.Graphics;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
