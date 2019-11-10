@@ -4,8 +4,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import game.Core;
-import graphicInterface.GraphicFelix;
-import util.Direction;
 
 public class KeyL extends KeyAdapter {
 

@@ -28,7 +28,9 @@ public abstract class Bullet {
 	/**
 	 * @return retorna true, si me movi afuera del mapa
 	 */
-	public abstract boolean move(); 
+	public abstract boolean move();
+	
+	public abstract void update();
 		
 	public boolean isColliding(Vector2D v) {
 		return vector2D.isColiding(v);
