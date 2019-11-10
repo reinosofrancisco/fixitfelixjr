@@ -95,7 +95,7 @@ public class Core {
 		game.difficulty.lvlUp();
 		System.out.println("\n\n\nHas completado el nivel!!\n\n\n");
 		pause(1000);
-		if(game.difficulty.getLvl()==GameConstants.LEVEL_AMMOUNT) {
+		if(game.difficulty.getLvl()>=GameConstants.LEVEL_AMMOUNT) {
 			gameOver(true);
 		}		
 		game.felix.restartPosition();

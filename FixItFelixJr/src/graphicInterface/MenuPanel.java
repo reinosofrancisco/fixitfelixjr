@@ -95,21 +95,21 @@ public class MenuPanel extends GenericWindowPanel {
 		// ---SETUP BUTTONS-----//
 			//--POSITIONS--/
 
-		gbc.weightx = 0.1;
-		gbc.weighty = 0.1;
+
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.insets= new Insets(20, 20, 20, 20);
 		addGB(this, config, 6, 0);
 		gbc.weighty = 1.0;
 		gbc.weightx = 1.0;
-		gbc.insets=new Insets(250, 30, 200, 50);
+		gbc.insets=new Insets(300, 70, 250, 50);
 		addGB(this, stats, 0, 2);
-		gbc.insets=new Insets(250, 100, 200, 50);
+		gbc.insets=new Insets(300, 60, 250, 0);
 		addGB(this, instructions, 1, 2);
-		gbc.insets=new Insets(250, 50, 200, 50);
+		gbc.insets=new Insets(300, 50, 250, 0);
 		addGB(this, play, 2, 2);
-		gbc.insets=new Insets(250, 50, 200, 100);
+		gbc.insets=new Insets(300, 50, 250, 50);
 		addGB(this, ranking, 3, 2);
+		
 		this.instructions.addMouseListener(new MouseContInstr());
 		this.play.addMouseListener(new MouseContGameWin());
 		this.ranking.addMouseListener(new MouseContRank());
@@ -186,12 +186,3 @@ public class MenuPanel extends GenericWindowPanel {
 	}
 
 }
-
-//	public static void main(String args[]) {
-//
-//		JFrame m = new JFrame();
-//		Menu me = new Menu();
-//		m.add(me);
-//		m.setSize(GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT);
-//		m.setVisible(true);
-//	}

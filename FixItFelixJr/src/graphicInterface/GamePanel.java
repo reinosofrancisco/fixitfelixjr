@@ -85,6 +85,7 @@ public class GamePanel extends GenericWindowPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponents(g);
+//		graphicsController.update(); PREGUNTAR si puedo hacerlo
 		draw(g);
 	}
 
