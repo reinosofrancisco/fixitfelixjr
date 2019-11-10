@@ -3,6 +3,7 @@ package graphicInterface;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+
 import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
@@ -40,6 +41,8 @@ public class HighScoresPanel  extends GenericWindowPanel{
 		this.setLayout(new GridBagLayout());
 		gbc.gridx=1;
 		gbc.gridy=0;
+		gbc.gridwidth=2;
+		gbc.gridheight=2;
 		gbc.fill= GridBagConstraints.BOTH;
 		back.addMouseListener(new MouseContrMenu());
 		this.add(back,gbc);
@@ -55,6 +58,8 @@ public class HighScoresPanel  extends GenericWindowPanel{
 		*/
 		gbc.gridx=1;
 		gbc.gridy=3;
+		gbc.gridwidth=2;
+		gbc.gridheight=2;
 		gbc.fill= GridBagConstraints.BOTH;
 		this.add(table,gbc);
 		this.setVisible(true);
