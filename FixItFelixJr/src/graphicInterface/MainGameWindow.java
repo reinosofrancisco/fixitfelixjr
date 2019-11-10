@@ -26,18 +26,27 @@ public class MainGameWindow extends JFrame {
 	private GenericWindowPanel gameW= GamePanel.getInstance();
 	private HighScoresPanel hScores= HighScoresPanel.getInstance();
 	private ConfigurePanel config= ConfigurePanel.getInstance();
+	private StatsPanel stat= StatsPanel.getInstance();
+	/**
+	 * En la pos 0 del arreglo se va a guardar la cantidad de veces que se ejecuto la aplicacion
+	 * En la pos 1 la cantidad de veces que se clickeo el boton de jugar
+	 * Y en la pos 2 la cantidad de veces que se agrego un HS
+	 */
+	private int[] stats= new int[3];
 	private static MainGameWindow instance;
 	
 	private MainGameWindow()
 	{
 		super("Fix It FelixJr");
 		//
+		stats[0]++;
 		this.setSize(GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT);
 		this.add(menu);
 		this.add(instr);
 		this.add(gameW);
 		this.add(hScores);
 		this.add(config);
+		this.add(stat);
 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		this.setResizable(false);
 		this.menu.setVisible(true);
@@ -73,6 +82,8 @@ public class MainGameWindow extends JFrame {
 		instr.setVisible(false);
 		menu.setVisible(false);
 		hScores.setVisible(false);
+		stat.setVisible(false);
+		stats[1]++;
 		gameW.setVisible(true);
 		
 	}
@@ -86,6 +97,7 @@ public class MainGameWindow extends JFrame {
 		hScores.setVisible(false);
 		gameW.setVisible(false);
 		config.setVisible(false);
+		stat.setVisible(false);
 		instr.setVisible(true);
 	}
 	
@@ -108,6 +120,7 @@ public class MainGameWindow extends JFrame {
 		instr.setVisible(false);
 		menu.setVisible(false);
 		config.setVisible(false);
+		stat.setVisible(false);
 		hScores.setVisible(true);
 	}
 	
@@ -117,7 +130,17 @@ public class MainGameWindow extends JFrame {
 		instr.setVisible(false);
 		menu.setVisible(false);
 		hScores.setVisible(false);
+		stat.setVisible(false);
 		config.setVisible(true);
+	}
+	public void changeStat()
+	{
+		gameW.setVisible(false);
+		instr.setVisible(false);
+		menu.setVisible(false);
+		hScores.setVisible(false);
+		config.setVisible(false);
+		stat.setVisible(true);
 	}
 
 	
@@ -143,9 +166,15 @@ public class MainGameWindow extends JFrame {
 		
 		
 		//TODO
-		
-		
-		
-		
+			
 	}
+
+	public int[] getStats() {
+		return stats;
+	}
+
+	public void setStats(int[] stats) {
+		this.stats = stats;
+	}
+	
 }
