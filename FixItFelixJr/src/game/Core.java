@@ -160,10 +160,6 @@ public class Core {
 	}
 	/**AUTO GENERATED FOR KEYBOARD INPUTS */
 	
-	public boolean isColliding()
-	{
-		return re.isColliding();
-	}
 	public boolean isPlaying() {
 		return playing;
 	}

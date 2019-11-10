@@ -248,6 +248,11 @@ public class ResourcePathConstants {
 	public static final String V_LEAVES2="data/game/ventanas_y_panel/hojas2.png";
 	public static final String V_LEAVES2_S = V_LEAVES_S + 2;
 	
+	
+	
+	
+	
+	
 	public static final String V_SEMICIRCULAR_UP_HEALTHY = "data/game/semicirculares/slice602_@.png";
 	public static final String V_SEMICIRCULAR_UP_HEALTHY_S = "V_SEMICIRCULAR_UP_HEALTHY";
 	
@@ -298,6 +303,11 @@ public class ResourcePathConstants {
 	
 	public static final String BD_ALL = "data/game/edificio/edificio_150.png";
 	public static final String BD_ALL_S = "BD_ALL";
+	
+	
+	public static final String BUL_GENERIC = "data/game/rocas/bullet.png";
+	public static final String BUL_GENERIC_S = "BUL_GENERIC";
+	
 
 	
 	/*

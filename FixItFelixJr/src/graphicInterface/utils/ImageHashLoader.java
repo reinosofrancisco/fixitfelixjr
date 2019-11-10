@@ -70,6 +70,10 @@ public class ImageHashLoader {
 		aux.put(ResourcePathConstants.V_SEMICIRCULAR_UP_HEALTHY_S,c.getResource(ResourcePathConstants.V_SEMICIRCULAR_UP_HEALTHY));
 		aux.put(ResourcePathConstants.V_CONPSANA_S,c.getResource(ResourcePathConstants.V_CONPSANA));
 		aux.put(ResourcePathConstants.V_CONPCERRADA_S,c.getResource(ResourcePathConstants.V_CONPCERRADA));
+		aux.put(ResourcePathConstants.BUL_GENERIC_S,c.getResource(ResourcePathConstants.BUL_GENERIC));
+		
+		
+		aux.put(ResourcePathConstants.R_QUIET_S,c.getResource(ResourcePathConstants.R_QUIET));
 		
 //		aux.put(ResourcePathConstants.XX_S,c.getResource(ResourcePathConstants.XX));
 		

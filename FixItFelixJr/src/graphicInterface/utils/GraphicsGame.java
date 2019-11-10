@@ -4,11 +4,15 @@ import java.awt.Image;
 import java.util.Collection;
 import java.util.Hashtable;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
 import building.Building;
 import entities.Felix;
+import entities.Ralph;
+import randomenvironment.Bullet;
+import randomenvironment.RandomEnvironment;
 import util.GameConstants;
 import util.ResourcePathConstants;
 import util.Vector2D;
@@ -38,6 +42,8 @@ public class GraphicsGame {
 		
 		addBackground();
 		addWindows();
+		addRalph();
+		addEnemies();
 		addFelix();
 		
 		
@@ -45,6 +51,19 @@ public class GraphicsGame {
 		
 		
 		
+		
+	}
+	private void addEnemies() {
+		List<Bullet> l = RandomEnvironment.getInstance().getBullets();
+		for (Bullet bullet : l) {
+			Vector2D v = bullet.getVector2D();
+			imgAct.add(new ExtImage(images.get(ResourcePathConstants.BUL_GENERIC_S),new Vector2D(phaseXToPixels(v.getPosx()-1),phaseYToPixels(v.getPosy()-1)),100,100,BIRDS_LAYER));
+			
+		}
+	}
+	private void addRalph() {
+		Vector2D v = Ralph.getInstance().getPos();
+		imgAct.add(new ExtImage(images.get(ResourcePathConstants.R_QUIET_S),new Vector2D(phaseXToPixels(v.getPosx()-1),phaseYToPixels(v.getPosy()-1)),100,100,RALPH_LAYER));
 		
 	}
 	private void addBackground() {
@@ -186,6 +205,8 @@ public class GraphicsGame {
 		imgAct=new TreeSet<ExtImage>();
 		addBackground();
 		addWindows();
+		addRalph();
+		addEnemies();
 		addFelix();
 		
 		
