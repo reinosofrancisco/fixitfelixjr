@@ -21,7 +21,13 @@ import windows.Window;
 
 public class GraphicsGame {
 
-	private Hashtable<String, Image> images;
+	private static Hashtable<String, Image> images; //PREGUNTAR? la hago estatica para poder accederla desde cualquier lugar
+	
+	//MOVER ABAJO SI APRUEBAN LA IDEA (despues de preguntar)
+	public static Hashtable<String, Image> getImages() {
+		return images;
+	} 
+	
 	private SortedSet<ExtImage> imgAct;
 	private static GraphicsGame instance;
 	

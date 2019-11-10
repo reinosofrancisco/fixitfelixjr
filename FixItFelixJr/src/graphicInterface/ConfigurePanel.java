@@ -18,10 +18,10 @@ import guiControllers.MouseContrMenu;
 import util.GameConstants;
 
 public class ConfigurePanel extends GenericWindowPanel {
-	
-	
+
+
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	//TODO singletone
@@ -65,7 +65,7 @@ public class ConfigurePanel extends GenericWindowPanel {
 		gbc.fill= GridBagConstraints.BOTH;
 		this.add(selected, gbc);
 	}
-	
+
 	public static ConfigurePanel getInstance()
 	{
 		if(instance == null)
@@ -74,18 +74,18 @@ public class ConfigurePanel extends GenericWindowPanel {
 		}
 		return instance;
 	}
-	
-	
+
+
 	private void completChoice()
 	{
 		int i;
 		for(i=0;i<10;i++)
 		{
 			dificulty.add( ""+(i+1));
-			
+
 		}
 	}
-	
+
 	public Choice getDificulty()
 	{
 		return this.dificulty;
@@ -105,16 +105,16 @@ public class ConfigurePanel extends GenericWindowPanel {
 			}
 		}
 	}
-	
+
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	@Override
-	public void paintComponent(Graphics g) {
-		// TODO Auto-generated method stub
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
 		draw(g);
 	}
 	public void draw(Graphics g) {
@@ -128,10 +128,9 @@ public class ConfigurePanel extends GenericWindowPanel {
 		m.add(p);
 		m.setSize(1080, 720);
 		m.setVisible(true);
-		
+
 	}
 
-	
-	
-}
 
+
+}

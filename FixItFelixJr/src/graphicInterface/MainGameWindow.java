@@ -71,72 +71,65 @@ public class MainGameWindow extends JFrame {
 		}
 		return instance;
 	}
-	/**
-	 * Cambia a la pantalla del juego
-	 */
-	public  void changeGameWin()
-	{
-		instr.setVisible(false);
-		menu.setVisible(false);
-		hScores.setVisible(false);
-		//stat.setVisible(false);
-		stats[1]++;
-		gameW.setVisible(true);
-		
-	}
 	
 	/**
-	 * Cambia a la pantalla de las instrucciones
+	 * Desactiva todas las ventanas
 	 */
-	public void changeInstr() {
-		
+	private void deactivateAll() {
 		menu.setVisible(false);
 		hScores.setVisible(false);
 		gameW.setVisible(false);
 		config.setVisible(false);
-		//stat.setVisible(false);
+		stat.setVisible(false);
+		instr.setVisible(false);		
+	}
+	
+	
+	/**
+	 * Cambia a la pantalla del juego--->ANDA
+	 */
+	public  void changeGameWin()
+	{
+		deactivateAll();
+		gameW.setVisible(true);		
+		stats[1]++;
+		
+	}
+	
+
+	/**
+	 * Cambia a la pantalla de las instrucciones--->ANDA
+	 */
+	public void changeInstr() {
+		
+		deactivateAll();
 		instr.setVisible(true);
 	}
 	
  /**
-  * Cambia la pantalla de nuevo al menu
+  * Cambia la pantalla de nuevo al menu--->Anda
   * 
   */
 	public void changeMenu()
 	{
-		gameW.setVisible(false);
-		instr.setVisible(false);
-		hScores.setVisible(false);
-		config.setVisible(false);
+		deactivateAll();
 		menu.setVisible(true);
 	}
 	
 	public void changeRank()
 	{
-		gameW.setVisible(false);
-		instr.setVisible(false);
-		menu.setVisible(false);
-		config.setVisible(false);
-		stat.setVisible(false);
+		deactivateAll();
 		hScores.setVisible(true);
 	}
 	
 	public void changeConfig()
 	{
-		gameW.setVisible(false);
-		instr.setVisible(false);
-		menu.setVisible(false);
-		hScores.setVisible(false);
-		stat.setVisible(false);
+		deactivateAll();
 		config.setVisible(true);
 	}
 	public void changeStat()
 	{
-		gameW.setVisible(false);
-		instr.setVisible(false);
-		menu.setVisible(false);
-		hScores.setVisible(false);
-		config.setVisible(false);
+		deactivateAll();
 		stat.setVisible(true);
 	}
 
@@ -156,14 +149,12 @@ public class MainGameWindow extends JFrame {
 	}
 
 	public void update() {
+		
 		if (gameW.isEnabled()) {
-			GraphicsGame.getInstance().update();
-			repaint();			
+			GraphicsGame.getInstance().update(); //PREGUNTAR puedo meter esto en el paintcomponents del GamePanel????? (ver comentado
+			repaint();
 		}
 		
-		
-		//TODO
-			
 	}
 
 	private void inicializationArre()
