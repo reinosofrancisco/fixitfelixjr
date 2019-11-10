@@ -41,6 +41,7 @@ public class Core {
 	private Core() {
 		
 	}
+	
 	public static Core getInstance() {
 		if (game==null) {
 			game=new Core();
@@ -61,15 +62,17 @@ public class Core {
 		
 		nextAction=PlayerAction.NONE;
 		
-		
-		
-//		GraphicFelix.getInstance().update();
 		//---------------		
 
 		System.out.println("--\n");
-		
-		
 	}
+	
+	
+	
+	
+	
+	
+	
 	
 	public void birdHit() {
 		restartSection(); //TODO
@@ -151,25 +154,6 @@ public class Core {
 	}
 	
 	
-	/* DESUSO
-	public void move(Direction d)
-	{
-		switch (d) {
-		case DOWN:
-			break;
-		case UP:
-			break;
-		case LEFT:
-			break;
-		case RIGHT:
-			break;
-		default:
-			break;
-		}
-		
-	}*/
-	
-	
 	public void fix()
 	{
 		nextAction=PlayerAction.FIX;
@@ -243,37 +227,4 @@ enum PlayerAction{
 	MOVE_DOWN,
 	FIX;	
 }
-
-
-
 }
-
-
-//	public static void main(String[] args) {
-//		
-//		
-//		int bucleFinish = 0;
-//		Core game = getInstance();
-//		while (game.isBucleOn) {
-//			System.out.println("Lap number= " + (bucleFinish+1));
-//			System.out.println("-");
-//			
-//			/** ------------------------------------------------------- */
-//			/** ------------------[ CODE ] ---------------------------- */
-//			/** ------------------------------------------------------- */
-//			
-//			game.niceland.update();
-//			game.ralph.update();
-//			game.felix.update();//TODO
-//			game.re.update();	
-//			GraphicFelix.getInstance().update();
-//			//---------------
-//			
-//			bucleFinish++;
-//			
-//
-//			System.out.println("--\n");
-//			pause(1000);
-//			
-//		}
-//	}

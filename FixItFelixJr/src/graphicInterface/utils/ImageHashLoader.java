@@ -44,32 +44,35 @@ public class ImageHashLoader {
 		
 		
 		
-		//aux.put("", c.getResource(ResourcePathConstants.));
+		//aux.put(ResourcePathConstants.XX_S,c.getResource(ResourcePathConstants.XX));
 		aux.put(ResourcePathConstants.BG_FIRST_S,c.getResource(ResourcePathConstants.BG_FIRST));
 		aux.put(ResourcePathConstants.BG_THEN_S,c.getResource(ResourcePathConstants.BG_THEN));
 		aux.put(ResourcePathConstants.BD_ALL_S,c.getResource(ResourcePathConstants.BD_ALL));
 		aux.put(ResourcePathConstants.BD_SECTION1_S,c.getResource(ResourcePathConstants.BD_SECTION1));
 		aux.put(ResourcePathConstants.BD_SECTION3_S,c.getResource(ResourcePathConstants.BD_SECTION2));
 		aux.put(ResourcePathConstants.BD_SECTION2_S,c.getResource(ResourcePathConstants.BD_SECTION3));
-//		aux.put("",c.getResource(ResourcePathConstants.));
-//		aux.put("",c.getResource(ResourcePathConstants.));
-//		aux.put("",c.getResource(ResourcePathConstants.));
-//		aux.put("",c.getResource(ResourcePathConstants.));
-//		aux.put("",c.getResource(ResourcePathConstants.));
-//		aux.put("",c.getResource(ResourcePathConstants.));
-//		aux.put("",c.getResource(ResourcePathConstants.S));
-//		aux.put("",c.getResource(ResourcePathConstants.));
-//		aux.put("",c.getResource(ResourcePathConstants.));
-//		aux.put("",c.getResource(ResourcePathConstants.));
-//		aux.put("",c.getResource(ResourcePathConstants.));
-//		aux.put("",c.getResource(ResourcePathConstants.));
-//		aux.put("",c.getResource(ResourcePathConstants.S));
-//		aux.put("",c.getResource(ResourcePathConstants.));
-//		aux.put("",c.getResource(ResourcePathConstants.));
-//		aux.put("",c.getResource(ResourcePathConstants.));
-//		aux.put("",c.getResource(ResourcePathConstants.));
-//		aux.put("",c.getResource(ResourcePathConstants.));
-//		aux.put("",c.getResource(ResourcePathConstants.S));
+		aux.put(ResourcePathConstants.V_ENTR0_S,c.getResource(ResourcePathConstants.V_ENTR0));
+		aux.put(ResourcePathConstants.V_ENTR1_S,c.getResource(ResourcePathConstants.V_ENTR1));
+		aux.put(ResourcePathConstants.V_ENTR2_S,c.getResource(ResourcePathConstants.V_ENTR2));
+		aux.put(ResourcePathConstants.V_ENTR3_S,c.getResource(ResourcePathConstants.V_ENTR3));
+		aux.put(ResourcePathConstants.V_ENTR4_S,c.getResource(ResourcePathConstants.V_ENTR4));
+		aux.put(ResourcePathConstants.V_PAN0_S,c.getResource(ResourcePathConstants.V_PAN0));
+		aux.put(ResourcePathConstants.V_PAN1_S,c.getResource(ResourcePathConstants.V_PAN1));
+		aux.put(ResourcePathConstants.V_PAN2_S,c.getResource(ResourcePathConstants.V_PAN2));
+		aux.put(ResourcePathConstants.V_PAN3_S,c.getResource(ResourcePathConstants.V_PAN3));
+		aux.put(ResourcePathConstants.V_PAN4_S,c.getResource(ResourcePathConstants.V_PAN4));
+		aux.put(ResourcePathConstants.V_PAN_OBS1_S,c.getResource(ResourcePathConstants.V_PAN_OBS1));
+		aux.put(ResourcePathConstants.V_PAN_OBS2_S,c.getResource(ResourcePathConstants.V_PAN_OBS2));
+		aux.put(ResourcePathConstants.V_PAN_OBS3_S,c.getResource(ResourcePathConstants.V_PAN_OBS3));
+		aux.put(ResourcePathConstants.V_LEAVES0_S,c.getResource(ResourcePathConstants.V_LEAVES0));
+		aux.put(ResourcePathConstants.V_LEAVES1_S,c.getResource(ResourcePathConstants.V_LEAVES1));
+		aux.put(ResourcePathConstants.V_LEAVES2_S,c.getResource(ResourcePathConstants.V_LEAVES2));
+		aux.put(ResourcePathConstants.V_SEMICIRCULAR_UP_HEALTHY_S,c.getResource(ResourcePathConstants.V_SEMICIRCULAR_UP_HEALTHY));
+		aux.put(ResourcePathConstants.V_CONPSANA_S,c.getResource(ResourcePathConstants.V_CONPSANA));
+		aux.put(ResourcePathConstants.V_CONPCERRADA_S,c.getResource(ResourcePathConstants.V_CONPCERRADA));
+		
+//		aux.put(ResourcePathConstants.XX_S,c.getResource(ResourcePathConstants.XX));
+		
 		
 		
 		

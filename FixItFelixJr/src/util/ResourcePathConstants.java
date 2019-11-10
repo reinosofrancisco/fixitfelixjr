@@ -2,7 +2,7 @@ package util;
 
 public class ResourcePathConstants {
 	
-	//public static final String nnnnn = "data/";
+	//public static final String NAME = "data/";
 	
 	public static final String INSTRUCTIONS = "data/MenuImages/fixItFelix.jpg";
 	public static final String INSTRUCTIONS_S = "INSTRUCTIONS";
@@ -185,8 +185,71 @@ public class ResourcePathConstants {
 	public static final String V_ENTRP4SR="data/game/semicirculares/entradaConP4SR.png";
 	public static final String V_ENTRP4SR_S = "V_ENTRP4SR";
 	
-	public static final String V_ENTRSANA="data/game/semicirculares/entradaSana.png";
-	public static final String V_ENTRSANA_S = "V_ENTRSANA";
+	
+	public static final String V_ENTR_S = "V_ENTR";
+	
+	public static final String V_ENTR0="data/game/semicirculares/entrada0.png";
+	public static final String V_ENTR0_S = V_ENTR_S + 0;
+	
+	public static final String V_ENTR1="data/game/semicirculares/entrada1.png";
+	public static final String V_ENTR1_S = V_ENTR_S + 1;
+	
+	public static final String V_ENTR2="data/game/semicirculares/entrada2.png";
+	public static final String V_ENTR2_S = V_ENTR_S + 2;
+	
+	public static final String V_ENTR3="data/game/semicirculares/entrada3.png";
+	public static final String V_ENTR3_S = V_ENTR_S + 3;
+	
+	public static final String V_ENTR4="data/game/semicirculares/entrada4.png";
+	public static final String V_ENTR4_S = V_ENTR_S + 4;
+	
+	
+	
+	public static final String V_PAN_S = "V_PAN";
+	
+	public static final String V_PAN0="data/game/ventanas_y_panel/panel0.png";
+	public static final String V_PAN0_S = V_PAN_S + 0;
+	
+	public static final String V_PAN1="data/game/ventanas_y_panel/panel1.png";
+	public static final String V_PAN1_S = V_PAN_S + 1;
+	
+	public static final String V_PAN2="data/game/ventanas_y_panel/panel2.png";
+	public static final String V_PAN2_S = V_PAN_S + 2;
+	
+	public static final String V_PAN3="data/game/ventanas_y_panel/panel3.png";
+	public static final String V_PAN3_S = V_PAN_S + 3;
+	
+	public static final String V_PAN4="data/game/ventanas_y_panel/panel4.png";
+	public static final String V_PAN4_S = V_PAN_S + 4;
+	
+	
+	public static final String V_PAN_OBS_S = "V_PAN_OBS";
+	
+	public static final String V_PAN_OBS0="data/game/obstaculos/obstaculo0.png";
+	public static final String V_PAN_OBS0_S = V_PAN_OBS_S + 0;
+	
+	public static final String V_PAN_OBS1="data/game/obstaculos/obstaculo1.png";
+	public static final String V_PAN_OBS1_S = V_PAN_OBS_S + 1;
+	
+	public static final String V_PAN_OBS2="data/game/obstaculos/obstaculo2.png";
+	public static final String V_PAN_OBS2_S = V_PAN_OBS_S + 2;
+	
+	public static final String V_PAN_OBS3="data/game/obstaculos/obstaculo3.png";
+	public static final String V_PAN_OBS3_S = V_PAN_OBS_S + 3;
+	
+	public static final String V_LEAVES_S = "V_LEAVES";
+	
+	public static final String V_LEAVES0="data/game/ventanas_y_panel/hojas0.png";
+	public static final String V_LEAVES0_S = V_LEAVES_S + 0;
+	
+	public static final String V_LEAVES1="data/game/ventanas_y_panel/hojas1.png";
+	public static final String V_LEAVES1_S = V_LEAVES_S + 1;
+	
+	public static final String V_LEAVES2="data/game/ventanas_y_panel/hojas2.png";
+	public static final String V_LEAVES2_S = V_LEAVES_S + 2;
+	
+	public static final String V_SEMICIRCULAR_UP_HEALTHY = "data/game/semicirculares/slice602_@.png";
+	public static final String V_SEMICIRCULAR_UP_HEALTHY_S = "V_SEMICIRCULAR_UP_HEALTHY";
 	
 	public static final String V_CONPAN12SR="data/game/ventanas_y_panel/conPaneles1-2SR.png";
 	public static final String V_CONPAN12SR_S = "V_CONPAN12SR";
@@ -238,8 +301,8 @@ public class ResourcePathConstants {
 
 	
 	/*
-	public static final String nnnnn = "data/";
-	public static final String nnnnn_S = "nnnnn";
+	public static final String NAME = "data/";
+	public static final String NAME_S = "NAME";
 	 */
 	 
 }

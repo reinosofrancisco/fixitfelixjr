@@ -1,13 +1,18 @@
 package graphicInterface.utils;
 
 import java.awt.Image;
+import java.util.Collection;
 import java.util.Hashtable;
+import java.util.LinkedList;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import building.Building;
+import entities.Felix;
 import util.GameConstants;
 import util.ResourcePathConstants;
 import util.Vector2D;
+import windows.Window;
 
 public class GraphicsGame {
 
@@ -15,17 +20,25 @@ public class GraphicsGame {
 	private SortedSet<ExtImage> imgAct;
 	private static GraphicsGame instance;
 	
+	private static final int BACKGROUND_LAYER=0;
+	private static final int WINDOWS_LAYER=1;
+	private static final int FELIX_LAYER=2;
+	private static final int RALPH_LAYER=3;
+	private static final int BIRDS_LAYER=4;
+	private static final int BRICKS_LAYER=5;
+	private static final int NICLANDER_LAYER=6;
 	
 	
-	//borrar
-	int i=0;
 	
 	private GraphicsGame()
 	{
 		imgAct= new TreeSet<ExtImage>();
 		images= (new ImageHashLoader()).getImages(); //instancio porque es mas facil cargar imagenes desde instancia
-		imgAct.add(new ExtImage(images.get(ResourcePathConstants.BG_FIRST_S),new Vector2D(0,0), GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT, 0));
-		imgAct.add(new ExtImage(images.get(ResourcePathConstants.F_QUIET_S),new Vector2D(200,200),100 , 100, 1));
+		
+		
+		addBackground();
+		addWindows();
+		addFelix();
 		
 		
 		
@@ -33,11 +46,60 @@ public class GraphicsGame {
 		
 		
 		
-		
-		
-		
-		
-		
+	}
+	private void addBackground() {
+		imgAct.add(new ExtImage(images.get(ResourcePathConstants.BG_FIRST_S),new Vector2D(0,-50), GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT, 0));
+		imgAct.add(new ExtImage(images.get(ResourcePathConstants.BD_SECTION1_S),new Vector2D(240,0), 620, GameConstants.WINDOW_HEIGHT, 0));
+	}
+	private void addFelix() {
+		Vector2D v = Felix.getInstnance().getVector2D();
+		imgAct.add(new ExtImage(images.get(ResourcePathConstants.F_QUIET_S),new Vector2D(phaseXToPixels(v.getPosx()-1),phaseYToPixels(v.getPosy()-1)),100 , 100, FELIX_LAYER));
+	}
+	private void addWindows() {
+		Building b = Building.getInstance();
+		Window[][] w = b.getWindows();
+		for (int i = 0,posX=phaseXToPixels(i); i < w.length; i++,posX=phaseXToPixels(i)) {
+			for (int j = 0,posY=phaseYToPixels(j); j < w[i].length; j++,posY=phaseYToPixels(j)) {
+				switch (w[i][j].getType()) {
+				case Window.HALFCIRCLE:
+					if(j==0) {
+						imgAct.add(new ExtImage(images.get(ResourcePathConstants.V_ENTR_S + w[i][j].getNotHealthyPannelsAmmount()),new Vector2D(posX,posY),100,150,WINDOWS_LAYER));
+					}
+					else {
+						imgAct.add(new ExtImage(images.get(ResourcePathConstants.V_SEMICIRCULAR_UP_HEALTHY_S),new Vector2D(posX,posY),100,150,WINDOWS_LAYER)); //TODO
+					}
+
+					break;
+				case Window.RALPHWINDOW:
+					imgAct.add(new ExtImage(images.get(ResourcePathConstants.V_CONPSANA_S),new Vector2D(posX,posY),100,150,WINDOWS_LAYER));
+					break;
+				case Window.TWOPANELS:
+					imgAct.add(new ExtImage(images.get(ResourcePathConstants.V_PAN_S + w[i][j].getNotHealthyPannelsAmmount()),new Vector2D(posX,posY),100,150,WINDOWS_LAYER));
+					int obs=w[i][j].getObstacles();
+					if(obs!=0) {
+						imgAct.add(new ExtImage(images.get(ResourcePathConstants.V_PAN_OBS_S + obs),new Vector2D(posX,posY),100,150,WINDOWS_LAYER));
+					}
+					break;
+				case Window.WITHLEAVES:
+					
+					imgAct.add(new ExtImage(images.get(ResourcePathConstants.V_LEAVES_S + w[i][j].getObstacles()),new Vector2D(posX,posY),100,150,WINDOWS_LAYER));
+					break;
+
+
+				default:
+					break;
+				}
+				
+				
+//				imgAct.add(new ExtImage(images.get(ResourcePathConstants.V_ENTRSANA_S),new Vector2D(290+(i*(100+4)),20+(j*(150+10))),100,150,1));
+			}
+		}
+	}
+	private int phaseYToPixels(int i2) {
+		return GameConstants.WINDOW_HEIGHT-(150+i2*(150+10)+50);
+	}
+	private int phaseXToPixels(int i2) {
+		return 290+(i2*(100+4));
 	}
 	public static GraphicsGame getInstance()
 	{
@@ -107,6 +169,27 @@ public class GraphicsGame {
 //			imgAct.first().setImg(images.get("F_MOVING_L"));
 //			System.out.println("Camina");
 //		}
+		
+		
+		
+		//BORRAR TODAS LAS VENTANAS
+//		Collection<ExtImage> c=new TreeSet<ExtImage>();
+//		for (ExtImage extImage : imgAct) {
+//			if(extImage.getLayer()==GraphicsGame.WINDOWS_LAYER) {
+//				c.add(extImage);
+//			}
+//		}
+//		imgAct.removeAll(c);
+//		addWindows(); //unimplemented method. adds windows to imgAct collection using the same method the constructor uses
+		
+		
+		imgAct=new TreeSet<ExtImage>();
+		addBackground();
+		addWindows();
+		addFelix();
+		
+		
+		
 		
 		//actualizo felix si hizo algo el jugador o si recibio un golpe o si agarro torta--->posicion e imagen
 		

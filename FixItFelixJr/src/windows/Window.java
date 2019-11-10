@@ -12,16 +12,22 @@ public abstract class Window
 	protected Vector2D pos;
 	protected Panel[] panels; // the first panel is the one on the left bottom
 	private boolean beenFixed=false;
+	private int type;
 	
+	public static final int TWOPANELS=0;
+	public static final int RALPHWINDOW=1;
+	public static final int WITHLEAVES=2;
+	public static final int HALFCIRCLE=3;
 	
 	
 	protected static final double baseProb= GameConstants.PANEL_BASEPROB;
 	
 	public Window ()
 	{
-		
+		//si se llama al constructor por defecto, la ventana sera ralphwindow
+		type=Window.RALPHWINDOW;
 	}
-	public Window (int panelsSize, Vector2D pos, double dif)
+	public Window (int panelsSize, Vector2D pos, double dif,int type)
 	{
 		panels= new Panel[panelsSize];
 		Random r=new Random();
@@ -37,6 +43,7 @@ public abstract class Window
 			
 		}
 		this.pos= pos;
+		this.type=type;
 	}
 	public Vector2D getPos() {
 		return pos;
@@ -129,8 +136,20 @@ public abstract class Window
 		
 	
 	
+	public int getType() {
+		return type;
+	}
 	
-	
+	public int getNotHealthyPannelsAmmount() {
+		int ret=0;
+		for (int i = 0; i < panels.length; i++) {
+			if (panels[i].getState()!=PanelState.HEALTHY) {
+				ret++;
+			}
+		}
+		return ret;
+	}
+	public abstract int getObstacles();
 	
 	
 	
