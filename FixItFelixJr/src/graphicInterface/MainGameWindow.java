@@ -39,6 +39,7 @@ public class MainGameWindow extends JFrame {
 	{
 		super("Fix It FelixJr");
 		//
+		inicializationArre();
 		stats[0]++;
 		this.setSize(GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT);
 		this.add(menu);
@@ -82,7 +83,7 @@ public class MainGameWindow extends JFrame {
 		instr.setVisible(false);
 		menu.setVisible(false);
 		hScores.setVisible(false);
-		stat.setVisible(false);
+		//stat.setVisible(false);
 		stats[1]++;
 		gameW.setVisible(true);
 		
@@ -97,7 +98,7 @@ public class MainGameWindow extends JFrame {
 		hScores.setVisible(false);
 		gameW.setVisible(false);
 		config.setVisible(false);
-		stat.setVisible(false);
+		//stat.setVisible(false);
 		instr.setVisible(true);
 	}
 	
@@ -169,6 +170,14 @@ public class MainGameWindow extends JFrame {
 			
 	}
 
+	private void inicializationArre()
+	{
+		int i;
+		for(i=0;i<stats.length;i++)
+		{
+			stats[i]=0;
+		}
+	}
 	public int[] getStats() {
 		return stats;
 	}

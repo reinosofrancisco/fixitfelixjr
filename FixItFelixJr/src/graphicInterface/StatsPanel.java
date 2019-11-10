@@ -39,7 +39,7 @@ public class StatsPanel extends JPanel
 	private void readFile() {
 		try
 		{
-			f=new FileInputStream("/game/Archivos/Stats.txt");
+			f=new FileInputStream("C:\\Users\\jeron\\Documents\\GitHub\\fixitfelixjr\\FixItFelixJr\\src\\game\\Archivos\\Stats.txt");
 			br= new BufferedReader(new InputStreamReader(f));
 		}
 		catch(FileNotFoundException e)
