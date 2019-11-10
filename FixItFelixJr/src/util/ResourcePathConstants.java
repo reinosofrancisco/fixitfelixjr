@@ -204,6 +204,38 @@ public class ResourcePathConstants {
 	public static final String V_ENTR4_S = V_ENTR_S + 4;
 	
 	
+	public static final String V_SEMI_S = "V_SEMI";
+	
+	public static final String V_SEMI0="data/game/semicirculares/semicircular0.png";
+	public static final String V_SEMI0_S = V_SEMI_S + 0;
+	
+	public static final String V_SEMI1="data/game/semicirculares/semicircular1.png";
+	public static final String V_SEMI1_S = V_SEMI_S + 1;
+	
+	public static final String V_SEMI2="data/game/semicirculares/semicircular2.png";
+	public static final String V_SEMI2_S = V_SEMI_S + 2;
+	
+	public static final String V_SEMI3="data/game/semicirculares/semicircular3.png";
+	public static final String V_SEMI3_S = V_SEMI_S + 3;
+	
+	public static final String V_SEMI4="data/game/semicirculares/semicircular4.png";
+	public static final String V_SEMI4_S = V_SEMI_S + 4;
+	
+	public static final String V_SEMI5="data/game/semicirculares/semicircular5.png";
+	public static final String V_SEMI5_S = V_SEMI_S + 5;
+
+	public static final String V_SEMI6="data/game/semicirculares/semicircular6.png";
+	public static final String V_SEMI6_S = V_SEMI_S + 6;
+	
+	public static final String V_SEMI7="data/game/semicirculares/semicircular7.png";
+	public static final String V_SEMI7_S = V_SEMI_S + 7;
+	
+	public static final String V_SEMI8="data/game/semicirculares/semicircular8.png";
+	public static final String V_SEMI8_S = V_SEMI_S + 8;
+	
+	
+	
+	
 	
 	public static final String V_PAN_S = "V_PAN";
 	
@@ -308,7 +340,14 @@ public class ResourcePathConstants {
 	public static final String BUL_GENERIC = "data/game/rocas/bullet.png";
 	public static final String BUL_GENERIC_S = "BUL_GENERIC";
 	
-
+	public static final String BIRD_LEFT = "data/game/pajaro/movingLeft1.png";
+	public static final String BIRD_LEFT_S = "BIRD_LEFT";
+	
+	
+	public static final String BIRD_RIGHT = "data/game/pajaro/movingRight1.png";
+	public static final String BIRD_RIGHT_S = "BIRD_RIGHT";
+	
+	
 	
 	/*
 	public static final String NAME = "data/";

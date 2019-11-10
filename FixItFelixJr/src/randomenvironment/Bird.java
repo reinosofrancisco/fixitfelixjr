@@ -53,14 +53,11 @@ public class Bird extends Bullet {
 		
 	}
 
-//	/**If OOB, i flip direction  */
-//	public void behaviourOOB(LinkedList<Bullet> deleteBullets) {
-//		if (this.detectOutOfBounds()) {
-//			if (this.direction == Direction.RIGHT) {
-//				this.direction = Direction.LEFT;
-//			}else this.direction = Direction.RIGHT;
-//		}
-//}
 	
-
+	//PREGUNTAR DESPUES
+	@Override
+	public int getType() {
+		// TODO Auto-generated method stub
+		return Bullet.BIRD;
+	}
 }

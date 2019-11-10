@@ -56,6 +56,15 @@ public class ImageHashLoader {
 		aux.put(ResourcePathConstants.V_ENTR2_S,c.getResource(ResourcePathConstants.V_ENTR2));
 		aux.put(ResourcePathConstants.V_ENTR3_S,c.getResource(ResourcePathConstants.V_ENTR3));
 		aux.put(ResourcePathConstants.V_ENTR4_S,c.getResource(ResourcePathConstants.V_ENTR4));
+		aux.put(ResourcePathConstants.V_SEMI0_S,c.getResource(ResourcePathConstants.V_SEMI0));
+		aux.put(ResourcePathConstants.V_SEMI1_S,c.getResource(ResourcePathConstants.V_SEMI1));
+		aux.put(ResourcePathConstants.V_SEMI2_S,c.getResource(ResourcePathConstants.V_SEMI2));
+		aux.put(ResourcePathConstants.V_SEMI3_S,c.getResource(ResourcePathConstants.V_SEMI3));
+		aux.put(ResourcePathConstants.V_SEMI4_S,c.getResource(ResourcePathConstants.V_SEMI4));
+		aux.put(ResourcePathConstants.V_SEMI5_S,c.getResource(ResourcePathConstants.V_SEMI5));
+		aux.put(ResourcePathConstants.V_SEMI6_S,c.getResource(ResourcePathConstants.V_SEMI6));
+		aux.put(ResourcePathConstants.V_SEMI7_S,c.getResource(ResourcePathConstants.V_SEMI7));
+		aux.put(ResourcePathConstants.V_SEMI8_S,c.getResource(ResourcePathConstants.V_SEMI8));
 		aux.put(ResourcePathConstants.V_PAN0_S,c.getResource(ResourcePathConstants.V_PAN0));
 		aux.put(ResourcePathConstants.V_PAN1_S,c.getResource(ResourcePathConstants.V_PAN1));
 		aux.put(ResourcePathConstants.V_PAN2_S,c.getResource(ResourcePathConstants.V_PAN2));
@@ -67,10 +76,12 @@ public class ImageHashLoader {
 		aux.put(ResourcePathConstants.V_LEAVES0_S,c.getResource(ResourcePathConstants.V_LEAVES0));
 		aux.put(ResourcePathConstants.V_LEAVES1_S,c.getResource(ResourcePathConstants.V_LEAVES1));
 		aux.put(ResourcePathConstants.V_LEAVES2_S,c.getResource(ResourcePathConstants.V_LEAVES2));
-		aux.put(ResourcePathConstants.V_SEMICIRCULAR_UP_HEALTHY_S,c.getResource(ResourcePathConstants.V_SEMICIRCULAR_UP_HEALTHY));
 		aux.put(ResourcePathConstants.V_CONPSANA_S,c.getResource(ResourcePathConstants.V_CONPSANA));
 		aux.put(ResourcePathConstants.V_CONPCERRADA_S,c.getResource(ResourcePathConstants.V_CONPCERRADA));
 		aux.put(ResourcePathConstants.BUL_GENERIC_S,c.getResource(ResourcePathConstants.BUL_GENERIC));
+		aux.put(ResourcePathConstants.BIRD_LEFT_S,c.getResource(ResourcePathConstants.BIRD_LEFT));
+		aux.put(ResourcePathConstants.BIRD_RIGHT_S,c.getResource(ResourcePathConstants.BIRD_RIGHT));
+		
 		
 		
 		aux.put(ResourcePathConstants.R_QUIET_S,c.getResource(ResourcePathConstants.R_QUIET));

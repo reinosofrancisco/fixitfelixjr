@@ -6,6 +6,7 @@ import building.Building;
 import game.Difficulty;
 import randomenvironment.Brick;
 import randomenvironment.RandomEnvironment;
+import util.Dimentions;
 import util.Direction;
 import util.GameConstants;
 import util.Vector2D;
@@ -13,10 +14,10 @@ import windows.Window;
 
 public class Ralph 
 {
-	private Vector2D pos=new Vector2D(2,4);
-	private Direction dir= Direction.RIGHT;
-	private float velocity=1;
-	private int bricksAmount=GameConstants.BRICK_AMMOUNT;
+	private Vector2D pos;
+	private Direction dir;
+	private float velocity;
+	private int bricksAmount;
 	
 	private static Ralph INSTANCE;
 	
@@ -24,6 +25,10 @@ public class Ralph
 	
 	
 	private Ralph() {
+		pos=new Vector2D(1,4);
+		dir= Direction.RIGHT;
+		velocity=1;
+		bricksAmount=GameConstants.BRICK_AMMOUNT;
 	}
 	
 //	private Ralph(Vector2D pos, Direction dir, int bricksAmount)
@@ -85,20 +90,18 @@ public class Ralph
 	
 	//moves a random direction LEFT OR RIGHT
 	public void move() {
-		switch (new Random().nextInt(1)) {
-		case 0: {
-			this.pos.add(Direction.RIGHT.getUnitVector());
+		Vector2D v;
+		if (new Random().nextInt(2) == 0) {
+			v = this.pos.add(Direction.RIGHT.getUnitVector());
 			System.out.println("[RALPH] I moved to pos " + this.pos.toString());
-			break;
-		}
-		case 1:{
-			this.pos.add(Direction.LEFT.getUnitVector());
+		} 
+		else {
+			v = this.pos.add(Direction.LEFT.getUnitVector());
 			System.out.println("[RALPH] I moved to pos " + this.pos.toString());
-			break;
 		}
-		default:
-			break;
-
+		
+		if (Dimentions.isInsideMap(v)) {
+			this.pos = v;
 		}
 	}
 	
