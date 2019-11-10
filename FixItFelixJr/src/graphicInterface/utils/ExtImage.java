@@ -1,5 +1,6 @@
 package graphicInterface.utils;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
@@ -11,20 +12,39 @@ import util.Vector2D;
 public  class ExtImage implements Comparable<ExtImage>
 {
 	
+	
+	
+	
+	
+	
+
 	private Image img;
 	private Vector2D pos;
 	private int width;
 	private int height;
 	private int layer;
+	private Color color;
 	
 	
+
 	public ExtImage (Image img, Vector2D pos,int w, int h,int l)
 	{
 		this.img= img;
 		this.pos= new Vector2D (pos);
 		width=w;
-		height=w;
+		height=h;
 		layer=l;
+		color=new Color(255,255,255,0);
+		
+	}
+	public ExtImage (Image img, Vector2D pos,int w, int h,int l,Color c)
+	{
+		this.img= img;
+		this.pos= new Vector2D (pos);
+		width=w;
+		height=h;
+		layer=l;
+		color=new Color(c.getRed(),c.getGreen(),c.getBlue(),c.getAlpha());
 	}
 	
 	public ExtImage(ExtImage e) {
@@ -37,29 +57,32 @@ public  class ExtImage implements Comparable<ExtImage>
 		
 	}
 
-	public static ExtImage changeImgToExt(Image i, Vector2D pos)
-	{
-		return new ExtImage(i, pos,10,10,0);
-	}
-
 	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof ExtImage) {
+			if(((ExtImage) obj).getLayer()==layer) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
+	@Override
+	//Cambiado para que si es igual, lo tome como "mayor"
 	public int compareTo(ExtImage i) {
 		if(this.layer < i.layer)
 		{
 			return -1;
 		}
-		else 
+		else
 		{
-			if(this.layer > i.layer)
-			{
-				return 1;
-			}
-			else return 0;
+			return 1;
 		}
 		
 	}
 	public Image getImg() {
-		return img.getScaledInstance(this.width, -1, Image.SCALE_DEFAULT);
+		return img.getScaledInstance(this.width, this.height, Image.SCALE_FAST);
 	}
 
 	public void setImg(Image img) {
@@ -93,4 +116,11 @@ public  class ExtImage implements Comparable<ExtImage>
 		return height;
 	}
 	
+	public Color getColor() {
+		return color;
+	}
+	
+	public void setColor(Color color) {
+		this.color = color;
+	}
 }

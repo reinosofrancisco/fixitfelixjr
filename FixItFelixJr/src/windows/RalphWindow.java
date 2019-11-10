@@ -13,6 +13,11 @@ public class RalphWindow extends Window {
 	public boolean canIGenerateNicelander() {
 		return false;
 	}
+
+	@Override
+	public int getObstacles() {
+		return 0;
+	}
 	
 	
 	

@@ -13,7 +13,7 @@ class WithLeaves extends Window
 	
 	WithLeaves(Vector2D pos,double dif)
 	{
-		super(0,pos,dif);
+		super(0,pos,dif,Window.WITHLEAVES);
 		this.generateObstacles(dif);
 	}
 	
@@ -145,6 +145,21 @@ class WithLeaves extends Window
 	 public int repair() {
 		 return 0;
 	 }
+
+	@Override
+	public int getObstacles() {
+		if (isClosed) {
+			return 0;
+		}
+		else {
+			if(state==ObsWindowLeaves.LEFT) {
+				return 1;
+			}
+			else {
+				return 2;
+			}
+		}
+	}
 }
 
 

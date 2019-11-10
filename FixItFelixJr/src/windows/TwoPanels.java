@@ -12,7 +12,7 @@ class TwoPanels extends Window
 	//private int panelsAmount= 2;
 	public TwoPanels(Vector2D pos,double mult)
 	{
-		super(GameConstants.PANEL_TWO_AMMOUNT, pos,mult);
+		super(GameConstants.PANEL_TWO_AMMOUNT, pos,mult,Window.TWOPANELS);
 		this.generateObstacles(mult);
 	}
 	
@@ -144,5 +144,25 @@ class TwoPanels extends Window
 	 
 	 
 	 }
+
+	@Override
+	public int getObstacles() {
+		if(obstacles==null) {
+			return 0;
+		}
+		else {
+			if(!canIMove(Direction.DOWN)) {
+				if(!canIMove(Direction.UP)) {
+					return 3;
+				}
+				else {
+					return 2;
+				}
+			}
+			else {
+				return 1;			
+			}
+		}
+	}
 	
 }

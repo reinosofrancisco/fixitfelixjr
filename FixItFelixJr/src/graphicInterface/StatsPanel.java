@@ -28,12 +28,12 @@ public class StatsPanel extends JPanel
 	private JButton back= new JButton("<<");
 	private StatsPanel() throws IOException
 	{
-		readFile();
-		addToArea();
-		this.add(area1);
-		back.addMouseListener(new MouseContrMenu());
-		this.add(back);
-		this.setVisible(false);
+//		readFile();
+//		addToArea();
+//		this.add(area1);
+//		back.addMouseListener(new MouseContrMenu());
+//		this.add(back);
+//		this.setVisible(false);
 	}
 
 	private void readFile() {

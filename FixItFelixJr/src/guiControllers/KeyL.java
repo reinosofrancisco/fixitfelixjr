@@ -13,7 +13,6 @@ public class KeyL extends KeyAdapter {
 		switch (e.getKeyCode()) {
 		case (KeyEvent.VK_SPACE): {
 			System.out.println("ESPACIO");
-			GraphicFelix.getInstance().changeImgFix();
 			Core.getInstance().fix();
 		}
 			break;

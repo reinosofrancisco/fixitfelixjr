@@ -53,9 +53,9 @@ public class WindowsGenerator
 			}
 			if(Building.getInstance().isFirstSection())
 			{
-				Vector2D pos= new Vector2D(Dimentions.RIGHT_LIMITS/2,1);
+				Vector2D pos= new Vector2D(Dimentions.RIGHT_LIMITS/2,0);
 				wind[pos.getPosx()][pos.getPosy()]= new HalfCircle(4, pos,d.getDifficulty());
-				Vector2D p= new Vector2D(Dimentions.RIGHT_LIMITS/2,2);
+				Vector2D p= new Vector2D(Dimentions.RIGHT_LIMITS/2,1);
 				wind[p.getPosx()][p.getPosy()]= new HalfCircle(8, p,d.getDifficulty());
 			}
 			return wind;

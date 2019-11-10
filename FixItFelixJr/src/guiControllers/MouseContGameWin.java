@@ -26,7 +26,7 @@ public class MouseContGameWin extends MouseAdapter
 				// TODO Auto-generated method stub
 				Core c= Core.getInstance();
 				MainGameWindow graphics = MainGameWindow.getInstance();
-//				c.update();
+				c.update();
 				graphics.update();
 				if(!c.isPlaying()){
 					if(c.isNewHighscore()) {
