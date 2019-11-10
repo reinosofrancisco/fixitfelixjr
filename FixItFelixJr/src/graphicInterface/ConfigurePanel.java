@@ -13,13 +13,11 @@ import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 import guiControllers.MouseContS;
 import guiControllers.MouseContrMenu;
 import util.GameConstants;
 
-public class ConfigurePanel extends JPanel {
+public class ConfigurePanel extends GenericWindowPanel {
 	
 	
 	/**
@@ -70,7 +68,7 @@ public class ConfigurePanel extends JPanel {
 	
 	public static ConfigurePanel getInstance()
 	{
-		if(instance== null)
+		if(instance == null)
 		{
 			instance= new ConfigurePanel();
 		}
@@ -108,12 +106,15 @@ public class ConfigurePanel extends JPanel {
 		}
 	}
 	
-	
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	@Override
-	protected void paintComponent(Graphics g) {
+	public void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
-		super.paintComponent(g);
 		draw(g);
 	}
 	public void draw(Graphics g) {
@@ -129,5 +130,8 @@ public class ConfigurePanel extends JPanel {
 		m.setVisible(true);
 		
 	}
+
+	
+	
 }
 
