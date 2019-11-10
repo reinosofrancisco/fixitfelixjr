@@ -13,6 +13,7 @@ import entities.Felix;
 import entities.Ralph;
 import randomenvironment.Bullet;
 import randomenvironment.RandomEnvironment;
+import util.Direction;
 import util.GameConstants;
 import util.ResourcePathConstants;
 import util.Vector2D;
@@ -57,7 +58,18 @@ public class GraphicsGame {
 		List<Bullet> l = RandomEnvironment.getInstance().getBullets();
 		for (Bullet bullet : l) {
 			Vector2D v = bullet.getVector2D();
-			imgAct.add(new ExtImage(images.get(ResourcePathConstants.BUL_GENERIC_S),new Vector2D(phaseXToPixels(v.getPosx()-1),phaseYToPixels(v.getPosy()-1)),100,100,BIRDS_LAYER));
+			if(bullet.getType()==Bullet.BIRD) {
+				if(bullet.getDirection()==Direction.LEFT) {
+					imgAct.add(new ExtImage(images.get(ResourcePathConstants.BIRD_LEFT_S),new Vector2D(phaseXToPixels(v.getPosx()-1),phaseYToPixels(v.getPosy()-1)),50,50,BIRDS_LAYER));
+				}
+				else {
+					imgAct.add(new ExtImage(images.get(ResourcePathConstants.BIRD_RIGHT_S),new Vector2D(phaseXToPixels(v.getPosx()-1),phaseYToPixels(v.getPosy()-1)),50,50,BIRDS_LAYER));
+				}
+			}
+			else if(bullet.getType()==Bullet.BRICK) {
+				imgAct.add(new ExtImage(images.get(ResourcePathConstants.BUL_GENERIC_S),new Vector2D(phaseXToPixels(v.getPosx()-1),phaseYToPixels(v.getPosy()-1)),50,50,BRICKS_LAYER));
+				
+			}
 			
 		}
 	}
@@ -85,7 +97,7 @@ public class GraphicsGame {
 						imgAct.add(new ExtImage(images.get(ResourcePathConstants.V_ENTR_S + w[i][j].getNotHealthyPannelsAmmount()),new Vector2D(posX,posY),100,150,WINDOWS_LAYER));
 					}
 					else {
-						imgAct.add(new ExtImage(images.get(ResourcePathConstants.V_SEMICIRCULAR_UP_HEALTHY_S),new Vector2D(posX,posY),100,150,WINDOWS_LAYER)); //TODO
+						imgAct.add(new ExtImage(images.get(ResourcePathConstants.V_SEMI_S + w[i][j].getNotHealthyPannelsAmmount()),new Vector2D(posX,posY),100,150,WINDOWS_LAYER)); //TODO
 					}
 
 					break;

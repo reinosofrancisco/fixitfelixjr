@@ -62,14 +62,12 @@ public class Brick extends Bullet {
 		}
 		System.out.println("[BRICK] After moving i am in position  " + getVector2D().toString());					
 	}
-	
-	
-//	public void behaviourOOB(LinkedList<Bullet> deleteBullets){
-//		if (this.detectOutOfBounds())
-//			deleteBullets.addFirst(this);
-//		
-//	}
-	
+
+	//PREGUNTAR DESPUES
+	@Override
+	public int getType() {
+		return Bullet.BRICK;
+	}
 	
 }
 
