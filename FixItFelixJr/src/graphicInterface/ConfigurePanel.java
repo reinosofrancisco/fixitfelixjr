@@ -1,13 +1,23 @@
 package graphicInterface;
 
 import java.awt.Choice;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Image;
+import java.io.IOException;
+import java.net.URL;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import guiControllers.MouseContS;
 import guiControllers.MouseContrMenu;
+import util.GameConstants;
 
 public class ConfigurePanel extends JPanel {
 	
@@ -21,16 +31,41 @@ public class ConfigurePanel extends JPanel {
 	private Choice dificulty= new Choice();
 	private JButton selected= new JButton("Seleccionar");
 	private JButton back= new JButton("<<");
+	private GridBagConstraints gbc= new GridBagConstraints();
 	private static ConfigurePanel instance;
+	private String imgP="\\data\\MenuImages\\configBackGround.jpg";
+	private Image i;
 	private ConfigurePanel()
 	{
-		this.add(selection);
+		loadImage();
+		this.setLayout(new GridBagLayout());
+		gbc.gridx= 1;
+		gbc.gridy= 2;
+		gbc.gridheight=2;
+		gbc.gridwidth=2;
+		gbc.fill= GridBagConstraints.BOTH;
+		selection.setForeground(Color.WHITE);
+		this.add(selection,gbc);
 		completChoice();
-		this.add(dificulty);
+		gbc.gridx= 1;
+		gbc.gridy= 4;
+		gbc.gridheight=2;
+		gbc.gridwidth=2;
+		gbc.fill= GridBagConstraints.BOTH;
+		this.add(dificulty,gbc);
 		back.addMouseListener(new MouseContrMenu());
-		this.add(back);
+		gbc.gridx=1;
+		gbc.gridy=0;
+		gbc.gridheight=1;
+		gbc.gridwidth=1;
+		this.add(back, gbc);
 		this.selected.addMouseListener(new MouseContS());
-		this.add(selected);
+		gbc.gridx= 1;
+		gbc.gridy= 6;
+		gbc.gridheight=2;
+		gbc.gridwidth=2;
+		gbc.fill= GridBagConstraints.BOTH;
+		this.add(selected, gbc);
 	}
 	
 	public static ConfigurePanel getInstance()
@@ -56,6 +91,43 @@ public class ConfigurePanel extends JPanel {
 	public Choice getDificulty()
 	{
 		return this.dificulty;
+	}
+	private void loadImage()
+	{
+		URL urlImg = getClass().getClassLoader().getResource(imgP);
+		if (urlImg == null) {
+			System.out.println("No se encuentra la imagen");
+		} else {
+			try {
+				this.i = ImageIO.read(urlImg);
+
+			} catch (IOException e) {
+				System.out.println("dem");
+				e.getStackTrace();
+			}
+		}
+	}
+	
+	
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		// TODO Auto-generated method stub
+		super.paintComponent(g);
+		draw(g);
+	}
+	public void draw(Graphics g) {
+		g.drawImage(i, 0, 0, GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT, null);
+	}
+
+	public static void main(String args[])
+	{
+		JFrame m= new JFrame();
+		ConfigurePanel p= ConfigurePanel.getInstance();
+		m.add(p);
+		m.setSize(1080, 720);
+		m.setVisible(true);
+		
 	}
 }
 
