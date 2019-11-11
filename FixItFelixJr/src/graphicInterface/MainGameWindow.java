@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import game.Core;
 import game.HighScores;
 import graphicInterface.utils.GraphicsGame;
 //import gamemain.GameStarter;
@@ -29,6 +30,7 @@ public class MainGameWindow extends JFrame {
 	private HighScoresPanel hScores= HighScoresPanel.getInstance();
 	private ConfigurePanel config= ConfigurePanel.getInstance();
 	private StatsPanel stat= StatsPanel.getInstance();
+	private InputScorePanel inputHs= InputScorePanel.getInstance();
 	/**
 	 * En la pos 0 del arreglo se va a guardar la cantidad de veces que se ejecuto la aplicacion
 	 * En la pos 1 la cantidad de veces que se clickeo el boton de jugar
@@ -50,6 +52,7 @@ public class MainGameWindow extends JFrame {
 		this.add(hScores);
 		this.add(config);
 		this.add(stat);
+		this.add(inputHs);
 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		this.setResizable(false);
 		this.menu.setVisible(true);
@@ -87,6 +90,7 @@ public class MainGameWindow extends JFrame {
 		config.setVisible(false);
 		stat.setVisible(false);
 		instr.setVisible(false);
+		inputHs.setVisible(false);
 	}
 	
 	/**
@@ -162,6 +166,11 @@ public class MainGameWindow extends JFrame {
 		
 	}
 
+	public void changeInputScore()
+	{
+		deactivateAll();
+		inputHs.setVisible(true);
+	}
 	public void update() {
 		if (gameW.isEnabled()) {
 			GraphicsGame.getInstance().update(); //PREGUNTAR puedo meter esto en el paintcomponents del GamePanel????? (ver comentado

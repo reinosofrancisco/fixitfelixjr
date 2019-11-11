@@ -45,10 +45,8 @@ public class HighScores {
 			 * programa SIGUE.
 			 * 
 			 */
+			
 		}
-		
-		
-
 	}
 	
 	public static HighScores getInstance() {

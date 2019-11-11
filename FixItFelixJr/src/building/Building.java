@@ -22,18 +22,16 @@ public class Building
 	
 	
 	
-	private static Building INSTANCE;
+	private static Building instance;
 	
 
 	public static Building getInstance() {
-		if(INSTANCE==null) {
-			INSTANCE=new Building();
-			INSTANCE.windows = WindowsGenerator.generateWindows();
+		if(instance==null) {
+			instance=new Building();
+			instance.windows = WindowsGenerator.generateWindows();
 		}
-		return INSTANCE;
+		return instance;
 	}
-	
-	
 	
 //	/**
 //	 * Por defecto se inicializa edificion con dificultad 1

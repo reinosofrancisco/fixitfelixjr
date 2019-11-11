@@ -36,7 +36,7 @@ public class Core {
 	private List<GameEvent> events;
 	
 	
-	
+	//PREGUNTAR
 	
 	private Core() {
 		
@@ -58,8 +58,7 @@ public class Core {
 		game.niceland.update();
 		game.ralph.update();
 		game.felix.update();//TODO
-		game.re.update();
-		
+		game.re.update();	
 		nextAction=PlayerAction.NONE;
 		
 		//---------------		
@@ -75,12 +74,20 @@ public class Core {
 	
 	
 	public void birdHit() {
-		restartSection(); //TODO
+		restartSection();//TODO
+		if(felix.getLives() == 0)
+		{
+			gameOver(false);
+		}
 		System.out.println("Felix perdio progreso de seccion chocando con un pajaro, repite la seccion: "+ niceland.getSection());		
 	}
 
 	public void brickHit() {
 		restartLevel(); //TODO
+		if(felix.getLives() == 0)
+		{
+			gameOver(false);
+		}
 		System.out.println("Felix perdio una vida chocando con un ladrillo, ahora tiene: "+ felix.getLives());		
 	}
 	
@@ -120,6 +127,8 @@ public class Core {
 
 	public void restartGame() {
 		game = new Core();
+	
+		
 	}
 	
 
@@ -192,15 +201,6 @@ public class Core {
 		
 	}
 	
-
-	/**
-	 * Devuelve la informacion del estado de Felix
-	 */
-
-	public void FelixActualState()
-	{
-		
-	}
 
 public static void pause(int ms) {
 	try {

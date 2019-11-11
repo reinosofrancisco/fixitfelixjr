@@ -14,7 +14,7 @@ public class Difficulty {
 	
 	
 	private Difficulty() {
-		setDifficulty(5);
+		setDifficulty(0);
 	}
 	
 	

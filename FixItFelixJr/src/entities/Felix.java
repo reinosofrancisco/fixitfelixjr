@@ -29,7 +29,7 @@ public class Felix {
 	
 	
 	
-	private static Felix INSTANCE;
+	private static Felix instance;
 	
 	
 	
@@ -43,10 +43,10 @@ public class Felix {
 //	}
 	
 	public static Felix getInstnance() {
-		if (INSTANCE==null) {
-			INSTANCE=new Felix();
+		if (instance==null) {
+			instance=new Felix();
 		}
-		return INSTANCE;
+		return instance;
 		
 	}
 	

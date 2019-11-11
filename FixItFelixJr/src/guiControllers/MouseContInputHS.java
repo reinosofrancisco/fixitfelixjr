@@ -18,6 +18,7 @@ public class MouseContInputHS extends MouseAdapter
 		String name=InputScorePanel.getInstance().getArea1().getText();
 		HighScores.getInstance().add(name, Core.getInstance().getPoints());
 		MainGameWindow.getInstance().getStats()[2]++;
+		MainGameWindow.getInstance().changeRank();
 	}
 	
 }

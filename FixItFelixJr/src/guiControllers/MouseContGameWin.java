@@ -29,13 +29,14 @@ public class MouseContGameWin extends MouseAdapter
 				graphics.update();
 				if(!c.isPlaying()){
 					if(c.isNewHighscore()) {
-						//WindowController.getInstance().changeInputHighscore()	
+						MainGameWindow.getInstance().changeInputScore();
 						//hubo un highscore: pedir nombre y vainas. Luego guardarlo
 					}
 					else {
 						//me voy al menu
-//						WindowController.getInstance().changeMenu();
+						MainGameWindow.getInstance().changeMenu();
 					}
+					t.cancel();
 				}
 			}
 		};

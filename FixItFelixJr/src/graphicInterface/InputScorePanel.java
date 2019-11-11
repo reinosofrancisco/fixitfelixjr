@@ -1,12 +1,16 @@
 package graphicInterface;
 
+import java.awt.Graphics;
+
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import guiControllers.MouseContInputHS;
-public class InputScorePanel extends JPanel{
+import util.GameConstants;
+public class InputScorePanel extends GenericWindowPanel{
 	
 	
 	/**
@@ -21,6 +25,7 @@ public class InputScorePanel extends JPanel{
 	
 	private InputScorePanel()
 	{
+		super();
 		this.add(inputN);
 		this.add(area1);
 		send.addMouseListener(new MouseContInputHS());
@@ -42,6 +47,24 @@ public class InputScorePanel extends JPanel{
 
 	public void setArea1(JTextField area1) {
 		this.area1 = area1;
+	}
+
+	@Override
+	public void paintComponent(Graphics g) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void draw(Graphics g) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

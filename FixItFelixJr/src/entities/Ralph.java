@@ -19,7 +19,7 @@ public class Ralph
 	private float velocity;
 	private int bricksAmount;
 	
-	private static Ralph INSTANCE;
+	private static Ralph instance;
 	
 	
 	
@@ -41,13 +41,12 @@ public class Ralph
 	
 	
 	public static Ralph getInstance() {
-		if (INSTANCE==null) {
-			INSTANCE=new Ralph();
+		if (instance==null) {
+			instance=new Ralph();
 		}
-		return INSTANCE;
+		return instance;
 		
 	}
-	
 	
 	
 	
