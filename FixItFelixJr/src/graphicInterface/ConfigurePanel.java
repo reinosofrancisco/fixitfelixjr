@@ -64,6 +64,7 @@ public class ConfigurePanel extends GenericWindowPanel {
 		gbc.gridwidth=2;
 		gbc.fill= GridBagConstraints.BOTH;
 		this.add(selected, gbc);
+		this.setSize(GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT);
 	}
 
 	public static ConfigurePanel getInstance()
@@ -113,8 +114,7 @@ public class ConfigurePanel extends GenericWindowPanel {
 	}
 
 	@Override
-	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
+	public void paintComponent(Graphics g) {
 		draw(g);
 	}
 	public void draw(Graphics g) {

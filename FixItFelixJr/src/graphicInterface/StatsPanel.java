@@ -41,7 +41,8 @@ public class StatsPanel extends GenericWindowPanel
 //		this.add(area1);
 		back.addMouseListener(new MouseContrMenu());
 		this.add(back);
-//		this.setVisible(false);
+		this.setSize(GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT);
+		this.setVisible(true);
 	}
 
 	private void readFile() {

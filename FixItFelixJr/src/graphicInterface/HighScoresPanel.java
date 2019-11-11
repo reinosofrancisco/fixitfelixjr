@@ -62,6 +62,7 @@ public class HighScoresPanel  extends GenericWindowPanel{
 		gbc.gridheight=2;
 		gbc.fill= GridBagConstraints.BOTH;
 		this.add(table,gbc);
+		this.setSize(GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT);
 		this.setVisible(true);
 	}
 	
