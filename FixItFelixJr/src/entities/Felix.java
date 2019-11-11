@@ -98,6 +98,10 @@ public class Felix {
 			inmune--;
 		}
 		ham.update();
+		if(lives == 0)
+		{
+			Core.getInstance().gameOver(true);
+		}
 	}
 //	public void updateAll(Direction dir) {
 //		//move(dir);

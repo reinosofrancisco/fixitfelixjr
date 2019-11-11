@@ -63,7 +63,7 @@ public class Core {
 		nextAction=PlayerAction.NONE;
 		
 		//---------------		
-
+		
 		System.out.println("--\n");
 	}
 	
