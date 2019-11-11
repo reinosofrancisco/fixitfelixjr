@@ -12,6 +12,7 @@ import building.Building;
 import entities.Felix;
 import entities.Ralph;
 import randomenvironment.Bullet;
+import randomenvironment.Nicelander;
 import randomenvironment.RandomEnvironment;
 import util.Direction;
 import util.GameConstants;
@@ -21,12 +22,7 @@ import windows.Window;
 
 public class GraphicsGame {
 
-	private static Hashtable<String, Image> images; //PREGUNTAR? la hago estatica para poder accederla desde cualquier lugar
-	
-	//MOVER ABAJO SI APRUEBAN LA IDEA (despues de preguntar)
-	public static Hashtable<String, Image> getImages() {
-		return images;
-	} 
+	private Hashtable<String, Image> images;
 	
 	private SortedSet<ExtImage> imgAct;
 	private static GraphicsGame instance;
@@ -44,20 +40,36 @@ public class GraphicsGame {
 	private GraphicsGame()
 	{
 		imgAct= new TreeSet<ExtImage>();
-		images= (new ImageHashLoader()).getImages(); //instancio porque es mas facil cargar imagenes desde instancia
+		images= ImageHashLoader.getImages(); //PREGUNTAR, METODO ESTATICO CARGANDO IMAGENES ES LEGAL?
 		
 		
 		addBackground();
 		addWindows();
+		addNiceanders();
 		addRalph();
-		addEnemies();
 		addFelix();
+		addEnemies();
 		
 		
 		
 		
 		
 		
+		
+		
+		
+	}
+	private void addNiceanders() {
+		List<Nicelander> l = Building.getInstance().getNicelanders();
+		for (Nicelander nicelander : l) {
+			Vector2D v = nicelander.getPos();
+			if(nicelander.getScreenTime()>Nicelander.CAKETIME) {
+				imgAct.add(new ExtImage(images.get(ResourcePathConstants.NICELANDER_S),new Vector2D(phaseXToPixels(v.getPosx()-1),phaseYToPixels(v.getPosy()-1)),50,50,NICLANDER_LAYER));
+			}
+			else {
+				imgAct.add(new ExtImage(images.get(ResourcePathConstants.CAKE1_S),new Vector2D(phaseXToPixels(v.getPosx()-1),phaseYToPixels(v.getPosy()-1)),50,50,NICLANDER_LAYER));
+			}
+		}
 		
 	}
 	private void addEnemies() {
@@ -85,16 +97,15 @@ public class GraphicsGame {
 		
 	}
 	private void addBackground() {
-		imgAct.add(new ExtImage(images.get(ResourcePathConstants.BG_FIRST_S),new Vector2D(0,-50), GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT, 0));
-		imgAct.add(new ExtImage(images.get(ResourcePathConstants.BD_SECTION1_S),new Vector2D(240,0), 620, GameConstants.WINDOW_HEIGHT, 0));
+		imgAct.add(new ExtImage(images.get(ResourcePathConstants.BG_FIRST_S),new Vector2D(0,-50), GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT, BACKGROUND_LAYER));
+		imgAct.add(new ExtImage(images.get(ResourcePathConstants.BD_SECTION1_S),new Vector2D(240,0), 620, GameConstants.WINDOW_HEIGHT, BACKGROUND_LAYER));
 	}
 	private void addFelix() {
 		Vector2D v = Felix.getInstnance().getVector2D();
 		imgAct.add(new ExtImage(images.get(ResourcePathConstants.F_QUIET_S),new Vector2D(phaseXToPixels(v.getPosx()-1),phaseYToPixels(v.getPosy()-1)),100 , 100, FELIX_LAYER));
 	}
 	private void addWindows() {
-		Building b = Building.getInstance();
-		Window[][] w = b.getWindows();
+		Window[][] w = Building.getInstance().getWindows();
 		for (int i = 0,posX=phaseXToPixels(i); i < w.length; i++,posX=phaseXToPixels(i)) {
 			for (int j = 0,posY=phaseYToPixels(j); j < w[i].length; j++,posY=phaseYToPixels(j)) {
 				switch (w[i][j].getType()) {
@@ -223,6 +234,7 @@ public class GraphicsGame {
 		imgAct=new TreeSet<ExtImage>();
 		addBackground();
 		addWindows();
+		addNiceanders();
 		addRalph();
 		addEnemies();
 		addFelix();

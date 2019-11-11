@@ -1,21 +1,33 @@
 package graphicInterface;
 
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.table.DefaultTableModel;
 
+import graphicInterface.utils.ImageHashLoader;
 import guiControllers.MouseContrMenu;
 import util.GameConstants;
+import util.ResourcePathConstants;
 
 public class StatsPanel extends GenericWindowPanel
 {
@@ -23,53 +35,74 @@ public class StatsPanel extends GenericWindowPanel
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private FileInputStream f;
-	private BufferedReader br;
+	private static final int WIDTH = 500;
+	private static final int HEIGHT = 500;
+	
+	
 	private int[] statsR= new int[3];
 	private int[] statsA= new int[3];
 	private static StatsPanel instance;
 	private JTextArea area1= new JTextArea();
 	private String[] s= {"La cantidad de veces que se ejecuto la Aplicacion es: ", "La cantidad de veces que se clickeo el QUIERO JUGAR es: ", "La cantidad de ganadores a lo largo del timepo es: "};
-	private JButton back= new JButton("<<");
+	private JButton back= new JButton("Volver al menu");
+	private GridBagConstraints gbc=new GridBagConstraints();
 	private Image i;
-	private String imgP="data\\MenuImages\\stats.jpg";
-	private StatsPanel() throws IOException
+	
+	
+	
+	private StatsPanel()
 	{
-		loadImage();
+		super(WIDTH,HEIGHT);
+		i=ImageHashLoader.getImages().get(ResourcePathConstants.STATS_BG_S);
+		this.setLayout(new GridBagLayout());
+		
+		
+		
+		gbc.fill= GridBagConstraints.BOTH;
+		gbc.weightx=1.0;
+		
+		//BACK
+		gbc.weighty=0.1;
+		gbc.insets=new Insets(0,100,0,100);
+		addGB(this, back, 0, 0);
+		back.addMouseListener(new MouseContrMenu());
+		
+		
+		// TABLE
+		gbc.weighty = 1.0;
+		gbc.insets = new Insets(110, 50, 50, 50);
+		addGB(this, new JScrollPane(new JTextArea("EEEEEEEEEEEEEEEEEEEEEEEEEE\nEEEEEE\nEEEEEEE\nEEEEEEEEEEE\nEEEEEEEEEEEEEEE\nEEEEEEEE")), 0, 2);
+		
+		
 //		readFile();
 //		addToArea();
 //		this.add(area1);
-		back.addMouseListener(new MouseContrMenu());
-		this.add(back);
-//		this.setVisible(false);
 	}
+	
+	
+	
+	void addGB(Container cont, Component comp, int x, int y) {
+		gbc.gridx = x;
+		gbc.gridy = y;
+		cont.add(comp, gbc);
+	}	
 
 	private void readFile() {
+		ObjectInputStream input;
 		try
 		{
-			f=new FileInputStream("C:\\Users\\jeron\\Documents\\GitHub\\fixitfelixjr\\FixItFelixJr\\src\\game\\Archivos\\Stats.txt");
-			br= new BufferedReader(new InputStreamReader(f));
+			FileInputStream fi=new FileInputStream(new File("src/data/stats/stats.dat"));
+			input = new ObjectInputStream(fi);
 		}
 		catch(FileNotFoundException e)
 		{
 			System.out.println("Error al abrir el archivo");
-		}
-		String lnRead;
-		int i=0;
-		statsA= MainGameWindow.getInstance().getStats();
-		try {
-			while((lnRead= br.readLine()) != null)
-			{
-				statsR[i]= Integer.parseInt(lnRead);
-				i++;
-			}
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for(i=0;i<statsA.length;i++)
+		
+		for(int i=0;i<statsA.length;i++)
 		{
 			statsA[i]+= statsR[i];
 		}
@@ -89,34 +122,11 @@ public class StatsPanel extends GenericWindowPanel
 	{
 		if(instance == null)
 		{
-			try
-			{
-				instance= new StatsPanel();
-			}
-			catch(IOException e)
-			{
-				System.out.println("Error en la instancia");
-			}
-			
+			instance=new StatsPanel();
 		}
 		return instance;
 	}
 
-	private void loadImage()
-	{
-		URL urlImg = getClass().getClassLoader().getResource(imgP);
-		if (urlImg == null) {
-			System.out.println("No se encuentra la imagen");
-		} else {
-			try {
-				this.i = ImageIO.read(urlImg);
-
-			} catch (IOException e) {
-				System.out.println("dem");
-				e.getStackTrace();
-			}
-		}
-	}
 	@Override
 	public void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
@@ -126,7 +136,7 @@ public class StatsPanel extends GenericWindowPanel
 	@Override
 	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
-		g.drawImage(i, 0, 0, GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT, null);
+		g.drawImage(i, 0, 0, WIDTH, HEIGHT, null);
 	}
 
 	@Override

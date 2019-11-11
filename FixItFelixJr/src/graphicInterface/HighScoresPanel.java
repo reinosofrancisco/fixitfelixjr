@@ -1,20 +1,33 @@
 package graphicInterface;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.io.IOException;
 import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 import javax.swing.table.DefaultTableModel;
 import game.HighScores;
 import game.Scores;
+import graphicInterface.utils.ImageHashLoader;
+import guiControllers.MouseContS;
 import guiControllers.MouseContrMenu;
 import util.GameConstants;
+import util.ResourcePathConstants;
 
 public class HighScoresPanel  extends GenericWindowPanel{
 	
@@ -22,6 +35,8 @@ public class HighScoresPanel  extends GenericWindowPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static final int WIDTH = 600;
+	private static final int HEIGHT = 300;
 	private static HighScoresPanel instance;
 	
 	
@@ -29,23 +44,42 @@ public class HighScoresPanel  extends GenericWindowPanel{
 	private JTable table= new JTable();
 	private Object [] headers= {"Posicion","Nombre", "Puntos"};
 	private DefaultTableModel model;
-	private String imgP="\\data\\MenuImages\\topScores.png";
 	private Image i;
 	private GridBagConstraints gbc= new GridBagConstraints();
 	
 	
 	private HighScoresPanel()
 	{
-		loadImage();
+		super(WIDTH,HEIGHT);
+		i=ImageHashLoader.getImages().get(ResourcePathConstants.TOPSCORES_BG_S);
 		this.setLayout(new GridBagLayout());
-		gbc.gridx=1;
-		gbc.gridy=0;
+		
+		
+		
 		gbc.fill= GridBagConstraints.BOTH;
+		gbc.weightx=1.0;
+		
+		//BACK
+		gbc.weighty=0.1;
+		gbc.insets=new Insets(0,100,0,100);
+		addGB(this, back, 0, 0);
 		back.addMouseListener(new MouseContrMenu());
-		this.add(back,gbc);
-		model = new DefaultTableModel(completeTable(), headers);
-		this.table.setModel(model);
-		completeTable();
+		
+		
+		//TABLE
+		model = new MyTableModel(headers,0);
+		table.setModel(model);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+		table.setEditingColumn(0);
+		table.setEditingRow(0);
+		gbc.weighty=1.0;
+		gbc.insets=new Insets(110, 50, 50, 50);
+		addGB(this, new JScrollPane(table), 0, 2);
+		int i=0;
+		for (Scores s : HighScores.getInstance().getScoreList()) {
+			i++;
+			model.addRow(new String[] {""+i,s.getName(),""+s.getPoints()});
+		}
 		/*
 		for(Scores scores: HighScores.getInstance().getLovelyScores())
 		{
@@ -53,12 +87,15 @@ public class HighScoresPanel  extends GenericWindowPanel{
 			area1.setText("Score--> "+ scores);
 		}
 		*/
-		gbc.gridx=1;
-		gbc.gridy=3;
-		gbc.fill= GridBagConstraints.BOTH;
-		this.add(table,gbc);
-		this.setVisible(true);
 	}
+	
+	
+	
+	void addGB(Container cont, Component comp, int x, int y) {
+		gbc.gridx = x;
+		gbc.gridy = y;
+		cont.add(comp, gbc);
+	}	
 	
 	private Object[][] completeTable() {
 		if( HighScores.getInstance().getScoreList() != null)
@@ -77,22 +114,6 @@ public class HighScoresPanel  extends GenericWindowPanel{
 		}
 		return null;
 	}
-
-	private void loadImage()
-	{
-		URL urlImg = getClass().getClassLoader().getResource(imgP);
-		if (urlImg == null) {
-			System.out.println("No se encuentra la imagen");
-		} else {
-			try {
-				i = ImageIO.read(urlImg);
-
-			} catch (IOException e) {
-				System.out.println("dem");
-				e.getStackTrace();
-			}
-		}
-	}
 	public static HighScoresPanel getInstance() {
 		if (instance==null) {
 			instance=new HighScoresPanel();
@@ -110,22 +131,23 @@ public class HighScoresPanel  extends GenericWindowPanel{
 	@Override
 	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
-		g.drawImage(i, 0, 0, GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT, null);
+		g.drawImage(i, 0, 0, WIDTH, HEIGHT, null);
 	}
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
 		completeTable();
 	}
-	public static void main(String args[])
-	{
-		JFrame m= new JFrame();
-		HighScoresPanel p= HighScoresPanel.getInstance();
-		m.add(p);
-		m.setSize(1080, 720);
-		m.setVisible(true);
-		
-	}
+	
+//	public static void main(String args[])
+//	{
+//		JFrame m= new JFrame();
+//		HighScoresPanel p= HighScoresPanel.getInstance();
+//		m.add(p);
+//		m.setSize(1080, 720);
+//		p.setVisible(true);
+//		m.setVisible(true);
+//		
+//	}
 
 }

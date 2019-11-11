@@ -6,13 +6,19 @@ import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
+import game.HighScores;
 import graphicInterface.utils.GraphicsGame;
 //import gamemain.GameStarter;
 import util.GameConstants;
 
 public class MainGameWindow extends JFrame {
 	
+	
+	
+	
+	//IDEA: en vez de tener paneles, tener arreglo de paneles e inicializar todos
 	/**
 	 * 
 	 */
@@ -52,7 +58,6 @@ public class MainGameWindow extends JFrame {
 			
 			@Override
 			public void windowClosing(WindowEvent e) {
-				// TODO Auto-generated method stub
 				salir();
 			}
 			
@@ -81,19 +86,30 @@ public class MainGameWindow extends JFrame {
 		gameW.setVisible(false);
 		config.setVisible(false);
 		stat.setVisible(false);
-		instr.setVisible(false);		
+		instr.setVisible(false);
 	}
 	
+	/**
+	 * Secuencia de activacion de panel
+	 * @param p panel a activar
+	 */
+	private void activate(GenericWindowPanel p) {
+		deactivateAll();
+		setSize(p.getSize());
+		p.setFocusable(true);
+		p.requestFocus();
+		p.setVisible(true);
+	}
 	
 	/**
 	 * Cambia a la pantalla del juego--->ANDA
 	 */
 	public  void changeGameWin()
 	{
-		deactivateAll();
-		gameW.setVisible(true);		
 		stats[1]++;
-		
+		activate(gameW);
+		System.out.println(gameW.isFocusable());
+		System.out.println(gameW.hasFocus());
 	}
 	
 
@@ -101,9 +117,7 @@ public class MainGameWindow extends JFrame {
 	 * Cambia a la pantalla de las instrucciones--->ANDA
 	 */
 	public void changeInstr() {
-		
-		deactivateAll();
-		instr.setVisible(true);
+		activate(instr);
 	}
 	
  /**
@@ -112,25 +126,24 @@ public class MainGameWindow extends JFrame {
   */
 	public void changeMenu()
 	{
-		deactivateAll();
-		menu.setVisible(true);
+		activate(menu);
+		this.setSize(menu.getSize());
 	}
 	
 	public void changeRank()
 	{
-		deactivateAll();
-		hScores.setVisible(true);
+		activate(hScores);
 	}
 	
+
 	public void changeConfig()
 	{
-		deactivateAll();
-		config.setVisible(true);
+		activate(config);
+		System.out.println(config.isVisible());
 	}
 	public void changeStat()
 	{
-		deactivateAll();
-		stat.setVisible(true);
+		activate(stat);
 	}
 
 	
@@ -139,6 +152,7 @@ public class MainGameWindow extends JFrame {
 		int opt= JOptionPane.showConfirmDialog(new JButton(), "Si sale se perderan sus datos, desea salir??", "Salva", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 		if(opt == JOptionPane.YES_OPTION)
 		{
+			HighScores.getInstance().savePersistentScore(); //BORRAR DESPUES
 			System.exit(0);
 		}
 	}
@@ -149,7 +163,6 @@ public class MainGameWindow extends JFrame {
 	}
 
 	public void update() {
-		
 		if (gameW.isEnabled()) {
 			GraphicsGame.getInstance().update(); //PREGUNTAR puedo meter esto en el paintcomponents del GamePanel????? (ver comentado
 			repaint();
