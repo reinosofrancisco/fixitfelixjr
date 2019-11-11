@@ -25,10 +25,10 @@ public class ConfigurePanel extends GenericWindowPanel {
 	 *
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private final static int WIDTH=300; //i put this variables here for better code understanding
 	private final static int HEIGHT=300;
-	
+
 	private JLabel selection= new JLabel("Selecccione el nivel");
 	private Choice difficulty= new Choice();
 	private JButton selected= new JButton("Seleccionar");
@@ -41,7 +41,7 @@ public class ConfigurePanel extends GenericWindowPanel {
 		super(WIDTH,HEIGHT);
 		i=ImageHashLoader.getImages().get(ResourcePathConstants.CONFIG_BG_S);
 		this.setLayout(new GridBagLayout());
-		
+
 		gbc.fill=GridBagConstraints.BOTH;
 		gbc.weighty=0.25;
 		gbc.insets=new Insets(0,100,0,100);
@@ -56,7 +56,7 @@ public class ConfigurePanel extends GenericWindowPanel {
 		back.addMouseListener(new MouseContrMenu());
 		selected.addMouseListener(new MouseContS());
 		selection.setForeground(Color.WHITE);
-		
+
 	}
 
 	public static ConfigurePanel getInstance()
@@ -82,15 +82,15 @@ public class ConfigurePanel extends GenericWindowPanel {
 	public Choice getDificulty()
 	{
 		return this.difficulty;
-		
+
 	}
-	
+
 	void addGB(Container cont, Component comp, int x, int y) {
 		gbc.gridx = x;
 		gbc.gridy = y;
 		cont.add(comp, gbc);
-	}	
-	
+	}
+
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub

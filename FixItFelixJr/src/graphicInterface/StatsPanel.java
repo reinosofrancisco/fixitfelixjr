@@ -32,13 +32,13 @@ import util.ResourcePathConstants;
 public class StatsPanel extends GenericWindowPanel
 {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	private static final int WIDTH = 500;
 	private static final int HEIGHT = 500;
-	
-	
+
+
 	private int[] statsR= new int[3];
 	private int[] statsA= new int[3];
 	private static StatsPanel instance;
@@ -47,45 +47,45 @@ public class StatsPanel extends GenericWindowPanel
 	private JButton back= new JButton("Volver al menu");
 	private GridBagConstraints gbc=new GridBagConstraints();
 	private Image i;
-	
-	
-	
+
+
+
 	private StatsPanel()
 	{
 		super(WIDTH,HEIGHT);
 		i=ImageHashLoader.getImages().get(ResourcePathConstants.STATS_BG_S);
 		this.setLayout(new GridBagLayout());
-		
-		
-		
+
+
+
 		gbc.fill= GridBagConstraints.BOTH;
 		gbc.weightx=1.0;
-		
+
 		//BACK
 		gbc.weighty=0.1;
 		gbc.insets=new Insets(0,100,0,100);
 		addGB(this, back, 0, 0);
 		back.addMouseListener(new MouseContrMenu());
-		
-		
+
+
 		// TABLE
 		gbc.weighty = 1.0;
 		gbc.insets = new Insets(110, 50, 50, 50);
 		addGB(this, new JScrollPane(new JTextArea("EEEEEEEEEEEEEEEEEEEEEEEEEE\nEEEEEE\nEEEEEEE\nEEEEEEEEEEE\nEEEEEEEEEEEEEEE\nEEEEEEEE")), 0, 2);
-		
-		
+
+
 //		readFile();
 //		addToArea();
 //		this.add(area1);
 	}
-	
-	
-	
+
+
+
 	void addGB(Container cont, Component comp, int x, int y) {
 		gbc.gridx = x;
 		gbc.gridy = y;
 		cont.add(comp, gbc);
-	}	
+	}
 
 	private void readFile() {
 		ObjectInputStream input;
@@ -101,7 +101,7 @@ public class StatsPanel extends GenericWindowPanel
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		for(int i=0;i<statsA.length;i++)
 		{
 			statsA[i]+= statsR[i];
@@ -117,7 +117,7 @@ public class StatsPanel extends GenericWindowPanel
 			area1.setText(add);
 		}
 	}
-	
+
 	public static StatsPanel getInstance()
 	{
 		if(instance == null)
@@ -142,7 +142,7 @@ public class StatsPanel extends GenericWindowPanel
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 }
