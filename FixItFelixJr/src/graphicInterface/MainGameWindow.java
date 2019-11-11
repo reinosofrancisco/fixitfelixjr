@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import game.Core;
 import game.HighScores;
 import graphicInterface.utils.GraphicsGame;
+import guiControllers.KeyL;
 //import gamemain.GameStarter;
 import util.GameConstants;
 
@@ -100,8 +101,6 @@ public class MainGameWindow extends JFrame {
 	private void activate(GenericWindowPanel p) {
 		deactivateAll();
 		setSize(p.getSize());
-		p.setFocusable(true);
-		p.requestFocus();
 		p.setVisible(true);
 	}
 	
@@ -112,6 +111,7 @@ public class MainGameWindow extends JFrame {
 	{
 		stats[1]++;
 		activate(gameW);
+		this.addKeyListener(new KeyL());
 		System.out.println(gameW.isFocusable());
 		System.out.println(gameW.hasFocus());
 	}

@@ -93,9 +93,13 @@ public class HighScores {
 	}
 
 	public boolean isHighscore(int points) {
-		if(points>scoreList.first().getPoints()) {
-			return true;
+		if(!scoreList.isEmpty())
+		{
+			if(points > scoreList.first().getPoints()) {
+				return true;
+			}
 		}
+		else return true;
 		return false;
 	}
 

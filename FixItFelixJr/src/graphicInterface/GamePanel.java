@@ -25,7 +25,6 @@ public class GamePanel extends GenericWindowPanel {
 
 	private static final long serialVersionUID = 1L;
 	private static GamePanel instance;
-	private JButton back = new JButton("<<");
 	private GraphicsGame graphicsController;
 
 	private GamePanel() {

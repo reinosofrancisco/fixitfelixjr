@@ -68,19 +68,10 @@ public class HighScoresPanel  extends GenericWindowPanel{
 
 
 		//TABLE
-		model = new MyTableModel(headers,0);
-		table.setModel(model);
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-		table.setEditingColumn(0);
-		table.setEditingRow(0);
 		gbc.weighty=1.0;
 		gbc.insets=new Insets(110, 50, 50, 50);
 		addGB(this, new JScrollPane(table), 0, 2);
-		int i=0;
-		for (Scores s : HighScores.getInstance().getScoreList()) {
-			i++;
-			model.addRow(new String[] {""+i,s.getName(),""+s.getPoints()});
-		}
+		add();
 		/*
 		for(Scores scores: HighScores.getInstance().getLovelyScores())
 		{
@@ -92,29 +83,27 @@ public class HighScoresPanel  extends GenericWindowPanel{
 
 
 
+	private void add() {
+		model = new MyTableModel(headers,0);
+		table.setModel(model);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+		table.setEditingColumn(0);
+		table.setEditingRow(0);
+		int i=0;
+		for (Scores s : HighScores.getInstance().getScoreList()) {
+			i++;
+			model.addRow(new String[] {""+i,s.getName(),""+s.getPoints()});
+		}
+	}
+
+
+
 	void addGB(Container cont, Component comp, int x, int y) {
 		gbc.gridx = x;
 		gbc.gridy = y;
 		cont.add(comp, gbc);
 	}
 
-	private Object[][] completeTable() {
-		if( HighScores.getInstance().getScoreList() != null)
-		{
-			int f=0, c=0, p=1;
-			Object[][] datos= new Object[5][3];
-			for(Scores i: HighScores.getInstance().getScoreList())
-			{
-				datos[f][c]= p;
-				datos[f][c+1]= i.getName();
-				datos[f][c+2]= i.getPoints();
-				f++;
-				p++;
-			}
-			return datos;
-		}
-		return null;
-	}
 	public static HighScoresPanel getInstance() {
 		if (instance==null) {
 			instance=new HighScoresPanel();
@@ -137,7 +126,8 @@ public class HighScoresPanel  extends GenericWindowPanel{
 
 	@Override
 	public void update() {
-		completeTable();
+		add();
+		repaint();
 	}
 
 //	public static void main(String args[])
