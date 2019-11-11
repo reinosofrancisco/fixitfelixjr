@@ -11,10 +11,10 @@ public class Nicelander {
 	//private static final int COOLDOWN=0;
 	
 	
-	Vector2D pos;
-	int screenTime=GameConstants.NICELANDER_SCREENTIME;
-	int cakeTime=GameConstants.NICELANDER_CAKETIME;
-	static int nicelanderCooldown=0;
+	private Vector2D pos;
+	private int screenTime=GameConstants.NICELANDER_SCREENTIME;
+	public final static int CAKETIME=GameConstants.NICELANDER_CAKETIME; //la guardo acá para mejor legibilidad de codigo
+	private static int nicelanderCooldown=0;
 	
 
 	public Nicelander() {
@@ -22,6 +22,7 @@ public class Nicelander {
 	}
 	
 	public Nicelander(Vector2D pos) {
+		this();
 		this.pos = pos;
 	}
 	
@@ -38,25 +39,10 @@ public class Nicelander {
 		this.screenTime = screenTime;
 	}
 	
-	public int getCakeTime() {
-		return cakeTime;
-	}
-
-	public void setCakeTime(int cakeTime) {
-		this.cakeTime = cakeTime;
-	}
-
-//	/**Returns TRUE if Out of Bounds */
-//	public boolean detectOutOfBounds() {
-//		return !(((this.pos.getPosx()>=Dimentions.LEFT_LIMITS)&&(this.pos.getPosx()<=Dimentions.RIGHT_LIMITS)
-//				&&((this.pos.getPosy()>=Dimentions.DOWN_LIMITS)&&(this.pos.getPosy()<=Dimentions.UP_LIMITS))));
-//	}
-
-	private boolean isColliding() {
+	private boolean checkCollition() {
 		Felix f=Felix.getInstnance();
-		if(screenTime<cakeTime && pos.isColiding(f.getVector2D())) {
+		if(screenTime<CAKETIME && pos.isColiding(f.getVector2D())) {
 			f.giveInmunity(GameConstants.FELIX_INMUNE);
-			Building.getInstance().removeNicelander(this);
 			return true;
 		}
 		return false;
@@ -69,13 +55,13 @@ public class Nicelander {
 	}
 	
 	public boolean updateInstance() {
-		if (cakeTime>0) {
-			cakeTime--;
-		}
 		if (screenTime>0) {
-			screenTime--;			
+			screenTime--;
+			return checkCollition();
 		}
-		return isColliding();
+		else {
+			return true;
+		}
 	}
 
 	public static int getCooldown() {

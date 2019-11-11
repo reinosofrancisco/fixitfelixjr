@@ -1,6 +1,12 @@
 package game;
 
-public class Scores implements Comparable<Scores>{
+import java.io.Serializable;
+
+public class Scores implements Comparable<Scores>,Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private int points;
 	
@@ -22,19 +28,13 @@ public class Scores implements Comparable<Scores>{
 		return s;
 	}
 	
+	
+	//"mal implementado" para guardar scores iguales
 	public int compareTo(Scores s) {
-		
-		
-			if(((Scores) s).points<points) {
-				return 1;
-			}
-			else {
-				if(((Scores) s).points==points) {
-					return 0;
-				}
-				else {
-					return -1;
-				}
-			}
+		if (s.points < points) {
+			return 1;
+		} else {
+			return -1;
 		}
 	}
+}

@@ -70,9 +70,7 @@ public class GamePanel extends GenericWindowPanel {
 		//BORRAR DESPUES LO DE ARRIBA
 		
 		this.addKeyListener(new KeyL());
-		setVisible(false);
-		this.setSize(GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT);
-
+		
 	}
 
 	public static GamePanel getInstance() {

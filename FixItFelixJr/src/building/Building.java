@@ -3,6 +3,7 @@ package building;
 
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 import entities.Felix;
@@ -63,6 +64,9 @@ public class Building
 		this.section = section;
 	}
 	
+	public LinkedList<Nicelander> getNicelanders() {
+		return nicelanders;
+	}
 	/**
 	 * Se pregunta si estando en la posicion actual me puedo mover a la posicion que quiero
 	 * @param posAct representa la posicion actual
@@ -189,32 +193,20 @@ public class Building
 				nicelanders.add(new Nicelander(v));
 			}
 		}
+		List<Nicelander> rm = new LinkedList<Nicelander>();;
 		for (Nicelander nicelander : nicelanders) {
-			nicelander.updateInstance();
-		}
-	}
-
-
-
-	public void removeNicelander(Nicelander nicelander) {
-		nicelanders.remove(nicelander);
-	}
-	/**
-	 * Se fija si Felix esta en una ventana con torta
-	 * @return retorna true si esta efectivamente en una ventana con torta, false en caso contrario
-	 */
-	public boolean isFelixWitCake()
-	{
-		for(Nicelander i: nicelanders)
-		{
-			if(i.getPos().equals(Felix.getInstnance().getVector2D()))
-			{
-				return true;
+			if(nicelander.updateInstance()) {
+				rm.add(nicelander);
 			}
 		}
-		return false;
+		removeNicelander(rm);
 	}
-	
+
+
+
+	public void removeNicelander(List<Nicelander> rm) {
+		nicelanders.removeAll(rm);
+	}
 	
 }
 enum Sections

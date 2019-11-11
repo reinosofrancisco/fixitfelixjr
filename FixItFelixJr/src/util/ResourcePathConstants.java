@@ -7,6 +7,24 @@ public class ResourcePathConstants {
 	public static final String INSTRUCTIONS = "data/MenuImages/fixItFelix.jpg";
 	public static final String INSTRUCTIONS_S = "INSTRUCTIONS";
 	
+	public static final String MENU_CONFIG= "data/MenuImages/config.jpg";
+	public static final String MENU_CONFIG_S = "MENU_CONFIG";
+	
+	public static final String MENU_BACKGROUND = "data/MenuImages/background.jpg";
+	public static final String MENU_BACKGROUND_S = "MENU_BACKGROUND";
+	
+	public static final String MENU_ICONFIG = "data/MenuImages/config.jpg";
+	public static final String MENU_ICONFIG_S = "MENU_ICONFIG";
+	
+	public static final String CONFIG_BG = "data/MenuImages/configBackGround.jpg";
+	public static final String CONFIG_BG_S = "CONFIG_BG";
+	
+	public static final String TOPSCORES_BG = "data/MenuImages/topScores.png";
+	public static final String TOPSCORES_BG_S = "TOPSCORES_BG";
+	
+	public static final String STATS_BG = "data/MenuImages/stats.jpg";
+	public static final String STATS_BG_S = "STATS_BG";
+	
 	
 	public static final String FELIX_1 = "data/instructions/fixItFelix.jpg";
 	public static final String FELIX_1_S = "FELIX_1";
@@ -20,14 +38,6 @@ public class ResourcePathConstants {
 	public static final String WINDOW_RALPH = "data/MenuImages/fixItFelix.jpg";
 	public static final String WINDOW_RALPH_S = "WINDOW_RALPH";
 	
-	public static final String CONFIG= "data/MenuImages/config.jpg";
-	public static final String CONFIG_S = "CONFIG";
-	
-	public static final String MENU_BACKGROUND = "data/MenuImages/background.jpg";
-	public static final String MENU_BACKGROUND_S = "MENU_BACKGROUND";
-	
-	public static final String MENU_ICONFIG = "data/MenuImages/config.jpg";
-	public static final String MENU_ICONFIG_S = "MENU_ICONFIG";
 	
 	public static final String F_QUIET= "data/game/felix/quiet.png";
 	public static final String F_QUIET_S = "F_QUIET";
@@ -145,6 +155,10 @@ public class ResourcePathConstants {
 	
 	public static final String CAKE2= "data/game/pastel/cake2.png";
 	public static final String CAKE2_S = "CAKE2";
+	
+	public static final String NICELANDER= "data/game/nicelander/nicelander.png";
+	public static final String NICELANDER_S = "NICELANDER";
+	
 	
 	public static final String V_ENTRADAABIERTA1="data/game/semicirculares/entradaAbierta1.png";
 	public static final String V_ENTRADAABIERTA1_S = "V_ENTRADAABIERTA1";

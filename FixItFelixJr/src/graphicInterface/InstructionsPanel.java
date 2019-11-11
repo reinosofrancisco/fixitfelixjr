@@ -28,6 +28,7 @@ public class InstructionsPanel extends GenericWindowPanel {
 	private JButton back = new JButton("<<");
 
 	private InstructionsPanel() {
+		super();
 		back.setBounds(0, 0, 50, 50);
 		back.addMouseListener(new MouseContrMenu());
 		this.add(back, 0, 0);
@@ -42,8 +43,6 @@ public class InstructionsPanel extends GenericWindowPanel {
 				e.getStackTrace();
 			}
 		}
-		this.setSize(GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT);
-		setVisible(false);
 	}
 	
 	public static InstructionsPanel getInstance() {
@@ -71,7 +70,6 @@ public class InstructionsPanel extends GenericWindowPanel {
 	}
 
 	public void draw(Graphics g) {
-		g.setFont(new Font(Font.DIALOG, Font.BOLD, 30));
 		g.drawImage(img, 0, 0, GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT, null);
 	}
 

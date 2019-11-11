@@ -33,6 +33,7 @@ public class MenuPanel extends GenericWindowPanel {
 	private static final long serialVersionUID = 1L;
 	private static MenuPanel instance;
 	
+	
 	private JButton play = new JButton("¡A JUGAR!");
 	private JButton instructions = new JButton("¿COMO JUGAR?");
 	private JButton ranking = new JButton("TOP 5");
