@@ -20,6 +20,9 @@ public class HighScores {
 	private static HighScores INSTANCE;
 	
 	
+	/**
+	 * Sytem properties guardar el archivo.dat en userHome, RT para stats
+	 */
 	
 	
 	@SuppressWarnings("unchecked")
