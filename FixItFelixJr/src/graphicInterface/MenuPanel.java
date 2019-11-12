@@ -137,9 +137,6 @@ public class MenuPanel extends GenericWindowPanel {
 				e.getStackTrace();
 			}
 		}
-
-		this.setSize(GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT);
-		setVisible(true);
 	}
 	
 	

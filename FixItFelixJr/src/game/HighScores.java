@@ -52,10 +52,12 @@ public class HighScores {
 		}
 	}
 	
+	static {
+		INSTANCE=new HighScores();
+	}
+	
+	
 	public static HighScores getInstance() {
-		if (INSTANCE == null) {
-			INSTANCE = new HighScores();
-		}
 		return INSTANCE;
 	}
 
@@ -98,7 +100,7 @@ public class HighScores {
 	public boolean isHighscore(int points) {
 		if(!scoreList.isEmpty())
 		{
-			if(points > scoreList.first().getPoints()) {
+			if(points > scoreList.first().getPoints() || scoreList.size()<5) {
 				return true;
 			}
 		}

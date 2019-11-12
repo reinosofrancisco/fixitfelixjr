@@ -1,4 +1,4 @@
-package graphicInterface;
+	package graphicInterface;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import game.Core;
 import game.HighScores;
+import game.Stats;
 import graphicInterface.utils.GraphicsGame;
 import guiControllers.KeyL;
 //import gamemain.GameStarter;
@@ -32,20 +33,20 @@ public class MainGameWindow extends JFrame {
 	private ConfigurePanel config= ConfigurePanel.getInstance();
 	private StatsPanel stat= StatsPanel.getInstance();
 	private InputScorePanel inputHs= InputScorePanel.getInstance();
+	private KeyL keyListener=new KeyL();
+	
+	
 	/**
 	 * En la pos 0 del arreglo se va a guardar la cantidad de veces que se ejecuto la aplicacion
 	 * En la pos 1 la cantidad de veces que se clickeo el boton de jugar
 	 * Y en la pos 2 la cantidad de veces que se agrego un HS
 	 */
-	private int[] stats= new int[3];
 	private static MainGameWindow instance;
 	
 	private MainGameWindow()
 	{
 		super("Fix It FelixJr");
 		//
-		inicializationArre();
-		stats[0]++;
 		this.setSize(GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT);
 		this.add(menu);
 		this.add(instr);
@@ -54,9 +55,10 @@ public class MainGameWindow extends JFrame {
 		this.add(config);
 		this.add(stat);
 		this.add(inputHs);
+		this.addKeyListener(keyListener);
 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		this.setResizable(false);
-		this.menu.setVisible(true);
+		changeMenu();
 		this.addWindowListener(new WindowAdapter() {
 			
 			
@@ -66,9 +68,6 @@ public class MainGameWindow extends JFrame {
 			}
 			
 		});
-		
-		
-		
 		
 	}
 	
@@ -92,6 +91,7 @@ public class MainGameWindow extends JFrame {
 		stat.setVisible(false);
 		instr.setVisible(false);
 		inputHs.setVisible(false);
+		this.setFocusable(false);
 	}
 	
 	/**
@@ -109,11 +109,10 @@ public class MainGameWindow extends JFrame {
 	 */
 	public  void changeGameWin()
 	{
-		stats[1]++;
+		Stats.incrementTimesPressedPlay();
 		activate(gameW);
-		this.addKeyListener(new KeyL());
-		System.out.println(gameW.isFocusable());
-		System.out.println(gameW.hasFocus());
+		this.setFocusable(true);
+		requestFocus();
 	}
 	
 
@@ -131,7 +130,6 @@ public class MainGameWindow extends JFrame {
 	public void changeMenu()
 	{
 		activate(menu);
-		this.setSize(menu.getSize());
 	}
 	
 	public void changeRank()
@@ -143,13 +141,11 @@ public class MainGameWindow extends JFrame {
 	public void changeConfig()
 	{
 		activate(config);
-		System.out.println(config.isVisible());
 	}
 	public void changeStat()
 	{
 		activate(stat);
 	}
-
 	
 	private void salir()
 	{
@@ -157,6 +153,7 @@ public class MainGameWindow extends JFrame {
 		if(opt == JOptionPane.YES_OPTION)
 		{
 			HighScores.getInstance().savePersistentScore(); //BORRAR DESPUES
+			Stats.savePersistentScore();
 			System.exit(0);
 		}
 	}
@@ -168,8 +165,7 @@ public class MainGameWindow extends JFrame {
 
 	public void changeInputScore()
 	{
-		deactivateAll();
-		inputHs.setVisible(true);
+		activate(inputHs);
 	}
 	public void update() {
 		if (gameW.isEnabled()) {
@@ -178,21 +174,4 @@ public class MainGameWindow extends JFrame {
 		}
 		
 	}
-
-	private void inicializationArre()
-	{
-		int i;
-		for(i=0;i<stats.length;i++)
-		{
-			stats[i]=0;
-		}
-	}
-	public int[] getStats() {
-		return stats;
-	}
-
-	public void setStats(int[] stats) {
-		this.stats = stats;
-	}
-	
 }
