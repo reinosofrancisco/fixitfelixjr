@@ -2,6 +2,7 @@ package windows;
 
 import java.util.Random;
 
+import exeptions.OutOfBoundsExeption;
 import util.Direction;
 import util.GameConstants;
 import util.Vector2D;
@@ -79,9 +80,10 @@ public abstract class Window
 	/**
 	 * Chequea si me puedo mover
 	 * @param p indica en la direccion en la que me quiero mover
+	 * @return 
 	 * @return retorna true si efectivamente me puedo mover
 	 */
-	public abstract boolean canIMove(Direction p);
+	public abstract void canIMove(Direction p) throws OutOfBoundsExeption;
 	/**
 	 * chequea si en la ventana actual puede aparecer un nicelander
 	 * @return retorna true si puede aparecer uno

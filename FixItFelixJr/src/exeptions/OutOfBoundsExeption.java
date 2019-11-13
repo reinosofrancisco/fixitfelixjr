@@ -1,6 +1,6 @@
 package exeptions;
 
-public class OutOfBounds extends Exception{
+public class OutOfBoundsExeption extends Exception{
 
 	/**
 	 * 

@@ -1,5 +1,6 @@
 package windows;
 
+import exeptions.OutOfBoundsExeption;
 import util.Direction;
 
 public abstract class  Obstacle 
@@ -14,13 +15,12 @@ public abstract class  Obstacle
 	 * @param d es la direccion en la que me quiero mover
 	 * @return retorna true si me puedo mover en la direccion indicada por el parametro
 	 */
-	public boolean canIMove(Direction d)
+	public void canIMove(Direction d) throws OutOfBoundsExeption
 	{
 		
 		if(dir.getUnitVector().equals(d.getUnitVector()))
 		{
-			return false;
+			throw new OutOfBoundsExeption();
 		}
-		else return true;
 	}
 }

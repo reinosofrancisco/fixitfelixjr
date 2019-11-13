@@ -1,8 +1,9 @@
 package entities;
 
 import building.Building;
+import exeptions.OutOfBoundsExeption;
 import game.Core;
-import randomenvironment.RandomEnvironment;
+
 import util.Dimentions;
 import util.Direction;
 import util.GameConstants;
@@ -65,13 +66,20 @@ public class Felix {
 		 Vector2D newPos= this.pos.add(d.getUnitVector());
 		 
 		 if(Dimentions.isInsideMap(newPos)) {
-			 if(w[pos.getPosx()-1][pos.getPosy()-1].canIMove(d) && w[newPos.getPosx()-1][newPos.getPosy()-1].canIMove((d.getUnitVector().product(-1)).getDirection())) {
-				 pos=newPos;
+			 try {
+				 w[pos.getPosx()-1][pos.getPosy()-1].canIMove(d);
+				w[newPos.getPosx()-1][newPos.getPosy()-1].canIMove((d.getUnitVector().product(-1)).getDirection());
+				pos=newPos;
 				 
-				 System.out.println("\n Felix se mueve a: \t" + pos.toString());
-				 
-				 return true;
+				System.out.println("\n Felix se mueve a: \t" + pos.toString());
+					 
+				return true;
 			 }
+			 catch(OutOfBoundsExeption e)
+			 {
+				 System.out.println("Felix no se puede mover");
+			 }
+			 
 			
 		 }
 		 else System.out.println("Felix no se puede mover");

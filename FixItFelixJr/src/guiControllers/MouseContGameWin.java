@@ -6,8 +6,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import game.Core;
-import gamemain.GameStarter;
-import graphicInterface.GamePanel;
 import graphicInterface.MainGameWindow;
 
 public class MouseContGameWin extends MouseAdapter

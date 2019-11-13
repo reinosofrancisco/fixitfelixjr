@@ -32,9 +32,10 @@ public class Stats {
 	
 	private static void readFile() {
 		ObjectInputStream input;
+		String usrPath=System.getProperty("user.home");
 		try
 		{
-			FileInputStream fi=new FileInputStream(new File("src/data/stats/stats.dat"));
+			FileInputStream fi=new FileInputStream(new File(usrPath));
 			input = new ObjectInputStream(fi);
 			Stats.timesExecuted= (Integer) input.readObject();
 			Stats.timesPressedPlay= (Integer) input.readObject();

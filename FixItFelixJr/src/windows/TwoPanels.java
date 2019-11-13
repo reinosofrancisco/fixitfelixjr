@@ -2,6 +2,7 @@ package windows;
 
 import java.util.Random;
 
+import exeptions.OutOfBoundsExeption;
 import util.Direction;
 import util.GameConstants;
 import util.Vector2D;
@@ -16,41 +17,30 @@ class TwoPanels extends Window
 		this.generateObstacles(mult);
 	}
 	
-	public boolean canIMove(Direction d)
+	public void canIMove(Direction d) throws OutOfBoundsExeption
 	{
 		if ( this.obstacles == null)
 		{
-			return true;
+			
 		}
 		else
 		{
-			switch(this.obstacles.length)
+			switch(obstacles.length)
 			{
 				case(1): 
 					{
-						return obstacles[0].canIMove(d);
+						 obstacles[0].canIMove(d);
 					}
+				break;
 				case(2):
 				{
-					boolean one, two; // Save the answer of the obstacles if i can move
-					one= obstacles[0].canIMove(d);
-					two= obstacles[1].canIMove(d);
-					if(one == two)
-					{
-						return one;
-					}
-					else
-					{
-						if(one != two)
-						{
-							return one;
-						}
-						else return two;
-					}
+					
+					 obstacles[0].canIMove(d);
+					 obstacles[1].canIMove(d);
 				}
+				break;
 			}
 		}
-		return false;
 	}
 	 public	boolean canIGenerateNicelander() 
 	 {
@@ -150,18 +140,9 @@ class TwoPanels extends Window
 		if(obstacles==null) {
 			return 0;
 		}
-		else {
-			if(!canIMove(Direction.DOWN)) {
-				if(!canIMove(Direction.UP)) {
-					return 3;
-				}
-				else {
-					return 2;
-				}
-			}
-			else {
-				return 1;			
-			}
+		else 
+		{
+			return obstacles.length;
 		}
 	}
 	

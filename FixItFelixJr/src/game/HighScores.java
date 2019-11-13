@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+
 public class HighScores {
 
 	
@@ -28,9 +29,10 @@ public class HighScores {
 	@SuppressWarnings("unchecked")
 	private HighScores() {
 		ObjectInputStream input = null;
+		String usrPath=System.getProperty("user.home");
 		try {
 			// Asigno la Entrada, de donde voy a sacar los datos
-			FileInputStream fi=new FileInputStream(new File("src/data/highscores/highscores.dat"));
+			FileInputStream fi=new FileInputStream(new File(usrPath));
 			input = new ObjectInputStream(fi);
 			
 			// Saco el objeto que guarde anteriormente
