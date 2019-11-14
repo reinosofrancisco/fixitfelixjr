@@ -1,8 +1,6 @@
 package graphicInterface;
 
 import java.awt.Graphics;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import graphicInterface.utils.ExtImage;
 import graphicInterface.utils.GraphicsGame;
 
@@ -20,41 +18,6 @@ public class GamePanel extends GenericWindowPanel {
 		requestFocus();
 		GraphicsGame.getInstance();
 		
-		//borrar dsp
-		addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				System.out.println("Pressed mouse at X: [" + getMousePosition().x +"] [" + getMousePosition().y + "]");
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		//BORRAR DESPUES LO DE ARRIBA
-		
 	}
 
 	public static GamePanel getInstance() {
@@ -67,7 +30,6 @@ public class GamePanel extends GenericWindowPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponents(g);
-//		graphicsController.update(); PREGUNTAR si puedo hacerlo
 		draw(g);
 	}
 
