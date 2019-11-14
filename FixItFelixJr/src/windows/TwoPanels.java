@@ -34,7 +34,6 @@ class TwoPanels extends Window
 				break;
 				case(2):
 				{
-					
 					 obstacles[0].canIMove(d);
 					 obstacles[1].canIMove(d);
 				}
@@ -140,9 +139,14 @@ class TwoPanels extends Window
 		if(obstacles==null) {
 			return 0;
 		}
-		else 
+		else
 		{
-			return obstacles.length;
+			if(obstacles.length==2) {
+				return 3;
+			}
+			else {
+				return obstacles[0].dir==Direction.UP ? 1:2;
+			}
 		}
 	}
 	
