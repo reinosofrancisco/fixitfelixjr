@@ -1,6 +1,6 @@
 package exeptions;
 
-public class OutOfBoundsExeption extends Exception{
+public class CanIMoveExeption extends Exception{
 
 	/**
 	 * 

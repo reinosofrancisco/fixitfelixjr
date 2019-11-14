@@ -1,7 +1,7 @@
 package entities;
 
 import building.Building;
-import exeptions.OutOfBoundsExeption;
+import exeptions.CanIMoveExeption;
 import game.Core;
 
 import util.Dimentions;
@@ -75,7 +75,7 @@ public class Felix {
 					 
 				return true;
 			 }
-			 catch(OutOfBoundsExeption e)
+			 catch(CanIMoveExeption e)
 			 {
 				 System.out.println("Felix no se puede mover");
 			 }

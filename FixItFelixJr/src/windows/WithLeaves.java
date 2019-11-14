@@ -2,7 +2,7 @@ package windows;
 
 import java.util.Random;
 
-import exeptions.OutOfBoundsExeption;
+import exeptions.CanIMoveExeption;
 import util.Direction;
 import util.Vector2D;
 
@@ -33,7 +33,7 @@ class WithLeaves extends Window
 	 void setObsIzq_Der(ObsWindowLeaves state) {
 		this.state = state;
 	}
-	 public void  canIMove(Direction p) throws OutOfBoundsExeption
+	 public void  canIMove(Direction p) throws CanIMoveExeption
 	 {
 		 if(this.isClosed)
 		 {
@@ -47,7 +47,7 @@ class WithLeaves extends Window
 			 {
 				 if(der.getUnitVector() == p.getUnitVector())
 				 {
-					 throw new OutOfBoundsExeption();
+					 throw new CanIMoveExeption();
 				 }
 			 }
 			 else
@@ -56,7 +56,7 @@ class WithLeaves extends Window
 				 {
 					 if(izq.getUnitVector()== p.getUnitVector())
 					 {
-						 throw new OutOfBoundsExeption();
+						 throw new CanIMoveExeption();
 					 }
 				 }
 			 }

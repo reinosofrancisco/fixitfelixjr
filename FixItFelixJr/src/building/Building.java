@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Random;
 
 import entities.Felix;
+import exeptions.CanIMoveExeption;
+import game.Core;
+import game.Difficulty;
 import randomenvironment.Nicelander;
 import util.Direction;
 import util.Vector2D;
@@ -71,7 +74,7 @@ public class Building
 	 * @param posWanted representa la posicion a la que quiero ir
 	 * @return retorna true si me puedo mover en la direccion que quiero
 	 */
-	public boolean canIMove(Vector2D posAct, Direction posWanted)
+	public void canIMove(Vector2D posAct, Direction posWanted) throws CanIMoveExeption
 	{
 		int i=0, j=0, f=0,c=0;
 		boolean found= false;
@@ -91,9 +94,8 @@ public class Building
 		}
 		if(found)
 		{
-			return windows[f][c].canIMove(posWanted);
+			windows[f][c].canIMove(posWanted);
 		}
-		return false;
 	}
 	/**
 	 * Busca una ventana donde se puede dejar una torta
@@ -184,6 +186,17 @@ public class Building
 	
 	
 	public void update() {
+		if(isFixed() && (!section.equals(Sections.THIRD)))
+		{
+			sectionUp();
+		}
+		else
+		{
+			if(section.equals(Sections.THIRD) && (Difficulty.getInstance().getLvl() == 10))
+			{
+				Core.getInstance().gameOver(true);
+			}
+		}
 		Nicelander.update();
 		if (Nicelander.getCooldown() == 0 && new Random().nextDouble() < .8) {
 			Vector2D v = findCakeWindow();
@@ -210,5 +223,6 @@ public class Building
 enum Sections
 {
 	FIRST, SECOND, THIRD;
+	
 }
 

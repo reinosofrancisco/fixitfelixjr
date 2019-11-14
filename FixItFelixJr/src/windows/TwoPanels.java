@@ -2,7 +2,7 @@ package windows;
 
 import java.util.Random;
 
-import exeptions.OutOfBoundsExeption;
+import exeptions.CanIMoveExeption;
 import util.Direction;
 import util.GameConstants;
 import util.Vector2D;
@@ -17,7 +17,7 @@ class TwoPanels extends Window
 		this.generateObstacles(mult);
 	}
 	
-	public void canIMove(Direction d) throws OutOfBoundsExeption
+	public void canIMove(Direction d) throws CanIMoveExeption
 	{
 		if ( this.obstacles == null)
 		{

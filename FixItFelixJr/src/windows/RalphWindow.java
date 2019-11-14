@@ -1,13 +1,13 @@
 package windows;
 
-import exeptions.OutOfBoundsExeption;
+import exeptions.CanIMoveExeption;
 import util.Direction;
 
 public class RalphWindow extends Window {
 
 	@Override
-	public void canIMove(Direction p) throws OutOfBoundsExeption {
-		throw new OutOfBoundsExeption();
+	public void canIMove(Direction p) throws CanIMoveExeption {
+		throw new CanIMoveExeption();
 	}
 
 	@Override

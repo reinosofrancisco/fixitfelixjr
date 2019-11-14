@@ -30,7 +30,7 @@ public class GameStarter implements Runnable {
 		}
 		else {
 			//me voy al menu
-//			WindowController.getInstance().changeMenu();
+			//WindowController.getInstance().changeMenu();
 		}
 		
 	}

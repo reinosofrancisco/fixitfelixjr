@@ -1,6 +1,6 @@
 package windows;
 
-import exeptions.OutOfBoundsExeption;
+import exeptions.CanIMoveExeption;
 import util.Direction;
 import util.Vector2D;
 
@@ -11,7 +11,7 @@ class HalfCircle extends Window
 	{
 		super(panelsAmount, pos,dif,Window.HALFCIRCLE);
 	}
-	public void canIMove(Direction p) throws OutOfBoundsExeption
+	public void canIMove(Direction p) throws CanIMoveExeption
 	{
 		
 	}
