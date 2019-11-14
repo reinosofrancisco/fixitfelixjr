@@ -99,7 +99,6 @@ public class Core {
 	}
 	
 	public void levelUp() {
-		game.difficulty.lvlUp();
 		System.out.println("\n\n\nHas completado el nivel!!\n\n\n");
 		pause(1000);
 		if(game.difficulty.getLvl()==GameConstants.LEVEL_AMMOUNT) {
@@ -108,6 +107,7 @@ public class Core {
 		this.time=GameConstants.GAME_TIME;
 		felix.restartGame();
 		niceland.restartGame();
+		game.difficulty.lvlUp();
 	}
 
 

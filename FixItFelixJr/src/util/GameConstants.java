@@ -18,7 +18,7 @@ public class GameConstants {
 	public static final int PANEL_TWO_AMMOUNT=2;
 	public static final double PANEL_BASEPROB=0.2;
 	public static final int BRICK_COOLDOWN = 1;
-	public static final int LEVEL_AMMOUNT = 2;
+	public static final int LEVEL_AMMOUNT = 10;
 	public static final int BRICK_AMMOUNT = 10;
 	public static final int WINDOW_WIDTH = 1080;
 	public static final int WINDOW_HEIGHT = 720;
