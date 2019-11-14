@@ -41,14 +41,6 @@ public class RandomEnvironment {
 
 	/** Summons an amount of 'Brick' to a linkedList */
 	public void summonBricks() {
-//		int i;
-//		for( i = 0; i<bricksAmount; i++) {
-//			Brick brick = new Brick(dif);
-//			brick.setVector2D(pos);
-//			bricks.addFirst(brick);		/**Always ADD FIRST */
-//		}	
-//		System.out.println("Summoning " + bricksAmount + " Bricks on " + pos.toString());	
-//		setBricksCooldown(genericCD);
 		bullets.add(new Brick());
 	}
 
@@ -58,6 +50,9 @@ public class RandomEnvironment {
 		}
 	}
 
+	/**
+	 * Vuelve todas las Variables de instancia a su estado original, para poder volver a jugar
+	 */
 	public void restartEntities() {
 
 		bullets = new LinkedList<Bullet>();
@@ -69,5 +64,4 @@ public class RandomEnvironment {
 		bullets.remove(brick);
 
 	}
-	
 }

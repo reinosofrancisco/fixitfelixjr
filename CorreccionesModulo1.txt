@@ -1,0 +1,5 @@
+* Las clases Felix, Ralph, Core, Difficulty son Singleton
+* La clase RandomEnviroment ahora solo tiene la lista de ladrillos y pajaros, se delego el
+comportamiento a las propias clases, por ejemplo el manejo de los nicelanders se paso a la 
+clase Building
+* Hay una clase de Constantes que maneja todas las constates del juego

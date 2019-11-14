@@ -15,7 +15,7 @@ public class Stats {
 	private static int timesExecuted;
 	private static int timesPressedPlay;
 	private static int timesNewHighscore;
-	
+	private static String usrPath=System.getProperty("user.home");
 	
 	private Stats() {
 		
@@ -32,10 +32,10 @@ public class Stats {
 	
 	private static void readFile() {
 		ObjectInputStream input;
-		String usrPath=System.getProperty("user.home");
+		
 		try
 		{
-			FileInputStream fi=new FileInputStream(new File(usrPath));
+			FileInputStream fi=new FileInputStream(new File(usrPath+"\\Stats.txt"));
 			input = new ObjectInputStream(fi);
 			Stats.timesExecuted= (Integer) input.readObject();
 			Stats.timesPressedPlay= (Integer) input.readObject();
@@ -58,7 +58,7 @@ public class Stats {
 	public static void savePersistentScore() {
 		ObjectOutputStream output = null;
 		try {
-			FileOutputStream fo=new FileOutputStream(new File("src/data/stats/stats.dat"));
+			FileOutputStream fo=new FileOutputStream(new File(usrPath+"\\Stats.txt"));
 			output = new ObjectOutputStream(fo);
 			output.writeObject(timesNewHighscore);
 			output.writeObject(timesPressedPlay);

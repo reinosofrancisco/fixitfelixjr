@@ -127,28 +127,7 @@ public class Vector2D{
 		return("X [" + this.posx + "]  |  Y [" + this.posy + "]");
 	}
 	
-	
-	
-//	/**
-//	 * 
-//	 * @param v2
-//	 * @return returns true if instance is bigger or equals to v2
-//	 */
-//	public int compareAllComponents(Vector2D v2) {
-//		int x= v2.posx;
-//		int y= v2.posy;
-//		if(this.isEquals(v2)) {
-//			return 0;
-//		}
-//		else {
-//			if(posx>=x && posy>=y) {
-//				return 1;
-//			}
-//			return -1;
-//		}
-//		
-//	}
-	
+
 	/**
 	 * 
 	 * @return true if the integers of both vectors are the same

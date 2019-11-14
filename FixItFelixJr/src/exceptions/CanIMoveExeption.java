@@ -1,4 +1,4 @@
-package exeptions;
+package exceptions;
 
 public class CanIMoveExeption extends Exception{
 

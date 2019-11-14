@@ -2,11 +2,6 @@ package graphicInterface.utils;
 
 import java.awt.Color;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.awt.image.ColorModel;
-
-import javax.imageio.ImageIO;
-
 import util.Vector2D;
 
 public  class ExtImage implements Comparable<ExtImage>

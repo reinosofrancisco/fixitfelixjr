@@ -38,8 +38,6 @@ public abstract class GenericWindowPanel extends JPanel{
 		
 	}
 	
-	
-	//IS THIS NECESARIO??!=?!?!!??
 	public abstract void paintComponent(Graphics g);
 	
 	public abstract void draw(Graphics g);

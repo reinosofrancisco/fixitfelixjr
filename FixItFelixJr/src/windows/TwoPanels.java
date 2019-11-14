@@ -2,7 +2,7 @@ package windows;
 
 import java.util.Random;
 
-import exeptions.CanIMoveExeption;
+import exceptions.CanIMoveExeption;
 import util.Direction;
 import util.GameConstants;
 import util.Vector2D;

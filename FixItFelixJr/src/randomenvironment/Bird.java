@@ -53,8 +53,6 @@ public class Bird extends Bullet {
 		
 	}
 
-	
-	//PREGUNTAR DESPUES
 	@Override
 	public int getType() {
 		// TODO Auto-generated method stub

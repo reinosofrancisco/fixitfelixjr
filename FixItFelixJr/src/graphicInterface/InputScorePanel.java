@@ -1,7 +1,5 @@
 package graphicInterface;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Graphics;
@@ -10,17 +8,10 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import graphicInterface.utils.ImageHashLoader;
 import guiControllers.MouseContInputHS;
-import guiControllers.MouseContS;
-import guiControllers.MouseContrMenu;
-import util.GameConstants;
-import util.ResourcePathConstants;
 public class InputScorePanel extends GenericWindowPanel{
 	
 	
@@ -99,5 +90,4 @@ public class InputScorePanel extends GenericWindowPanel{
 		// TODO Auto-generated method stub
 		
 	}
-
 }

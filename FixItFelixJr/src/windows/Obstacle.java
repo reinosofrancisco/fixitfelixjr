@@ -1,6 +1,6 @@
 package windows;
 
-import exeptions.CanIMoveExeption;
+import exceptions.CanIMoveExeption;
 import util.Direction;
 
 public abstract class  Obstacle 

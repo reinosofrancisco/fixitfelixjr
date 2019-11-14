@@ -5,9 +5,8 @@ import java.util.List;
 import java.util.Random;
 
 import entities.Felix;
-import exeptions.CanIMoveExeption;
+import exceptions.CanIMoveExeption;
 import game.Core;
-import game.Difficulty;
 import randomenvironment.Nicelander;
 import util.Direction;
 import util.Vector2D;
@@ -29,17 +28,6 @@ public class Building {
 		}
 		return instance;
 	}
-
-//	/**
-//	 * Por defecto se inicializa edificion con dificultad 1
-//	 */
-//	private Building() {
-//		this(new Difficulty());
-//	}
-//	private Building(Difficulty d) {
-//		this.section=Sections.FIRST;
-//		windows=WindowsGenerator.generateWindows(section,d);
-//	}
 
 	public Window[][] getWindows() {
 		return windows;
@@ -111,7 +99,7 @@ public class Building {
 	 * 
 	 * @return retorna true si estaba en la ultima seccion (o sea, hay que subir nivel)
 	 */
-	public boolean sectionUp() {
+	public void sectionUp() {
 		switch (this.section) {
 		case FIRST: {
 			this.setSection(Sections.SECOND);
@@ -123,12 +111,11 @@ public class Building {
 		}
 		case THIRD: {
 			this.setSection(Sections.FIRST);
-			return true;
+			Core.getInstance().levelUp();
 		}
 		default:
 			break;
 		}
-		return false;
 	}
 
 	/**
@@ -202,13 +189,20 @@ public class Building {
 		//Pregunta si esta arreglado el edificio. Entonces, si subo a la ultima seccion-->subo de nivel
 		//De cualquier manera, debe regenerar ventanas y reposicionar a felix (ver implementacion)
 		if(isFixed()) {
-			if (sectionUp()) {
-				Core.getInstance().levelUp();
-			}
+			sectionUp();
 			windows = WindowsGenerator.generateWindows();
 			Felix.getInstnance().restartPosition();
 		}
 		
+	}
+
+	/**
+	 * Vuelve todas las Variables de instancia a su estado original, para poder volver a jugar
+	 */
+	public void restartGame() {
+		removeNicelander(nicelanders);
+		section= Sections.FIRST;
+		windows= WindowsGenerator.generateWindows();	
 	}
 
 }

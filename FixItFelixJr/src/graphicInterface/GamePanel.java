@@ -1,21 +1,10 @@
 package graphicInterface;
 
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
-import javax.swing.JButton;
-import javax.swing.JPanel;
-
-import com.sun.org.apache.bcel.internal.generic.CPInstruction;
-
 import graphicInterface.utils.ExtImage;
 import graphicInterface.utils.GraphicsGame;
-import guiControllers.KeyL;
-import guiControllers.MouseContrMenu;
-import util.GameConstants;
 
 public class GamePanel extends GenericWindowPanel {
 
@@ -88,7 +77,6 @@ public class GamePanel extends GenericWindowPanel {
 		for (ExtImage i : GraphicsGame.getInstance().getImagesAct()) {
 			g.drawImage(i.getImg(), i.getPos().getPosx(), i.getPos().getPosy(), i.getWidth(), i.getHeight(),i.getColor(),null);
 		}
-//		System.out.println("pintando");
 
 	}
 

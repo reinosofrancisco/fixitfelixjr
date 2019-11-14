@@ -1,15 +1,10 @@
 package randomenvironment;
 
-import building.Building;
 import entities.Felix;
-import util.Dimentions;
 import util.GameConstants;
 import util.Vector2D;
 
 public class Nicelander {
-	
-	//private static final int COOLDOWN=0;
-	
 	
 	private Vector2D pos;
 	private int screenTime=GameConstants.NICELANDER_SCREENTIME;

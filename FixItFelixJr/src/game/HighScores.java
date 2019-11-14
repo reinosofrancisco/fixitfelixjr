@@ -7,8 +7,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.URL;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -19,20 +17,16 @@ public class HighScores {
 	
 	private SortedSet<Scores> scoreList = new TreeSet<Scores>();
 	private static HighScores INSTANCE;
-	
-	
-	/**
-	 * Sytem properties guardar el archivo.dat en userHome, RT para stats
-	 */
+	private String usrPath=System.getProperty("user.home");
 	
 	
 	@SuppressWarnings("unchecked")
 	private HighScores() {
 		ObjectInputStream input = null;
-		String usrPath=System.getProperty("user.home");
+		
 		try {
 			// Asigno la Entrada, de donde voy a sacar los datos
-			FileInputStream fi=new FileInputStream(new File(usrPath));
+			FileInputStream fi=new FileInputStream(new File(usrPath+"/HighScores.dat"));
 			input = new ObjectInputStream(fi);
 			
 			// Saco el objeto que guarde anteriormente
@@ -44,14 +38,7 @@ public class HighScores {
 			System.out.println(ex.getMessage());
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
-		} finally {
-			/**
-			 * Luego de el try catch, se ejecutara el codigo que esta en el Finally. Luego, el
-			 * programa SIGUE.
-			 * 
-			 */
-			
-		}
+		} 
 	}
 	
 	static {
@@ -81,7 +68,7 @@ public class HighScores {
 		ObjectOutputStream output = null;
 		try {
 			// Asigno a salida donde voy a guardar los datos
-			FileOutputStream fo=new FileOutputStream(new File("src/data/highscores/highscores.dat"));
+			FileOutputStream fo=new FileOutputStream(new File(usrPath+"/HighScores.dat"));
 			output = new ObjectOutputStream(fo);
 			// Guardo los hightscores en el archivo (SortedSet implements Serializable)
 			output.writeObject(scoreList);
@@ -91,11 +78,6 @@ public class HighScores {
 			System.out.println(ex.getMessage());
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
-		} finally {// TODO }
-			/**
-			 * Luego de un error, se ejecutara el codigo que esta en el Finally. Luego, el
-			 * programa SIGUE.
-			 */
 		}
 	}
 

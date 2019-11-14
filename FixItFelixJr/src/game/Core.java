@@ -3,9 +3,6 @@ package game;
 
 
 
-import java.util.LinkedList;
-import java.util.List;
-
 import building.Building;
 import entities.Felix;
 import entities.Ralph;
@@ -34,10 +31,9 @@ public class Core {
 	private int points=0;
 	private boolean newHighscore=false;
 	private PlayerAction nextAction=PlayerAction.NONE;
-	private List<GameEvent> events;
 	
 	
-	//PREGUNTAR
+	
 	
 	private Core() {
 		
@@ -52,8 +48,6 @@ public class Core {
 	
 	public void update() {
 		System.out.println("-");
-		
-		events=new LinkedList<GameEvent>(); //restart the events list
 		
 		playerAction();
 		game.niceland.update();
@@ -132,11 +126,22 @@ public class Core {
 		System.out.println("REINICIANDO SECCION");
 		pause(1000);
 	}
+	
+	/**
+	 * Vuelve todas las instancias a sus estados orginales para volver a jugar
+	 */
 
 	public void restartGame() {
-		game = new Core();
-	
 		
+		felix.restartGame();
+		ralph.restartGame();
+		niceland.restartGame();
+		re.restartEntities();
+		points=0;
+		playing=true;
+		newHighscore= false;
+		nextAction=PlayerAction.NONE;
+		time= GameConstants.GAME_TIME;
 	}
 	
 
@@ -206,7 +211,6 @@ public class Core {
 		}
 		
 	}
-	
 
 public static void pause(int ms) {
 	try {

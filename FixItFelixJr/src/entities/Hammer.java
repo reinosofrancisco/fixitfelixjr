@@ -1,5 +1,6 @@
 package entities;
 
+import exceptions.HammerOnCooldownExeption;
 import util.GameConstants;
 
 /*
@@ -31,24 +32,29 @@ public class Hammer {
 	
 	//retorna true si pudo arreglar y resetea el cooldown
 	//false en caso contrario
-	public boolean fix() {
-		if(canFix()) {
-			cooldown+=cooldownAmmount;
-			return true;
-		}
-		else {
-			return false;
-		}
+	public void fix() throws HammerOnCooldownExeption {
+		canFix();
+		System.out.println("aaaaa");
+		cooldown+=cooldownAmmount;
 	}
 	//retorna si puede arreglar
-	public boolean canFix() {
-		return cooldown==0;
+	public void canFix() throws HammerOnCooldownExeption {
+		if (cooldown!=0)
+		{
+			throw new HammerOnCooldownExeption();
+		}
 	}
 	//updatea el cooldown
 	public void update() {
 		if(cooldown>0) {
 			cooldown--;			
 		}
+	}
+
+
+	public void restartGame() {
+		cooldown=0;
+		
 	}
 	
 }

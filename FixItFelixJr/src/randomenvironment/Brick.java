@@ -62,8 +62,6 @@ public class Brick extends Bullet {
 		}
 		System.out.println("[BRICK] After moving i am in position  " + getVector2D().toString());					
 	}
-
-	//PREGUNTAR DESPUES
 	@Override
 	public int getType() {
 		return Bullet.BRICK;

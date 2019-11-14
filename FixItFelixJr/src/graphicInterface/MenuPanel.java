@@ -51,9 +51,6 @@ public class MenuPanel extends GenericWindowPanel {
 	/**
 	 * El constructor instancia todas las cosas necesarias del Frame
 	 * 
-	 * PREGUNTAR: Agrego filas y columnas de jpanels vacios porque me permite que
-	 * quede todo mas bonito
-	 * 
 	 */
 	private MenuPanel() {
 		super();

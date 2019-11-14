@@ -1,9 +1,7 @@
 package graphicInterface.utils;
 
 import java.awt.Image;
-import java.util.Collection;
 import java.util.Hashtable;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -40,7 +38,7 @@ public class GraphicsGame {
 	private GraphicsGame()
 	{
 		imgAct= new TreeSet<ExtImage>();
-		images= ImageHashLoader.getImages(); //PREGUNTAR, METODO ESTATICO CARGANDO IMAGENES ES LEGAL?
+		images= ImageHashLoader.getImages(); 
 		
 		
 		addBackground();
@@ -138,8 +136,6 @@ public class GraphicsGame {
 					break;
 				}
 				
-				
-//				imgAct.add(new ExtImage(images.get(ResourcePathConstants.V_ENTRSANA_S),new Vector2D(290+(i*(100+4)),20+(j*(150+10))),100,150,1));
 			}
 		}
 	}
@@ -182,54 +178,10 @@ public class GraphicsGame {
 	public void delateImgOfAct(ExtImage f)
 	{
 		imgAct.remove(f);
-//		for (ExtImage i : imgAct) {
-//			if (i == f) {
-//				imgAct.remove(f);
-//				return;
-//			}
-//		}
+		
 	}
-	
-	
-	/**
-	 * Que imagenes podrían llegar a cambiar en el update?
-	 * 
-	 * -Felix
-	 * -Alguna ventana
-	 * -Nicelander y tortas
-	 * -Pajaros (cammbio de direccion)
-	 * -Ralph (cambio de direccion)
-	 * -Nuevos ladrillos
-	 *  
-	 */
-	
 	public void update()
-	{
-//		i++;
-//		ExtImage e;
-//		if ((i%2)==0) {
-//			imgAct.first().setImg(images.get("F_QUIET"));
-//			System.out.println("Quieto");
-//			
-//		}
-//		else {
-//			
-//			imgAct.first().setImg(images.get("F_MOVING_L"));
-//			System.out.println("Camina");
-//		}
-		
-		
-		
-		//BORRAR TODAS LAS VENTANAS
-//		Collection<ExtImage> c=new TreeSet<ExtImage>();
-//		for (ExtImage extImage : imgAct) {
-//			if(extImage.getLayer()==GraphicsGame.WINDOWS_LAYER) {
-//				c.add(extImage);
-//			}
-//		}
-//		imgAct.removeAll(c);
-//		addWindows(); //unimplemented method. adds windows to imgAct collection using the same method the constructor uses
-		
+	{	
 		
 		imgAct=new TreeSet<ExtImage>();
 		addBackground();
@@ -238,59 +190,6 @@ public class GraphicsGame {
 		addRalph();
 		addEnemies();
 		addFelix();
-		
-		
-		
-		
-		//actualizo felix si hizo algo el jugador o si recibio un golpe o si agarro torta--->posicion e imagen
-		
-		//actualizo a ralph si se movió-->posicion e imagen
-		
-		//actualizo a ventana (y panel) si se rompió o arregló-->imagen
-		
-		//actualizo a pajaros si cambiaron de direccion--->posicion e imagen
-		
-		//actualizo a ladrillos si ya no existen--->posicion e imagen
-		
-		//actualizo a nicelander si dejo torta, desaparecio o hay que matarlo--->imagen
-		
-		//actualizo a building (con ventanas) si cambie de seccion o me mori--->imagen
-		
-		//actualizo a ...
-		
-		//
-		
-		
-		
-		
-		
-		
-		
-		//COMO SÉ QUE COSAS ACTUALIZAR Y QUE NO? VUELVO A LEER TOOODO Y REAGREGAR O...
-		//CORE MANEJA QUE COSAS CAMBIARON EN FUNCION DEL ANTERIOR TURNO Y DE ESA LISTA DE COSAS
-		//QUE CAMBIARON ACTUALIZO LO QUE SI CAMBIO
-		
-		//PSEUDOCODIGO?
-//		if c.felix.repaired {
-//			int n= c.getbuilding.getwindows[c.felix.x-1,f.felix.y-1].getlive
-//			if n>2 blablabla
-//		}
-		
-	//opcion 2
-//		
-//		Core c=Core.getInstance();
-//		for(GameEvent g : c.getEvents()) {
-//			switch g
-//			case WINDOW_REPAIRED
-//				int n= c.getbuilding.getwindows[c.felix.x-1,f.felix.y-1].getlive
-//				//			if n>2 blablabla
-//			
-//			
-//		}
-		
-		
-		
-		
 		
 	}
 	

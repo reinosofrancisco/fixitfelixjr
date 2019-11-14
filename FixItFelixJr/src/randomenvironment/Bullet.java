@@ -46,7 +46,4 @@ public abstract class Bullet {
 		return vector2D.isColiding(v);
 	}
 	
-	
-	
-//	public abstract void behaviourOOB(LinkedList<Bullet> deleteBullets);
 }

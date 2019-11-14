@@ -1,33 +1,21 @@
 package graphicInterface;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import java.awt.Image;
 import java.awt.Insets;
-import java.io.IOException;
-import java.net.URL;
-import javax.imageio.ImageIO;
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
-import javax.swing.JTextPane;
 import javax.swing.table.DefaultTableModel;
 import game.HighScores;
 import game.Scores;
 import graphicInterface.utils.ImageHashLoader;
-import guiControllers.MouseContS;
 import guiControllers.MouseContrMenu;
-import util.GameConstants;
 import util.ResourcePathConstants;
 
 public class HighScoresPanel  extends GenericWindowPanel{
@@ -41,7 +29,7 @@ public class HighScoresPanel  extends GenericWindowPanel{
 	private static HighScoresPanel instance;
 
 
-	private JButton back= new JButton("<<");
+	private JButton back= new JButton("Volver al Menu");
 	private JTable table= new JTable();
 	private Object [] headers= {"Posicion","Nombre", "Puntos"};
 	private DefaultTableModel model;
@@ -72,13 +60,6 @@ public class HighScoresPanel  extends GenericWindowPanel{
 		gbc.insets=new Insets(110, 50, 50, 50);
 		addGB(this, new JScrollPane(table), 0, 2);
 		add();
-		/*
-		for(Scores scores: HighScores.getInstance().getLovelyScores())
-		{
-
-			area1.setText("Score--> "+ scores);
-		}
-		*/
 	}
 
 
@@ -130,15 +111,5 @@ public class HighScoresPanel  extends GenericWindowPanel{
 		repaint();
 	}
 
-//	public static void main(String args[])
-//	{
-//		JFrame m= new JFrame();
-//		HighScoresPanel p= HighScoresPanel.getInstance();
-//		m.add(p);
-//		m.setSize(1080, 720);
-//		p.setVisible(true);
-//		m.setVisible(true);
-//
-//	}
 
 }

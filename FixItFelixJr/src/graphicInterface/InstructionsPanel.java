@@ -1,6 +1,5 @@
 package graphicInterface;
 
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
@@ -8,8 +7,6 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
-import javax.swing.JPanel;
-
 import guiControllers.MouseContrMenu;
 import util.GameConstants;
 import util.ResourcePathConstants;
@@ -23,9 +20,8 @@ public class InstructionsPanel extends GenericWindowPanel {
 	private static InstructionsPanel instance;
 	
 	private String imageUrl = ResourcePathConstants.INSTRUCTIONS;
-	// ResourcePathConstants.INSTRUCTIONS;
 	private Image img;
-	private JButton back = new JButton("<<");
+	private JButton back = new JButton("Volver al Menu");
 
 	private InstructionsPanel() {
 		super();
@@ -78,4 +74,6 @@ public class InstructionsPanel extends GenericWindowPanel {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
 }

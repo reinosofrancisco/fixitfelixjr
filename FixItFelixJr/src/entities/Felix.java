@@ -1,7 +1,8 @@
 package entities;
 
 import building.Building;
-import exeptions.CanIMoveExeption;
+import exceptions.CanIMoveExeption;
+import exceptions.HammerOnCooldownExeption;
 import game.Core;
 
 import util.Dimentions;
@@ -12,11 +13,7 @@ import windows.Window;
 
 public class Felix {
 	
-	/*
-	 * private final int LIVES=3
-	 * private final int INMUNE = 1
-	 * private final int 
-	 */
+
 	
 	
 	
@@ -38,10 +35,6 @@ public class Felix {
 		
 	}
 	
-//	/**Felix initial Vector, lives amount, inmunity status & Hammer hitting Cooldown */
-//	private Felix(Vector2D p,int lives,int inm,int cooldw){
-//		
-//	}
 	
 	public static Felix getInstnance() {
 		if (instance==null) {
@@ -91,12 +84,16 @@ public class Felix {
 	 */
 	public int fix() {
 		Window[][] w = Building.getInstance().getWindows();
-		if(ham.fix()) {
-			int points=w[pos.getPosx()-1][pos.getPosy()-1].repair();
-			System.out.println("The Window is being Repaired! + " + points + "points. IsWindowHealthy-->" + w[pos.getPosx()-1][pos.getPosy()-1].isHealthy());
-			return points;
-		}
-		else return 0;
+		 try{
+			 ham.fix();
+		 }
+		catch(HammerOnCooldownExeption e)
+		 {
+			return 0;
+		 }
+		int points=w[pos.getPosx()-1][pos.getPosy()-1].repair();
+		System.out.println("The Window is being Repaired! + " + points + "points. IsWindowHealthy-->" + w[pos.getPosx()-1][pos.getPosy()-1].isHealthy());
+		return points;
 	}
 	
 	public void update() {
@@ -109,16 +106,7 @@ public class Felix {
 			Core.getInstance().gameOver(true);
 		}
 	}
-//	public void updateAll(Direction dir) {
-//		//move(dir);
-//		testingMove(dir);
-//		
-//	}
-//	
-//	public void testingMove(Direction dir) {
-//		this.pos = this.pos.add(dir.getUnitVector());
-//		System.out.println("Soy felipe y me estoy moviendo" + this.pos.toString());
-//	}
+
 	
 	public Vector2D getVector2D() {
 		return (this.pos);
@@ -149,6 +137,16 @@ public class Felix {
 	
 	public boolean isAlive() {
 		return lives>0;
+	}
+
+	/**
+	 * Vuelve todas las Variables de instancia a su estado original, para poder volver a jugar
+	 */
+	public void restartGame() {
+		ham.restartGame();
+		inmune= GameConstants.FELIX_INMUNE;
+		lives= GameConstants.FELIX_LIVES;
+		pos= new Vector2D(initial);
 	}
 	
 

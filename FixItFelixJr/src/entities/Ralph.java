@@ -31,15 +31,7 @@ public class Ralph
 		bricksAmount=GameConstants.BRICK_AMMOUNT;
 	}
 	
-//	private Ralph(Vector2D pos, Direction dir, int bricksAmount)
-//	{
-//		this.pos= pos;
-//		this.dir= dir;
-//		this.bricksAmount= bricksAmount;
-//	}
-	
-	
-	
+		
 	public static Ralph getInstance() {
 		if (instance==null) {
 			instance=new Ralph();
@@ -77,15 +69,7 @@ public class Ralph
 		this.bricksAmount = bricksAmount;
 	}
 	
-	/*public void move(Direction dir) {
-		Vector2D newPos = this.pos.add(dir.getUnitVector());
-		if(Dimentions.isInsideMap(newPos)) {
-			this.pos = newPos;
-			System.out.println("[RALPH] I moved to pos " + this.pos.toString());
-			
-		}
-	}
-	*/
+
 	
 	//moves a random direction LEFT OR RIGHT
 	public void move() {
@@ -176,6 +160,17 @@ public class Ralph
 			breakBuilding();
 		}
 		
+	}
+
+	/**
+	 * Vuelve todas las Variables de instancia a su estado original, para poder volver a jugar
+	 */
+	public void restartGame() {
+		
+		pos=new Vector2D(1,4);
+		dir= Direction.RIGHT;
+		velocity=1;
+		bricksAmount=GameConstants.BRICK_AMMOUNT;
 	}
 	
 }

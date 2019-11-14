@@ -6,9 +6,6 @@ import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
-import game.Core;
 import game.HighScores;
 import game.Stats;
 import graphicInterface.utils.GraphicsGame;
@@ -21,10 +18,6 @@ public class MainGameWindow extends JFrame {
 	
 	
 	
-	//IDEA: en vez de tener paneles, tener arreglo de paneles e inicializar todos
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private GenericWindowPanel menu= MenuPanel.getInstance();
 	private GenericWindowPanel instr= InstructionsPanel.getInstance();
@@ -34,13 +27,6 @@ public class MainGameWindow extends JFrame {
 	private StatsPanel stat= StatsPanel.getInstance();
 	private InputScorePanel inputHs= InputScorePanel.getInstance();
 	private KeyL keyListener=new KeyL();
-	
-	
-	/**
-	 * En la pos 0 del arreglo se va a guardar la cantidad de veces que se ejecuto la aplicacion
-	 * En la pos 1 la cantidad de veces que se clickeo el boton de jugar
-	 * Y en la pos 2 la cantidad de veces que se agrego un HS
-	 */
 	private static MainGameWindow instance;
 	
 	private MainGameWindow()
@@ -169,7 +155,7 @@ public class MainGameWindow extends JFrame {
 	}
 	public void update() {
 		if (gameW.isEnabled()) {
-			GraphicsGame.getInstance().update(); //PREGUNTAR puedo meter esto en el paintcomponents del GamePanel????? (ver comentado
+			GraphicsGame.getInstance().update(); 
 			repaint();
 		}
 		
