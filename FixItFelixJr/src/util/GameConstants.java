@@ -22,6 +22,7 @@ public class GameConstants {
 	public static final int BRICK_AMMOUNT = 10;
 	public static final int WINDOW_WIDTH = 1080;
 	public static final int WINDOW_HEIGHT = 720;
+	public static final int GAME_TIME = 1000;
 	
 	
 }

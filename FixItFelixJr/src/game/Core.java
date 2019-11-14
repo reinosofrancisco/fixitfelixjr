@@ -29,6 +29,7 @@ public class Core {
 	private Ralph ralph = Ralph.getInstance();
 	private RandomEnvironment re = RandomEnvironment.getInstance();
 	private HighScores highscores = HighScores.getInstance();
+	private int time=GameConstants.GAME_TIME;
 	private boolean playing = true;
 	private int points=0;
 	private boolean newHighscore=false;
@@ -58,7 +59,12 @@ public class Core {
 		game.niceland.update();
 		game.ralph.update();
 		game.felix.update();//TODO
-		game.re.update();	
+		game.re.update();
+		if(--time==0) {
+			gameOver(false);
+			System.out.println(time);
+		}
+		
 		nextAction=PlayerAction.NONE;
 		
 		//---------------		
@@ -98,16 +104,15 @@ public class Core {
 		}
 	}
 	
-	private void levelUp() {
+	public void levelUp() {
 		game.difficulty.lvlUp();
 		System.out.println("\n\n\nHas completado el nivel!!\n\n\n");
 		pause(1000);
 		if(game.difficulty.getLvl()>=GameConstants.LEVEL_AMMOUNT) {
 			gameOver(true);
-		}		
+		}
+		this.time=GameConstants.GAME_TIME;
 		game.felix.restartPosition();
-		game.niceland.levelUp();
-		//niceland=new Building(difficulty);
 	}
 
 
@@ -115,7 +120,8 @@ public class Core {
 		game.felix.restartPosition();
 		game.re.restartEntities();
 		game.niceland.restartLevel();
-		
+		System.out.println("REINICIANDO NIVEL");
+		pause(1000);
 	}
 
 
@@ -123,6 +129,8 @@ public class Core {
 		game.felix.restartPosition();
 		game.niceland.restartSection();
 		game.re.restartEntities();
+		System.out.println("REINICIANDO SECCION");
+		pause(1000);
 	}
 
 	public void restartGame() {
@@ -179,9 +187,7 @@ public class Core {
 		switch (nextAction) {
 		case FIX:
 			points+=felix.fix();
-			if(niceland.isFixed()) {
-				levelUp();
-			}
+			niceland.checkFixed();
 			break;
 		case MOVE_DOWN:
 			felix.move(Direction.DOWN);

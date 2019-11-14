@@ -67,12 +67,10 @@ public class Felix {
 		 
 		 if(Dimentions.isInsideMap(newPos)) {
 			 try {
-				 w[pos.getPosx()-1][pos.getPosy()-1].canIMove(d);
+				w[pos.getPosx()-1][pos.getPosy()-1].canIMove(d);
 				w[newPos.getPosx()-1][newPos.getPosy()-1].canIMove((d.getUnitVector().product(-1)).getDirection());
 				pos=newPos;
-				 
 				System.out.println("\n Felix se mueve a: \t" + pos.toString());
-					 
 				return true;
 			 }
 			 catch(CanIMoveExeption e)
